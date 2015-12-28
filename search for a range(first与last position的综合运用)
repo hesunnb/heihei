@@ -1,0 +1,78 @@
+public class Solution {
+    /** 
+     *@param A : an integer sorted array
+     *@param target :  an integer to be inserted
+     *return : a list of length 2, [index1, index2]
+     */
+    public int[] searchRange(int[] A, int target) {
+        // write your code here
+        int result[] = new int[2];
+        if(A == null || A.length == 0)
+        {
+            result[0] = -1;
+            result[1] = -1;
+            return result;
+        }
+        
+        //找左边界
+        int start = 0, end = A.length - 1;
+        while(start + 1 < end)
+        {
+            int mid = start + (end - start) / 2; //这样写是为了防止溢出（装逼用，就是end+start可能比int的最大值还要大，防止int的溢出）
+            if(A[mid] < target) //这个就能起到找第一个元素的作用，如果要是target是相同的重复元素（555），这样就会执行else，然后end不断的
+              //向前窜，就会窜到第一个
+            {
+              start = mid;
+            }
+            else
+            {
+                end = mid;
+            }
+        }
+      
+        if(A[start] == target)
+        {
+            result[0] = start;
+        }
+      
+        else if(A[end] == target)
+        {
+            result[0] = end;
+        }
+        else
+        {
+            result[0] = -1;
+        }
+      
+        //找右边界
+        start = 0;
+	    end = A.length - 1;
+        while(start + 1 < end)
+        {
+            int mid = start + (end - start) / 2; //这样写是为了防止溢出（装逼用，就是end+start可能比int的最大值还要大，防止int的溢出）
+            if(A[mid] <= target) //这个就能起到找第一个元素的作用，如果要是target是相同的重复元素（555），这样就会执行else，然后end不断的
+              //向前窜，就会窜到第一个
+            {
+              start = mid;
+            }
+            else
+            {
+                end = mid;
+            }
+        }
+      
+        if(A[end] == target)
+        {
+            result[1] = end;
+        }
+        else if(A[start] == target)
+        {
+            result[1] = start;
+        }
+        else
+        {
+            result[1] = -1;
+        }
+        return result;
+    }
+}
