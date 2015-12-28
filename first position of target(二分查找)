@@ -27,10 +27,9 @@ class Solution {
       
       if(nums[start] == target)
       {
-          return start;
+          return start; //找重复元素的第一个元素就要先判断start；要是找重复元素的最有一个元素，要先判断end
       }
-      
-      if(nums[end] == target)
+      else if(nums[end] == target) //这里的else不能少，否则（5,5,5,5,5）这种情况就出现问题了
       {
           return end;
       }
