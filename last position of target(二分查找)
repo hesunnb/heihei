@@ -14,8 +14,7 @@ class Solution {
       while(start + 1 < end)
       {
           int mid = start + (end - start) / 2; //这样写是为了防止溢出（装逼用，就是end+start可能比int的最大值还要大，防止int的溢出）
-          if(nums[mid] <= target) //这个就能起到找第一个元素的作用，如果要是target是相同的重复元素（555），这样就会执行else，然后end不断的
-              //向前窜，就会窜到第一个
+          if(nums[mid] <= target) //找重复元素的最后一个，这里就是start不断往后窜，最后找到重复元素的最后一个
           {
               start = mid;
           }
