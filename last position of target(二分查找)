@@ -13,10 +13,9 @@ class Solution {
       int start = 0, end = nums.length - 1;
       while(start + 1 < end)
       {
-          int mid = start + (end - start) / 2; //这样写是为了防止溢出
-          //（装逼用，就是end+start可能比int的最大值还要大，防止int的溢出）
-          if(nums[mid] <= target) //跟fisrtposition不一样的地方就是这里多个等号，
-          //结果就是start不断地往后窜，直到找到最后一个重复的元素
+          int mid = start + (end - start) / 2; //这样写是为了防止溢出（装逼用，就是end+start可能比int的最大值还要大，防止int的溢出）
+          if(nums[mid] <= target) //这个就能起到找第一个元素的作用，如果要是target是相同的重复元素（555），这样就会执行else，然后end不断的
+              //向前窜，就会窜到第一个
           {
               start = mid;
           }
@@ -26,14 +25,13 @@ class Solution {
           }
       }
       
-      if(nums[start] == target)
-      {
-          return start;
-      }
-      
       if(nums[end] == target)
       {
-          return end;
+          return end; //找重复元素的第一个元素就要先判断start；要是找重复元素的最有一个元素，要先判断end
+      }
+      else if(nums[start] == target) //这里的else不能少，否则（5,5,5,5,5）这种情况就出现问题了
+      {
+          return start;
       }
       
       return -1;
