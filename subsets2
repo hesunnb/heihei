@@ -1,0 +1,44 @@
+class Solution {
+    /**
+     * @param S: A set of numbers.
+     * @return: A list of lists. All valid subsets.
+     */
+        public ArrayList<ArrayList<Integer>> subsetsWithDup(ArrayList<Integer> S) {
+        // write your code here
+        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+        if(S == null || S.size() == 0)
+        {
+            return result;
+        }
+        
+        int[] nums = new int[S.size()];
+        for(int i = 0; i < nums.length; i++) //给的arrayList,转化成数组进行排序，把数组传到下面去
+        {
+            nums[i] = S.get(i);
+        }
+        Arrays.sort(nums);
+        
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        subsetsWithDupHelper(result, list, nums, 0);
+        
+        return result;
+    }
+    
+    private void subsetsWithDupHelper(ArrayList<ArrayList<Integer>> result, 
+            ArrayList<Integer> list, int[] nums, int pos)
+    {
+        result.add(new ArrayList<Integer>(list));
+        
+        for(int i = pos; i < nums.length; i++)
+        {
+            if(i != pos && nums[i] == nums[i-1]) //比一问就多了这两行，就是递归回朔的时候如果后面的元素与前面的元素
+            //相等，就不要后面的元素了，退回到循环处，而要第一个重复的元素【2,2】，要第一个2
+            {
+                continue;
+            }
+            list.add(nums[i]);
+            subsetsWithDupHelper(result, list, nums, i+1);
+            list.remove(list.size()-1);
+        }
+    }
+}
