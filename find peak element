@@ -1,0 +1,46 @@
+class Solution {
+    /**
+     * @param A: An integers array.
+     * @return: return any of peek positions.
+     */
+    public int findPeak(int[] A) {
+        // write your code here
+        //这个数组它自己就必须满足要有一个峰，所以至少三个数，比如１，２，１，所以也不必判断这个数组空不空
+        //这道题只让找一个峰即可，所以二分收缩到任一一个峰返回就行
+        //分四种情况：
+        
+        //1. >> 升升
+        //2. << 降降
+        //3. >< 降升
+        //4. <> 升降
+        
+        //就看二分切到什么地方
+        //复杂度O(logn):
+        int start = 0, end = A.length - 1;
+        while(start + 1 < end)
+        {
+            int mid = start + (end - start) / 2;
+            if(A[mid] < A[mid - 1])
+            {
+                end = mid; //说明左边有峰值，end向左窜
+            }
+            else if(A[mid] < A[mid + 1])
+            {
+                start = mid; //说明右边有峰值, start向右窜
+            }
+            else
+            {
+                end = mid; //本身就是峰值，即不小于左边也不小于右边,而把mid给了end也就是end是峰值，但是看下面
+            }
+        }
+        
+        if(A[start] < A[end]) //出来的话峰值一定属于start或者end其中的一个, 其实只return end就行，但是leetcode给出[2,1]这种，２也算峰值，所以这里的start就起作用了，这种情况就返回了start
+        {
+            return end;
+        }
+        else
+        {
+            return start;
+        }
+    }
+}
