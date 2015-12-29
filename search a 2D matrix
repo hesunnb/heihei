@@ -76,7 +76,7 @@ public class Solution {
         
         
         
-        //方法二：用一次二分
+        //方法二：用一次二分（首选）
         //把一个二维数组排好用一次二分
         if(matrix == null || matrix.length == 0)
         {
