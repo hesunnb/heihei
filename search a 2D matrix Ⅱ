@@ -1,0 +1,49 @@
+public class Solution {
+    /**
+     * @param matrix: A list of lists of integers
+     * @param: A number you want to search in the matrix
+     * @return: An integer indicate the occurrence of target in the given matrix
+     */
+    public int searchMatrix(int[][] matrix, int target) {
+        // write your code here
+        
+        //这道题数组不是排序数组，所以不能在总体上用二分法
+        
+        //复杂度O(n*m): 从头到尾扫一遍这个数组，看出没出现，很显然不行
+        //复杂度O(m*logn): 第一行二分看有没有这个数，第二行二分看有没有这个数，以此类推，总共ｍ行个二分
+        //复杂度O(m+n): 从左下角点出发向右上角找，因为这个二维数组横向有序，纵向有序，所以如果左下角比target这个值大，那么就上窜(x--),如果左下角比target这个值小右窜(y++)，就,如果相等就计数加一(count++,同时y++,x--)
+        
+        
+        //复杂度O(m+n)的方法：
+        if(matrix == null || matrix.length == 0)
+        {
+            return 0;
+        }
+        if(matrix[0].length == 0)
+        {
+            return 0;
+        }
+        
+        int row = matrix.length, column = matrix[0].length;
+        int x = row -1, y = 0;
+        int count = 0;
+        while(x >= 0 && y < column)
+        {
+            if(matrix[x][y] > target)
+            {
+                x--;
+            }
+            else if(matrix[x][y] < target)
+            {
+                y++;
+            }
+            else
+            {
+                count++;
+                x--;
+                y++;
+            }
+        }
+        return count;
+    }
+}
