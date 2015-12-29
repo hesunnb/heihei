@@ -73,7 +73,7 @@ public class Solution {
             return true;
         }
         return false;
-        
+        //复杂度：O(log(n) + log(m)) time
         
         
         //方法二：用一次二分（首选）
@@ -111,5 +111,6 @@ public class Solution {
             }
         }
         return false;
+        //复杂度O(log(n*m))=O(log(n) + log(m)) time
     }
 }
