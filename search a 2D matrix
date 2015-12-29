@@ -7,6 +7,8 @@ public class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
         // write your code here
         
+        //二分的前提是排序数组，在search a 2D matrix二那个题中，数组非排序，所以用不了二分
+        
         //方法1：用两次二分
         //思路的话就是把这个分成按照行首的二分以及找完行列的二分，两次二分，分行和分裂
         //分行：
