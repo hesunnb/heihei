@@ -1,0 +1,45 @@
+/**
+ * public class SVNRepo {
+ *     public static boolean isBadVersion(int k);
+ * }
+ * you can use SVNRepo.isBadVersion(k) to judge whether 
+ * the kth code version is bad or not.
+*/
+class Solution {
+    /**
+     * @param n: An integers.
+     * @return: An integer which is the first bad version.
+     */
+    public int findFirstBadVersion(int n) {
+        // write your code here
+        //题目的意思是找第一个坏版本，就是0,0,0,0,0,x,x,x,x,x,x,x...(0是过，ｘ是没有过)，找第一个ｘ(第一个没过的)
+        //isBadVersion是判断是不是坏的版本，如果是坏的版本，就是真true,否则就是假false
+        
+        //复杂度:O(n),把所有版本扫一遍找到第一个true的，但是显然不行
+        //复杂度:O(logn),一看找第一个true的就是二分法
+        
+        //O(logn)方法：
+        int start = 1, end = n;
+        while(start + 1 < end)
+        {
+            int mid = start + (end - start) / 2;
+            if(SVNRepo.isBadVersion(mid) == false)
+            {
+                start = mid;
+            }
+            else //为了减少调用次数，此处改为不判断，因为不是真就是假嘛
+            {
+                end = mid;
+            }
+        }
+        
+        if(SVNRepo.isBadVersion(start) == true)
+        {
+            return start;
+        }
+        else //为了减少调用次数，此处改为不判断，因为不是真就是假嘛
+        {
+            return end;
+        }
+    }
+}
