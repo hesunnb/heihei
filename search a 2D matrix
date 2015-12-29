@@ -1,0 +1,76 @@
+public class Solution {
+    /**
+     * @param matrix, a list of lists of integers
+     * @param target, an integer
+     * @return a boolean, indicate whether matrix contains target
+     */
+    public boolean searchMatrix(int[][] matrix, int target) {
+        // write your code here
+        
+        //思路的话就是把这个分成按照行首的二分以及找完行列的二分，两次二分，分行和分裂
+        //分行：
+        if(matrix == null || matrix.length == 0) //行指针；二维矩阵没有或这二维矩阵没有行
+        {
+            return false;
+        }
+        if(matrix[0].length == 0) //列指针；列没有内容
+        {
+            return false;
+        }
+        
+        int row = matrix.length;
+        int column = matrix[0].length;
+        int start = 0,end = row - 1;
+        while(start + 1 < end)
+        {
+            int mid = start + (end - start) / 2;
+            if(matrix[mid][0] < target)
+            {
+                start = mid;
+            }
+            else
+            {
+                end = mid;
+            }
+        }
+        
+        if(matrix[end][0] <= target) //这个地方不能先写start，否则end就有得不到判断的情况；所以要从大到小分
+        {
+            row = end;
+        }
+        else if(matrix[start][0] <= target)
+        {
+            row = start;
+        }
+        else
+        {
+            return false;
+        }
+        
+        //分列：和之间做的二分法一样
+        start = 0;
+        end = column - 1;
+        while(start + 1 < end)
+        {
+            int mid = start + (end - start) / 2;
+            if(matrix[row][mid] < target)
+            {
+                start = mid;
+            }
+            else
+            {
+                end = mid;
+            }
+        }
+        
+        if(matrix[row][start] == target)
+        {
+            return true;
+        }
+        else if(matrix[row][end] == target)
+        {
+            return true;
+        }
+        return false;
+    }
+}
