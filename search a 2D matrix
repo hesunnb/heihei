@@ -7,6 +7,7 @@ public class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
         // write your code here
         
+        //方法1：用两次二分
         //思路的话就是把这个分成按照行首的二分以及找完行列的二分，两次二分，分行和分裂
         //分行：
         if(matrix == null || matrix.length == 0) //行指针；二维矩阵没有或这二维矩阵没有行
@@ -70,6 +71,44 @@ public class Solution {
         else if(matrix[row][end] == target)
         {
             return true;
+        }
+        return false;
+        
+        
+        
+        //方法二：用一次二分
+        //把一个二维数组排好用一次二分
+        if(matrix == null || matrix.length == 0)
+        {
+            return false;
+        }
+        if(matrix[0].length == 0)
+        {
+            return false;
+        }
+        
+        int row = matrix.length, column = matrix[0].length;
+        int start = 0, end = row * column - 1;
+        while(start + 1 < end)
+        {
+            int mid = start + (end - start) / 2;
+            if(matrix[mid / column][mid % column] < target) //一个整除一个求余，就把mid下标所在的值给找出来啦
+            {
+                start = mid;
+            }
+            else
+            {
+                end = mid;
+            }
+            
+            if(matrix[start / column][start % column] == target)
+            {
+                return true;
+            }
+            else if(matrix[end / column][end % column] == target)
+            {
+                return true;
+            }
         }
         return false;
     }
