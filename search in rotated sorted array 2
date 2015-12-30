@@ -1,0 +1,28 @@
+public class Solution {
+    /** 
+     * param A : an integer ratated sorted array and duplicates are allowed
+     * param target :  an integer to be search
+     * return : a boolean 
+     */
+    public boolean search(int[] A, int target) {
+        // write your code here
+        
+        //只要涉及重复，就不能用二分，所以这道题只能用for循环扫了
+        //最坏情况就是全是１，然后一个２或其他数，最后被发现
+        
+        //复杂度O(n)
+        if(A == null || A.length == 0)
+        {
+            return false;
+        }
+        
+        for(int i = 0; i < A.length; i++)
+        {
+            if(A[i] == target)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}
