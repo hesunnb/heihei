@@ -1,0 +1,26 @@
+class Solution {
+    /**
+     * @param A and B: sorted integer array A and B.
+     * @return: A new sorted integer array
+     */
+    public int[] mergeSortedArray(int[] A, int[] B) {
+        // Write your code here
+        int a = A.length;
+        int b = B.length;
+        int result[] = new int[a+b];
+        
+        //思路就是定义一个数组然后把数都加进去排个序
+        for(int i = 0; i < a; i++)
+        {
+            result[i] = A[i];
+        }
+      
+        for(int j = 0; j < b; j++)
+        {
+            result[j + a] = B[j];
+        }
+        
+        Arrays.sort(result);
+        return result;
+    }
+}
