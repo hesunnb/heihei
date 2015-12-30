@@ -1,0 +1,30 @@
+public class Solution {
+    /**
+     * @param num: a rotated sorted array
+     * @return: the minimum number in the array
+     */
+    public int findMin(int[] num) {
+        // write your code here
+        
+        //还是老样子，因为有重复元素，所以没法二分，就用for循环扫一遍即可
+        
+        //复杂度O(n)
+        if(num == null || num.length == 0)
+        {
+            return 0;
+        }
+        
+        for(int i = 0; i < num.length; i++)
+        {
+            if(i + 1 < num.length) //防止越界
+            {
+                if(num[i] > num[i + 1])
+                {
+                    return num[i+1];　//找到第一个最小的数
+                }
+            }
+        }
+        
+        return num[0]; //如果这个数组是一个值或者是个从小到大的顺序数组，没有旋转，返回第一个元素，第一个就是最小的
+    }
+}
