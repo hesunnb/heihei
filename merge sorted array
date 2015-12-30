@@ -1,0 +1,67 @@
+class Solution {
+    /**
+     * @param A: sorted integer array A which has m elements, 
+     *           but size of A is m+n
+     * @param B: sorted integer array B which has n elements
+     * @return: void
+     */
+    public void mergeSortedArray(int[] A, int m, int[] B, int n) {
+        // write your code here
+        
+        
+        //思路就是因为A是个排序数组，所以那些空的地方的０是不能够插在数组中的，比如1,0,2,0,3这种是不可能出现的
+        //所以就倒着往回找，比较A和B的尾巴，然后往A的尾巴那里装,扫一遍就能完成
+        
+        //复杂度:O(n)
+        int i = m - 1, j = n - 1, index = m + n - 1;
+        while(i >= 0 && j >= 0)
+        {
+            if(A[i] > B[j])
+            {
+                A[index] = A[i];
+                index--;
+                i--;
+            }
+            else
+            {
+                A[index] = B[j];
+                index--;
+                j--;
+            }
+        }
+        
+        while (i >= 0) //这段没有什么特别大的必要，因为进入这段的话说明B中的元素已经全部进入A了，而剩下的前面的
+        //A中的元素自然是有序的而且是小的，没必要用这个，去掉不影响，但是面试的时候还是加上
+        {
+            A[index--] = A[i--];
+        }
+        
+        while(j >= 0) //比如A={9,10,11,12,13}; B={4,5,6,7}的时候这个就能用到，A把自己的元素都复制到了后面，
+        //这时A前面的元素需要用这个循环,用B中的元素替代掉
+        {
+            A[index] = B[j];
+            index--;
+            j--;
+        }
+        
+        /*//自己的方法：见到A里面有0，就把B里面的数替换进去，A里面如果有多个0的话，一定会留下来一个；然后把A排个序
+        //复杂度应该是O(n+logn)
+      
+        int a = A.length;
+        int b = B.length;
+        
+        for(int i = 0, j = 0; i < a; i++)
+        {
+            if(j < b)
+            {
+                if(A[i] == 0)
+                {
+                    A[i] = B[j];
+                    j++;
+                }
+            }
+        }
+        
+        Arrays.sort(A);*/
+    }
+}
