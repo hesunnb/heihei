@@ -22,7 +22,7 @@ public class Solution {
             }
             else
             {
-                if(num[mid] < num[end]) //红线上的情况
+                if(num[mid] < num[end]) //绿线上的情况
                 {
                     end = mid; //小于的情况下，让end不断左窜
                 }
