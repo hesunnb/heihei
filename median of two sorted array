@@ -1,0 +1,64 @@
+class Solution {
+    /**
+     * @param A: An integer array.
+     * @param B: An integer array.
+     * @return: a double whose format is *.5 or *.0
+     */
+    public double findMedianSortedArrays(int[] A, int[] B) {
+        // write your code here
+        
+        //思路就是先找合并后的第k个值，这个子函数可以单独用在别的题，然后把中位数的值给穿进去就行
+        //如何找合并后的第k个值，就是分别找两个数组的第k / 2 - 1下标的值，然后比较，谁的小就把左边连同这个值一起去掉
+        
+        
+        //复杂度:O(log(m+n))
+        int length = A.length + B.length;
+        if(length % 2 == 1) 
+        {
+            return findkth(A, 0, B, 0, length / 2 + 1); //如果是奇数个就传中间的那个数，这里是按要找的第几个数记
+            //不按下标记
+        }
+        else
+        {
+            return (findkth(A, 0, B, 0, length / 2) + findkth(A, 0, B, 0, length / 2 + 1)) / 2.0;
+            //偶数的话，就找出中间的两个点然后求平均值
+        }
+    }
+    
+    public int findkth(int A[], int A_start, int B[], int B_start, int k)
+    {
+        if(A_start >= A.length) //如果A为空，就返回B的要找的k的值，因为k的值在不断变化，相当于要找的值也在不断缩小
+        //（因为k总在 / 2)
+        {
+            return B[B_start + k - 1];
+        }
+        if(B_start >= B.length)
+        {
+            return A[A_start + k - 1];
+        }
+        
+        if(k == 1) //k == 1就结束查找，说明找到了
+        {
+            return Math.min(A[A_start], B[B_start]); //返回两个当中小的那个
+        }
+        
+        int Afd = A_start + k / 2 - 1 < A.length //如果A没有超届
+                  ? A[A_start + k / 2 - 1] //就找到k / 2 - 1的地方
+                  : Integer.MAX_VALUE; //否则就给最大值，这个情况是如果A数组当中没有k / 2 - 1这个地方，这个时候
+                  //就要删除另一个数组的值，所以给Integer最大，保证删掉另外一个数组的值
+        int Bfd = B_start + k / 2 - 1 < B.length
+                  ? B[B_start + k / 2 - 1]
+                  : Integer.MAX_VALUE;
+                  
+        if(Afd < Bfd) //比较k / 2 - 1这个地方的值，谁小就把谁的左边连同自己删掉
+        {
+            return findkth(A, A_start + k / 2, B, B_start, k - k / 2); //这个return会把上面三个return
+            //得到的结果返回给主函数，下面的return也是，上面三个return是的到结果，这两个return
+            //是把得到的结果一级一级向上返
+        }
+        else
+        {
+            return findkth(A, A_start, B, B_start + k / 2, k - k / 2);
+        }
+    }
+}
