@@ -42,13 +42,14 @@ public class Solution {
         {
             return left;
         }
-        else //A,B都在右子树上，先遇到了谁，谁就是最近公共祖先
+        else if(right != null)//A,B都在右子树上，先遇到了谁，谁就是最近公共祖先
         {
             return right;
         }
+        return null;
     }
     
-    //传统方法：就是有parent指针的方法
+    /*//传统方法：就是有parent指针的方法
     public class Solution {
     private ArrayList<TreeNode> getPath2Root(TreeNode node) {
         ArrayList<TreeNode> list = new ArrayList<TreeNode>();
@@ -70,5 +71,5 @@ public class Solution {
         }
         return list1.get(i+1);
     }
-}
+}*/
 }
