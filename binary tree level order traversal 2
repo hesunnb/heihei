@@ -1,0 +1,52 @@
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+ 
+ 
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: buttom-up level order a list of lists of integer
+     */
+    public ArrayList<ArrayList<Integer>> levelOrderBottom(TreeNode root) {
+        // write your code here
+         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+            if(root == null)
+            {
+                return result;
+            }
+            
+            Queue<TreeNode> Q = new LinkedList<TreeNode>();
+            Q.offer(root);
+            
+            while(!Q.isEmpty()) //有点就继续，没有点就退出了，说明刚刚加进来的点没有子节点了
+            {
+                ArrayList<Integer> level = new ArrayList<Integer>();
+                int size = Q.size(); //为的就是保留上次size的值，不能让size随着节点数的增加而实时变化
+                for(int i = 0; i < size; i++) //每层节点的遍历
+                {
+                    TreeNode tn = Q.poll();
+                    level.add(tn.val);
+                    
+                    if(tn.left != null)
+                    {
+                        Q.offer(tn.left);
+                    }
+                    if(tn.right != null)
+                    {
+                        Q.offer(tn.right);
+                    }
+                }
+                result.add(0, level); //就和１那个问题差了这句话，这个就是每次在result的前面加level，然后就是倒序了
+            }
+            return result;
+    }
+}
