@@ -1,0 +1,87 @@
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: True if the binary tree is BST, or false
+     */
+     
+    /*//思路:中序遍历一遍二叉树，如果是升序那就是二叉搜索树(Traverse)
+    int lastvalue = Integer.MIN_VALUE;
+    boolean firstNode = true;
+    public boolean isValidBST(TreeNode root) {
+        // write your code here
+        if(root == null)
+        {
+            return true;
+        }
+        if(!isValidBST(root.left)) 
+        {
+            return false;    
+        }
+        if(!firstNode && lastvalue >= root.val) //比较就是在这里完成的，如果每次lastvalue都没有root.val大，那就是升序
+        //firstNode的作用在于第一次根节点的比较，如果这课树只是一个根节点，且值为Integer.MIN_VALUE，那么这时候lastvalue和Integer>MIN_VALUE就是相等的，然后就要返回false,但是只有一个根节点也是二叉搜索树，所以加一个firstNode,让第一次lastvalue和root.value不比较
+        {
+            return false;
+        }
+        firstNode = false; //在这里第一次过后把firstNode改为假，这样上面就可以开始比较了
+        lastvalue = root.val; //替换值，进行比较，看看是不是升序
+        if(!isValidBST(root.right))
+        {
+            return false;
+        }
+        return true;
+    }*/
+    
+    //Divide and conquer
+    private class returnType
+    {
+        private boolean is_bst;
+        private int maxvalue;
+        private int minvalue;
+        returnType(boolean is_bst, int maxvalue, int minvalue)
+        {
+            this.is_bst = is_bst;
+            this.maxvalue = maxvalue;
+            this.minvalue = minvalue;
+        }
+    }
+    public boolean isValidBST(TreeNode root)
+    {
+        return BSThelper(root).is_bst;
+    }
+    
+    private returnType BSThelper(TreeNode root)
+    {
+        if(root == null)
+        {
+            return new returnType(true, Integer.MIN_VALUE, Integer.MAX_VALUE); //每次空都返回这个值，大对小，小对大，然后还是真
+        }
+        
+        returnType left = BSThelper(root.left);
+        returnType right = BSThelper(root.right);
+        
+        if(left.is_bst == false || right.is_bst == false) //一旦有一边不是就一直返回false，就结束了
+        {
+            return new returnType(false, 0, 0);
+        }
+        
+        //左边最大值比根大，右边最小值比根小就不对了
+        if((root.left != null && left.maxvalue >= root.val) || (root.right != null && right.minvalue <= root.val))
+        {
+            return new returnType(false, 0, 0); //这里的root.left和right判断为不为空，也是用来判断int最大和最小自己作为根节点的情况
+        }
+        
+        //一切正常的话就返回正常值
+        return new returnType(true, Math.max(root.val, right.maxvalue), Math.min(root.val, left.minvalue)); //取左边最小值，取右边最大值；每个节点都有作为左节点和右节点的时候，所以做左节点用最小值，做右节点用最大值
+    }
+}
