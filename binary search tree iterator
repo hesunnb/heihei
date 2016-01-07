@@ -18,6 +18,7 @@
 public class BSTIterator {
     
     //等价于写非递归的中序遍历
+    //空间复杂度是O(h),时间复杂度都是O(1)
     
     //@param root: The root of binary tree.
     private TreeNode curt = null;
