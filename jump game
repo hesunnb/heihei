@@ -45,7 +45,7 @@ public class Solution {
         int farest = A[0]; //farest是所能到达的最远下标
         for(int i = 1; i < A.length; i++)
         {
-            if(i <= farest && i + A[i] > farest) //i没到最远下标的地方，这时有比最远下标大的计算的下标值出现，那就替换
+            if(i <= farest && i + A[i] > farest) //i <= farest这个条件就保证i所在的位置能被前面的点跳到； i没到最远下标的地方，这时有比最远下标大的计算的下标值出现，那就替换
             {
                 farest = i + A[i];
             }
