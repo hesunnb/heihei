@@ -1,0 +1,37 @@
+public class Solution {
+    /**
+     * @param n: An integer
+     * @return: An integer
+     */
+    public int climbStairs(int n) {
+        // write your code here
+        //n步就是n个台阶，就是斐波那契数列
+        
+        if(n <= 1)
+        {
+            return 1;
+        }
+        
+        int last = 1;
+        int lastlast = 1;
+        int now = 0;
+        for(int i = 2; i <= n; i++)
+        {
+            now = last + lastlast;
+            lastlast = last;
+            last = now;
+        }
+        return now;
+    }
+    
+    /*//递归会超时，每次都把之前的所有的都从新算了一遍
+    public int climbStairs(int n)
+    {
+        if(n <= 1)
+        {
+            return 1;
+        }
+        return climbStairs(n - 1) + climbStairs(n - 2);
+    }*/
+    
+}
