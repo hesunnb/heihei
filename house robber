@@ -1,0 +1,86 @@
+public class Solution {
+    /**
+     * @param A: An array of non-negative integers.
+     * return: The maximum amount of money you can rob tonight
+     */
+    /*public long houseRobber(int[] A) {
+        // write your code here
+        
+        //自己写的O(n)的方法，开了数组，所以不是O(1)空间,是O(n)空间
+        if(A == null || A.length == 0)
+        {
+            return 0;
+        }
+        
+        //result里面装的是每一步的最大价值
+        long result[] = new long[A.length]; //注意这里给的long,所以开辟的数组也要long; leetcode里面是int
+        
+        //1和2的情况要单独判断
+        if(A.length <= 1)
+        {
+            return A[0];
+        }
+        if(A.length <= 2)
+        {
+            if(A[0] > A[1])
+            {
+                return A[0];
+            }
+            else
+            {
+                return A[1];
+            }
+        }
+        result[0] = A[0];
+        result[1] = Math.max(A[0], A[1]);
+        for(int i = 2; i < A.length; i++)
+        {
+            result[i] = result[i - 2] + A[i]; //每次去找往前两个的值
+            if(result[i] < result[i - 1]) //如果要是比邻近值小的话，那就用临近值，保证是当前值是最大价值
+            {
+                result[i] = result[i - 1];
+            }
+        }
+        return result[A.length - 1];
+    }*/
+    
+    //O(n)time and O(1)memory 九章方法加上自己改进
+    public long houseRobber(int[] A) 
+    {
+        if(A == null || A.length == 0)
+        {
+            return 0;
+        }
+        long result[] = new long[3];
+        
+        if(A.length <= 1)
+        {
+            return A[0];
+        }
+        if(A.length <= 2)
+        {
+            if(A[0] > A[1])
+            {
+                return A[0];
+            }
+            else
+            {
+                return A[1];
+            }
+        }
+        
+        //因为用的求余算法，这样先完整算出前三个值，然后再替换
+        result[0] = A[0];
+        result[1] = Math.max(A[0], A[1]);
+        result[2] = Math.max(result[1], result[0] + A[2]);
+        for(int i = 3; i < A.length; i++)
+        {
+            result[i % 3] = result[(i - 2) % 3] + A[i]; //每次去找往前两个的值
+            if(result[i % 3] < result[(i - 1) % 3]) //如果要是比邻近值小的话，那就用临近值，保证是当前值是最大价值；和上面是一个道理，就是用求余实现的
+            {
+                result[i % 3] = result[(i - 1) % 3];
+            }
+        }
+        return result[(A.length - 1) % 3]; //返回最后一个值即可
+    }
+}
