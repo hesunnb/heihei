@@ -3,6 +3,8 @@ public class Solution {
      * @param s a string
      * @return an integer
      */
+     
+    //动规，下面代码最多两重循环，所以复杂度O(n2)
     public int minCut(String s) {
         // write your code here
         if(s == null || s.length() == 0)
