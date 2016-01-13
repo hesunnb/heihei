@@ -10,7 +10,7 @@ public class Solution {
             return 0;
         }
         
-        //开一个二维矩阵
+        //开一个二维矩阵,O(n2)
         int[][] result = new int[A.length() + 1][B.length() + 1]; 
         for(int i = 1; i <= A.length(); i++) //遍历二维数组
         {
