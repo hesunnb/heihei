@@ -1,0 +1,29 @@
+public class Solution {
+    /**
+     * @param A, B: Two string.
+     * @return: the length of the longest common substring.
+     */
+    public int longestCommonSubstring(String A, String B) {
+        // write your code here
+        if(A == null || B == null || A.length() == 0 || B.length() == 0)
+        {
+            return 0;
+        }
+        
+        //开一个二维矩阵,O(n2)
+        int[][] result = new int[A.length() + 1][B.length() + 1];
+        int max = 0;
+        for(int i = 1; i <= A.length(); i++) //遍历二维数组
+        {
+            for(int j = 1; j <= B.length(); j++)
+            {
+                if(A.charAt(i - 1) == B.charAt(j - 1))
+                {
+                    result[i][j] = result[i - 1][j - 1] + 1; //和最长公共子序列不一样的地方就是这里不用保留每步都保留最大值，一样就加１，不一样就是０，然后用一个ｍａｘ得到最大的那个就行
+                    max = Math.max(max, result[i][j]); 
+                }
+            }
+        }
+        return max;
+    }
+}
