@@ -30,5 +30,18 @@ public class Solution {
             }
         }
         return result[S.length()][T.length()];
+        
+        /**
+         *       r a b b i t (T串)
+         *     1 0 0 0 0 0 0
+         *   r 1
+         *   a 1
+         *   b 1
+         *   b 1
+         *   b 1
+         *   i 1
+         *   t 1
+         * 　(S串)
+         */
     }
 }
