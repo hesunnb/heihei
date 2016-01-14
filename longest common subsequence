@@ -16,7 +16,7 @@ public class Solution {
         {
             for(int j = 1; j <= B.length(); j++)
             {
-                result[i][j] = Math.max(result[i][j - 1], result[i - 1][j]); //保存目前最大值
+                result[i][j] = Math.max(result[i][j - 1], result[i - 1][j]); //保存目前最大值,这里不用像edit distance那道题在比较中加入result[i - 1][j - 1],因为result[i][j - 1], result[i - 1][j]他俩包含了result[i - 1][j - 1]这种情况
                 if(A.charAt(i - 1) == B.charAt(j - 1))
                 {
                     result[i][j] = result[i - 1][j - 1] + 1; //真正改变最大值的步骤
