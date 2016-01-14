@@ -13,11 +13,11 @@ public class Solution {
         }
         
         int[][] result = new int[word1.length() + 1][word2.length() + 1];
-        for(int i = 0; i <= word1.length(); i++)
+        for(int i = 0; i <= word1.length(); i++) //让空串变成目标串就向里面加字母
         {
             result[i][0] = i;
         }
-        for(int j = 0; j <= word2.length(); j++)
+        for(int j = 0; j <= word2.length(); j++) //让已知串变成目标空串就不断减字母
         {
             result[0][j] = j;
         }
