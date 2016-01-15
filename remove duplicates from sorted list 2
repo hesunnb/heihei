@@ -59,22 +59,22 @@ public class Solution {
             return head;
         }
         ListNode p = head;
-        ListNode node = new ListNode(0);
-        ListNode tail = node;
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
         while(p.next != null)
         {
             if(p.val == p.next.val)
             {
-                int temp;
-                temp = p.val;
+                int val;
+                val = p.val;
                 p = p.next.next;
-                while(p != null && p.val == temp)
+                while(p != null && p.val == val)
                 {
                     p = p.next;
                 }
                 if(p == null)
                 {
-                    return node.next;
+                    return dummy.next;
                 }
             }
             else
@@ -86,7 +86,7 @@ public class Solution {
             }
         }
         tail.next = p;
-        return node.next;
+        return dummy.next;
     }*/
 }
 
