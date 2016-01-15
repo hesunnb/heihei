@@ -16,6 +16,7 @@ public class Solution {
      */
      
     //九章方法，用一个虚拟节点，只用一个头指针(好呀，首选)
+    //一般来说当链表的头也会发生变化的时候就要用到虚拟节点
     public static ListNode deleteDuplicates(ListNode head)
     {
         if(head == null || head.next == null) //没有节点以及一个节点返回head就行
