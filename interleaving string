@@ -1,0 +1,49 @@
+public class Solution {
+    /**
+     * Determine whether s3 is formed by interleaving of s1 and s2.
+     * @param s1, s2, s3: As description.
+     * @return: true or false.
+     */
+    public boolean isInterleave(String s1, String s2, String s3) {
+        // write your code here
+        if(s1.length() + s2.length() != s3.length())
+        {
+            return false;
+        }
+        
+        boolean[][] result = new boolean[s1.length() + 1][s2.length() + 1];
+        result[0][0] = true;
+        
+        //初始化：s1与s3在相同位置的字母相等之后，上面的位置还要是真
+        for(int i = 1; i <= s1.length(); i++)
+        {
+            if(s1.charAt(i - 1) == s3.charAt(i - 1) && result[i - 1][0])
+            {
+                result[i][0] = true;
+            }
+        }
+        
+        //初始化：s2与s3在相同位置的字母相等之后，左面的位置还要是真
+        for(int j = 1; j <= s2.length(); j++)
+        {
+            if(s2.charAt(j - 1) == s3.charAt(j - 1) && result[0][j - 1])
+            {
+                result[0][j] = true;
+            }
+        }
+        
+        //判断条件：s1的i - 1个字母加上s2的j - 1个正好是s3的i + j - 1个字母，同时s3与s1的判断要向上找，s2与s3的判断要向左找
+        for(int i = 1; i <= s1.length(); i++)
+        {
+            for(int j = 1; j <= s2.length(); j++)
+            {
+                if((s3.charAt(i + j - 1) == s1.charAt(i - 1) && result[i - 1][j]) || (s3.charAt(i + j - 1) == s2.charAt(j - 1) && result[i][j - 1]))
+                {
+                    result[i][j] = true;
+                }
+            }
+        }
+        
+        return result[s1.length()][s2.length()];
+    }
+}
