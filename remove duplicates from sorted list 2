@@ -1,0 +1,92 @@
+/**
+ * Definition for ListNode
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    /**
+     * @param ListNode head is the head of the linked list
+     * @return: ListNode head of the linked list
+     */
+     
+    //九章方法，用一个虚拟节点，只用一个头指针(好呀，首选)
+    public static ListNode deleteDuplicates(ListNode head)
+    {
+        if(head == null || head.next == null) //没有节点以及一个节点返回head就行
+        {
+            return head;
+        }
+        
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        head = dummy;
+        
+        while(head.next != null && head.next.next != null) //保证head后两个元素都不是空，好进行判断
+        {
+            if(head.next.val == head.next.next.val)
+            {
+                int val = head.next.val;
+                while(head.next != null && head.next.val == val) //空就是到结尾了，语句意思就是没到结尾且下一个值重复
+                {
+                    head.next = head.next.next;
+                }
+            }
+            else
+            {
+                head = head.next; //不等就向后窜一位
+            }
+        }
+        return dummy.next; //返回最开始的位置
+    }
+    
+    /*
+    Testcase: 1. 1,2,3,3,4,4,5  中间重复
+              2. 1,1,1,2,3  头重复
+              3. 1,1,1,2,3,5,6,6  尾重复
+    */
+    
+    //也是引用虚拟节点的方法，来自于网上用了一个虚拟节点，两个指针 
+    /*public static ListNode deleteDuplicates(ListNode head) {
+        // write your code here
+        if(head == null || head.next == null)
+        {
+            return head;
+        }
+        ListNode p = head;
+        ListNode node = new ListNode(0);
+        ListNode tail = node;
+        while(p.next != null)
+        {
+            if(p.val == p.next.val)
+            {
+                int temp;
+                temp = p.val;
+                p = p.next.next;
+                while(p != null && p.val == temp)
+                {
+                    p = p.next;
+                }
+                if(p == null)
+                {
+                    return node.next;
+                }
+            }
+            else
+            {
+                tail.next = p;
+                tail = p;
+                p = p.next;
+                tail.next = null;
+            }
+        }
+        tail.next = p;
+        return node.next;
+    }*/
+}
+
