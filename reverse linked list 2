@@ -31,6 +31,10 @@ public class Solution {
         
         for(int i = 1; i < m; i++)
         {
+            if(head == null) //这个的考虑是这道题给限定条件啦，是1 ≤ m ≤ n ≤ length of list，如果要是每有这个条件，ｍ和ｎ的取值就会变得随意，这时候就要加这个判断啦，加上以防万一嘛
+            {
+                return null;
+            }
             head = head.next; //head窜到需要翻转的字符串的前一个位置
         }
         
@@ -41,6 +45,10 @@ public class Solution {
         
         for(int i = m; i < n; i++) //进行翻转
         {
+            if(postnNode == null) ////这个的考虑是这道题给限定条件啦，是1 ≤ m ≤ n ≤ length of list，如果要是每有这个条件，ｍ和ｎ的取值就会变得随意，这时候就要加这个判断啦，加上以防万一嘛
+            {
+                return null;
+            }
             ListNode temp = postnNode.next;
             postnNode.next = nNode;
             nNode = postnNode;
