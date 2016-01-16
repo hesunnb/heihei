@@ -15,8 +15,28 @@ public class Solution {
      * @return: The new head of reversed linked list.
      */
     
+    //不用虚拟节点，九章方法，更简单(首选)
+    //思路上很简单
+    public ListNode reverse(ListNode head)
+    {
+        if(head == null || head.next == null)
+        {
+            return head;
+        }
+        
+        ListNode prev = null;
+        while(head != null)
+        {
+            ListNode temp = head.next; //把head的下一个节点保存一下
+            head.next = prev; //head的指针指向前一个节点
+            prev = head; //prev向后窜
+            head = temp; //head向后窜，这里就要用到保存的temp节点，因为head的指向在head.next = prev就已经改变啦，所以要用临时节点保存
+        }
+        return prev;
+    }
+    
     //也是虚拟节点法，跟着走一遍就好啦 
-    public ListNode reverse(ListNode head) {
+    /*public ListNode reverse(ListNode head) {
         // write your code here
         if(head == null || head.next == null)
         {
@@ -33,6 +53,6 @@ public class Solution {
             p = q;
         }
         return dummy.next;
-    }
+    }*/
 }
 
