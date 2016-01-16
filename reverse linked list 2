@@ -15,7 +15,45 @@ public class Solution {
      * @oaram m and n
      * @return: The head of the reversed ListNode
      */
-    public ListNode reverseBetween(ListNode head, int m , int n) {
+     
+    //Testcase的话：就考虑链表头翻转，链表中翻转还有链表尾翻转就行啦
+    //九章的解法，清晰，首选，棒棒哒
+    public ListNode reverseBetween(ListNode head, int m, int n)
+    {
+        if(head == null || head.next == null || m >= n)
+        {
+            return head;
+        }
+        
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        head = dummy;
+        
+        for(int i = 1; i < m; i++)
+        {
+            head = head.next; //head窜到需要翻转的字符串的前一个位置
+        }
+        
+        ListNode premNode = head; //premNode是需要翻转的字符串的前一个位置
+        ListNode mNode = head.next; //需要翻转的字符串的第一个位置
+        ListNode nNode = head.next; //需要翻转的字符串的第一个位置
+        ListNode postnNode = nNode.next; //在nNode后面
+        
+        for(int i = m; i < n; i++) //进行翻转
+        {
+            ListNode temp = postnNode.next;
+            postnNode.next = nNode;
+            nNode = postnNode;
+            postnNode = temp;
+        }
+        premNode.next = nNode; //把翻转好的字符串连回原来的字符串
+        mNode.next = postnNode;
+        return dummy.next; //返回第一个位置
+    }
+    
+    
+    //自己写的，不具参考性
+    /*public ListNode reverseBetween(ListNode head, int m , int n) {
         // write your code
         if(head == null || head.next == null)
         {
@@ -58,5 +96,5 @@ public class Solution {
         start.next = end; //把翻转好的字符串连回原来的字符串
         flagstart.next = flagend;
         return dummyhead.next; //返回第一个位置
-    }
+    }*/
 }
