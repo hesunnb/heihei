@@ -12,9 +12,9 @@ public class Solution {
      * @return: A undirected graph node
      */
      
-    //用BFS做，与二叉树的不同，除啦队列，还需要用到hashmap，作用是存储访问过的点，因为图中访问到每个结点时会重复访问已经访问过的结点，这是不必要的，就用hashmap给屏蔽掉，访问过就不再访问啦，相反二叉树的点不会重复，所以不用hashmap
+    //用BFS做(通过一个点找到其它所有的点)，与二叉树的不同，除啦队列，还需要用到hashmap，作用是存储访问过的点，因为图中访问到每个结点时会重复访问已经访问过的结点，这是不必要的，就用hashmap给屏蔽掉，访问过就不再访问啦，相反二叉树的点不会重复，所以不用hashmap
     
-     //这个图是有规律的，neighbors不是随意的，比如从0开始，0就有1和2是相邻点，1的neighbor只有2，因为和0连过啦，而2只能连自己，因为和0,1都连过啦
+     //这个图是有规律的，neighbors不是随意的，比如从0开始，0就有1和2是相邻点，1的neighbor只有2，因为和0连过啦，而2只能连自己，因为和0,1都连过啦，就算neighbors的里面
      
      //因为nodes里面的点不能像二叉树BFS那样从队列里面拿出来就不要啦，这个向ArrayList里面添加完点之后还有再扫瞄添加neighbors那，所以要保留
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
