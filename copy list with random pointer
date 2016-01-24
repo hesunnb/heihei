@@ -13,7 +13,7 @@ public class Solution {
      */
      
     //next, random没有初始化，默认就是null
-//第一种方法： 是用哈希表来解决random指针这个问题，存在表中就可以找到啦，普通链表只能next，随意指针不能通过next实现，所以就用哈希表(首选)
+//第一种方法： 是用哈希表来解决random指针这个问题，存在表中就可以找到啦，普通链表只能next，随意指针不能通过next实现，所以就用哈希表,O(n)的空间(首选)
     public RandomListNode copyRandomList(RandomListNode head) {
         // write your code here
         if(head == null)
