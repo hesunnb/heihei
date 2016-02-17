@@ -17,7 +17,7 @@ public class Solution {
         {
             for(int j = 0; j < (length + 1) / 2; j++) //取循环的位置
             {
-                int temp = matrix[i][j];
+                int temp = matrix[i][j]; //取数旋转，旋转4回，依次填充相应位置
                 matrix[i][j] = matrix[length - j - 1][i]; //注意是先j后i
                 matrix[length - j - 1][i] = matrix[length - i - 1][length - j - 1];
                 matrix[length - i - 1][length - j - 1] = matrix[j][length - i - 1];
