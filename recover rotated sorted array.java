@@ -7,9 +7,6 @@ public class Solution {
         // write your code
         //[4,5,1,2,3],如果不考虑O[1]的空间，做法就是，开一个数组，找到原数组中的最小值，然后从最小值开始右侧先拷贝到新数组中，然后从头到最小值前一位置再拷贝到新数组中，还得把新数组复制回去，相当费劲
         
-        
-       //三步翻转法: 先找临界点，然后翻前面，再翻后面，再整体翻一次 
-       //复杂度O(n)的做法：  
        for(int index = 0; index < nums.size() - 1; index++) //减一是为了防止越界
        {
            if(nums.get(index) > nums.get(index + 1)) //找到临界点
@@ -21,7 +18,7 @@ public class Solution {
        }
     }
     
-    public void reverse(ArrayList<Integer> nums, int start, int end)
+    public void reverse(ArrayList<Integer> nums, int start, int end) //传过来的是地址, 集合和数组都可以直接交换, 值就不可以啦
     {
         for(int i = start, j = end; i < j; i++, j--) //翻转的具体实现
         {
