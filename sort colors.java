@@ -45,7 +45,7 @@ class Solution {
     
     
     
-    //直接用快排来写, 也是onepass
+    //直接用快排来写, 时间:O(nlogn), 空间: O(logn)
     public void sortColors(int[] nums) {
         // write your code here
         sort(nums, 0, nums.length - 1);
