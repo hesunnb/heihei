@@ -42,6 +42,9 @@ class Solution {
         nums[j] = temp;
     }
     
+    
+    
+    
     //直接用快排来写, 也是onepass
     public void sortColors(int[] nums) {
         // write your code here
@@ -79,8 +82,12 @@ class Solution {
 		a[first] = val; //此时first == last, 没有last < first的情况，first和last的左边都比val小，first和last的右边都比val大
 		return first; //返回下标，第一个应该所在的位置
 	}
+
+
+
+
 	
-	// Couting Sort(第一遍数数组中有多少个0和1, 第二遍按照0和1的个数覆盖原数组)
+    // Couting Sort(第一遍数数组中有多少个0和1, 第二遍按照0和1的个数覆盖原数组)
     public void sortColors(int[] nums) {
     // 2-pass
     int count0 = 0, count1 = 0, count2 = 0;
