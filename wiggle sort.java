@@ -14,6 +14,8 @@ public class Solution {
     如果i是偶数，nums[i] <= nums[i - 1]
     所以我们只要遍历一遍数组，把不符合的情况交换一下就行了。具体来说，如果nums[i] > nums[i - 1]， 则交换以后肯定有nums[i] <= nums[i - 1]。
     */
+    
+    //方法1
     public void wiggleSort(int[] nums) {
         // Write your code here
         if(nums == null || nums.length <= 1)
@@ -33,6 +35,8 @@ public class Solution {
         }
     }
     
+    
+    //方法2
     public void wiggleSort(int[] nums) 
     {
         for (int i=1; i<nums.length; i++) 
