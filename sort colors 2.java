@@ -49,7 +49,7 @@ class Solution {
         
         
         
-        //木桶排序法, 并不通用
+        //木桶排序法, 并不通用(时间O(n), 空间: inspace)
         if (colors == null) {
             return;
         }
