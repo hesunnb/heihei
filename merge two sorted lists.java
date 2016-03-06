@@ -43,11 +43,11 @@ public class Solution {
             lastNode = lastNode.next; //lastNode是每次一定要窜的
         }
         
-        if(l1 != null) //说明lastNode在l2上
+        if(l1 != null) //说明l2为空, lastNode在l2上
         {
             lastNode.next = l1; //把lastNode连到l1上
         }
-        else //说明lastNode在l1上
+        else //说明l1为空, lastNode在l1上
         {
             lastNode.next = l2; //把lastNode连到l2上
         }
