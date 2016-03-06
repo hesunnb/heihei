@@ -24,7 +24,7 @@ public class Solution {
         {
             result.add(lists[i]);
         }*/
-    public ListNode mergeKLists(List<ListNode> lists)
+    public ListNode mergeKLists(List<ListNode> lists) //lists里面装的都是链表头
     {
         if(lists == null || lists.size() == 0)
         {
@@ -49,32 +49,41 @@ public class Solution {
         return lists.get(0); //最后合并成一个返回就行
     }
     
-    private ListNode merge(ListNode a, ListNode b) //如果一个为空，返回另一个链表；如果两个都为空，就返回空啦
+    private ListNode merge(ListNode l1, ListNode l2) //如果一个为空，返回另一个链表；如果两个都为空，就返回空啦
     {
-        ListNode dummy = new ListNode(0);
-        ListNode tail = dummy;
-        while(a != null && b != null)
+        if(l1 == null)
         {
-            if(a.val < b.val)
+            return l2;
+        }
+        if(l2 == null)
+        {
+            return l1;
+        }
+        
+        ListNode dummy = new ListNode(0);
+        ListNode lastNode = dummy;
+        while(l1 != null && l2 != null)
+        {
+            if(l1.val < l2.val)
             {
-                tail.next = a;
-                a = a.next;
+                lastNode.next = l1;
+                l1 = l1.next;
             }
             else
             {
-                tail.next = b;
-                b = b.next;
+                lastNode.next = l2;
+                l2 = l2.next;
             }
-            tail = tail.next;
+            lastNode = lastNode.next; //lastNode是每次一定要窜的
         }
         
-        if(a != null)
+        if(l1 != null) //说明l2为空, lastNode在l2上
         {
-            tail.next = a;
+            lastNode.next = l1; //把lastNode连到l1上
         }
-        else
+        else //说明l1为空, lastNode在l1上
         {
-            tail.next = b;
+            lastNode.next = l2; //把lastNode连到l2上
         }
         return dummy.next;
     }
@@ -96,37 +105,50 @@ public class Solution {
         {
             return lists.get(start);
         }
-        int mid = start + (end - start) / 2;
+        int mid = start + (end - start) / 2; //递归分解, 要merge所有list, 先merge中点左边, 再merge中点右边, 
+        //左右半边再分别各自切割, 然后就能分解到单个点, 然后单个点返回自己的值, 上一个接收的函数再把单个点两两合并
+        (left一个点, right一个点, return merge就合并),偶数个直接两两合并，奇数个点的时候是两个合完再和另一个一个合并
+        //然后left和right就是合好的链表继续回朔, 最后成为合成一个大链表
         ListNode left = mergeHelper(lists, start, mid); //start和end会随着每次的调用而变化，所以能求出每段的合并值
-        ListNode right = mergeHelper(lists, mid + 1, end); //分解到最终都是(0,0),(1,1)这种返回，再合并；偶数个直接两两合并，奇数个点的时候会有两个合完再和一个合并的情况
+        ListNode right = mergeHelper(lists, mid + 1, end);   
         return merge(left, right);
     }
     
-    private ListNode merge(ListNode a, ListNode b)
+    private ListNode merge(ListNode l1, ListNode l2) //如果一个为空，返回另一个链表；如果两个都为空，就返回空啦
     {
-        ListNode dummy = new ListNode(0);
-        ListNode tail = dummy;
-        while(a != null && b != null)
+        if(l1 == null)
         {
-            if(a.val < b.val)
+            return l2;
+        }
+        if(l2 == null)
+        {
+            return l1;
+        }
+        
+        ListNode dummy = new ListNode(0);
+        ListNode lastNode = dummy;
+        while(l1 != null && l2 != null)
+        {
+            if(l1.val < l2.val)
             {
-                tail.next = a;
-                a = a.next;
+                lastNode.next = l1;
+                l1 = l1.next;
             }
             else
             {
-                tail.next = b;
-                b = b.next;
+                lastNode.next = l2;
+                l2 = l2.next;
             }
-            tail = tail.next;
+            lastNode = lastNode.next; //lastNode是每次一定要窜的
         }
-        if(a != null)
+        
+        if(l1 != null) //说明l2为空, lastNode在l2上
         {
-            tail.next = a;
+            lastNode.next = l1; //把lastNode连到l1上
         }
-        else
+        else //说明l1为空, lastNode在l1上
         {
-            tail.next = b;
+            lastNode.next = l2; //把lastNode连到l2上
         }
         return dummy.next;
     }
