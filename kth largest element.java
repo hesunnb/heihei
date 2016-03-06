@@ -10,6 +10,7 @@ class Solution {
         // write your code here
         //重复的元素也算第几大, 比如[3,5,4,4,4,2,6,8], 第4大是4, 第五大还是4, 第六大也是4, 仅仅是按号排序的意思,所以用下标就可以处理啦
         k = nums.length - k; //要找第k大, 就是倒着找第k个, 那就是正着找下表为nums.length - k的元素
+        //要是找第k小的数就让 k = k - 1
         int start = 0;
         int end = nums.length - 1;
         int pos = 0;
