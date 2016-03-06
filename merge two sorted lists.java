@@ -15,6 +15,8 @@ public class Solution {
      * @param ListNode l2 is the head of the linked list
      * @return: ListNode head of linked list
      */
+     
+    //九章方法, 非递归
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         // write your code here
         if(l1 == null)
@@ -52,5 +54,27 @@ public class Solution {
             lastNode.next = l2; //把lastNode连到l2上
         }
         return dummy.next;
+    }
+    
+    
+    
+    //递归, 没有用虚拟结点
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if(l1 == null) 
+        {
+            return l2; //null和一个链表和, 和完之后肯定是那个不空的链表, 所以返回另一个链表
+        }
+        if(l2 == null)
+        {
+            return l1;
+        } 
+    
+        if(l1.val < l2.val) { //谁小把谁留下, 合并剩下的链表
+            l1.next = mergeTwoLists(l1.next, l2); //如果l1小, 就应该让l1后面的表和l2合并, 把合并好的链表链到l1.next上
+            return l1; //然后把合并好的链表返回给上一级用
+        } else {
+            l2.next = mergeTwoLists(l2.next, l1); //和上面同理
+            return l2;
+        }
     }
 }
