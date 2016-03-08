@@ -21,7 +21,7 @@ public class Solution {
    
         // write your code here
 
-        //①一个队列实现（首选最佳）
+        //①一个队列实现(首选), BFS遍历
         public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root)
         {
             ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
@@ -37,7 +37,7 @@ public class Solution {
             {
                 ArrayList<Integer> level = new ArrayList<Integer>();
                 int size = Q.size(); //为的就是保留上次size的值，不能让size随着节点数的增加而实时变化
-                for(int i = 0; i < size; i++) //每层节点的遍历
+                for(int i = 0; i < size; i++)
                 {
                     TreeNode tn = Q.poll();
                     level.add(tn.val);
@@ -57,6 +57,29 @@ public class Solution {
         }
 
 
+        
+        //version 2: DFS
+        public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root)
+        {
+            ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+            levelmaker(result, root, 0);
+            return result;
+        }
+        
+        private void levelmaker(ArrayList<ArrayList<Integer>> result, TreeNode root, int level)
+        {
+            if(root == null)
+            {
+                return;
+            }
+            if(level >= result.size())
+            {
+                result.add(new ArrayList<Integer>()); //向result里边加盒, 和2问不一样的就是这里是正序加, 2是反序加盒
+            }
+            levelmaker(result, root.left, level + 1);
+            levelmaker(result, root.right, level + 1);
+            result.get(level).add(root.val); //level直接代表啦正序下标
+        }
 
 
         /*//②一个队列加一个虚拟节点实现
