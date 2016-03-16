@@ -53,7 +53,7 @@ public class Solution {
 
     
     
-    //自己写一个类版
+    //自己写一个类版(inner class)
     class ResultType {
         public boolean isBalanced;
         public int maxDepth;
