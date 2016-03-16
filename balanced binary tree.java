@@ -15,7 +15,7 @@ public class Solution {
      * @return: True if this Binary tree is Balanced, or false.
      */
     
-    //九章answer, 没有用全局flag, 首选
+    //九章answer, 就是在求二叉树maxdepth的基础上判断一下左右子树的长度差, 没有用全局flag, 首选
     public boolean isBalanced(TreeNode root) {
         return maxDepth(root) != -1;
     }
@@ -29,7 +29,7 @@ public class Solution {
         int right = maxDepth(root.right); //右子树深度
         //left == -1 || right == -1的意思就是, 如果在下面的判断中要是出现了非平衡的情况, 那么就让左子树或者右子树为-1,
         //然后接下来上面的树就不用判断啦, 一路返回-1就结束啦
-        if (left == -1 || right == -1 || Math.abs(left-right) > 1) {
+        if (left == -1 || right == -1 || Math.abs(left-right) > 1) { //比二叉树maxdepth那道题就多这么一个判断条件
             return -1;
         }
         return Math.max(left, right) + 1;
