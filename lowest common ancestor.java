@@ -46,30 +46,41 @@ public class Solution {
         {
             return right;
         }
-        return null;
+        else
+        {
+            return null;
+        }
     }
     
-    /*//传统方法：就是有parent指针的方法
-    public class Solution {
-    private ArrayList<TreeNode> getPath2Root(TreeNode node) {
-        ArrayList<TreeNode> list = new ArrayList<TreeNode>();
-        while (node != null) {
-            list.add(node);
-            node = node.parent;
-        }
-        return list;
-    }
+    
+    
+    
+    
+    //传统方法：就是有parent指针的方法
     public TreeNode lowestCommonAncestor(TreeNode node1, TreeNode node2) {
+        //用两个Arraylist分别装给的两个节点的本身和他们的父节点
         ArrayList<TreeNode> list1 = getPath2Root(node1);
         ArrayList<TreeNode> list2 = getPath2Root(node2);
         
         int i, j;
         for (i = list1.size() - 1, j = list2.size() - 1; i >= 0 && j >= 0; i--, j--) {
             if (list1.get(i) != list2.get(j)) {
-                return list1.get(i).parent;
+                return list1.get(i).parent; //两个Arraylist不同的地方就是岔开的地方, 岔开的任一元素的父节点就是公共祖先
             }
         }
+        
+        //(感觉list1与list2的判断还有退出循环之后的判断有问题)
         return list1.get(i+1);
     }
-}*/
+    
+    //装本身和父节点的函数
+    private ArrayList<TreeNode> getPath2Root(TreeNode node) {
+        ArrayList<TreeNode> list = new ArrayList<TreeNode>();
+        while (node != null) {
+            list.add(node);
+            node = node.parent; //需要提供父节点
+        }
+        return list;
+    }
+
 }
