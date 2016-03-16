@@ -35,6 +35,10 @@ public class Solution {
         return Math.max(left, right) + 1;
     }
     
+    
+    
+    
+    
     //超级简练版, 一句话就写完
     public boolean isBalanced(TreeNode root) {
         if (root == null) return true;
@@ -45,6 +49,10 @@ public class Solution {
     	 if (root == null) return 0;
          return Math.max(getDepth(root.left), getDepth(root.right)) + 1;
     }
+
+
+
+
 
     //自己answer
     /*boolean flag = true;
