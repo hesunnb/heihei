@@ -78,8 +78,8 @@ public class Solution {
     
     
     
-    //version 2: 把SinglePath也定义为至少包含一个点, 上面那个是singlepath可以不包含点, 因为计算singlepath的时候带上啦root.val
     
+    //version 2: 把SinglePath也定义为至少包含一个点, 上面那个是singlepath可以不包含点, 因为计算singlepath的时候带上啦root.val
     private class ResultType {
         int singlePath, maxPath;
         ResultType(int singlePath, int maxPath) {
@@ -97,8 +97,7 @@ public class Solution {
         ResultType right = helper(root.right);
 
         // Conquer, 就这个地方和上面不一样
-        int singlePath =
-            Math.max(0, Math.max(left.singlePath, right.singlePath)) + root.val; //这里每次计算完root.val的值都会留下, 所以至少包含啦点
+        int singlePath = Math.max(0, Math.max(left.singlePath, right.singlePath)) + root.val; //这里每次计算完root.val的值都会留下, 所以至少包含啦点
 
         int maxPath = Math.max(left.maxPath, right.maxPath);
         maxPath = Math.max(maxPath, Math.max(left.singlePath, 0) + Math.max(right.singlePath, 0) + root.val); //对于负数的子树在这里进行舍弃, 就是把负值的singlepath舍掉
