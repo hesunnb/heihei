@@ -57,7 +57,7 @@ public class Solution {
     
     
     
-    //Iterator, stack traversal(non-recursion)
+    //version 2: Iterator, stack traversal(non-recursion)
     //和inordertravelsal的stack的方法一样, 就是中间弹出值后要判断
     public boolean isValidBST(TreeNode root) 
     {
@@ -91,7 +91,7 @@ public class Solution {
     
     
     
-    //超级简练版, 两个if语句搞定
+    //version 3: 超级简练版, 两个if语句搞定
     public boolean isValidBST(TreeNode root)
     {
         //用double的就是最大和最小的, 比Integer要大多啦, 所以就没有firstnode的问题
