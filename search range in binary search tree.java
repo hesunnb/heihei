@@ -17,7 +17,7 @@ public class Solution {
      */
      
     //思路就是中序遍历一遍
-    /*ArrayList<Integer> result = new ArrayList<Integer>();
+    ArrayList<Integer> result = new ArrayList<Integer>();
     public ArrayList<Integer> searchRange(TreeNode root, int k1, int k2) {
         // write your code here
         
@@ -40,7 +40,7 @@ public class Solution {
         }
         
         return result;
-    }*/
+    }
     
     //九章做法一样，就是用个helper
     private ArrayList<Integer> results;
