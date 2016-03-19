@@ -47,8 +47,37 @@ public class BSTIterator {
             curt = curt.left;
         }
         
-        TreeNode node = st.pop(); //一个一个取出来，取出一个同时看这个点的右侧节点，返回上面接着取
-        curt = node.right;
+        curt = stack.pop(); //一个一个取出来，取出一个同时看这个点的右侧节点，返回上面接着取
+        TreeNode node = curt;
+        curt = curt.right;
         return node;
+    }
+    
+    
+    
+    
+    
+    
+    //version 2: 比上面稍微简练一点
+    private TreeNode visit;
+    private Stack<TreeNode> stack;
+
+    public BSTIterator(TreeNode root) {
+        visit = root;
+        stack = new Stack(); //在这个地方实例化
+    }
+
+    public boolean hasNext() {
+        return visit != null || !stack.empty();
+    }
+
+    public int next() { //这里返回的是值, 不是结点
+        while (visit != null) {
+            stack.push(visit);
+            visit = visit.left;
+        }
+        TreeNode next = stack.pop(); //4句变3句
+        visit = next.right;
+        return next.val;
     }
 }
