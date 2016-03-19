@@ -45,9 +45,14 @@ public class BSTIterator {
             st.push(curt); //从根开始一连串把根左都加入栈
             curt = curt.left;
         }
+        
         curt = st.pop(); //一个一个取出来，取出一个同时看这个点的右侧节点，返回上面接着取
-        TreeNode tn = curt;
+        TreeNode node = curt;
         curt = curt.right;
-        return tn;
+        return node;
+        //这个地方可以再简练一点: (4句变3句)
+        TreeNode node = st.pop();
+        curt = node.right;
+        return node;
     }
 }
