@@ -55,7 +55,7 @@ public class Solution {
      
      
     //递归:
-    /*public TreeNode insertNode(TreeNode root, TreeNode node) {
+    public TreeNode insertNode(TreeNode root, TreeNode node) {
         // write your code here
    
         if(root == null)
@@ -72,5 +72,5 @@ public class Solution {
             root.right = insertNode(root.right, node); //右节点作为根传进去
         }
         return root; //上面赋值除了node，其余情况要用root顶上
-    }*/
+    }
 }
