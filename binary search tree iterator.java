@@ -17,12 +17,13 @@
  */
 public class BSTIterator {
     
-    //等价于写非递归的中序遍历
-    
     //Extra memory usage O(h), h is the height of the tree: 比如这棵树全是左子树, 那么一次向stack中加入的就是这个树的高
     //度, 其余的时候stack都会有弹出, 用的都比O(h)要小
     
     //@param root: The root of binary tree.
+    
+    
+    //version 1: 等价于写非递归的中序遍历
     private TreeNode curt = null;
     private Stack<TreeNode> st = new Stack<TreeNode>();
     public BSTIterator(TreeNode root) { //这是构造函数
@@ -46,12 +47,7 @@ public class BSTIterator {
             curt = curt.left;
         }
         
-        curt = st.pop(); //一个一个取出来，取出一个同时看这个点的右侧节点，返回上面接着取
-        TreeNode node = curt;
-        curt = curt.right;
-        return node;
-        //这个地方可以再简练一点: (4句变3句)
-        TreeNode node = st.pop();
+        TreeNode node = st.pop(); //一个一个取出来，取出一个同时看这个点的右侧节点，返回上面接着取
         curt = node.right;
         return node;
     }
