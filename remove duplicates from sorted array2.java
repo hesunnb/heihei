@@ -21,7 +21,7 @@ public class Solution {
                 i++;
             }
         }
-        return i;
+        return i; //因为每次替换完i都马上++, 所以这里i是最后一次++之后的下标, 和有效数组长度相等
     }
     
     
