@@ -17,7 +17,7 @@ public class Solution {
         int i = 0;
         for(int k = 0; k < A.length; k++) //扫一遍
         {
-            if(A[k] != elem) //不想等就赋值
+            if(A[k] != elem) //不相等就赋值
             {
                 A[i] = A[k];
                 i++;
