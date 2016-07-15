@@ -5,7 +5,7 @@ class Solution {
      * @return: The first position of target. Position starts from 0.
      */
     public int binarySearch(int[] nums, int target) {
-        //write your code here
+      //write your code here
       if(nums == null || nums.length == 0)
       {
           return -1;
@@ -27,9 +27,9 @@ class Solution {
       
       if(nums[start] == target)
       {
-          return start; //找重复元素的第一个元素就要先判断start；要是找重复元素的最有一个元素，要先判断end
+          return start; //找重复元素的第一个元素就要先判断start；要是找重复元素的最后一个元素，要先判断end(还是5,5,5,5,5这种情况会出问题)
       }
-      else if(nums[end] == target) //这里的else不能少，否则（5,5,5,5,5）这种情况就出现问题了
+      else if(nums[end] == target) //这里的else不能少，否则(5,5,5,5,5)这种情况就出现问题了
       {
           return end;
       }
