@@ -3,8 +3,8 @@
 Example:
 Given a = 1 and b = 2, return 3.*/
 
-public int getSum(int a, int b) {
-  if (a == 0) return b;
+	public int getSum(int a, int b) {
+		if (a == 0) return b;
 		if (b == 0) return a;
 
 		while (b != 0) {
@@ -14,9 +14,9 @@ public int getSum(int a, int b) {
 		}
 		
 		return a;
-}
+	}
 
-public int getSubtract(int a, int b) {
+	public int getSubtract(int a, int b) {
 		if(a == 0) return (~b + 1);
 		if(b == 0) return a;
 		
