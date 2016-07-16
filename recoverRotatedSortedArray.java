@@ -14,6 +14,7 @@ public class Solution {
                reverse(nums, 0, index); //临界点前翻转
                reverse(nums, index + 1, nums.size() - 1); //临界点后翻转，后面这个要用nums.size() - 1,不能用index + 2
                reverse(nums, 0, nums.size() - 1); //整体翻转一次
+               break; //翻转完后后面的就不用再去比较了
            }
        }
     }
