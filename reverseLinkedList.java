@@ -43,17 +43,17 @@ public class Solution {
     
     
     //recursion
-    public class Solution {
-	    public ListNode reverseList(ListNode head) {
-	        if (head == null) return head;
-	        if (head.next == null) return head;
-	        ListNode secondEle = head.next;
-	        head.next = null;
-	        ListNode revSecondEle = reverseList(secondEle);
-	        secondEle.next = head;
-	        return revSecondEle;
-	    }
+public class Solution {
+	public ListNode reverseList(ListNode head) {
+	    if (head == null) return head;
+	    if (head.next == null) return head;
+	    ListNode secondEle = head.next;
+	    head.next = null;
+	    ListNode revSecondEle = reverseList(secondEle);
+	    secondEle.next = head;
+	    return revSecondEle;
 	}
+}
 	
     
     
@@ -61,7 +61,7 @@ public class Solution {
     
     
     //也是虚拟节点法，跟着走一遍就好啦 
-    /*public ListNode reverse(ListNode head) {
+    public ListNode reverse(ListNode head) {
         // write your code here
         if(head == null || head.next == null)
         {
@@ -78,6 +78,6 @@ public class Solution {
             p = q;
         }
         return dummy.next;
-    }*/
+    }
 }
 
