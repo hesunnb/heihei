@@ -37,6 +37,11 @@ public class Solution {
         return prev;
     }
     
+    
+    
+    
+    
+    
     //recursion
     public class Solution {
 	    public ListNode reverseList(ListNode head) {
@@ -50,6 +55,10 @@ public class Solution {
 	    }
 	}
 	
+    
+    
+    
+    
     
     //也是虚拟节点法，跟着走一遍就好啦 
     /*public ListNode reverse(ListNode head) {
