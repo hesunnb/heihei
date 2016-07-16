@@ -1,3 +1,5 @@
+For linked list 1->2->3, the reversed linked list is 3->2->1
+
 /**
  * Definition for ListNode.
  * public class ListNode {
@@ -34,6 +36,20 @@ public class Solution {
         }
         return prev;
     }
+    
+    //recursion
+    public class Solution {
+	    public ListNode reverseList(ListNode head) {
+	        if (head == null) return head;
+	        if (head.next == null) return head;
+	        ListNode secondEle = head.next;
+	        head.next = null;
+	        ListNode revSecondEle = reverseList(secondEle);
+	        secondEle.next = head;
+	        return revSecondEle;
+	    }
+	}
+	
     
     //也是虚拟节点法，跟着走一遍就好啦 
     /*public ListNode reverse(ListNode head) {
