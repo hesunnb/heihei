@@ -7,34 +7,49 @@ public class Solution {
     public String reverseWords(String s) {
         // write your code
         
+        public String reverseWords(String s) {
+        if (s == null || s.length() == 0) {
+            return "";
+        }
+
+        
+        
+
+        
+            
+                
+            }
+        }
+
+        //remove the last " "
+       
+    }
         //用Java的函数库棒棒哒
         if(s == null || s.length() == 0)
         {
             return ""; //如果要是"",它翻转完了也是"",所以不能返回null
         }
         
-        String[] sarr = s.split(" ");
-        String result = "";
-        for(int i = sarr.length - 1; i >= 0 ; i--)
-        {
-            if(!sarr[i].equals("")) //这个得加上,split函数的一个特点是字符串前面的分隔符删掉之后会留下一个"",即空字符串(里面没有空格)，
+        String[] array = s.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = array.length - 1; i >= 0; --i) {
+        
+            if (!array[i].equals("")) { //这个得加上,split函数的一个特点是字符串前面的分隔符删掉之后会留下一个"",即空字符串(里面没有空格)，
             //所以加的时候要把这个空字符串给去掉。字符串后面的分隔符没有影响，会正常去掉; 中间也是, 比如中间有两个空格, 去掉一个空格, 
             //然后剩下的那个空格变为"", 然后占一个位置; 尾部的空格全都去掉, 不变成"", 不占位置
-            {
-                result += sarr[i] + " ";
+            
+                sb.append(array[i]).append(" ");
             }
         }
         
-        if(result.length() == 0) //这个是输入全是空格的情况:" "，这种情况按照题意应返回"",就是把里面的空格去掉，
-        //因为这个空格算作leading or trailing spaces; split(" ")对于输入全是空格的情况会把所有的空格都删掉, 没有"", result长度就是0
+         return sb.length() == 0 ? "" : sb.substring(0, sb.length() - 1); //==0是输入全是空格的情况:" "，这种情况按照题意应返回"",就是把里面的空格去掉，
+        //因为这个空格算作leading or trailing spaces; split(" ")对于输入全是空格的情况会把所有的空格都删掉, 有一个"", 不加进去, sb长度就是0
         //所以在这里要处理返回"", 否则下面的substring取值就是(0, -1), 该报错啦
-        {
-            return "";
-        }
-        else //把最后一个空格给去掉
-        {
-            return result.substring(0, result.length() - 1); //子串不包括最后一个字符
-        }
+        
+        //剩下的就是把最后一个空格给去掉
+        
+    
+        
         
         //用两个栈来实现翻转过程
         /*Stack statement=new Stack();
