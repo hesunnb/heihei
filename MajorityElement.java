@@ -4,6 +4,17 @@ You may assume that the array is non-empty and the majority element always exist
 
 /*数组不能为空, 且总有次数最多的元素, 重点是超过[n / 2]次, 这就保证了major总是能够换到1上*/
 
+/*
+testCase:
+1, -1, 1, -1, 1 //交替
+
+-1, 1, -1, 1, -1 //交替
+
+-1, -1, 1, 1, 1 //连续
+
+1, 1, -1, -1, -1 //连续
+*/
+
 public class Solution {
     public int majorityElement(int[] num) {
 
