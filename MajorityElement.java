@@ -18,6 +18,10 @@ testCase:
 public class Solution {
     public int majorityElement(int[] num) {
 
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+
         int major=num[0], count = 1;
         for(int i=1; i<num.length;i++){
             if(count==0){
