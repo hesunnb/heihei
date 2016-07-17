@@ -6,24 +6,7 @@ public class Solution {
      */
     public String reverseWords(String s) {
         // write your code
-        
-        public String reverseWords(String s) {
-        if (s == null || s.length() == 0) {
-            return "";
-        }
 
-        
-        
-
-        
-            
-                
-            }
-        }
-
-        //remove the last " "
-       
-    }
         //用Java的函数库棒棒哒
         if(s == null || s.length() == 0)
         {
