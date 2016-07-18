@@ -9,6 +9,8 @@ For A = "ABCD", B = "AABC", return false.
 
 */
 
+
+//用数组解决
 public class Solution {
     /**
      * @param A : A string includes Upper Case letters
@@ -17,7 +19,39 @@ public class Solution {
      */
     public boolean compareStrings(String A, String B) {
         // write your code here
-        //哈希表来解决
+        
+        int[] counts = new int[26];
+        for(int i = 0; i < 26; i++) {
+            counts[i] = 0;
+        }
+        
+        for(int i = 0; i < A.length(); i++) {
+            counts[A.charAt(i) - 'A']++; 
+        }
+        
+        for(int i = 0; i < B.length(); i++) {
+            counts[B.charAt(i) - 'A']--;
+            if(counts[B.charAt(i) - 'A'] < 0) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}
+
+
+
+//哈希表来解决
+public class Solution {
+    /**
+     * @param A : A string includes Upper Case letters
+     * @param B : A string includes Upper Case letter
+     * @return :  if string A contains all of the characters in B return true else return false
+     */
+    public boolean compareStrings(String A, String B) {
+        // write your code here
+
         Map<Character,Integer> map=new HashMap<Character,Integer>(); //一定要记得加泛型，key是char，后面的值是int
         for(int i=0;i<A.length();i++)
         {
