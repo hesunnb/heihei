@@ -8,7 +8,7 @@ You may assume that the array is non-empty and the majority element always exist
 testCase:
 1, -1, 1, -1, 1 //交替
 
--1, 1, -1, 1, -1 //交替
+-1, 1, -1, 1, 1 //交替
 
 -1, -1, 1, 1, 1 //连续
 
