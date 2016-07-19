@@ -6,6 +6,25 @@ public class Solution {
      
     //version 1: (首选)
     public int removeDuplicates(int[] nums) {
+    
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        int index = 0; //保存有效位置
+        for(int i = 0; i < nums.length; i++) {
+            if(index < 1 || nums[i] > nums[index - 1]) { //前1个值保留, 后面的值如果大于index处前两1, 就在index处放置新值, 间隔为1
+                nums[index++] = nums[i];
+            }
+        }
+        
+        return index;
+    }
+    
+    
+    
+    //version 2: 
+    public int removeDuplicates(int[] nums) {
         if (nums == null || nums.length == 0) {
         	return 0;
         }
