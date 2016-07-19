@@ -29,9 +29,9 @@ public class Solution {
         while(start + 1 < end)
         {
            int mid = start + (end - start) / 2;
-            if(nums[mid] == target) {
+            if(A[mid] == target) {
                 return mid;
-            } else if (nums[mid] < target) {
+            } else if (A[mid] < target) {
                 start = mid;
             } else {
                 end = mid;
