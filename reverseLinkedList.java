@@ -19,6 +19,7 @@ public class Solution {
     
     //不用虚拟节点，九章方法，更简单(首选)
     //思路上很简单
+    //链表testCase的考虑就是1个节点, 2个节点, 3个节点, 基本就可以了
     public ListNode reverse(ListNode head)
     {
         if(head == null || head.next == null)
@@ -38,26 +39,21 @@ public class Solution {
     }
     
     
-    
-    
-    
-    
     //recursion
-public class Solution {
-	public ListNode reverseList(ListNode head) {
-	    if (head == null) return head;
-	    if (head.next == null) return head;
-	    ListNode secondEle = head.next;
-	    head.next = null;
-	    ListNode revSecondEle = reverseList(secondEle);
-	    secondEle.next = head;
-	    return revSecondEle;
-	}
-}
-	
-    
-    
-    
+    public ListNode reverseList(ListNode head) {
+    	if (head == null) {
+    	    return head;
+    	}
+    	if (head.next == null) {
+    	    return head;
+    	}
+    	
+    	ListNode secondEle = head.next;
+    	head.next = null;
+    	ListNode revSecondEle = reverseList(secondEle);
+    	secondEle.next = head;
+    	return revSecondEle;
+    }
     
     
     //也是虚拟节点法，跟着走一遍就好啦 
