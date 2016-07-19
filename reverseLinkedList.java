@@ -28,9 +28,10 @@ public class Solution {
         }
         
         ListNode prev = null;
+        ListNode temp = null;
         while(head != null)
         {
-            ListNode temp = head.next; //把head的下一个节点保存一下
+            temp = head.next; //把head的下一个节点保存一下
             head.next = prev; //head的指针指向前一个节点
             prev = head; //prev向后窜
             head = temp; //head向后窜，这里就要用到保存的temp节点，因为head的指向在head.next = prev就已经改变啦，所以要用临时节点保存
