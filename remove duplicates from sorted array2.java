@@ -7,28 +7,33 @@ public class Solution {
     
     //version 1: (首选)用一个for
     public int removeDuplicates(int[] nums) {
-        if(nums == null || nums.length == 0)
-        {
+    
+        if(nums == null || nums.length == 0) {
             return 0;
         }
         
-        int i = 0;
-        for(int k = 0; k < nums.length; k++) //可以达到想留几个留几个
-        {
-            if(i < 2 || nums[k] > nums[i - 2]) //在这里比如i < 3 || nums[k] > nums[i - 3]就是留3个
-            {
-                nums[i] = nums[k];
-                i++;
+        int index = 0; //保存有效位置
+        for(int i = 0; i < nums.length; i++) {
+            if(index < 2 || nums[i] > nums[index - 2]) { //前两个值保留, 后面的值如果大于index处前两个, 就在index处放置新值, 间隔为2
+                nums[index++] = nums[i];
             }
         }
-        return i; //因为每次替换完i都马上++, 所以这里i是最后一次++之后的下标, 和有效数组长度相等
-    }
+        
+        return index;
+    }    
+    
+    /*
+    此题可以扩展为duplicates are allowed at most 3次, 4次....n次, 只需改动:
+    
+    重复3次: if(index < 3 || nums[i] > nums[index - 3])
+    重复4次: if(index < 4 || nums[i] > nums[index - 4])
+    .
+    .
+    .以此类推
+    */
     
     
-    
-    
-    
-    
+
     //version 2: 用两个for
     public int removeDuplicates(int[] nums) {
         // write your code here
@@ -58,11 +63,7 @@ public class Solution {
         return cur;
     }
     
-    
-    
-    
-    
-    
+
     
     //version 3: 用一个while
     public int removeDuplicates(int[] nums) {
