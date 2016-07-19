@@ -14,7 +14,7 @@ public class Solution {
         	if (nums[i] == nums[i + 1]) { //相等就continue
         		continue;
         	} else {
-        		nums[result] = nums[i + 1]; //不等就更新至
+        		nums[result] = nums[i + 1]; //不等就更新值
         		result++;
         	}
         }
