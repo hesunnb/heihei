@@ -9,12 +9,12 @@ public class Solution {
         if (nums == null || nums.length == 0) {
         	return 0;
         }
-        int result = 1;
+        int result = 1; //只要数组里面有内容, 就一定会有一个
         for (int i = 0; i < nums.length - 1; i++) {
-        	if (nums[i] == nums[i + 1]) {
+        	if (nums[i] == nums[i + 1]) { //相等就continue
         		continue;
         	} else {
-        		nums[result] = nums[i + 1];
+        		nums[result] = nums[i + 1]; //不等就更新至
         		result++;
         	}
         }
