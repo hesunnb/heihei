@@ -18,14 +18,7 @@ Insert [3, 4] into [[1,2], [5,9]], we get [[1,2], [3,4], [5,9]]
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
-public class Solution {
-    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-        
-    }
-}
-
-
-
+ 
 
 // Nine Chapter
 public class Solution {
