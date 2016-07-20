@@ -42,15 +42,15 @@ public class Solution {
     
     //recursion
     public ListNode reverseList(ListNode head) {
-    	if (head == null || head.next == null) {
-    	    return head;
-    	}
-    	
-    	ListNode secondEle = head.next;
-    	head.next = null;
-    	ListNode revSecondEle = reverseList(secondEle);
-    	secondEle.next = head;
-    	return revSecondEle;
+    	if(head == null || head.next == null) {
+            return head;
+        }
+        
+        ListNode second = head.next;
+        head.next = null;
+        ListNode store = reverse(second);
+        second.next = head;
+        return store;
     }
     
     
