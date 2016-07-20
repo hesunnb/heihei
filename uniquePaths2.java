@@ -38,4 +38,29 @@ public class Solution {
         }
         return sum[m - 1][n - 1]; //如果这个矩阵的第一个点就是障碍点的话，就相当于直接返回０了
     }
+    
+    
+    // Discussion, Space Optimization
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        
+        if(obstacleGrid == null || obstacleGrid.length == 0 || obstacleGrid[0].length == 0) {
+            return 0;
+        }
+        
+        int m = obstacleGrid.length;
+        int n = obstacleGrid[0].length;
+        int sum[] = new int[n];
+        sum[0] = 1; //为了进行做和的运算, 要将第一个值设为1
+        
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) { //对于每一行每次都要从头扫到尾, 因为有障碍的关系
+                if(obstacleGrid[i][j] == 1) {
+                    sum[j] = 0;
+                } else if(j > 0) { //j > 0才进行递推, j = 0的时候是直接指定值的(最开始默认为1(sum[0] = 1)), 有障碍的时候强制归0, 以后j = 0的时候就全是0了)
+                    sum[j] += sum[j - 1];
+                }
+            }
+        }
+        return sum[n - 1];
+    }
 }
