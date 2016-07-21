@@ -4,7 +4,7 @@ public class Solution {
      * @return: a boolean
      */
      
-    //使用额外空间，时间复杂度O(n)
+    //使用额外空间哈希表，时间复杂度O(n)
     public boolean isUnique(String str) {
         // write your code here
         
@@ -21,7 +21,7 @@ public class Solution {
         return true;
     }
     
-    //使用额外空间，时间复杂度O(n)
+    //使用额外空间数组，时间复杂度O(n)
     public boolean isUnique(String str) {
         // write your code here
         
