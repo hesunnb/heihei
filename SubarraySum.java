@@ -21,7 +21,7 @@ public class Solution {
             if(m.containsKey(sum)) {
                 result.add(m.get(sum) + 1); //找到子数组开头的位置
                 result.add(i); //子数组结尾的位置
-                return result;
+                return result; //如果要是返回所有的和为0的数组的下标, 去掉这句return result, 只在最后返回即可
             }
             m.put(sum, i);
         }
