@@ -1,6 +1,7 @@
 public class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         
+        //在这个follow up里面给矩阵的原因是原矩阵有obstacle, 这个obstacle得规定出来, 所以给了矩阵
         if(obstacleGrid == null || obstacleGrid.length == 0 || obstacleGrid[0].length == 0) {
             return 0;
         }
