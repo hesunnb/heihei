@@ -38,7 +38,16 @@ public class Solution {
         return head;
     }
      
-    /*/用两个指针
+    
+    //Recursion
+    public ListNode deleteDuplicates(ListNode head) {
+            if(head == null || head.next == null)return head;
+            head.next = deleteDuplicates(head.next);
+            return head.val == head.next.val ? head.next : head;
+    } 
+    
+     
+    /*用两个指针
     public static ListNode deleteDuplicates(ListNode head) { 
         // write your code here
         if(head == null || head.next == null)
