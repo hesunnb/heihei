@@ -6,7 +6,7 @@ public class Solution {
      */
      
      
-    //version 1: (首选)一个for
+    //version 1: (首选)一个for, 正序
     public int removeElement(int[] A, int elem) {
         // write your code here
         if(A == null || A.length == 0)
@@ -30,7 +30,7 @@ public class Solution {
     
     
     
-    //version 2: 一个while
+    //version 2: 一个while, 倒序
     public int removeElement(int[] A, int elem) {
         int i = 0;
         int pointer = A.length - 1;
@@ -43,7 +43,7 @@ public class Solution {
             } 
             else 
             {
-                i++; //i指针向前走
+                i++;
             }
         }
         return i; //p和i相等之后肯定还要判断一次, 然后p和i肯定要错开, 如果p和i都是有效值的时候, i向后走一步, 
