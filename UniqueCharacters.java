@@ -27,7 +27,7 @@ public class Solution {
     public boolean isUnique(String str) {
         // write your code here
         
-        int[] result = new int[256];
+        int[] result = new int[256]; //int数组
         for(int i = 0; i < str.length(); i++) {
             
             if(++result[str.charAt(i)] > 1) {
@@ -41,7 +41,7 @@ public class Solution {
     public boolean isUnique(String str) {
         // write your code here
         
-        boolean[] char_set = new boolean[256];
+        boolean[] char_set = new boolean[256]; //boolean数组
         for (int i = 0; i < str.length(); i++) {
             int val = str.charAt(i); //char自动转换为int
             if (char_set[val]) {
