@@ -17,8 +17,8 @@ public class Solution {
         }
         
         for(int i = 0; i < t.length(); i++) {
-            result[(int)t.charAt(i)]--;
-            if(result[(int)t.charAt(i)] < 0) {
+            
+            if(--result[(int)t.charAt(i)] < 0) {
                 return false;
             }
         }
