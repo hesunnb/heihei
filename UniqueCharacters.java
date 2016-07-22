@@ -21,7 +21,23 @@ public class Solution {
         return true;
     }
     
+    
+    
     //使用额外空间数组，时间复杂度O(n)
+    public boolean isUnique(String str) {
+        // write your code here
+        
+        int[] result = new int[256];
+        for(int i = 0; i < str.length(); i++) {
+            
+            if(++result[str.charAt(i)] > 1) {
+                return false;
+            }
+            
+        }
+        return true;
+    }
+    
     public boolean isUnique(String str) {
         // write your code here
         
@@ -35,6 +51,8 @@ public class Solution {
         }
         return true;
     }
+    
+    
     
     //未用额外空间，时间复杂度O(n^2)
     public boolean isUnique(String str) {
