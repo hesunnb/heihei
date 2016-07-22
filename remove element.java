@@ -15,7 +15,7 @@ public class Solution {
         }
         
         int i = 0;
-        for(int k = 0; k < A.length; k++) //扫一遍
+        for(int k = 0; k < A.length; k++) //扫一遍, 正序的时候挑不等于elem的往前面放
         {
             if(A[k] != elem) //不相等就赋值
             {
@@ -38,7 +38,7 @@ public class Solution {
         {
             if(A[i] == elem)
             {
-                A[i] = A[pointer]; //用一个尾指针向回走
+                A[i] = A[pointer]; //用一个尾指针向回走, 倒序走的时候是一定要放在在和elem相等的地方
                 pointer--;
             } 
             else 
