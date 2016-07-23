@@ -3,7 +3,7 @@
 Follow up:
 Could you do it without using any loop / recursion? */
 
-//三种方法
+//三种方法, 这三种对于多少进制的都可以判断
 public class Solution {
     public boolean isPowerOfThree(int n) {
         
