@@ -7,8 +7,8 @@ Could you do it without using any loop / recursion? */
 public class Solution {
     public boolean isPowerOfThree(int n) {
         
-        return n <= 0? false: Math.pow(3, Math.round(Math.log10(n) / Math.log10(3))) == n; //需要round一下, round四舍五入返回
-        //
+        return n <= 0 ? false : Math.pow(3, Math.round(Math.log10(n) / Math.log10(3))) == n; //需要round一下, round四舍五入返回
+        //long, 如果要是3的幂, 自然整除, pow回去还是原数, 如果不是3的幂, 就不会整除, 然后会有截断, pow回去就不是原值了
         
         return n <= 0 ? false : (Math.log10(n) / Math.log10(3)) % 1 == 0; //Math.log10(n) / Math.log10(3)是浮点数, 用浮点数对1
         //求余, 如果小数点后有值就不等于0(2.8 % 1 = 0.79999...), 能整除就是0.0 = 0
