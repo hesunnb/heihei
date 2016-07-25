@@ -15,8 +15,8 @@ public class Solution {
      * @return: nothing
      */
      
-    //前提是这个node是链表中间的点，不包括表头和表尾
-    //O(1)就解决啦
+    //前提是这个node是链表中间的点，不包括表头和表尾(表头也可删, 表尾不行)
+    //O(1)解决
     public void deleteNode(ListNode node) {
         // write your code here
         node.val=node.next.val;
