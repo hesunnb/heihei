@@ -33,9 +33,9 @@ public class Solution {
         int count = 0;
         for(int i = 0; i < grid.length; i++) {
             for(int j = 0; j < grid[0].length; j++) {
-                if(grid[i][j] == true) {
+                if(grid[i][j] == true) { //如果是真, 就开始找岛
                     FindIsland(grid, i, j);
-                    count++;
+                    count++; //知道开始找了, 就一定有一个岛
                 }
             }
         }
@@ -45,8 +45,8 @@ public class Solution {
     
     private void FindIsland(boolean[][] grid, int i, int j) {
         if(grid[i][j] == true) {
-            grid[i][j] = false;
-            if(i > 0 && grid[i - 1][j] == true) {
+            grid[i][j] = false; //把走过的真改为假, 这样再扫描的时候这些走过的点就不会再参与考量了
+            if(i > 0 && grid[i - 1][j] == true) { //向4个方向进行递归, 注意不能有else
                 FindIsland(grid, i - 1, j);
             } if(i < grid.length - 1 && grid[i + 1][j] == true) {
                 FindIsland(grid, i + 1, j);
