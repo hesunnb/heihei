@@ -35,24 +35,19 @@ public class Solution {
                 num++;
             }
         }
-        
-        num = num * 2; //要增加的空格数，因为空格自己还占一位，所以加两位
-        int newlength = length + num;
+
+        int newlength = length + num * 2; //要增加的空格数，因为空格自己还占一位，所以加两位
         int j = 1; //进行下标递减的步进
-        for(int i = 0; i < length; i++)
-        {
-            if(string[length - i - 1] != ' ')
-            {
-                string[newlength - j] = string[length - i - 1]; //往后挪
+        for(int i = length - 1; i>= 0; i--) {
+            if(string[i] != ' ') {
+                string[newLength - j] = string[i]; //往后放
                 j++;
-            }
-            else
-            {
-                string[newlength - j] = '0';
+            } else {
+                string[newLength - j] = '0';
                 j++;
-                string[newlength - j] = '2';
+                string[newLength - j] = '2';
                 j++;
-                string[newlength - j] = '%';
+                string[newLength - j] = '%';
                 j++;
             }
         }
