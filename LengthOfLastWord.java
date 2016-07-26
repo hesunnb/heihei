@@ -35,4 +35,25 @@ public class Solution {
         }
         return back.length();
     }
+    
+    
+    //直接将s拆成字符数组
+    public int lengthOfLastWord(String s) {
+        char[] schr=s.toCharArray();
+        if(s==null || schr.length==0)
+            return 0;
+        int res=0;
+        for(int i=schr.length-1;i>=0;i--)
+        {
+            if(schr[i]!=' ')
+                res++;
+            else{
+                if(res==0) //没有遇到字母就接着向前找字母
+                    continue;
+                else
+                    break;
+            }
+        }
+        return res;
+    }
 }
