@@ -16,9 +16,29 @@ public class Solution {
      * @param s A string
      * @return the length of last word
      */
-     
-     
     
+    //只在字符串本身操作, 没有开空间
+    public int lengthOfLastWord(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+        s = s.trim();
+        if (s.length() == 0) {
+            return 0;
+        }
+        int res = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) != ' ') {
+                res++;
+            } else {
+                return res;
+            }
+        }
+        return res;
+    }
+    
+    
+    //开了一个数组
     public int lengthOfLastWord(String s) {
         // Write your code here
         
