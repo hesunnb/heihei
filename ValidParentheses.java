@@ -19,20 +19,20 @@ public class Solution {
 	Stack<Character> sk = new Stack<Character>();
 	for(int i = 0; i < s.length(); i++) {
 	  if(s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{') {
-			sk.push(s.charAt(i));
+		sk.push(s.charAt(i));
 	  } else {
-		    if(sk.isEmpty()) {
-		        return false;
-		    } else {
-		        char temp = sk.pop();
-	    		if(s.charAt(i) == ')' && temp == '(' || s.charAt(i) == ']' && temp == '[' || s.charAt(i) == '}' && temp == '{') {
-	    			continue;
-	    		} else {
-	    			return false;
-	    		}
-	    		//if (Math.abs(s.charAt(i) - temp) > 2) return false; 上面的if,else可以用这个代替, ()对应ASCII为40,41; []是91,93; {}是123,125; 所以用>2来判断
-		    }
-		}
+	    if(sk.isEmpty()) {
+	        return false;
+	    } else {
+	        char temp = sk.pop();
+    		if(s.charAt(i) == ')' && temp == '(' || s.charAt(i) == ']' && temp == '[' || s.charAt(i) == '}' && temp == '{') {
+    			continue;
+    		} else {
+    			return false;
+    		}
+    		//if (Math.abs(s.charAt(i) - temp) > 2) return false; 上面的if,else可以用这个代替, ()对应ASCII为40,41; []是91,93; {}是123,125; 所以用>2来判断
+	    }
+	  }
 	}
 	return sk.isEmpty();
     }
