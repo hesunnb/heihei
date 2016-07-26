@@ -23,10 +23,10 @@ public class Solution {
     public int replaceBlank(char[] string, int length) {
         // Write your code here
         //因为每次遇到空格增加两个空位，算上自己3个，前后有多余的空格也会按顺序替换掉
-        if(string == null)
-        {
+        if(string == null || string.length == 0) {
             return 0;
         }
+        
         int num = 0;
         for(int i = 0; i < length; i++)
         {
