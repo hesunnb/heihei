@@ -36,7 +36,7 @@ public class Solution {
             }
         }
 
-        int newlength = length + num * 2; //要增加的空格数，因为空格自己还占一位，所以加两位
+        int newLength = length + num * 2; //要增加的空格数，因为空格自己还占一位，所以加两位
         int j = 1; //进行下标递减的步进
         for(int i = length - 1; i>= 0; i--) {
             if(string[i] != ' ') {
@@ -51,6 +51,6 @@ public class Solution {
                 j++;
             }
         }
-        return newlength;
+        return newLength;
     }
 }
