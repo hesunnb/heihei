@@ -42,3 +42,14 @@ public class Solution {
         return Character.isLetterOrDigit(c);
     }
 }
+
+
+// Tricky solution
+public class Solution {
+    public boolean isPalindrome(String s) {
+        s = s.replaceAll("[^A-Za-z0-9]", "").toLowerCase(); //正则表达式, 把所有不是A-Za-z0-9这些的字符都变成""
+        if(s.equals("") || s.length() == 1) return true; //如果要是s变成""(原s里面都是,,,..之类的)或者s里面只有一个字母, 那就是true
+
+        return new StringBuilder(s).reverse().toString().equals(s); //有多个字母的话就倒序然后和原字符串相比, 如果相等就是回文
+    }
+}
