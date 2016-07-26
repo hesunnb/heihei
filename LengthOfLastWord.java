@@ -39,13 +39,14 @@ public class Solution {
     
     //直接将s拆成字符数组
     public int lengthOfLastWord(String s) {
-        char[] schr=s.toCharArray();
-        if(s==null || schr.length==0)
+        if(s == null || s.length() == 0) {
             return 0;
+        }
+        char[] result=s.toCharArray();
         int res=0;
-        for(int i=schr.length-1;i>=0;i--)
+        for(int i=result.length-1;i>=0;i--)
         {
-            if(schr[i]!=' ')
+            if(result[i]!=' ')
                 res++;
             else{
                 if(res==0) //没有遇到字母就接着向前找字母
