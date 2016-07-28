@@ -17,15 +17,8 @@ public class Solution {
      * @return true if this is a happy number or false
      */
     
-    public boolean isHappy(int n) {
-        
-    }
-    
-    private int getNextHappy(int n) {
-        int sum = 0;
-    }
-    
-    
+    //开一个哈希表来记录原来得到过的值, 然后从哈希表判断即可
+    //两种方法的getNextHappy(int n)是一样的
     public boolean isHappy(int n) {
         HashSet<Integer> m = new HashSet<Integer>();
         while (n != 1) {
@@ -41,6 +34,41 @@ public class Solution {
     private int getNextHappy(int n) {
         int sum = 0;
         while (n != 0) {
+            sum += (n % 10) * (n % 10);
+            n /= 10;
+        }
+        return sum;
+    }
+    
+    
+    
+    //discuss, 不用额外空间, 类似于链表有环, 一个走的快, 一个走的慢, 重合了就不是快乐数了
+    public boolean isHappy(int n) {
+        if(n <= 0) {
+            return false;
+        }
+        
+        int x = n;
+        int y = n;
+        while(x != 1) {
+            x = getNextHappy(x);
+            if(x == 1) {
+                return true;
+            }
+            y = getNextHappy(getNextHappy(y));
+            if(y == 1) {
+                return true;
+            }
+            if(x == y) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private int getNextHappy(int n) {
+        int sum = 0;
+        while(n != 0) {
             sum += (n % 10) * (n % 10);
             n /= 10;
         }
