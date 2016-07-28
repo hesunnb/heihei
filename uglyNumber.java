@@ -19,6 +19,8 @@ public class Solution {
      * @param num an integer
      * @return true if num is an ugly number or false
      */
+     
+    //正常3个while
     public boolean isUgly(int num) {
         // Write your code here
         
@@ -41,9 +43,10 @@ public class Solution {
     }
     
     
+    //tricky一个while
     public boolean isUgly(int num) {
         // Write your code here
-        for (int i = 2; i < 6 && num > 0; i++)
+        for (int i = 2; i < 6 && num > 0; i++) //多个对4求余, 4又等于2*2, 所以不影响, 因为前面已经对2求余求尽了, 所以论不到对4求余
           while (num % i == 0) {
               num /= i;
           }
