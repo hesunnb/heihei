@@ -47,6 +47,7 @@ public class Solution {
     public boolean isUgly(int num) {
         // Write your code here
         for (int i = 2; i < 6 && num > 0; i++) //多个对4求余, 4又等于2*2, 所以不影响, 因为前面已经对2求余求尽了, 所以论不到对4求余
+          //假设对14求个余, 那么就会多个7, 含有因子7的就会通过, 所以不行, 从这里看, 4没有其它的因子, 只有2, 所以通过
           while (num % i == 0) {
               num /= i;
           }
