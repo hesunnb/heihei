@@ -42,6 +42,7 @@ public class Solution {
     }
     
     
+    
     //用HashSet, 但是没有用库函数retainAll, 两个Set, 时间O(n)
     public int[] intersection(int[] nums1, int[] nums2) {
         // Write your code here
@@ -71,6 +72,7 @@ public class Solution {
         
         return result;
     }
+    
     
     
     //用两个指针指向两个数组的头, 比较大小相等, 然后后移判断, 除了要返回的result, 多开了一个数组temp, 时间是O(nlogn)
@@ -106,5 +108,60 @@ public class Solution {
             result[k] = temp[k]; //拷贝
         }
         return result;
+    }
+    
+    
+    
+    //sort & binary search
+    //开了一个HashSet, O(nlogn)
+    public int[] intersection(int[] nums1, int[] nums2) {
+        if (nums1 == null || nums2 == null) {
+            return null;
+        }
+        
+        HashSet<Integer> set = new HashSet<>();
+        
+        Arrays.sort(nums1);
+        for (int i = 0; i < nums2.length; i++) {
+            if (binarySearch(nums1, nums2[i])) { //用二分法判断nums2的值在nums1里面有没有
+                set.add(nums2[i]);
+            }
+        }
+        
+        int[] result = new int[set.size()];
+        int index = 0;
+        for (Integer num : set) {
+            result[index++] = num;
+        }
+        
+        return result;
+    }
+    
+    private boolean binarySearch(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return false;
+        }
+        
+        int start = 0, end = nums.length - 1;
+        while (start + 1 < end) {
+            int mid = (end - start) / 2 + start;
+            if (nums[mid] == target) {
+                return true;
+            }
+            if (nums[mid] < target) {
+                start = mid;
+            } else {
+                end = mid;
+            }
+        }
+        
+        if (nums[start] == target) {
+            return true;
+        }
+        if (nums[end] == target) {
+            return true;
+        }
+        
+        return false;
     }
 }
