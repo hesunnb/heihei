@@ -18,7 +18,41 @@ public class Solution {
      * @param nums2 an integer array
      * @return an integer array
      */
-     
+    
+    //开了一个HashMap, 一个ArrayList, 然后是O(n)
+    public int[] intersect(int[] nums1, int[] nums2) {
+        
+        if(nums1 == null || nums2 == null) {
+            return null;
+        }
+        
+        Map<Integer, Integer> m = new HashMap<Integer, Integer>();
+        List<Integer> l = new ArrayList<Integer>();
+        
+        for(int i = 0; i < nums1.length; i++) {
+            if(m.containsKey(nums1[i])) {
+                m.put(nums1[i], m.get(nums1[i]) + 1); //有就+1
+            } else {
+                m.put(nums1[i], 1); //没有就放进去
+            }
+        }
+        
+        for(int i = 0; i < nums2.length; i++) {
+            if(m.containsKey(nums2[i]) && m.get(nums2[i]) > 0) { //包含并且要大于0
+                l.add(nums2[i]);
+                m.put(nums2[i], m.get(nums2[i]) - 1); //减一
+            }
+        }
+        
+        int[] result = new int[l.size()];
+        for(int i = 0; i < result.length; i++) { //拷贝
+            result[i] = l.get(i);
+        }
+        return result;
+    } 
+    
+    
+    
     //跟一问一样, 用了双指针, O(nlogn), 开了一个temp数组
     public int[] intersection(int[] nums1, int[] nums2) {
         // Write your code here
