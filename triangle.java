@@ -29,6 +29,9 @@ public class Solution {
         */
     }
     
+    
+    
+    
     //开了O(n2)的空间, 一个二维数组
     public int minimumTotal(int[][] triangle) {
         // write your code here
