@@ -13,7 +13,7 @@ Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2].
 public class Solution {
 
 
-    //用HashSet的库函数
+    //用HashSet的库函数retainAll
     public int[] intersection(int[] nums1, int[] nums2) {
         if(nums1 == null || nums2 == null) {
             return null;
@@ -30,6 +30,37 @@ public class Solution {
         }
             
         resultHash.retainAll(hash);
+        
+        int size = resultHash.size();
+        int[] result = new int[size];
+        int index = 0;
+        for (Integer num : resultHash) {
+            result[index++] = num;
+        }
+        
+        return result;
+    }
+    
+    
+    //用HashSet, 但是没有用库函数retainAll
+    public int[] intersection(int[] nums1, int[] nums2) {
+        // Write your code here
+        
+        if(nums1 == null || nums2 == null) {
+            return null;
+        }
+        
+        HashSet<Integer> hash = new HashSet<Integer>();
+        for (int i = 0; i < nums1.length; i++) {
+            hash.add(nums1[i]);
+        }
+        
+        HashSet<Integer> resultHash = new HashSet<Integer>();
+        for (int i = 0; i < nums2.length; i++) {
+            if (hash.contains(nums2[i]) && !resultHash.contains(nums2[i])) {
+                resultHash.add(nums2[i]);
+            }
+        }
         
         int size = resultHash.size();
         int[] result = new int[size];
