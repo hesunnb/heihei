@@ -5,7 +5,31 @@ public class Solution {
      */
      
     //思路:动态规划
-    //复杂度:n2(n是行数)
+    //复杂度:n2(n是行数), 没开空间
+    public int minimumTotal(int[][] triangle) {
+        // write your code here
+        
+        if(triangle == null || triangle.length == 0 || triangle[0].length == 0) {
+            return -1;
+        }
+        
+        int n = triangle.length;
+        for(int i = n - 1; i > 0; i--) {
+            for(int j = 0; j < i; j++) {
+                triangle[i - 1][j] = Math.min(triangle[i][j] + triangle[i - 1][j], triangle[i][j + 1] + triangle[i - 1][j]); //从底向上两两与上面的做和然后替换掉上面的数
+            }
+        }
+        return triangle[0][0];
+        
+        /*
+        2                   11
+        3 4      --->       9 10
+        6 5 7               7 6 10
+        4 1 8 3             4 1 8 3   取7+4, 7+1中小的替换掉7, 以此类推
+        */
+    }
+    
+    //开了O(n2)的空间, 一个二维数组
     public int minimumTotal(int[][] triangle) {
         // write your code here
         if(triangle == null || triangle.length == 0)
