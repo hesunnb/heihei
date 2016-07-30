@@ -73,4 +73,38 @@ public class Solution {
     }
     
     
+    //用两个指针指向两个数组的头, 比较大小相等, 然后后移判断, 除了要返回的result, 多开了一个数组temp, 时间是O(nlogn)
+    public int[] intersection(int[] nums1, int[] nums2) {
+        // Write your code here
+        
+        if(nums1 == null || nums2 == null) {
+            return null;
+        }
+        
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        
+        int[] temp = new int[nums1.length];
+        int i = 0, j = 0;
+        int index = 0;
+        while(i < nums1.length && j < nums2.length) {
+            if(nums1[i] == nums2[j]) {
+                if(index == 0 || temp[index - 1] != nums1[i]) { //因为已经排好序了, 要保证前一个和要进入的值不等, 否则重复了
+                    temp[index++] = nums1[i];
+                }
+                i++;
+                j++;
+            } else if(nums1[i] < nums2[j]) {
+                i++;
+            } else {
+                j++;
+            }
+        }
+        
+        int[] result = new int[index]; //index大小
+        for(int k = 0; k < index; k++) {
+            result[k] = temp[k]; //拷贝
+        }
+        return result;
+    }
 }
