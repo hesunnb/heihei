@@ -15,33 +15,9 @@ public class Solution {
      * @return: Inorder in ArrayList which contains node values.
      */
      
-    //version 1: traverse遍历, 这种遍历和下面的分治法都是递归, 区别是遍历把result作为参数传来传去, 并在递归的过程当中进行修改; 分治是把result作为return值返回, 不作为参数, 分治方法对于树更通用
-    public ArrayList<Integer> inorderTraversal(TreeNode root) {
-        // write your code here
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        if(root == null)
-        {
-            return result;
-        }
-        traversal(root, result);
-        return result;
-    }
-    
-    private void traversal(TreeNode root, ArrayList<Integer> result)
-    {
-        if(root == null)
-        {
-            return;
-        }
-        
-        traversal(root.left, result);
-        result.add(root.val);
-        traversal(root.right, result);
-    }
-    
-    
-    
-    //version 2: divide & conquer
+    //这种遍历和下面的分治法都是递归, 区别是遍历把result作为参数传来传去, 并在递归的过程当中进行修改; 
+    //分治是把result作为return值返回, 不作为参数, 分治方法对于树更通用
+    //version 1: divide & conquer
     public ArrayList<Integer> inorderTraversal(TreeNode root) {
         ArrayList<Integer> result = new ArrayList<Integer>();
         if(root == null)
@@ -49,8 +25,8 @@ public class Solution {
             return result;
         }
         
-        ArrayList<Integer> left = inorderTraversal(root.left);
-        ArrayList<Integer> right = inorderTraversal(root.right);
+        ArrayList<Integer> left = inorderTraversal(root.left); //得到root.left的result
+        ArrayList<Integer> right = inorderTraversal(root.right); //得到root.right的result
         
         result.addAll(left);
         result.add(root.val);
@@ -61,7 +37,7 @@ public class Solution {
     
     
     
-    //version 3: non_recursion(2个while)
+    //version 2: non_recursion(2个while)
     public ArrayList<Integer> inorderTraversal(TreeNode root) {
         Stack<TreeNode> sk = new Stack<TreeNode>();
         ArrayList<Integer> result = new ArrayList<Integer>();
@@ -84,6 +60,31 @@ public class Solution {
             root = root.right; //右
         }
         return result;
+    }
+    
+    
+    //version 3: traverse遍历
+    public ArrayList<Integer> inorderTraversal(TreeNode root) {
+        // write your code here
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        if(root == null)
+        {
+            return result;
+        }
+        traversal(root, result);
+        return result;
+    }
+    
+    private void traversal(TreeNode root, ArrayList<Integer> result)
+    {
+        if(root == null)
+        {
+            return;
+        }
+        
+        traversal(root.left, result);
+        result.add(root.val);
+        traversal(root.right, result);
     }
     
     
