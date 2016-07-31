@@ -5,7 +5,7 @@ public class Solution {
      */
      
     //思路:动态规划
-    //复杂度:n2(n是行数), 没开空间
+    //复杂度: O(n2) (n是行数), 没开空间
     public int minimumTotal(int[][] triangle) {
         // write your code here
         
@@ -30,9 +30,29 @@ public class Solution {
     }
     
     
+    //开了O(n)的空间, 时间O(n2)
+    public int minimumTotal(int[][] triangle) {
+        // write your code here
+        
+        if (triangle == null || triangle.length == 0) {
+            return -1;
+        }
+        int n = triangle.length;
+        int[] dp = new int[n];
+        for (int i = 0; i < n; i++) { //把最后一行先拷贝出来
+            dp[i] = triangle[n - 1][i];
+        }
+        
+        for (int i = n - 2; i >= 0; i--) {
+            for (int j = 0; j <= i; j++) {
+                dp[j] = Math.min(dp[j], dp[j + 1]) + triangle[i][j]; //然后挑其中小的和上一层数进行相加合并
+            }
+        }
+        return dp[0];
+    }
     
     
-    //开了O(n2)的空间, 一个二维数组
+    //开了O(n2)的空间, 一个二维数组, 时间O(n2)
     public int minimumTotal(int[][] triangle) {
         // write your code here
         if(triangle == null || triangle.length == 0)
