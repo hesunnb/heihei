@@ -41,7 +41,7 @@ public class Solution {
         if (root == null) return true;
         return Math.abs(getDepth(root.left) - getDepth(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right);
     } //这个的问题是它从根节点就要算出根节点左右的深度差, 这就遍历了一遍二叉树, 接着裁判段左子树是不是平衡二叉树, 右子树
-    //是不是平衡二叉树, 每次都要遍历整个树一次, 然后即使中间有不是的了, 还要继续向下判断所有, 复杂度高
+    //是不是平衡二叉树, 每次都要遍历每个节点下面的所有, 当然中途要是有一个不符合, 因为短路与就直接返回假了 
 
     public int getDepth(TreeNode root) {
     	 if (root == null) return 0;
