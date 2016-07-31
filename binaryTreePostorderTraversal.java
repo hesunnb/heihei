@@ -75,7 +75,8 @@ public class Solution {
         while(!sk.isEmpty())
         {
             root = sk.pop();
-            result.add(0, root.val); //每次在头加入值, 后序是左右根, 倒着就是根右左, 和前序非常向, 所以用根右左遍历, 然后倒着插入到result当中就可以啦！
+            result.add(0, root.val); //每次在头加入值, 后序是左右根, 倒着就是根右左, 和前序非常像, 所以用根右左遍历, 
+            //然后倒着插入到result当中就可以了！
             if(root.left != null)
             {
                 sk.push(root.left);
