@@ -14,7 +14,7 @@ Return
 
 public class Solution {
      
-     //边算temp边加入
+     //边算temp边加入, 首选
      public List<List<Integer>> generate(int numRows) {
         
         List<List<Integer>> result = new ArrayList<List<Integer>>();
