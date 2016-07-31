@@ -44,17 +44,17 @@ public class Solution {
         }
         
         Queue<TreeNode> q = new LinkedList<TreeNode>();
-        int depth = 0;
+        int depth = 0; //在这里统一了一下, 和最大深度都是0
         
         q.offer(root);
         while(!q.isEmpty())
         {
             int size = q.size();
-            depth++;
+            depth++; //这里++
             for(int i = 0; i < size; i++)
             {
                 TreeNode temp = q.poll();
-                if(temp.left == null && temp.right == null)
+                if(temp.left == null && temp.right == null) //只在这一个地方多了一个判断
                 {
                     return depth;
                 }
