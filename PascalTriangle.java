@@ -13,7 +13,9 @@ Return
 */
 
 public class Solution {
-    public List<List<Integer>> generate(int numRows) {
+     
+     //边算temp边加入
+     public List<List<Integer>> generate(int numRows) {
         
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         if(numRows <= 0) {
@@ -31,4 +33,28 @@ public class Solution {
         }
         return result;
     }
+    
+    
+     //也是边算temp边加入
+     public List<List<Integer>> generate(int numRows) {
+          
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        if (numRows <= 0) {
+            return res;
+        }
+        
+        for (int i = 1; i <= numRows; i++) {
+            List<Integer> temp = new ArrayList<Integer>(); //区别是temp写的到了循环里面
+            for (int j = 0; j < i; j++) {
+                if (j == 0 || j == i - 1) { //可以得到收尾的1
+                    temp.add(j, 1);
+                } else {
+                    temp.add(j, res.get(i - 2).get(j - 1) + res.get(i - 2).get(j)); //从result中取出前一个算出的加入的结果,
+                    //然后算新的temp, 这点非常好, 否则就得从头算, 就不好了
+                }
+            }
+            res.add(temp);
+        }
+        return res;
+     }
 }
