@@ -28,7 +28,7 @@ public class Solution {
         int left = maxDepth(root.left); //左子树深度
         int right = maxDepth(root.right); //右子树深度
         //left == -1 || right == -1的意思就是, 如果在下面的判断中要是出现了非平衡的情况, 那么就让左子树或者右子树为-1,
-        //然后接下来上面的树就不用判断啦, 一路返回-1就结束啦
+        //然后接下来上面的树就不用判断了, 一路返回-1就结束了
         if (left == -1 || right == -1 || Math.abs(left-right) > 1) { //比二叉树maxdepth那道题就多这么一个判断条件
             return -1;
         }
