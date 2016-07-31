@@ -47,7 +47,7 @@ public class Solution {
             return result;
         }
         
-        while(root != null || !sk.isEmpty()) //把自己代码第一次向左找的while合起来啦
+        while(root != null || !sk.isEmpty()) //最开始stack没有加进root, 所以要root!=null才能进入循环, 这里和前序后序不一样
         {
             while(root != null) //左
             {
