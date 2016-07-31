@@ -20,7 +20,7 @@ public class Solution {
         return maxDepth(root) != -1;
     }
 
-    private int maxDepth(TreeNode root) {
+    private int maxDepth(TreeNode root) { //从下至上进行判断, 先判断子树是不是平衡二叉树, 再向上判断
         if (root == null) {
             return 0;
         }
@@ -36,14 +36,12 @@ public class Solution {
     }
     
     
-    
-    
-    
     //超级简练版, 一句话就写完
     public boolean isBalanced(TreeNode root) {
         if (root == null) return true;
         return Math.abs(getDepth(root.left) - getDepth(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right);
-    }
+    } //这个的问题是它从根节点就要算出根节点左右的深度差, 这就遍历了一遍二叉树, 接着裁判段左子树是不是平衡二叉树, 右子树
+    //是不是平衡二叉树, 每次都要遍历整个树一次, 然后即使中间有不是的了, 还要继续向下判断所有, 复杂度高
 
     public int getDepth(TreeNode root) {
     	 if (root == null) return 0;
@@ -51,8 +49,6 @@ public class Solution {
     }
 
 
-    
-    
     //自己写一个类版(inner class)
     class ResultType {
         public boolean isBalanced;
