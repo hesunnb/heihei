@@ -34,13 +34,14 @@ public class Solution {
         return result; //null直接返回result
     }
     
-    //在这里用字符串不会出问题的原因是在递归的每一个栈里面都有一个path引用, 而每次传给path的字符串都不一样, 所以都会在堆区开辟新的字符串, 所以每个
-    //栈里面path指向的都是不同的字符串
+    //在这里用字符串不会出问题的原因是在递归的每一个栈里面都有一个path引用, 而每次传给path的字符串都不一样, 所以都会在堆区开辟
+    //新的字符串, 所以每个栈里面path指向的都是不同的字符串
     private void treePathHelper(TreeNode root, List<String> result, String path) {
-        if(root.left == null && root.right == null) { //左右都null就是叶子节点, 就用传过来那个path(都是1->2->这样以->结尾的), 直接加上叶子节点的值
+        if(root.left == null && root.right == null) { //左右都null就是叶子节点, 就用传过来那个path(都是1->2->这样以->结尾的), 
+        //直接加上叶子节点的值
             result.add(path + root.val);
         }
-        if(root.left != null) {
+        if(root.left != null) { //"" + 1 + "->"这样加, 比非递归整体靠前一位
             treePathHelper(root.left, result, path + root.val + "->"); //用之前的path加上自己的值再加上->
         }
         if(root.right != null) {
