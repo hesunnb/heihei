@@ -55,4 +55,20 @@ public class Solution {
         }
         cur.right = right; //做连接
     }
+    
+    
+    //tricky solution, 用了reverse preorder
+    TreeNode pre = null;
+    public void flatten(TreeNode root) {
+        
+        if(root == null) {
+            return;
+        }
+        
+        flatten(root.right); //这个方法是reverse preorder, 就是根左右的反向遍历右左根, 先是不断向右, 然后在回来向左, 最后在根处做处理
+        flatten(root.left);
+        root.right = pre; //根处做处理, right是之前的pre
+        root.left = null; //左边按题意是null
+        pre = root; //更新pre为自己
+    }
 }
