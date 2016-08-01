@@ -50,7 +50,40 @@ public class Solution {
     }
     
     
-    //version2: StringBuilder递归
+    //version2: 非递归
+    public List<String> binaryTreePaths(TreeNode root) {
+        
+        List<String> result = new ArrayList<String>();
+        Queue<TreeNode> nodes = new LinkedList<TreeNode>();
+        Queue<String> path = new LinkedList<String>();
+        
+        if(root == null) {
+            return result;
+        }
+        
+        nodes.offer(root);
+        path.offer(String.valueOf(root.val));
+        while(!nodes.isEmpty()) { //这个是从"1" + "->" + "2"这样加, 相对字符串递归的方式向后整体窜了一位
+            TreeNode node = nodes.poll();
+            if(node.left == null && node.right == null) {
+                result.add(path.poll());
+            } else { //这里一定要加else, 不加的话如果是叶子节点满足上面的条件就会poll一个, 不加else还会接着poll, poll出的值就多了
+                String str = path.poll();
+                if(node.left != null) {
+                    nodes.offer(node.left);
+                    path.offer(str + "->" + node.left.val);
+                } 
+                if(node.right != null) {
+                    nodes.offer(node.right);
+                    path.offer(str + "->" + node.right.val);
+                }
+            }
+        }
+        return result;
+    }
+    
+    
+    //version3: StringBuilder递归
     public List<String> binaryTreePaths(TreeNode root) {
         // Write your code here
         
