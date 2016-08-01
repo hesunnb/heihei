@@ -55,7 +55,7 @@ public class Solution {
                 root = root.left;
             }
             
-            root = sk.pop();
+            root = sk.pop(); //注意这里使用root完成的, 接下来还要加root的右节点
             result.add(root.val); //根
             root = root.right; //右
         }
