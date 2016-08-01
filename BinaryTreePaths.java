@@ -61,7 +61,7 @@ public class Solution {
             return result;
         }
         
-        nodes.offer(root);
+        nodes.offer(root); //注意队列用的offer
         path.offer(String.valueOf(root.val));
         while(!nodes.isEmpty()) { //这个是从"1" + "->" + "2"这样加, 相对字符串递归的方式向后整体窜了一位
             TreeNode node = nodes.poll();
