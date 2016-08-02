@@ -16,7 +16,7 @@ public class Solution {
      */
      
      
-    //不带返回值: 先交换, 再往下去
+    //version1 不带返回值: 从下到上进行翻转
     public void invertBinaryTree(TreeNode root) {
         // write your code here
         if(root == null)
@@ -24,21 +24,16 @@ public class Solution {
             return;
         }
         
+        invertBinaryTree(root.left);
+        invertBinaryTree(root.right);
+        
         TreeNode temp = root.left;
         root.left = root.right;
         root.right = temp;
-        
-        invertBinaryTree(root.left);
-        invertBinaryTree(root.right);
     }
     
     
-    
-    
-    
-    
-    
-    //带返回值version 1: 先往下去, 再交换
+    //version2 带返回值: 从下到上翻转
     public TreeNode invertTree(TreeNode root) 
     {
         if(root == null)
@@ -55,7 +50,8 @@ public class Solution {
         return root;
     }
     
-    //带返回值version 2: 用stack实现
+    
+    //version 3: 用stack实现
     public TreeNode invertTree(TreeNode root) 
     {
         if(root == null)
