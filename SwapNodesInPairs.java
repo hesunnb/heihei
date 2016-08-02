@@ -41,4 +41,19 @@ public class Solution {
         }
         return dummy.next;
     }
+    
+    
+    //递归方法
+    public ListNode swapPairs(ListNode head) {
+        // Write your code here
+        
+        if(head == null || head.next == null) {
+            return head; //偶数返回了null, 奇数返回了奇数那个点
+        }
+        
+        ListNode node = head.next;
+        head.next = swapPairs(head.next.next); //递归深入就是给head, 开node
+        node.next = head; //返回之后就开始连接
+        return node; //返回node点
+    }
 }
