@@ -38,15 +38,15 @@ public class Solution {
     
     private TreeNode buildTree(int[] A, int start, int end) {
         int mid = 0;
-        if(start <= end) {
-            mid = start + (end - start) / 2;
+        if(start <= end) { //带等号, 走到叶子节点的时候是start == end的时候
+            mid = start + (end - start) / 2; //每次都找sortedArray的中点
         } else {
-            return null;
+            return null; //start > end就到了叶子节点的下面, 所以返回null
         }
         
-        TreeNode root = new TreeNode(A[mid]);
-        root.left = buildTree(A, start, mid - 1);
-        root.right = buildTree(A, mid + 1, end);
+        TreeNode root = new TreeNode(A[mid]); //把中点转成节点
+        root.left = buildTree(A, start, mid - 1); //找中点左边数组的中点
+        root.right = buildTree(A, mid + 1, end); //找中点右边数组的中点
         return root;
     }
 }
