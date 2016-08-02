@@ -17,6 +17,8 @@ public class Solution {
      */
     
     //递归非递归都是O(logn)
+    //每次都只会进入左子树或者右子树中的一个, 继续进行到其中一个子树, 还会接着选择左子树或者右子树中的一个,
+    //每次都会砍掉一半的树(除以2), 所以O(logn)
     //递归:
     public TreeNode insertNode(TreeNode root, TreeNode node) {
         // write your code here
