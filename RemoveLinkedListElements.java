@@ -38,4 +38,16 @@ public class Solution {
         }
         return dummy.next;
     }
+    
+    
+    // recursive
+    public ListNode removeElements(ListNode head, int val) {
+        // Write your code here
+        
+        if(head == null) {
+            return null;
+        }
+        head.next = removeElements(head.next, val); //一次性窜到最后
+        return head.val == val ? head.next : head; //第一次返回的肯定是null, 接下来再边返边连
+    }
 }
