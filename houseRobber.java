@@ -3,46 +3,20 @@ public class Solution {
      * @param A: An array of non-negative integers.
      * return: The maximum amount of money you can rob tonight
      */
-    /*public long houseRobber(int[] A) {
-        // write your code here
+    
+    public int rob(int[] nums) {
+
+        int m = 0; //m是n的前一个最大
+        int n = 0;
         
-        //自己写的O(n)的方法，开了数组，所以不是O(1)空间,是O(n)空间
-        if(A == null || A.length == 0)
-        {
-            return 0;
+        for(int i = 0; i < nums.length; i++) { //对于头两个元素来说, 最开始m是头0大, n变成了头1大; 
+        //接着m是头1大, n变成头2大, 往下以此类推
+            int temp = n;
+            n = Math.max(m + nums[i], n); //假设第三个数来, 就是头1大加上第三个数与头2大做比较成为头3大给n, m变成头2大...
+            m = temp;
         }
-        
-        //result里面装的是每一步的最大价值
-        long result[] = new long[A.length]; //注意这里给的long,所以开辟的数组也要long; leetcode里面是int
-        
-        //1和2的情况要单独判断
-        if(A.length <= 1)
-        {
-            return A[0];
-        }
-        if(A.length <= 2)
-        {
-            if(A[0] > A[1])
-            {
-                return A[0];
-            }
-            else
-            {
-                return A[1];
-            }
-        }
-        result[0] = A[0];
-        result[1] = Math.max(A[0], A[1]);
-        for(int i = 2; i < A.length; i++)
-        {
-            result[i] = result[i - 2] + A[i]; //每次去找往前两个的值
-            if(result[i] < result[i - 1]) //如果要是比邻近值小的话，那就用临近值，保证是当前值是最大价值
-            {
-                result[i] = result[i - 1];
-            }
-        }
-        return result[A.length - 1];
-    }*/
+        return n;
+    }
     
     //O(n)time and O(1)memory 九章方法加上自己改进
     public long houseRobber(int[] A) 
