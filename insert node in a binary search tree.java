@@ -57,20 +57,16 @@ public class Solution {
     //递归:
     public TreeNode insertNode(TreeNode root, TreeNode node) {
         // write your code here
-   
-        if(root == null)
-        {
-            return node; //如果根为空，要插入的节点便直接成了根；其余情况node直接作为左右节点返回了,node本身应该不能是空
+        
+        if(root == null) {
+            return node; //如果根为空，要插入的节点便直接成了根；其余情况node直接作为左右节点返回了,node本身不能是空
         }
         
-        if(root.val > node.val)
-        {
-            root.left = insertNode(root.left, node); //把左边节点作为根传进去
+        if(root.val < node.val) {
+            root.right = insertNode(root.right, node); //把左边节点作为根传进去
+        } else {
+            root.left = insertNode(root.left, node); //右节点作为根传进去
         }
-        else
-        {
-            root.right = insertNode(root.right, node); //右节点作为根传进去
-        }
-        return root; //上面赋值除了node，其余情况要用root顶上
+        return root; //返回root, 整体并不需要遍历整棵树
     }
 }
