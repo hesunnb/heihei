@@ -38,14 +38,12 @@ public class Solution {
     public boolean isIdentical(TreeNode a, TreeNode b) {
         // Write your code here
         
-        if(a == null && b == null) {
-            return true;
+        if (a == null || b == null) {
+            return a == b;
         }
-        
-        if(a != null && b != null) {
-            return a.val == b.val && isIdentical(a.left, b.left) && isIdentical(a.right, b.right); //短路与, 一个是假就不继续递归了
+        if (a.val != b.val) {
+            return false;
         }
-        
-        return false; //这个是a和b有一个为null另一个不为null的情况
+        return isIdentical(a.left, b.left) && isIdentical(a.right, b.right);
     }
 }
