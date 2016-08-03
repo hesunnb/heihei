@@ -14,6 +14,9 @@ Given [3, 8, 4], return 8.
 public class Solution {
     public int rob(int[] nums) {
 
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
         int last = 0; //last是now的前一个最大
         int now = 0;
         for(int i = 0; i < nums.length; i++) { //对于头两个元素来说, 最开始last是头0大, now变成了头1大; 接着last是头1大, 
