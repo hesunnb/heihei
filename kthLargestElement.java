@@ -19,22 +19,15 @@ class Solution {
      */
      
     //用快速选择, 就是用快排只排一侧, 时间是O(n), 空间是O(1)
-    //O(N) best case / O(N^2) worst case running time + O(1) memory
-    /*假如已经是一个有序数组, 然后要找第一个元素, 那么每次都是最后一个是pivot, 那么用partition找起来就是n, 下一次n-1, 
-    再下一次n-2...就成O(N^2)了*/
-    
     public int kthLargestElement(int k, int[] nums) {
         // write your code here
-        
-        //重复的元素也算第几大, 比如[3,5,4,4,4,2,6,8], 第4大是4, 第五大还是4, 第六大也是4, 仅仅是按号排序的意思,
-        //所以用下标就可以处理
+        //重复的元素也算第几大, 比如[3,5,4,4,4,2,6,8], 第4大是4, 第五大还是4, 第六大也是4, 仅仅是按号排序的意思,所以用下标就可以处理
         k = nums.length - k; //要找第k大, 就是倒着找第k个, 那就是正着找下表为nums.length - k的元素
         int start = 0;
         int end = nums.length - 1;
-        int pos = 0;
         while(start < end) //如果条件正常(nums不是空, 长度不为0, k不越界), 一定会进入到break里面, 所以这里是true都可以
         {
-            pos = partition(nums, start, end);
+            int pos = partition(nums, start, end);
             //k现在已经是正序坐标, pos也是返回的快速选择的partition的坐标(pos左边都比pos小, pos右边都比pos大), 
             if(pos < k)  //如果pos在k的左边, 那就从pos + 1开始到end
             {
