@@ -20,6 +20,9 @@ class Solution {
      
     //用快速选择, 就是用快排只排一侧, 时间是O(n), 空间是O(1)
     //O(N) best case / O(N^2) worst case running time + O(1) memory
+    /*假如已经是一个有序数组, 然后要找第一个元素, 那么每次都是最后一个是pivot, 那么用partition找起来就是n, 下一次n-1, 
+    再下一次n-2...就成O(N^2)了*/
+    
     public int kthLargestElement(int k, int[] nums) {
         // write your code here
         
