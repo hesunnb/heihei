@@ -26,6 +26,6 @@ public class Solution {
             //last变成头2大...
             last = temp;
         }
-        return n;
+        return now;
     }
 }
