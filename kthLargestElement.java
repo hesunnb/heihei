@@ -19,6 +19,7 @@ class Solution {
      */
      
     //用快速选择, 就是用快排只排一侧, 时间是O(n), 空间是O(1)
+    //O(N) best case / O(N^2) worst case running time + O(1) memory
     public int kthLargestElement(int k, int[] nums) {
         // write your code here
         
