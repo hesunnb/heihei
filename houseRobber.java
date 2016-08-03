@@ -22,7 +22,7 @@ public class Solution {
         for(int i = 0; i < nums.length; i++) { //对于头两个元素来说, 最开始last是头0大, now变成了头1大; 接着last是头1大, 
         //now变成头2大, 往下以此类推
             int temp = now;
-            now = Math.max(last + nums[i], n); //假设第三个数来, 就是头1大加上第三个数与头2大做比较成为头3大给now, 
+            now = Math.max(last + nums[i], now); //假设第三个数来, 就是头1大加上第三个数与头2大做比较成为头3大给now, 
             //last变成头2大...
             last = temp;
         }
