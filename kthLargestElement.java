@@ -58,10 +58,10 @@ class Solution {
         return store;
     }
     
-    private void swap(int[] a, int i, int j) {
-        int tmp = a[i];
-        a[i] = a[j];
-        a[j] = tmp;
+    private void swap(int[] nums, int m, int n) {
+        int temp = nums[m];
+        nums[m] = nums[n];
+        nums[n] = temp;
     }
 };
 
