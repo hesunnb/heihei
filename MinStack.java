@@ -17,6 +17,41 @@ minStack.top();      --> Returns 0.
 minStack.getMin();   --> Returns -2.
 */
 
+//two stack solution
+public class MinStack {
+
+    /** initialize your data structure here. */
+    private Stack<Integer> sk;
+    private Stack<Integer> minSk;
+    public MinStack() {
+        sk = new Stack<Integer>();
+        minSk = new Stack<Integer>();
+    }
+    
+    public void push(int x) {
+        if(minSk.isEmpty() || x <= minSk.peek()) { //小于等于minSk的顶端就放进去
+            minSk.push(x);
+        }
+        sk.push(x);
+    }
+    
+    public void pop() {
+        if(sk.peek().equals(minSk.peek())) { //这里用sk.peek() == minSk.peek()就不可以, 因为peek返回的是对象, 所以用==比较会出错
+        //除非写成(int)sk.peek() == (int)minSk.peek()
+            minSk.pop();
+        }
+        sk.pop();
+    }
+    
+    public int top() {
+        return sk.peek();
+    }
+    
+    public int getMin() {
+        return minSk.peek();
+    }
+}
+
 
 //One stack Good Solution
 public class MinStack {
