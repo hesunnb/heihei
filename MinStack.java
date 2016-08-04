@@ -38,7 +38,7 @@ public class MinStack {
     }
     
     public void pop() { //如果pop会造成最小值改变的话, 就连续pop出来两个, 把之前备份加进去的那个最小值更新为新的最小值
-        if(sk.peek() == min) {
+        if(sk.peek() == min) { //peek()会返回Integer对象, 但是与min比较的时候会自动解包, 所以用==没问题
             sk.pop();
             min = sk.peek();
         }
