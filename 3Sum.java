@@ -26,8 +26,8 @@ public class Solution {
         
         Arrays.sort(nums); //一定要排个序
         for(int i = 0; i < nums.length - 2; i++) { //3个一组
-            if(i != 0 && nums[i] == nums[i - 1]) { // to skip duplicate numbers, 比如-4, -1, -1, -1, 0, 1, 2, 第一个-1已经涵盖了所有可能的组合, 
-            //后面的-1只能是前面的重复或是子集
+            if(i != 0 && nums[i] == nums[i - 1]) { // to skip duplicate numbers, 比如-4, -1, -1, -1, 0, 1, 2, 
+            //第一个-1已经涵盖了所有可能的组合, 后面的-1只能是前面的重复或是子集
                 continue;
             }
             
@@ -43,7 +43,8 @@ public class Solution {
                     result.add(temp);
                     left++; //left变大了, i没变, 所以right也一定要变小才能从新计算
                     right--; //也就是sum = 0的时候一定要两个指针都变
-                    while(left < right && nums[left] == nums[left - 1]) { // to skip duplicates, 重复的话相当于值没变, 而一会儿right是要变的, 所以left要跳过重复
+                    while(left < right && nums[left] == nums[left - 1]) { // to skip duplicates, 重复的话相当于值没变, 
+                    //而一会儿right是要变的, 所以left要跳过重复
                         left++;
                     }
                     while(left < right && nums[right] == nums[right + 1]) { // to skip duplicates, right也是
