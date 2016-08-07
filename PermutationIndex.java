@@ -11,6 +11,70 @@ public class Solution {
      * @param A an integer array
      * @return a long integer
      */
+     
+    //用哈希表, O(n^2)时间, O(n)空间
+    //详细解释见permutationIndex2
+    public long permutationIndex(int[] A) {
+        // Write your code here
+        
+        if(A == null || A.length == 0) {
+            return 0;
+        }
+        
+        Map<Integer, Integer> m = new HashMap<Integer, Integer>();
+        for(int i = 0; i < A.length; i++) { //数组存到哈希表中
+            if(m.containsKey(A[i])) {
+                m.put(A[i], m.get(A[i]) + 1);
+            } else {
+                m.put(A[i], 1);
+            }
+        }
+        
+        long result = 0;
+        for(int i = 0; i < A.length; i++) {
+            for(int j = i + 1; j < A.length; j++) {
+                if(A[j] >= A[i]) { //此处一定要大于等于, 比如5,3,3,4,2,2 第一次是求比5,0,0,0,0,0小的数, 第二次是求比
+                //5,3,0,0,0,0小的数, 所以每次都要保证A[i] < A[j]才能继续进行
+                    continue;
+                } else {
+                    m.put(A[i], m.get(A[i]) - 1);
+                    result += generateNum(m);
+                    m.put(A[i], m.get(A[i]) + 1);
+                }
+            }
+            m.put(A[i], m.get(A[i]) - 1);
+        }
+        return result + 1; //要加上自己的位置
+    }
+    
+    private long generateNum(Map<Integer, Integer> m) {
+        long denominator = 1;
+        int sum = 0;
+        for(int val : m.values()) {
+            if(val == 0) {
+                continue; //等于0就没有计算的必要了
+            }
+            denominator *= factorial(val);
+            sum += val;
+        }
+        return factorial(sum) / denominator;
+    }
+    
+    private long factorial(int num) {
+        long sum = 1;
+        while(num > 0) {
+            sum *= (num--);
+        }
+        return sum;
+    }
+}
+
+
+public class Solution {
+    /**
+     * @param A an integer array
+     * @return a long integer
+     */
     public long permutationIndex(int[] A) {
         // Write your code here
         long sum = 1; //这个1就是4*5! + 0*4! + 2*3! + 1*2! + 0*1! + 1中的最后的那个1, 在最开始直接初始化它
