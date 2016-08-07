@@ -20,7 +20,7 @@ public class Solution {
     public int majorityElement(int[] num) {
 
         if(nums == null || nums.length == 0) {
-            return 0;
+            return 0; //要确保num有效, 因为这样返回0不是很好
         }
 
         int major=num[0], count = 1;
