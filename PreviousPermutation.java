@@ -18,6 +18,8 @@ public class Solution {
      * @param nums: A list of integers
      * @return: A list of integers that's previous permuation
      */
+     
+    //跟nextpermutation一样的思路
     public ArrayList<Integer> previousPermuation(ArrayList<Integer> nums) {
 		// write your code
 		
@@ -26,7 +28,7 @@ public class Solution {
 		}
 		
 		int index = -1;
-		for(int i = nums.size() - 2; i >= 0; i--) {
+		for(int i = nums.size() - 2; i >= 0; i--) { //找最后一个倒序的
 		    if(nums.get(i) > nums.get(i + 1)) {
 		        index = i;
 		        break;
@@ -39,15 +41,15 @@ public class Solution {
 		}
 		
 		int smallerIndex = index + 1;
-		for(int i = nums.size() - 1; i > index; i--) {
+		for(int i = nums.size() - 1; i > index; i--) { //找第一个比index小的
 		    if(nums.get(i) < nums.get(index)) {
 		        smallerIndex = i;
 		        break;
 		    }
 		}
 		
-		swap(nums, index, smallerIndex);
-		reverse(nums, index + 1, nums.size() - 1);
+		swap(nums, index, smallerIndex); //交换使数变小
+		reverse(nums, index + 1, nums.size() - 1); //index后面都是正序, 要把它们变成倒序
 		return nums;
     }
     
