@@ -15,7 +15,7 @@ For example,
 
 public class Solution {
     
-    //此题没有强调字典序, 所以直接按给的数组得到结果就可以了, 复杂度: O(n!)
+    //此题没有强调字典序, 所以直接按给的数组得到结果就可以了, 复杂度: O(n!) //应该大于O(n!), O(n * n!), 实际上还要更大
     //如要要按字典序给数组排下序就可以了, O(nlogn)对于O(n!)也不多
     public List<List<Integer>> permute(int[] nums) {
          
