@@ -35,6 +35,7 @@ public class Solution {
         }
         
         if(index == -1) { //比如4,3,2,1的时候i就会到-1, 说明这个是最大情况, 那就从头到尾reverse就可以了
+        //还有只输入一个1的情况
             reverse(nums, 0, nums.length - 1);
             return nums;
         }
