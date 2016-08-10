@@ -52,5 +52,5 @@ class Solution {
 (*3)multi3 =  3         next3 = 0
 (*5)multi5 =  5         next5 = 0
 在multi2的地方每次都成以2, 在multi3的地方每次都乘以3, 在multi5的地方每次都乘以5
-
+每次next2, next3, next5所在的下标的值如果最小成为了丑数, 就把下标+1, 用下一个丑数接着运算
 */
