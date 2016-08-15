@@ -26,7 +26,7 @@ public class Solution {
         int[][] result = new int[A.length() + 1][B.length() + 1]; 
         for(int i = 1; i <= A.length(); i++) //遍历二维数组
         {
-            for(int j = 1; j <= B.length(); j++)
+            for(int j = 1; j <= B.length(); j++) //两边各新来一个元素, 先分别和之前的字符串匹配, 再进行相等判断
             {
                 result[i][j] = Math.max(result[i][j - 1], result[i - 1][j]); //保存目前最大值,
                 //这里不用像edit distance那道题在比较中加入result[i - 1][j - 1],
