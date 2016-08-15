@@ -33,7 +33,7 @@ public class Solution {
 	    
 	    int store = 0;
 	    for(int i = 0; i < nums.length; i++) {
-	        if(nums[i] < k) {
+	        if(nums[i] < k) { //store和i中间卡的都是大于等于k的
 	            swap(nums, store, i);
 	            store++;
 	        }
