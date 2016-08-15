@@ -45,13 +45,13 @@ public class Solution {
          *  是相应规模子串的最终结果值，所以真正算数的是result[i][j] = result[i - 1][j - 1] + 1;　
          *  就是在上一个的最终结果值上加１，而result[i][j] = Math.max(result[i][j - 1], result[i - 1][j]);
          *  只是用来保存到现在为止目前的最大值
-         * 
-         *      A B C D
+         *  每次匹配的位置就是相应字符串多少个位置的字母进行匹配的结果
+         *      E A C B
          *    0 0 0 0 0
-         *  E 0
          *  A 0
-         *  C 0 
          *  B 0
+         *  C 0 
+         *  D 0
          * /
     }
 }
