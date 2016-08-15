@@ -24,7 +24,7 @@ public class Solution {
         char pivot = 'Z';
         int store = 0;
         for (int i = 0; i < chars.length; i++) {
-            if (chars[i] > pivot) { //跟快排反过来, 把大的排在前, 小的排在后
+            if (chars[i] > pivot) { //跟快排反过来, 把大的排在前, 小的排在后; store与i中间卡的都是小于等于Z的
                 swap(chars, i, store);
                 store++;
             }
