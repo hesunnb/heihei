@@ -37,7 +37,8 @@ public class Solution {
 	            swap(nums, store, i);
 	            store++;
 	        }
-	    }
+	    } //在这里不用再交换一次的原因是我以一个固定数为轴, 不是数组的最后一个数, 而原来是int pivot = a[end];
+	    //如果传nums.length就会越界
 	    return store;
     }
     
