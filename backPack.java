@@ -22,7 +22,7 @@ public class Solution {
      */
      
     //只用一个一维数组, 因为每次只用得上前一行的数据, 所以直接覆盖掉了
-    /*public int backPack(int m, int[] A) {
+    public int backPack(int m, int[] A) {
         // write your code here
         
         if(A == null || A.length == 0) {
@@ -35,7 +35,7 @@ public class Solution {
             }
         }
         return pack[m];
-    }*/
+    }
     
     /*
     testCase:
