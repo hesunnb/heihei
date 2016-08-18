@@ -55,3 +55,35 @@ public class Solution {
         return hash;
     }
 }
+
+
+public class Solution {
+    
+    // O(Nklogk) n是strs长度, klogk是strs里面每个字符串都排了序 
+    public List<List<String>> groupAnagrams(String[] strs) {
+        
+        List<List<String>> result = new ArrayList<List<String>>();
+        if(strs == null || strs.length == 0) {
+            return result;
+        }
+        
+        Map<String, List<String>> map = new HashMap<String, List<String>>();
+        for(String str : strs) {
+            char[] temp = str.toCharArray(); //把字符串转成数组
+            Arrays.sort(temp); //排序
+            String newStr = String.valueOf(temp); //再转成字符串
+            
+            if(!map.containsKey(newStr)) { //不包含这个新的字符串
+                map.put(newStr, new ArrayList<String>()); //新创建一个
+            }
+            
+            map.get(newStr).add(str); //在相应位置加入
+        }
+        
+        for(List<String> temp : map.values()) {
+            result.add(temp); //取得最终结果
+        }
+        
+        return result;
+    }
+}
