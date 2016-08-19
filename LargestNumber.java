@@ -62,7 +62,7 @@ public class Solution {
 	String s4 = "0";
 	String s5 = "0";*/
 	
-	//倒序比较器测试程序
+    //倒序比较器测试程序
     class StringComparatorDes implements Comparator<String> {
     
     	@Override
@@ -78,22 +78,6 @@ public class Solution {
     	}
     }
 
-    //正序比较器测试程序
-    class StringComparatorAsc implements Comparator<String> {
-    
-    	@Override
-    	public int compare(String n1, String n2) {
-    		// TODO Auto-generated method stub
-    		System.out.println(n1 + " " + n2 + " " + (n1+n2) + " " + (n2+n1)); //打印出相应的数目
-    		if(n1 == null || n2 == null) {
-    			throw new NullPointerException();
-    		}
-    		int result = (n1 + n2).compareTo(n2 + n1); //比较的核心
-    		System.out.println(result); //按字典序比较的结果
-    		return result; 
-    	}
-    }
-    
     /*倒序比较器测试结果:
     30 3 330 303       //比较器是小的结果应该在前, 303小, 所以它对应的3就在前, 30在后; 如果想要看largest number, 那么必须两个两个
     3                  //加和比较, 加和大的是我们想要的, 330大, 那么330对应的数要排在后面, 那就让30到后面, 所以掉个个儿
@@ -114,3 +98,74 @@ public class Solution {
     9 5 59 95
     -4
     [9, 5, 34, 3, 30]*/
+
+
+public class Solution {
+    
+    public String largestNumber(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return "";
+        }
+        
+        String[] strs = new String[nums.length];
+        for(int i = 0; i < nums.length; i++) { //把nums中的整数都转成字符串
+            strs[i] = Integer.toString(nums[i]);
+        }
+        
+        Arrays.sort(strs, new StringComparator()); //按照比较器规定排序
+        StringBuilder sb = new StringBuilder();
+        
+        int index = 0;
+        for(int i = strs.length - 1; i >= 0; i--) { //倒着把数一个一个加入
+            sb.append(strs[i]);
+            if(strs[i].equals("0")) { //如果要都是0就只能返回一个0, 返回一堆0是不对滴
+                index++;
+            }
+        }
+        if(index == strs.length) {
+            return "0";
+        }
+        return sb.toString();
+    }
+    
+    //正序比较器
+    class StringComparator implements Comparator<String> {
+        public int compare(String s1, String s2) {
+            return (s1 + s2).compareTo(s2 + s1); //就这里不一样
+        }
+    }
+    
+    /*正序比较器测试结果:
+	30 3 303 330 //正序就是小的在前, 大的在后
+	-3
+	34 30 3430 3034
+	4
+	34 3 343 334
+	1
+	5 3 53 35
+	2
+	5 34 534 345
+	2
+	9 34 934 349
+	6
+	9 5 95 59
+	4
+	[30, 3, 34, 5, 9]
+    */
+    
+    //正序比较器测试程序
+    class StringComparatorAsc implements Comparator<String> {
+    
+    	@Override
+    	public int compare(String n1, String n2) {
+    		// TODO Auto-generated method stub
+    		System.out.println(n1 + " " + n2 + " " + (n1+n2) + " " + (n2+n1)); //打印出相应的数目
+    		if(n1 == null || n2 == null) {
+    			throw new NullPointerException();
+    		}
+    		int result = (n1 + n2).compareTo(n2 + n1); //比较的核心
+    		System.out.println(result); //按字典序比较的结果
+    		return result; 
+    	}
+    }
+}
