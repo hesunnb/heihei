@@ -17,7 +17,7 @@ public class Solution {
             strs[i] = Integer.toString(nums[i]);
         }
         
-        Arrays.sort(strs, new StringComparator()); //按照比较器规定排序
+        Arrays.sort(strs, new StringComparator()); //按照比较器规定排序, sort的时候每次都是倒着取值, 所以也是为什么s1 = 30, s2 = 3
         StringBuilder sb = new StringBuilder();
         
         int index = 0;
