@@ -6,6 +6,8 @@ Input:Digit string "23"
 Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].*/
 
 public class Solution {
+    
+    //递归查找, 复杂度就是每个数字对应的字母盘的字母个数相乘, 比如"abc","def",就是O(3*3)
     public List<String> letterCombinations(String digits) {
         
         List<String> result = new ArrayList<String>();
