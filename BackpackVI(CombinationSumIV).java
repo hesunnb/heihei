@@ -38,7 +38,7 @@ public class Solution {
         count[0] = 1;
         for(int i = 1; i <= target; i++) { //遍历包
             for(int j = 0; j < nums.length; j++) { //遍历值
-                if(i >= nums[j]) { //j就是包数, nums[j]是每次走的值, j能容纳下所走的值的时候
+                if(i >= nums[j]) { //i就是包数, nums[j]是每次走的值, i能容纳下所走的值的时候
                     count[i] += count[i - nums[j]]; //这个解释见下面注释
                 }
             }
