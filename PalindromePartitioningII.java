@@ -1,10 +1,19 @@
+/*Given a string s, cut s into some substrings such that every substring is a palindrome.
+
+Return the minimum cuts needed for a palindrome partitioning of s.
+
+Example
+Given s = "aab",
+
+Return 1 since the palindrome partitioning ["aa", "b"] could be produced using 1 cut.*/
+
 public class Solution {
     /**
      * @param s a string
      * @return an integer
      */
      
-    //动规，下面代码最多两重循环，所以复杂度O(n2)
+    //用动归解O(n^2)时间, O(n^2)空间
     public int minCut(String s) {
         // write your code here
         if(s == null || s.length() == 0)
@@ -17,16 +26,18 @@ public class Solution {
         int[] f = new int[s.length() + 1]; //f[i]表示前i个字符，所以ｆ的最后一个值表示整个回文串，所以f要大一格
         for(int i = 0; i < f.length; i++)
         {
-            f[i] = i - 1; //前ｉ个字母最坏的情况要切ｉ－１刀，所以先把最坏情况赋值
+            f[i] = i - 1; //前i个字母最坏的情况要切i - 1刀，所以先把最坏情况赋值
         }
         
         for(int i = 1; i <= s.length(); i++) //现在这个循环就是找能切的最小的次数，注意ｉ会到达s.length()的位置
         {
             for(int j = 0; j < i; j++) //i跑的是ｆ的下标，ｊ跑的是字符串本身的下标
             {
-                if(isPalindrome[j][i - 1]) //每次在ｊ坐标（前面）切，如果ｊ到新加进来的那个字母的地方有回文串就进入（有两种情况：１是在ｊ前方较远处就找到了回文串；２是直到ｊ自己了，就是自己找到自己了，才是回文串；　所以无论是哪种情况，都会进入以下的语句；重点在于ｆ[j]会保留从头到ｊ的最小切的次数，所以无论这两种情况找到回文的时候都会加上前面的ｆ[j]，同时在加上切后面回文的这刀）
+                if(isPalindrome[j][i - 1]) //如果isPalindrome[j][i - 1]为真, 表示从j到i - 1截取的字符串是回文串,
+                //是回文串就在回文串前面切一刀(每次在j坐标(前面)切, 就是 + 1), 分离出该回文串, 把结果放在f[i]位置, 因为是头i个字符会加这么一刀, f[j]会保留从头到j的最小切的次数，同时再加上切后面回文的这刀
                 {
                     f[i] = Math.min(f[i], f[j] + 1); //(括号中的f[i]是原来的最坏情况)
+                    //f[i]中存的就是头i个字母需要切几刀, 比如f[3] = 1, 头3个字母需要切一刀
                 }
             }
         }
@@ -35,13 +46,13 @@ public class Solution {
     
     private boolean[][] getIsPalindrome(String s) //得到一个字符串的回文表，可用来判断s中的回文串个数
     {
-        boolean[][] isPalindrome = new boolean[s.length()][s.length()];
+        boolean[][] isPalindrome = new boolean[s.length()][s.length()]; 
         for(int i = 0; i < s.length(); i++)
         {
-            isPalindrome[i][i] = true; //把步长为０的初始化
+            isPalindrome[i][i] = true; //把步长为0的初始化
         }
         
-        for(int i = 0; i < s.length() - 1; i++) //把步长位１的初始化，注意i要到s.length() - 1的地方，否则越界啦
+        for(int i = 0; i < s.length() - 1; i++) //把步长位1的初始化，注意i要到s.length() - 1的地方，否则越界啦
         {
             isPalindrome[i][i + 1] = (s.charAt(i) == s.charAt(i + 1));
         }
@@ -55,4 +66,24 @@ public class Solution {
         }
             return isPalindrome;
     }
+    
+    /*testCase: "abba", "abbcca"
+      a b b a
+    a 1 0 0 1
+    b   1 1 0
+    b     1 0
+    a       1
+    0 1 2 3 4
+   -1 0 1 1 0
+    
+      a b b c c a
+    a 1 0 0 0 0 0
+    b   1 1 0 0 0
+    b     1 0 0 0
+    c       1 1 0
+    c         1 0
+    a           1
+    0 1 2 3 4 5 6
+   -1 0 1 1 2 2 3
+    */
 };
