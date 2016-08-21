@@ -11,30 +11,33 @@ For the purpose of this problem, we define empty string as valid palindrome. */
 
 public class Solution {
     public boolean isPalindrome(String s) {
-        
         // Write your code here
         if (s.isEmpty()) {
             return true;
         }
-        int head = 0, tail = s.length() - 1;
-        char cHead, cTail;
-        while(head <= tail) {
-            cHead = s.charAt(head);
-            cTail = s.charAt(tail);
-            if (!Character.isLetterOrDigit(cHead)) {
-                head++;
-            } else if(!Character.isLetterOrDigit(cTail)) {
-                tail--;
+        int start = 0, end = s.length() - 1;
+
+        while(start < end) {
+
+            if (!Character.isLetterOrDigit(s.charAt(start))) {
+                start++;
+            } else if(!Character.isLetterOrDigit(s.charAt(end))) {
+                end--;
             } else {
-                if (Character.toLowerCase(cHead) != Character.toLowerCase(cTail)) {
+                if (Character.toLowerCase(s.charAt(start)) != Character.toLowerCase(s.charAt(end))) {
                     return false;
                 }
-                head++;
-                tail--;
+                start++;
+                end--;
             }
         }
 
         return true;
+    }
+    
+    private boolean isvalid(char c) //不让用Character.isLetterOrDigit就得自己写个函数
+    {
+        return Character.isLetter(c)||Character.isDigit(c);
     }
 }
 
