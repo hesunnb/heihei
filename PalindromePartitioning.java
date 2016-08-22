@@ -52,4 +52,9 @@ public class Solution {
         }
         return true;
     }
+    
+    /*testCase: "aab", "abba", "abbcbba", "abbcca"
+    "aab":
+    
+    */
 }
