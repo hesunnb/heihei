@@ -57,3 +57,19 @@ public class Solution {
 "10009876091", 4 //要处理开头的0
 "123456789", 3 //正序处理
 */
+
+//九章, 处理有倒序的情况都一样, 处理正序的时候这个稍微麻烦一点(每次都要遍历到最后才能删除)
+public String DeleteDigits(String A, int k) {
+        // write your code here
+        StringBuffer sb = new StringBuffer(A);
+		int i, j;
+		for (i = 0; i < k; i++) {
+			for (j = 0; j < sb.length() - 1	&& sb.charAt(j) <= sb.charAt(j + 1); j++) {
+				//如果是正序就一直往后走
+			}
+			sb.delete(j, j + 1); //倒序就删掉大的那个, 正序就删掉最后一个
+		}
+        while (sb.length() > 1 && sb.charAt(0)=='0') //出来之后统一处理开头0
+            sb.delete(0,1);
+		return sb.toString();
+    }
