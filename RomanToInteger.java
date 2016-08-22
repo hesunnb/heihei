@@ -16,7 +16,7 @@ public class Solution {
         if(s == null || s.length() == 0) {
             return 0;
         }
-        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        Map<Character, Integer> map = new HashMap<Character, Integer>(); //用哈希表存值
         map.put('I', 1);
         map.put('V', 5);
         map.put('X', 10);
@@ -28,12 +28,12 @@ public class Solution {
         int sum = 0;
         for(int i = 0; i < s.length() - 1; i++) {
             if(map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
-                sum += map.get(s.charAt(i)) * (-1);
-            } else {
+                sum += map.get(s.charAt(i)) * (-1); //如果数比下一个小就加负的
+            } else { //不比下一个小就加正的
                 sum += map.get(s.charAt(i));
             }
         }
-        sum += map.get(s.charAt(s.length() - 1));
+        sum += map.get(s.charAt(s.length() - 1)); //把最后一个数加上
         return sum;
     }
 }
