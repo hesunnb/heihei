@@ -55,6 +55,27 @@ public class Solution {
     
     /*testCase: "aab", "abba", "abbcbba", "abbcca"
     "aab":
+    [a, a, b]
+    [aa, b]
     
+    "abba":
+    [a, b, b, a]
+    [a, bb, a]
+    [abba]
+    
+    "abbcbba":
+    [a, b, b, c, b, b, a]
+    [a, b, b, c, bb, a]
+    [a, b, bcb, b, a]
+    [a, bb, c, b, b, a]
+    [a, bb, c, bb, a]
+    [a, bbcbb, a]
+    [abbcbba]
+    
+    "abbcca":
+    [a, b, b, c, c, a]
+    [a, b, b, cc, a]
+    [a, bb, c, c, a]
+    [a, bb, cc, a]
     */
 }
