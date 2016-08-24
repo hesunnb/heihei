@@ -26,7 +26,8 @@ public class Solution {
                 if(s.length() - j > 6) { //同理, j后面不能超过6个
                     continue;
                 }
-                for(int k = j + 1; k <= j + 3 && k < s.length(); k++) { // third cut, 此处一定要加k < s.length(), k只有小于s.length(), 最后的"."才会有值, 否则k要是等于s.length(), s.substring(k)就会返回"", parseInt就报错了
+                for(int k = j + 1; k <= j + 3 && k < s.length(); k++) { // third cut, 此处一定要加k < s.length(), k只有小于s.length(), 
+                //最后的"."才会有值, 否则k要是等于s.length(), s.substring(k)就会返回"", parseInt就报错了
                     if(s.length() - k > 3) { //k后面不能超过3个
                         continue;
                     }
@@ -51,7 +52,7 @@ public class Solution {
     }
 }
 /*testCase:
-	Input: "010010"
-	Output: ["0.1.0.10","0.1.0.10","0.1.1.0","0.10.0.10","0.10.1.0","0.100.1.0","1.0.0.10","1.0.1.0","1.0.1.0","10.0.1.0"] //没有处理0的时候
-	Expected: ["0.10.0.10","0.100.1.0"] //处理之后
+Input: "010010"
+Output: ["0.1.0.10","0.1.0.10","0.1.1.0","0.10.0.10","0.10.1.0","0.100.1.0","1.0.0.10","1.0.1.0","1.0.1.0","10.0.1.0"] //没有处理0(错误)
+Expected: ["0.10.0.10","0.100.1.0"] //处理之后
 */
