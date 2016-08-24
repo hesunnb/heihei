@@ -41,14 +41,16 @@ class Solution {
         Interval last = intervals.get(0);
         for(int i = 1; i < intervals.size(); i++) {
             Interval cur = intervals.get(i);
-            if(cur.start <= last.end) { //这道题里是两个两个元素进行比较, 第二个元素的头一定比第一个元素的头要大, 所以不用比较头了; 而insert interval那个的newInterval跟intervals里面的元素是无序的, 要和所有的元素进行比较, 所以头尾都要比
+            if(cur.start <= last.end) { //这道题里是两个两个元素进行比较, 第二个元素的头一定比第一个元素的头要大, 所以不用比较头了; 
+            //而insert interval那个的newInterval跟intervals里面的元素是无序的, 要和所有的元素进行比较, 所以头尾都要比
                 last.end = Math.max(last.end, cur.end);
             } else {
                 result.add(last);
                 last = cur;
             }
         }
-        result.add(last); //最后一次要么就是last与cur合并完退出, 要么就是result添加完了上一个last, last变成了新的cur退出, 所以循环结束的时候总要加一个last
+        result.add(last); //最后一次要么就是last与cur合并完退出, 要么就是result添加完了上一个last, last变成了新的cur退出, 
+        //所以循环结束的时候总要加一个last
         return result;
     }
     
