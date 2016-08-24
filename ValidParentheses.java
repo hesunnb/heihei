@@ -30,7 +30,8 @@ public class Solution {
     		} else {
     			return false;
     		}
-    		//if (Math.abs(s.charAt(i) - temp) > 2) return false; 上面的if,else可以用这个代替, ()对应ASCII为40,41; []是91,93; {}是123,125; 所以用>2来判断
+    		//if (Math.abs(s.charAt(i) - temp) > 2) return false; 上面的if,else可以用这个代替, ()对应ASCII为40,41; []是91,93; 
+    		//{}是123,125; 所以用>2来判断
 	    }
 	  }
 	}
