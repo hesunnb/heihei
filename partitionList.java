@@ -1,3 +1,11 @@
+/*Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+
+You should preserve the original relative order of the nodes in each of the two partitions.
+
+Example
+Given 1->4->3->2->5->2->null and x = 3,
+return 1->2->2->4->3->5->null.*/
+
 /**
  * Definition for ListNode.
  * public class ListNode {
@@ -25,7 +33,7 @@ public class Solution {
         }
         
         ListNode leftDummy = new ListNode(0); //左链表虚拟节点
-        ListNode rightDummy = new ListNode(0); //有链表虚拟节点
+        ListNode rightDummy = new ListNode(0); //右链表虚拟节点
         ListNode left = leftDummy; //left负责往下跑
         ListNode right = rightDummy; //right也负责往下跑
         while(head != null)
