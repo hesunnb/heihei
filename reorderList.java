@@ -1,3 +1,12 @@
+/*Given a singly linked list L: L0 → L1 → … → Ln-1 → Ln
+
+reorder it to: L0 → Ln → L1 → Ln-1 → L2 → Ln-2 → …
+
+Example
+Given 1->2->3->4->null, reorder it to 1->4->2->3->null.
+
+You must do this in-place without altering the nodes' values.*/
+
 /**
  * Definition for ListNode.
  * public class ListNode {
@@ -25,10 +34,9 @@ public class Solution {
         }
         
         ListNode mid = findMiddle(head); //找中点
-        ListNode left = head;
         ListNode right = reverse(mid.next);
         mid.next = null;
-        merge(left, right);
+        merge(head, right);
     }
     
     private ListNode findMiddle(ListNode head)
@@ -45,11 +53,6 @@ public class Solution {
     
     private ListNode reverse(ListNode head)
     {
-        if(head == null || head.next == null)
-        {
-            return head;
-        }
-        
         ListNode prev = null;
         while(head != null)
         {
@@ -61,21 +64,23 @@ public class Solution {
         return prev;
     }
     
-    private ListNode merge(ListNode head1, ListNode head2) //这个和合并merge two sorted lists那道题的程序一样
+    private void merge(ListNode head1, ListNode head2) //这个和合并merge two sorted lists那道题的程序一样
     {
         ListNode dummy = new ListNode(0);
         ListNode lastNode = dummy;
-        
+        int index = 0;
         while(head1 != null && head2 != null)
         {
-            lastNode.next = head1;
-            head1 = head1.next;
+            if (index % 2 == 0) {
+                lastNode.next = head1;
+                head1 = head1.next;
+            } else {
+                lastNode.next = head2;
+                head2 = head2.next;
+            }
             lastNode = lastNode.next;
-            lastNode.next = head2;
-            head2 = head2.next;
-            lastNode = lastNode.next;
+            index ++;
         }
-        
         if(head1 != null)
         {
             lastNode.next = head1;
@@ -84,6 +89,5 @@ public class Solution {
         {
             lastNode.next = head2;
         }
-        return dummy.next;
     }
 }
