@@ -78,7 +78,7 @@ public class Solution {
             slow = slow.next;
         } 
         
-        while (head != slow.next) {
+        while (head != slow.next) { //此处是因为2(a+b) = a-1+2b+c, c=a+1, 所以要判断head与slow.next相不相等
             head = head.next;
             slow = slow.next;
         }
