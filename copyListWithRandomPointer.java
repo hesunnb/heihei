@@ -82,7 +82,7 @@ public class Solution {
         return split(head);
     }
     
-    private void copyNext(RandomListNode head)
+    private void copyNext(RandomListNode head) //每次传过来的是值, 值传递, 所以不会改变原本head的位置
     {
         while(head != null)
         {
