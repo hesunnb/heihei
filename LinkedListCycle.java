@@ -21,6 +21,28 @@ public class Solution {
      * @param head: The first node of linked list.
      * @return: True if it has a cycle, or false
      */
+     
+    //fast与slow同一点出发
+    public boolean hasCycle(ListNode head) {  
+        // write your code here
+        if (head == null || head.next == null) {
+            return false;
+        }
+
+        ListNode fast, slow;
+        fast = head;
+        slow = head;
+        while (fast.next != null && fast.next.next != null) { //fast的下一个与下下个都不为空fast才走, 就说明fast本身不可能为空
+            fast = fast.next.next;
+            slow = slow.next;
+            if(fast == slow) {
+                return true;
+            }
+        } 
+        return false;
+    }
+    
+    //fast在slow的下一点出发
     public boolean hasCycle(ListNode head) {  
         // write your code here
         if (head == null || head.next == null) {
