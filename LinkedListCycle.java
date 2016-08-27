@@ -61,10 +61,10 @@ public class Solution {
             return false;
         }
         
-        Map<ListNode, Integer> map = new HashMap<ListNode, Integer>();
+        Map<ListNode, ListNode> map = new HashMap<ListNode, ListNode>();
         while(head != null) {
             if(!map.containsKey(head)) {
-                map.put(head, 1);
+                map.put(head, head);
             } else {
                 return true;
             }
