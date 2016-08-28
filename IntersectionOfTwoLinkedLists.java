@@ -29,7 +29,70 @@ Your code should preferably run in O(n) time and use only O(1) memory.*/
  *     }
  * }
  */
- 
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;      
+ *     }
+ * }
+ */
+public class Solution {
+    /**
+     * @param headA: the first list
+     * @param headB: the second list
+     * @return: a ListNode 
+     */
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        // Write your code here
+        
+        if(headA == null || headB == null) {
+            return null;
+        }
+        
+        //不开空间, 让A和B的起点归在离交点相同的地方
+        int Alength = getLength(headA);
+        int Blength = getLength(headB);
+        if(Alength > Blength) {
+            int diff = Alength - Blength;
+            while(diff > 0) {
+                headA = headA.next;
+                diff--;
+            }
+        } else if(Alength < Blength) {
+            int diff = Blength - Alength;
+            while(diff > 0) {
+                headB = headB.next;
+                diff--;
+            }
+        }
+        
+        //相同距离之后一起走
+        while(headA != null && headB != null) {
+            if(headA == headB) {
+                return headA;
+            }
+            headA = headA.next;
+            headB = headB.next;
+        }
+        
+        return null; //没有交点
+    }  
+    
+    private int getLength(ListNode head) {
+        int sum = 0;
+        while(head != null) {
+            head = head.next;
+            sum++;
+        }
+        return sum;
+    }
+}
+
 public class Solution {
 
     //开空间哈希表
