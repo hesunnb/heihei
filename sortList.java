@@ -37,8 +37,8 @@ public class Solution {
     private ListNode findMiddle(ListNode head)
     {
         ListNode slow = head;
-        ListNode fast = head.next;
-        while(fast != null && fast.next != null) //要蹦两个next, 就要看一个next; 要看一个next, 就要看自己
+        ListNode fast = head;
+        while(fast.next != null && fast.next.next != null) //要蹦两个next, 就要看一个next; 要看一个next, 就要看自己
         {
             fast = fast.next.next; //窜两位
             slow = slow.next; //窜一位，fast到尾, slow到中间
