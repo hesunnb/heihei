@@ -41,7 +41,8 @@ Your code should preferably run in O(n) time and use only O(1) memory.*/
  *     }
  * }
  */
- 
+
+
 //不开空间, 让A和B的起点归在离交点相同的地方
 public class Solution {
     /**
@@ -92,6 +93,41 @@ public class Solution {
         }
         return sum;
     }
+}
+
+
+//不开空间好的解法
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        
+        if(headA == null || headB == null) {
+            return null;
+        }
+        
+        ListNode currentA = headA;
+        ListNode currentB = headB;
+        while(currentA != currentB) {
+            if(currentA == null) {
+                currentA = headB; //A走到头, 就跳到B上接着走
+            } else {
+                currentA = currentA.next;
+            }
+            
+            if(currentB == null) {
+                currentB = headA; //B走到头, 就跳到A上接着走, 这样两个链表的长度就互补了
+                //比如现在B比A长, A与B之间的差距一直是A链表的长度+1, 当B走到原来A表头的位置的时候, B再走A+1长度之后跳到
+                //A表头, 而A正好也走完了A与B之间差的A+1, 两个链表的位置就同步了
+            } else {
+                currentB = currentB.next;
+            }
+        }
+        return currentA;
+    }
+    /*
+                        A: 100->
+                                 101 102
+    B: 1->2->3->4->5->6 ... 99->
+    */
 }
 
 
