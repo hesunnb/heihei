@@ -41,6 +41,8 @@ Your code should preferably run in O(n) time and use only O(1) memory.*/
  *     }
  * }
  */
+ 
+//不开空间, 让A和B的起点归在离交点相同的地方
 public class Solution {
     /**
      * @param headA: the first list
@@ -54,7 +56,6 @@ public class Solution {
             return null;
         }
         
-        //不开空间, 让A和B的起点归在离交点相同的地方
         int Alength = getLength(headA);
         int Blength = getLength(headB);
         if(Alength > Blength) {
@@ -93,29 +94,28 @@ public class Solution {
     }
 }
 
-public class Solution {
 
-    //开空间哈希表
+//开空间哈希表
+public class Solution {
+  
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if(headA == null || headB == null) {
             return null;
         }
         
         Map<ListNode, ListNode> map = new HashMap<ListNode, ListNode>();
-        ListNode headA2 = headA;
-        while(headA2 != null) {
-            if(!map.containsKey(headA2)) {
-                map.put(headA2, headA2);
+        while(headA != null) {
+            if(!map.containsKey(headA)) {
+                map.put(headA, headA);
             }
-            headA2 = headA2.next;
+            headA = headA.next;
         }
         
-        ListNode headB2 = headB;
-        while(headB2 != null) {
-            if(map.containsKey(headB2)) {
-                return headB2;
+        while(headB != null) {
+            if(map.containsKey(headB)) {
+                return headB;
             }
-            headB2 = headB2.next;
+            headB = headB.next;
         }
         
         return null;
