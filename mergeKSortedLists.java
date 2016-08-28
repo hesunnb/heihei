@@ -1,3 +1,5 @@
+/*Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.*/
+
 /**
  * Definition for ListNode.
  * public class ListNode {
@@ -15,10 +17,12 @@ public class Solution {
      * @return: The head of one sorted list.
      */
      
-//方法1：好：两两merge（1和2,3和4,5和6...），然后把结果再两两merge，最后成为一个链表，复杂度还是nklogk(自下而上)
-//       不好：merge two by two,取两个排好，再和第三个排，以此类推，复杂度是nk2; (1+...+k)n + kn -> nk2
+//方法1：
+    //好: 两两merge(1和2,3和4,5和6...), 然后把结果再两两merge, 最后成为一个链表, 复杂度还是knlogn(自下而上), n是链表的个数, 
+    //k是每个链表的长度
+    //不好: merge two by two,取两个排好, 再和第三个排, 以此类推, 复杂度是n^2k; (1+...+n)k + nk -> n^2k
 
-/*leetcode里面用的lists数组，那么把数组拷贝到集合里就行
+    /*leetcode里面用的lists数组，那么把数组拷贝到集合里就行
         List<ListNode> result = new ArrayList<ListNode>();
         for(int i = 0; i < lists.length; i++)
         {
@@ -89,7 +93,7 @@ public class Solution {
     }
 
 //方法2：divide & conquer(自上而下),就是找中点，一半一半拆开分着做
-//复杂度还是nklog(k),就是方法1反着的求解
+    //复杂度还是nklog(k),就是方法1反着的求解
     public ListNode mergeKLists(List<ListNode> lists)
     {
         if(lists == null || lists.size() == 0)
@@ -153,8 +157,10 @@ public class Solution {
         return dummy.next;
     }
     
-//方法3：Heap的方法:(用comparator),思路就是把每个链表的头结点装入优先级队列然后根据比较器自动挑出最小的，取出来，然后从取出点的那个链表再加入一个结点继续比较
-        //复杂度：nklog(k),k是lists的长度，n是每个链表的长度，comparator是用二分法来找位置然后加入值的，所以每加入一个值就是一个log(k),总共加入nk次
+//方法3：Heap的方法:(用comparator),思路就是把每个链表的头结点装入优先级队列然后根据比较器自动挑出最小的，取出来，
+        //然后从取出点的那个链表再加入一个结点继续比较
+        //复杂度：nklog(k),k是lists的长度，n是每个链表的长度，comparator是用二分法来找位置然后加入值的，
+        //所以每加入一个值就是一个log(k),总共加入nk次
     public ListNode mergeKLists(List<ListNode> lists) {  
         // write your code here
         //List里面装的都是每个链表的头结点
@@ -196,8 +202,11 @@ public class Solution {
     }; //有个分号
     
     
-     //ListNode是自己写的类，要是比较类的话就得用comparator,指定比较类中的什么数值，进而按照这个数值进行排序，如果不用comparator就会出现ClassCastException这个异常，叫类型转换错误，因为ListNode无法直接强转成comparator
+     //ListNode是自己写的类，要是比较类的话就得用comparator,指定比较类中的什么数值，进而按照这个数值进行排序，
+     //如果不用comparator就会出现ClassCastException这个异常，叫类型转换错误，因为ListNode无法直接强转成comparator
      
     //Comparator本身就是一个类，要实现它的一个匿名类，目的是重写compare方法
-    //匿名类是不能有名称的类，所以没办法引用它们。必须在创建时，作为new语句的一部分来声明它们。 这就要采用另一种形式的new语句，如下所示： new <类或接口> <类的主体> 这种形式的new语句声明一个新的匿名类，它对一个给定的类进行扩展，或者实现一个给定的接口。它还创建那个类的一个新实例，并把它作为语句的结果而返回。要扩展的类和要实现的接口是new语句的操作数，后跟匿名类的主体
+    //匿名类是不能有名称的类，所以没办法引用它们。必须在创建时，作为new语句的一部分来声明它们。 这就要采用另一种形式的new语句，
+    //如下所示： new <类或接口> <类的主体> 这种形式的new语句声明一个新的匿名类，它对一个给定的类进行扩展，或者实现一个给定的接口。
+    //它还创建那个类的一个新实例，并把它作为语句的结果而返回。要扩展的类和要实现的接口是new语句的操作数，后跟匿名类的主体
 }
