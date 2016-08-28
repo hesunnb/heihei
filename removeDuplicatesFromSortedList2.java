@@ -25,25 +25,25 @@ public class Solution {
     //九章方法，用一个虚拟节点，只用一个头指针(好呀，首选)
     //一般来说当链表的头也会发生变化的时候就要用到虚拟节点
     public ListNode deleteDuplicates(ListNode head) {
-        
-        if(head == null || head.next == null) { //没有节点以及一个节点返回head就行
+        if(head == null || head.next == null) {//没有节点以及一个节点返回head就行
             return head;
         }
-        
-        ListNode node = new ListNode(0);
-        node.next = head;
-        head = node;
-        while(node.next != null && node.next.next != null) { //保证head后两个元素都不是空，好进行判断
-            if(node.next.val == node.next.next.val) {
-                int temp = node.next.val;
-                while(node.next != null && node.next.val == temp) { //空就是到结尾了，语句意思就是没到结尾且下一个值重复
-                    node.next = node.next.next;
-                }
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        head = dummy;
+
+        while (head.next != null && head.next.next != null) { //保证head后两个元素都不是空，好进行判断
+            if (head.next.val == head.next.next.val) {
+                int val = head.next.val;
+                while (head.next != null && head.next.val == val) { //空就是到结尾了，语句意思就是没到结尾且下一个值重复
+                    head.next = head.next.next;
+                }            
             } else {
-                node = node.next; //不等就向后窜一位
+                head = head.next; //不等就向后窜一位
             }
         }
-        return head.next; //返回最开始的位置
+        
+        return dummy.next; //返回最开始的位置
     }
     
     /*
