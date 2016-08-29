@@ -34,7 +34,7 @@ public class NestedIterator implements Iterator<Integer> {
     Queue<Integer> queue = null;
     public NestedIterator(List<NestedInteger> nestedList) {
         queue = new LinkedList<Integer>();
-        helper(queue, nestedList);
+        helper(queue, nestedList); //在flatten list那道题里面是把内容都存到了ArrayList里面, 这道题里都存到队列里面
     }
 
     private void helper(Queue<Integer> queue, List<NestedInteger> temp) {
@@ -49,8 +49,8 @@ public class NestedIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() {
-        if(hasNext()) {
-            return queue.poll();
+        if(hasNext()) { //队列中如果有元素
+            return queue.poll(); //就弹出然后返回
         }
         return Integer.MIN_VALUE;
     }
