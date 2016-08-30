@@ -15,7 +15,8 @@ public class Solution {
      * @return: Preorder in ArrayList which contains node values.
      */
      
-//方法一: 递归方法:(recursion)traverse遍历, 这种遍历和下面的分治法都是递归, 区别是遍历把result作为参数传来传去, 并在递归的过程当中进行修改; 分治是把result作为return值返回, 不作为参数, 分治方法对于树更通用
+//方法一: 递归方法:(recursion)traverse遍历, 这种遍历和下面的分治法都是递归, 区别是遍历把result作为参数传来传去, 
+    //并在递归的过程当中进行修改; 分治是把result作为return值返回, 不作为参数, 分治方法对于树更通用
     public ArrayList<Integer> preorderTraversal(TreeNode root) {
         // write your code here
         
@@ -54,7 +55,8 @@ public class Solution {
         
         //Conquer:整合的过程，包括每一个节点自己的整合；在得到值之后，先加入自己的值，然后加入左子树的值，再加入右子树的值
         result.add(root.val); //加入自己的值
-        result.addAll(left); //加入所有左子树的值,addAll括号里面是的left没有元素的话，是可以的，那就不向result中加任何东西, addAll就是向result当中加入所有left中的元素
+        result.addAll(left); //加入所有左子树的值,addAll括号里面是的left没有元素的话，是可以的，那就不向result中加任何东西, 
+        //addAll就是向result当中加入所有left中的元素
         result.addAll(right); //加入所有右子树的值
         return result;
     }
