@@ -1,3 +1,22 @@
+/*Design an algorithm and write code to serialize and deserialize a binary tree. 
+Writing the tree to a file is called 'serialization' and reading back from the file to reconstruct the exact same binary tree 
+is 'deserialization'.
+
+There is no limit of how you deserialize or serialize a binary tree, 
+you only need to make sure you can serialize a binary tree to a string and deserialize this string to the original structure.
+
+Example
+An example of testdata: Binary tree {3,9,20,#,#,15,7}, denote the following structure:
+
+  3
+ / \
+9  20
+  /  \
+ 15   7
+Our data serialization use bfs traversal. This is just for when you got wrong answer and want to debug the input.
+
+You can use other method to do serializaiton and deserialization.*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -15,11 +34,6 @@ class Solution {
      * to serialize a binary tree which denote by a root node to a string which
      * can be easily deserialized by your own "deserialize" method later.
      */
-     
-    //serialize: 
-    //思路就是把一个树的所有节点(包括空)放到一个ArrayList里面, 并把尾部的多余的null去掉, 然后扫一遍ArrayList把null变为#,
-    //同时把值加到StringBuilder里面, 然后把StringBuilder变为String
-
     public String serialize(TreeNode root) {
         // write your code here
         if(root == null)
@@ -28,7 +42,7 @@ class Solution {
         }
         
         ArrayList<TreeNode> queue = new ArrayList<TreeNode>();
-        queue.add(root);
+        queue.add(root); //这个先加一个的原因是为了能够循环加入节点
         for(int i = 0; i < queue.size(); i++) //这里的queue加所有的结点, 包括空结点
         {
             TreeNode node = queue.get(i);
@@ -56,12 +70,12 @@ class Solution {
             }
             else
             {
-                sb.append(",");
+                sb.append(","); //先放一个值的原因是这里都是","+值, 这样不会让第一个值是","
                 sb.append(queue.get(i).val);
             }
         }
         
-        return sb.toString(); //一定要变, StringBuilder和String不一样
+        return sb.toString();
     }
     
     /**
@@ -71,9 +85,6 @@ class Solution {
      * designed by yourself, and deserialize it here as you serialize it in 
      * "serialize" method.
      */
-     
-    //deserialize:
-    //思路就是把给过来的字符串按照","拆解, 扫一遍所拆解的数组, 组建queue里结点的树, 同时把有用的结点加到queue里
     public TreeNode deserialize(String data) {
         // write your code here
         if(data == null)
@@ -86,7 +97,8 @@ class Solution {
         boolean isLeftChild = true;
         int index = 0; //负责queue的下标
         
-        queue.add(new TreeNode(Integer.parseInt(storage[0])));
+        queue.add(new TreeNode(Integer.parseInt(storage[0]))); //先加一个的原因是下面的循环要构建树, 
+        //所以根节点一定先要在queue里面
         for(int i = 1; i < storage.length; i++)
         {
             if(!storage[i].equals("#")) //用.equals()!, 不要用!=
@@ -100,7 +112,7 @@ class Solution {
                 {
                     queue.get(index).right = node;
                 }
-                queue.add(node); //这里的queue只加有用的结点
+                queue.add(node);
             }
             
             if(!isLeftChild)
@@ -108,9 +120,11 @@ class Solution {
                 index++; //访问完右子树就是访问完一个结点啦, 这时候index++, 访问下一个结点
             }
             
-            isLeftChild = !isLeftChild; //更改左右子树顺序, 一定要先判断isLeftChild, 然后再取反, 否则顺序就乱啦
+            isLeftChild = !isLeftChild; //一定要先判断isLeftChild, 然后再取反, 否则顺序就乱啦
         }
         
         return queue.get(0);
     }
 }
+
+
