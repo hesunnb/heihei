@@ -83,7 +83,10 @@ public class Solution {
 
 
         /*//②一个队列加一个虚拟节点实现
-        //队列用法: 1.poll()获取并移除此队列的头，如果此队列为空，则返回 null                                               2.offer，add区别：一些队列有大小限制，因此如果想在一个满的队列中加入一个新项，多出的项就会被拒绝         。这时新的 offer 方法就可以起作用了。它不是对调用 add() 方法抛出一个 unchecked                          异常，而只是得到由 offer() 返回的 false                                                                 3.目前来看，java中的queue只能先用LinkedList实现
+        //队列用法: 1.poll()获取并移除此队列的头，如果此队列为空，则返回 null                                               
+        2.offer，add区别：一些队列有大小限制，因此如果想在一个满的队列中加入一个新项，多出的项就会被拒绝。
+        这时新的 offer 方法就可以起作用了。它不是对调用 add() 方法抛出一个 unchecked异常，而只是得到由 offer() 返回的 false
+        3.目前来看，java中的queue只能先用LinkedList实现
         
         public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root)
         {
