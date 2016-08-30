@@ -34,8 +34,8 @@ public class Solution {
             // head->n1->n2->...
             // => head->n2->n1->...
             head.next = node2;
-            node2.next = node1;
             node1.next = node2.next;
+            node2.next = node1;
             
             head = node1; //move to next pairs
         }
