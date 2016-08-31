@@ -22,7 +22,8 @@ public class Solution {
     已知前序和中序求原二叉树
     前序: ABCDEFGH
     中序: BDCEAFHG
-    做法就是在中序中按照前序不断的找根节点: 首先根是A, 中序中A的左边都是左子树, 右边都是右子树, 在左子树BDCE中继续在前序中按顺序找根, 就是B, B左面没有元素, 那就是没有左子树, DCE就是右子树, 以此类推
+    做法就是在中序中按照前序不断的找根节点: 首先根是A, 中序中A的左边都是左子树, 右边都是右子树, 在左子树BDCE中继续在前序中按顺序找根, 
+    就是B, B左面没有元素, 那就是没有左子树, DCE就是右子树, 以此类推
     */
     
     public TreeNode buildTree(int[] preorder, int[] inorder) {
@@ -37,7 +38,8 @@ public class Solution {
     
     private TreeNode buildTreeStep(int[] inorder, int instart, int inend, int[] preorder, int prestart, int preend)
     {
-        if(instart > inend)  //instart和inend相等正好是递归到最后的那个叶子节点, 此时如果再往下去一层就会instart > inend, 然后这个叶子节点的左右子树都会返回空, 这个点的分支就结束啦
+        if(instart > inend)  //instart和inend相等正好是递归到最后的那个叶子节点, 此时如果再往下去一层就会instart > inend, 
+        //然后这个叶子节点的左右子树都会返回空, 这个点的分支就结束啦
         {
             return null;
         }
@@ -45,7 +47,8 @@ public class Solution {
         TreeNode root = new TreeNode(preorder[prestart]); //建立结点
         int position = findPos(inorder, instart, inend, root.val);
         
-        root.left = buildTreeStep(inorder, instart, position - 1, preorder, prestart + 1, prestart + (position - instart)); //preorder传的下标翻译过来就是: 起点下标加1 到 起点下标加左子树长度, position - instart是中序数组整个左子树的长度
+        root.left = buildTreeStep(inorder, instart, position - 1, preorder, prestart + 1, prestart + (position - instart)); 
+        //preorder传的下标翻译过来就是: 起点下标加1 到 起点下标加左子树长度, position - instart是中序数组整个左子树的长度
         root.right = buildTreeStep(inorder, position + 1, inend, preorder, position - inend + preend + 1, preend);
         //position - inend是中序数组整个右子树长度, 让preend减去右子树长度, 然后 + 1就是对应要传的preorder数组的起点下标
         return root;
