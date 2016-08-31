@@ -30,8 +30,57 @@ return its zigzag level order traversal as:
  *     }
  * }
  */
- 
- 
+
+//基于levelorder的一点变化, 首选
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: A list of lists of integer include 
+     *          the zigzag level order traversal of its nodes' values 
+     */
+    public ArrayList<ArrayList<Integer>> zigzagLevelOrder(TreeNode root) {
+        // write your code here
+        
+        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+        if(root == null)
+        {
+            return result;
+        }
+        
+        Queue<TreeNode> Q = new LinkedList<TreeNode>();
+        boolean normalOrder = true;
+        Q.offer(root);
+        
+        while(!Q.isEmpty()) //有点就继续，没有点就退出了，说明刚刚加进来的点没有子节点了
+        {
+            ArrayList<Integer> level = new ArrayList<Integer>();
+            int size = Q.size(); //为的就是保留上次size的值，不能让size随着节点数的增加而实时变化
+            for(int i = 0; i < size; i++)
+            {
+                TreeNode tn = Q.poll();
+                if(normalOrder) { //和levelorder就这里不一样, 增加一个是不是正常顺序的判断
+                    level.add(tn.val); //正常顺序正着加
+                } else {
+                    level.add(0, tn.val); //倒着顺序倒着加
+                }
+                
+                if(tn.left != null)
+                {
+                    Q.offer(tn.left);
+                }
+                if(tn.right != null)
+                {
+                    Q.offer(tn.right);
+                }
+            }
+            result.add(level);
+            normalOrder = !normalOrder; //每次顺序取反
+        }
+        return result;
+    }
+}
+
+
 public class Solution {
     /**
      * @param root: The root of binary tree.
@@ -39,7 +88,7 @@ public class Solution {
      *          the zigzag level order traversal of its nodes' values 
      */
      
-    //九章给的用栈来实现的，九章的答案思路更清晰，所以是首选
+    //九章给的用栈来实现的方法
     public ArrayList<ArrayList<Integer>> zigzagLevelOrder(TreeNode root)
     {
         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
