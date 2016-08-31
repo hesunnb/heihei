@@ -28,7 +28,7 @@ public class Solution {
     
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         // write your code here
-        if(preorder.length != inorder.length || preorder.length == 0 || inorder.length == 0)
+        if(preorder == null || inorder == null || preorder.length != inorder.length || preorder.length == 0 || inorder.length == 0)
         {
             return null;
         }
