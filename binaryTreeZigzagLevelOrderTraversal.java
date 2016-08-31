@@ -1,3 +1,24 @@
+/*Given a binary tree, return the zigzag level order traversal of its nodes' values. 
+(ie, from left to right, then right to left for the next level and alternate between).
+
+Example
+Given binary tree {3,9,20,#,#,15,7},
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+ 
+
+return its zigzag level order traversal as:
+
+[
+  [3],
+  [20,9],
+  [15,7]
+]*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -18,8 +39,7 @@ public class Solution {
      *          the zigzag level order traversal of its nodes' values 
      */
      
-      //九章给的用栈来实现的，九章的答案思路更清晰，所以是首选
-      
+    //九章给的用栈来实现的，九章的答案思路更清晰，所以是首选
     public ArrayList<ArrayList<Integer>> zigzagLevelOrder(TreeNode root)
     {
         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
