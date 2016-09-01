@@ -1,3 +1,25 @@
+/*Given the root and two nodes in a Binary Tree. Find the lowest common ancestor(LCA) of the two nodes.
+
+The lowest common ancestor is the node with largest depth which is the ancestor of both nodes.
+
+ Notice
+
+Assume two nodes are exist in tree.
+
+Example
+For the following binary tree:
+
+  4
+ / \
+3   7
+   / \
+  5   6
+LCA(3, 5) = 4
+
+LCA(5, 6) = 7
+
+LCA(6, 7) = 7*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -15,15 +37,16 @@ public class Solution {
      * @param A and B: two nodes in a Binary.
      * @return: Return the least common ancestor(LCA) of the two nodes.
      */
+     
+    //思路: 用分治来解决
+    // 在root为根的二叉树中找A,B的LCA:
+    // 如果找到了就返回这个LCA
+    // 如果只碰到A，就返回A
+    // 如果只碰到B，就返回B
+    // 如果都没有，就返回null
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode A, TreeNode B) {
         // write your code here
         
-        //思路: 用分治来解决
-        // 在root为根的二叉树中找A,B的LCA:
-        // 如果找到了就返回这个LCA
-        // 如果只碰到A，就返回A
-        // 如果只碰到B，就返回B
-        // 如果都没有，就返回null
         if(root == null || root == A || root == B)
         {
             return root; //只要找完一边或者找到一个，就马上返回，然后接着找另一边
@@ -52,12 +75,9 @@ public class Solution {
         }
     }
     
-    
-    
-    
-    
     //传统方法：就是有parent指针的方法
-    public TreeNode lowestCommonAncestor(TreeNode node1, TreeNode node2) {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode A, TreeNode B){
+    //public TreeNode lowestCommonAncestor(TreeNode node1, TreeNode node2) {
         //用两个Arraylist分别装给的两个节点的本身和他们的父节点
         ArrayList<TreeNode> list1 = getPath2Root(node1);
         ArrayList<TreeNode> list2 = getPath2Root(node2);
