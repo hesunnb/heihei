@@ -24,7 +24,8 @@ public class Solution {
     //整体和先序中序那个非常像, 就是位置需要自己算一下
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         // write your code here
-         if (postorder == null || inorder == null || postorder.length != inorder.length) {
+        if(inorder == null || postorder == null || inorder.length != postorder.length || inorder.length == 0 || 
+        postorder.length == 0) {
             return null;
         }
         
