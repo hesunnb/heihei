@@ -1,3 +1,22 @@
+/*Given a binary tree, determine if it is a valid binary search tree (BST).
+
+Assume a BST is defined as follows:
+
+The left subtree of a node contains only nodes with keys less than the node's key.
+The right subtree of a node contains only nodes with keys greater than the node's key.
+Both the left and right subtrees must also be binary search trees.
+A single node tree is a BST
+
+Example
+An example:
+
+  2
+ / \
+1   4
+   / \
+  3   5
+The above binary tree is serialized as {2,1,4,#,#,3,5} (in level order).*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -14,11 +33,6 @@ public class Solution {
      * @param root: The root of binary tree.
      * @return: True if the binary tree is BST, or false
      */
-     
-     
-     
-     
-     
      
     //version 1: inordertraversal, if ascending, is bst
     //思路:中序遍历一遍二叉树，如果是升序那就是二叉搜索树(Traverse)
@@ -37,7 +51,7 @@ public class Solution {
         }
         if(!firstNode && lastvalue >= root.val) //比较就是在这里完成的, 如果每次lastvalue都没有root.val大, 那就是升序
         //firstNode的作用在于第一次根节点的比较, 如果这棵树只是一个根节点, 且值为Integer
-        //.MIN_VALUE, 那么这时候lastvalue和Integer>MIN.VALUE就是相等的, 然后就要返回false
+        //.MIN_VALUE, 那么这时候lastvalue和Integer.MIN_VALUE就是相等的, 然后就要返回false
         //, 但是只有一个根节点也是二叉搜索树, 所以加一个firstNode, 让第一次lastvalue和root.value不比较
         //二叉搜索树当中不能有重复节点, 比如已经有一个1, 这个树中就不能再有1啦, 1在左边或右边都是不对哒
         {
@@ -51,15 +65,11 @@ public class Solution {
         }
         return true;
     }
-    
-    
-    
-    
-    
-    
-    //version 2: Iterator, stack traversal(non-recursion)
+
+ 
+    //Iterator, stack traversal(non-recursion)
     //和inordertravelsal的stack的方法一样, 就是中间弹出值后要判断
-    public boolean isValidBST(TreeNode root) 
+    /*public boolean isValidBST(TreeNode root) 
     {
         Stack<TreeNode> st = new Stack<TreeNode>();
         TreeNode cur = root;
@@ -84,14 +94,10 @@ public class Solution {
             }
         }
         return true;
-    }
-    
-    
-    
-    
-    
-    
-    //version 3: 超级简练版, 两个if语句搞定
+    }*/
+
+
+    //超级简练版, 两个if语句搞定
     public boolean isValidBST(TreeNode root)
     {
         //用double的就是最大和最小的, 比Integer要大多啦, 所以就没有firstnode的问题
@@ -115,10 +121,7 @@ public class Solution {
         return helper(p.left, min, p.val) && helper(p.right, p.val, max);
     }
     
-    
-    
-    
-    
+
     //Divide and conquer
     /*private class returnType
     {
