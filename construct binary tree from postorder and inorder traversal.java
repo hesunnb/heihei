@@ -41,7 +41,8 @@ public class Solution {
         TreeNode root = new TreeNode(postorder[postend]);
         int position = findPos(inorder, instart, inend, root.val);
         
-        root.left = buildTreeStep(inorder, instart, position - 1, postorder, poststart, poststart + (position - instart) - 1); //后序当中, 从poststart到poststart加上左子树的长度再减1, 就是要传的下标范围
+        root.left = buildTreeStep(inorder, instart, position - 1, postorder, poststart, poststart + (position - instart) - 1); 
+        //后序当中, 从poststart到poststart加上左子树的长度再减1, 就是要传的下标范围
         
         root.right = buildTreeStep(inorder, position + 1, inend, postorder, postend + (position - inend), postend - 1);
         return root; //后序当中, postend减去右子树的范围到postend - 1是要传下标的范围
