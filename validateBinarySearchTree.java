@@ -69,7 +69,7 @@ public class Solution {
  
     //Iterator, stack traversal(non-recursion)
     //和inordertravelsal的stack的方法一样, 就是中间弹出值后要判断
-    /*public boolean isValidBST(TreeNode root) 
+    public boolean isValidBST(TreeNode root) 
     {
         Stack<TreeNode> st = new Stack<TreeNode>();
         TreeNode cur = root;
@@ -94,7 +94,7 @@ public class Solution {
             }
         }
         return true;
-    }*/
+    }
 
 
     //超级简练版, 两个if语句搞定
