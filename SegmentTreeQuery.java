@@ -34,6 +34,20 @@ query(root, 0, 2), return 4*/
  *     }
  * }
  */
+/**
+ * Definition of SegmentTreeNode:
+ * public class SegmentTreeNode {
+ *     public int start, end, max;
+ *     public SegmentTreeNode left, right;
+ *     public SegmentTreeNode(int start, int end, int max) {
+ *         this.start = start;
+ *         this.end = end;
+ *         this.max = max
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+ 
 public class Solution {
     /**
      *@param root, start, end: The root of segment tree and 
@@ -42,6 +56,15 @@ public class Solution {
      */
     public int query(SegmentTreeNode root, int start, int end) {
         // write your code here
+        
+        if(root == null || root.start > end || root.end < start || start > end) {
+            return Integer.MIN_VALUE; //比如树的区间是[0,10], 所给查询区间是[11,12], 那么就要返回0, 没有count
+        }
+        
+        if(root.start > start || root.end < end){
+            return query(root, Math.max(root.start, start), Math.min(root.end, end));
+            //比如树的区间是[0,10], 所给查询区间是[1,16], 那么就要缩小查询区间到[1,10], 然后再进行查询
+        }
         
         if(root.start == start && root.end == end){ //如果左右分别相等就返回, 防止走到叶子节点再判断浪费时间
             return root.max;
