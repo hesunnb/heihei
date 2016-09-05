@@ -9,40 +9,35 @@
 // Version 1: Array of TrieNode, 用数组来实现
 class TrieNode {
     // Initialize your data structure here.
-    public TrieNode[] children;
-    public boolean hasword;
+    
+    TrieNode[] children;
+    boolean hasword;
     
     public TrieNode() {
         children = new TrieNode[26];
         hasword = false;
     }
     
-    public void insert(String word, int index)
-    {
-        if(index == word.length())
-        {
+    public void insert(String word, int index) {
+        if(index == word.length()) {
             this.hasword = true;
             return;
         }
         
         int pos = word.charAt(index) - 'a';
-        if(children[pos] == null)
-        {
+        if(children[pos] == null) {
             children[pos] = new TrieNode(); //每一个字母开一个数组放相应的位置
         }
         children[pos].insert(word, index + 1);
     }
     
-    public TrieNode find(String word, int index)
-    {
-        if(index == word.length())
-        {
+    public TrieNode find(String word, int index) {
+        if(index == word.length()) {
             return this;
         }
         
         int pos = word.charAt(index) - 'a';
-        if(children[pos] == null)
-        {
+        if(children[pos] == null) {
             return null; //证明没有这个字母, 返回空
         }
         
@@ -50,10 +45,10 @@ class TrieNode {
     }
 }
 
-public class Solution {
+public class Trie {
     private TrieNode root;
 
-    public Solution() {
+    public Trie() {
         root = new TrieNode();
     }
 
