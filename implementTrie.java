@@ -5,12 +5,7 @@
  * trie.search("lint"); will return false
  * trie.startsWith("lint"); will return true
  */
- 
- 
- 
- 
- 
- 
+
 // Version 1: Array of TrieNode, 用数组来实现
 class TrieNode {
     // Initialize your data structure here.
@@ -70,7 +65,9 @@ public class Solution {
     // Returns if the word is in the trie.
     public boolean search(String word) {
         TrieNode result = root.find(word, 0);
-        return (result != null && result.hasword == true); //node!=null是说有要找的这个字母, node.hasword表明虽有字母但是找的是不是要找的单词, 比如lintcode, 插入lintcode这个字符串之后, 在e处有hasword = true, 如果要查找lint, 字母都有, node都不为空, 但是t处的hasword不为真, 所以还是没有这个单词
+        return (result != null && result.hasword == true); //node!=null是说有要找的这个字母, 
+        //node.hasword表明虽有字母但是找的是不是要找的单词, 比如lintcode, 插入lintcode这个字符串之后, 在e处有hasword = true, 
+        //如果要查找lint, 字母都有, node都不为空, 但是t处的hasword不为真, 所以还是没有这个单词
     }
 
     // Returns if there is any word in the trie
@@ -80,14 +77,6 @@ public class Solution {
         return result != null; //只需看字母存不存在即可
     }
 }
-
-
-
-
-
-
-
-
 
 
 //version 2: HashMap Version
