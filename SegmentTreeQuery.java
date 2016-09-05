@@ -58,7 +58,7 @@ public class Solution {
         // write your code here
         
         if(root == null || root.start > end || root.end < start || start > end) {
-            return Integer.MIN_VALUE; //比如树的区间是[0,10], 所给查询区间是[11,12], 那么就要返回0, 没有count
+            return 0; //比如树的区间是[0,10], 所给查询区间是[11,12], 那么就要返回0, 没有count
         }
         
         if(root.start > start || root.end < end){
