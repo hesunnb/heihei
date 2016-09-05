@@ -82,61 +82,55 @@ public class Solution {
 //version 2: HashMap Version
 class TrieNode {
     // Initialize your data structure here.
-    public HashMap<Character, TrieNode> children;
-    public boolean hasword;
     
+    Map<Character, TrieNode> children;
+    boolean hasWord;
     public TrieNode() {
         children = new HashMap<Character, TrieNode>();
-        hasword = false;
+        hasWord = false;
     }
 }
 
-public class Solution {
+public class Trie {
     private TrieNode root;
 
-    public Solution() {
+    public Trie() {
         root = new TrieNode();
     }
 
     // Inserts a word into the trie.
     public void insert(String word) { //跟数组一样, 数组是一个一个开数组, 这个是一个一个开哈希表
         TrieNode now = root;
-        for(int i = 0; i < word.length(); i++)
-        {
+        for(int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if(!now.children.containsKey(c))
-            {
+            if(!now.children.containsKey(c)) {
                 now.children.put(c, new TrieNode());
             }
             now = now.children.get(c);
         }
-        now.hasword = true; //最后一个字母的TrieNode里面的hasword为真
+        now.hasWord = true; //最后一个字母的TrieNode里面的hasword为真
     }
 
     // Returns if the word is in the trie.
     public boolean search(String word) {
         TrieNode now = root;
-        for(int i = 0; i < word.length(); i++)
-        {
+        for(int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if(!now.children.containsKey(c))
-            {
+            if(!now.children.containsKey(c)) {
                 return false;
             }
             now = now.children.get(c);
         }
-        return now.hasword; //返回最后一个字母的hasword
+        return now.hasWord; //返回最后一个字母的hasword
     }
 
     // Returns if there is any word in the trie
     // that starts with the given prefix.
     public boolean startsWith(String prefix) {
         TrieNode now = root;
-        for(int i = 0; i < prefix.length(); i++)
-        {
+        for(int i = 0; i < prefix.length(); i++) {
             char c = prefix.charAt(i);
-            if(!now.children.containsKey(c))
-            {
+            if(!now.children.containsKey(c)) {
                 return false;
             }
             now = now.children.get(c);
@@ -144,3 +138,8 @@ public class Solution {
         return true; //能把prefix所对应的字母全部循环完的话就说明prefix对应有所有的字母
     }
 }
+
+// Your Trie object will be instantiated and called as such:
+// Trie trie = new Trie();
+// trie.insert("somestring");
+// trie.search("key");
