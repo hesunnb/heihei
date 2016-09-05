@@ -79,7 +79,7 @@ public class Solution {
 }
 
 
-//version 2: HashMap Version
+//version 2: HashMap Version(首选), 用HashMap省空间
 class TrieNode {
     // Initialize your data structure here.
     
