@@ -30,7 +30,7 @@ public class Solution {
     public int numTrees(int n) {
         // write your code here
         
-        int[] count = new int[n + 2];
+        int[] count = new int[n + 2]; //+2保证至少有count[0]和count[1]的位置
         count[0] = 1;
         count[1] = 1;
         
