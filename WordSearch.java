@@ -45,30 +45,35 @@ public class Solution {
             }
             if(i > 0 && board[i - 1][j] != ' ') { //向4个方向进行递归, 注意不能有else
                 if(findWord(board, i - 1, j, word, count)) {
+                    //board[i][j] = word.charAt(count - 1);
                     return true; //递归回来如果为真就不再向下进行, 直接返回真了
                 }
             } 
             
             if(i < board.length - 1 && board[i + 1][j] != ' ') {
                 if(findWord(board, i + 1, j, word, count)) {
+                    //board[i][j] = word.charAt(count - 1);
                     return true;
                 }
             } 
             
             if(j > 0 && board[i][j - 1] != ' ') {
                 if(findWord(board, i, j - 1, word, count)) {
+                    //board[i][j] = word.charAt(count - 1);
                     return true;
                 }
             } 
             
             if(j < board[0].length - 1 && board[i][j + 1] != ' ') {
                 if(findWord(board, i, j + 1, word, count)) {
+                    //board[i][j] = word.charAt(count - 1);
                     return true;
                 }
             }
             board[i][j] = word.charAt(count - 1); //每次回溯的时候把原来的值填好, 准备进行其它方向的递归, 
             //因为回溯就肯定是没有找到合适的(找到合适的直接就一路true返回了, 原来的值不填好就不填好了, true的时候一路返回并没有把board
-            //填回原样), 所以回溯的时候要把原来改变的' '改回为原来的字母
+            //填回原样, 如果想填回原样, 就在四个方向的if中全都加入board[i][j] = word.charAt(count - 1);), 
+            //所以回溯的时候要把原来改变的' '改回为原来的字母
         }
         
         return false;
