@@ -8,6 +8,41 @@ Given [100, 4, 200, 1, 3, 2],
 The longest consecutive elements sequence is [1, 2, 3, 4]. Return its length: 4.*/
 
 public class Solution {
+    
+    //O(n)时间, O(n)空间
+    public int longestConsecutive(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        Set<Integer> set = new HashSet<Integer>();
+        for(int i = 0; i < nums.length; i++) { //用set自动去重
+            set.add(nums[i]);
+        }
+        
+        int longest = 0;
+        for(int i = 0; i < nums.length; i++) {
+            int down = nums[i] - 1; //从num[i]往下找, 找下连续
+            while(set.contains(down)) {
+                set.remove(down); //要从set中remove(同一个数找过了就不用再找了), 不remove不影响正确性, 但是时间会长
+                down--;
+            }
+            
+            int up = nums[i] + 1;
+            while(set.contains(up)) { //找上连续
+                set.remove(up);
+                up++;
+            }
+            
+            longest = Math.max(longest, up - down - 1); //上与下的差就是长度
+        }
+        
+        return longest;
+    }
+}
+
+
+public class Solution {
     /**
      * @param num: A list of integers
      * @return an integer
