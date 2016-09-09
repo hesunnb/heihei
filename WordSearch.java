@@ -1,6 +1,7 @@
 /*Given a 2D board and a word, find if the word exists in the grid.
 
-The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
+The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or 
+vertically neighboring. The same letter cell may not be used more than once.
 
 For example,
 Given board =
@@ -66,7 +67,8 @@ public class Solution {
                 }
             }
             board[i][j] = word.charAt(count - 1); //每次回溯的时候把原来的值填好, 准备进行其它方向的递归, 
-            //因为回溯就肯定是没有找到合适的(找到合适的直接就一路true返回了), 所以回溯的时候要把原来改变的' '改回为原来的字母
+            //因为回溯就肯定是没有找到合适的(找到合适的直接就一路true返回了, 原来的值不填好就不填好了, true的时候一路返回并没有把board
+            //填回原样), 所以回溯的时候要把原来改变的' '改回为原来的字母
         }
         
         return false;
