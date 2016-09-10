@@ -57,3 +57,6 @@ public class Solution {
         return count1 > count2 ? candidate1 : candidate2;
     }
 }
+/*testCase:
+1,2,1,2,1,3,3,4,4,1,5,5
+*/
