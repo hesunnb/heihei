@@ -42,6 +42,9 @@ public class Solution {
                 count2++;
             }
         }
+        
+        //按照题意7个数里面能超过3的最多有两个数, 最少可以没有, 8也是, 9个数的话就要每个数出现4次才算超过1/3, 所以最多就有两个数
+        //所以两个candidate就够了
         if(count1 > (nums.length / 3)) { // 7 / 3 = 2, 8 / 3 = 2, 大于两次的才要, 而 9 / 3 = 3, 那就是大于3, 4次的才要了, 
         //所以不用转成double计算
             result.add(candidate1);
