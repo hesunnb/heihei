@@ -24,6 +24,90 @@ If the current candidate does not exist in all words' prefix, you could stop bac
 What kind of data structure could answer such query efficiently? Does a hash table work? Why or why not? How about a Trie? 
 If you would like to learn how to implement a basic trie, please work on this problem: Implement Trie (Prefix Tree) first.*/
 
+public class Solution {
+  
+    /*如果用老的方法是对每一个单词都要对矩阵进行一次dfs, 而用字典树的方法先把所有的单词加到字典树中, 然后在矩阵
+    中从每个位置出发, 看能够走出哪些单词, 这样一遍dfs配合字典树就能查出所有符合要求的单词了
+    在leetcode中有个例子是words当中有很多单词它们都有很长的公共前缀(都是a), 老的方法每次都会把前缀走很多遍才能到达
+    要找的单词, 字典树还是只一遍dfs就能走出来, 所以字典树更高效*/
+  
+    public List<String> findWords(char[][] board, String[] words) {
+        List<String> result = new ArrayList<String>();
+        if(board == null || board.length == 0 || board[0].length == 0 || words == null || words.length == 0) {
+            return result;
+        }
+        
+        TrieTree tree = new TrieTree(); //建立一个字典树
+        for(String s : words) { //将words中的所有单词插入到字典树
+            tree.insert(s);
+        }
+        
+        for(int i = 0; i < board.length; i++) { //一遍dfs搜索, 从矩阵的每个位置出发
+            for(int j = 0; j < board[0].length; j++) {
+                search(result, i, j, tree.root, board);
+            }
+        }
+        
+        return result;
+    }
+    
+    class TrieNode { //内部类
+        String s;
+        boolean isString;
+        Map<Character, TrieNode> children;
+        
+        TrieNode() { //初始化
+            s = "";
+            isString = false;
+            children = new HashMap<Character, TrieNode>();
+        }
+    }
+    
+    class TrieTree {
+        TrieNode root;
+        
+        TrieTree() {
+            root = new TrieNode();
+        }
+        
+        void insert(String s) {
+            TrieNode now = root;
+            for(int i = 0; i < s.length(); i++) {
+                if(!now.children.containsKey(s.charAt(i))) {
+                    now.children.put(s.charAt(i), new TrieNode());
+                }
+                now = now.children.get(s.charAt(i));
+            }
+            now.s = s;
+            now.isString = true;
+        }
+    }
+    
+    private int[] dx = {-1, 0, 1, 0}; //按照上, 右, 下, 左的顺序
+    private int[] dy = {0, 1, 0, -1};
+    
+    private void search(List<String> result, int x, int y, TrieNode root, char[][] board){
+        if(root.isString == true) { //找到一个words中的词
+            if(!result.contains(root.s)) { //result中没有这个词的话
+                result.add(root.s); //就加入
+            }
+        }
+        
+        if(x < 0 || x >= board.length || y < 0 || y >= board[0].length || board[x][y] == ' ' || root == null) {
+            return;
+        }
+        
+        if(root.children.containsKey(board[x][y])) {
+            for(int i = 0; i < 4; i++) { //向4个方向进行递归
+                char now = board[x][y];
+                board[x][y] = ' ';
+                search(result, x + dx[i], y + dy[i], root.children.get(now), board); //向下递归
+                board[x][y] = now; //递归回来填充把值填充回来, 补好矩阵
+            }
+        }
+    }
+}
+
 
 public class Solution {
     /**
