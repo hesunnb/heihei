@@ -19,7 +19,7 @@ public class Solution {
      * @return: Maximum profit
      */
      
-    /*O(n^2), 与longest increasing sequence的O(n^2)解法一样, 超时*/
+    /*O(n^2), 与longestIncreasingSubsequence的O(n^2)解法一样, 超时*/
     public int maxProfit(int[] prices) {
         // write your code here
         
