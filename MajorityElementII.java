@@ -34,14 +34,16 @@ public class Solution {
         
         count1 = 0;
         count2 = 0;
-        for(int i = 0; i < nums.length; i++) { //因为要找的值超过了1/3, 那么每三个不同的数消除, 最后肯定会把那个值挑出来, 但是需要在candidate1与candidate2里面再挑一次, 因为两个数只有其中一个是, 另一个是其余的结果
+        for(int i = 0; i < nums.length; i++) { //因为要找的值超过了1/3, 那么每三个不同的数消除, 最后肯定会把那个值挑出来, 
+        //但是需要在candidate1与candidate2里面再挑一次, 因为两个数只有其中一个是, 另一个是其余的结果
             if(candidate1 == nums[i]) {
                 count1++;
             } else if(candidate2 == nums[i]) {
                 count2++;
             }
         }
-        if(count1 > (nums.length / 3)) { // 7 / 3 = 2, 8 / 3 = 2, 大于两次的才要, 而 9 / 3 = 3, 那就是大于3, 4次的才要了, 所以不用转成double计算
+        if(count1 > (nums.length / 3)) { // 7 / 3 = 2, 8 / 3 = 2, 大于两次的才要, 而 9 / 3 = 3, 那就是大于3, 4次的才要了, 
+        //所以不用转成double计算
             result.add(candidate1);
         }
         if(count2 > (nums.length / 3)) {
