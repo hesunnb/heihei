@@ -1,5 +1,39 @@
 /*Given an array of integers, every element appears three times except for one. Find that single one.*/
 
+public class Solution {
+	/**
+	 * @param A : An integer array
+	 * @return : An integer 
+	 */
+	 
+	//容易理解, O(32n)的时间
+    public int singleNumberII(int[] A) {
+        // write your code here
+        
+        if(A == null || A.length == 0) {
+            return Integer.MIN_VALUE;
+        }
+        
+        int result = 0;
+        
+        for(int i = 0; i < 32; i++) {
+            int sum = 0;
+            for(int j = 0; j < A.length; j++) { //让每个数右移0位, 1位...到31位
+                if((A[j] >> i & 1) == 1) { //如果位置上为1, 也应该是3个, 不是3个就是那个多出来的数多那么一位
+                    sum++;
+                    sum %= 3;
+                }
+            }
+            
+            if(sum == 1) { //所以在这里就在result中把多出来那一位放到result里面
+                result |= (sum << i); //sum只可能是1, 因为别人都是3个一起的, 只有一个数多余, 所以出来的不是0就只能是1
+            }
+        }
+        return result;
+    }
+}
+
+
 //最开始让a, b都是0, 宗旨就是相同的数循环3次后, 还会复原成最开始的0, 0
 /*
 testCase:
