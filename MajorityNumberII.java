@@ -46,7 +46,8 @@ public class Solution {
         
         count1 = 0;
         count2 = 0;
-        for(int i = 0; i < nums.size(); i++) { //因为要找的值超过了1/3, 那么每三个不同的数消除, 最后肯定会把那个值挑出来, 但是需要在candidate1与candidate2里面再挑一次, 因为两个数只有其中一个是, 另一个是其余的结果
+        for(int i = 0; i < nums.size(); i++) { //因为要找的值超过了1/3, 那么每三个不同的数消除, 最后肯定会把那个值挑出来, 
+        //但是需要在candidate1与candidate2里面再挑一次, 因为两个数只有其中一个是, 另一个是其余的结果
             if(candidate1 == nums.get(i)) {
                 count1++;
             } else if(candidate2 == nums.get(i)) {
