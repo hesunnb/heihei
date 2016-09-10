@@ -93,7 +93,7 @@ public class Solution {
             }
         }
         
-        if(x < 0 || x >= board.length || y < 0 || y >= board[0].length || board[x][y] == ' ' || root == null) {
+        if(x < 0 || x >= board.length || y < 0 || y >= board[0].length || board[x][y] == ' ') {
             return;
         }
         
