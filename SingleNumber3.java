@@ -35,7 +35,8 @@ public class Solution {
         }
         
         // Get its last set bit
-        diff &= -diff;
+        diff &= -diff; //3与5在set bit位是不相等的, 所以能够分到不同的两组, 其余的数按照set bit也会分成两组, 进入两组的数组随意,
+        //因为都是两两进入, 所以没有问题
         
         // Pass 2 :
         int[] result = {0,0}; // this array stores the two numbers we will return
