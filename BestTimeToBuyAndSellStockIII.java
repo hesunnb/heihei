@@ -47,7 +47,8 @@ class Solution {
         
         int profit = 0;
         for(int i = 0; i < prices.length; i++) {
-            profit = Math.max(profit, left[i] + right[i]);
+            profit = Math.max(profit, left[i] + right[i]); //这个不用right[i + 1]的原因是, 当天卖之后当天还可以买
+            //比如在testCase中, 正数第二个1, 2+4=6才对, 2+3=5就不对了
         }
         
         return profit;
