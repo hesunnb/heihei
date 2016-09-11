@@ -3,7 +3,10 @@ and the index of the last number.
 
  Notice
 
-There is at least one subarray that it's sum equals to zero.*/
+There is at least one subarray that it's sum equals to zero.
+
+Example
+Given [-3, 1, 2, -3, 4], return [0, 2] or [1, 3].*/
 
 public class Solution {
     /**
