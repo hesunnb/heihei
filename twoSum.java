@@ -24,8 +24,8 @@ public class Solution {
         
         for(int i = 0; i < nums.length; i++) {
             if(m.containsKey(target - nums[i])) {
-                result[0] = m.get(target - nums[i]); //哈希表中一定是小的那个
-                result[1] = i; //刚刚扫描到的一定是大的那个
+                result[0] = m.get(target - nums[i]); //哈希表中一定是下标小的那个
+                result[1] = i; //刚刚扫描到的一定是下标大的那个
             } else {
                 m.put(nums[i], i);
             }
