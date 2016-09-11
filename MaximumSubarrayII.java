@@ -44,7 +44,9 @@ public class Solution {
         }
         
         maxSoFar = Integer.MIN_VALUE; //记住一定回归最小值
-        for(int i = 0; i < nums.size() - 1; i++){ //这个就是正序1个maxSoFar+倒序其它的所有数的maxSoFar, 正序前两个maxSoFar+倒序其它的所有数的maxSoFar...这些的和进行比较, 总会有一个正序maxSoFar+倒序maxSoFar的和是最大的, 找到返回即可
+        for(int i = 0; i < nums.size() - 1; i++){ //这个就是正序1个maxSoFar+倒序其它的所有数的maxSoFar, 
+        //正序前两个maxSoFar+倒序其它的所有数的maxSoFar...这些的和进行比较, 总会有一个正序maxSoFar+倒序maxSoFar的和是最大的, 
+        //找到返回即可
             maxSoFar = Math.max(maxSoFar, left[i] + right[i + 1]);
         }
         return maxSoFar;
