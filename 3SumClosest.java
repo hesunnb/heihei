@@ -41,7 +41,7 @@ public class Solution {
                     minDiff = diff;
                     result = sum;
                 }
-                if(diff == 0) {
+                if(diff == 0) { //只有diff = 0的时候需要跳过重复, 但是等于0的时候直接返回了, 并且这道题又不需要返回具体数字, 所以不跳过
                     return sum;
                 } else if(sum < target) {
                     left++;
