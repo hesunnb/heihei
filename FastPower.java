@@ -1,4 +1,4 @@
-/*Calculate the an % b where a, b and n are all 32bit integers.
+/*Calculate the a^n % b where a, b and n are all 32bit integers.
 
 Example
 
@@ -35,7 +35,8 @@ class Solution {
     /*
     testCase: fastPower(2 ,6 ,6)
     调用fastPower(2, 6, 3), 再调用fastPower(2, 6, 1)
-    在fastPower(2, 6, 1)的时候就会返回a % b, 在fastPower(2, 6, 3)的时候会得到2^3%6 = (2^1%6 * 2^1%6)%6, 这时候少了一个2, 所以要product要*2再取余, 最后一步一定是取余
+    在fastPower(2, 6, 1)的时候就会返回a % b, 在fastPower(2, 6, 3)的时候会得到2^3%6 = (2^1%6 * 2^1%6)%6, 这时候少了一个2, 
+    所以要product要*2再取余, 最后一步一定是取余
     
     a^n%b = (a^(n/2)%b * a^(n/2)%b)%b (n为偶数, 奇数的话就是2^5%b = ((2^2)%b * (2^3)%b)%b)
     所以要知道a^n%b, 只需知道a(n/2)%b, 要知道a(n/2)%b, 只需知道a(n/4)%b...所以只需要算log(n)次就结束了(比O(n)好)
