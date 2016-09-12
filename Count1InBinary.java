@@ -36,5 +36,11 @@ public class Solution {
             count++;
         }
         return count;
+        //x - (x - 1) & x可以找出最后一个1的位置
+        //example:
+        //x:                1xxxx1000
+        //x - 1:            1xxxx0111
+        //(x - 1) & x:      1xxxx0000
+        //x - (x - 1) & x:  000001000 最后一个1的位置找出来了
     }
 };
