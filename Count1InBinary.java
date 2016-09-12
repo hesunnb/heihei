@@ -32,7 +32,7 @@ public class Solution {
     public int countOnes(int num) {
         int count = 0;
         while (num != 0) {
-            num = num & (num - 1); //与自己减1按位与, 会使每次num中1的个数少一个
+            num = num & (num - 1); //与自己减1按位与, 会使每次num中1的个数少一个, 这个操作是去掉num二进制数中倒数第一个1
             count++;
         }
         return count;
