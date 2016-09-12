@@ -53,7 +53,7 @@ public class Solution {
                 } else if(sum < 0) {
                     left++;
                     /*while(left < right && nums[left] == nums[left - 1]) { 
-                        left++; //在这里跳过重复也会加快速度, 不过不是必须的
+                        left++; //在这里跳过重复也会加快速度, 不过不是必须的, 上面那两个跳过重复是必须的, 否则会加入重复元素
                     }*/
                 } else {
                     right--;
