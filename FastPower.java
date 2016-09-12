@@ -40,6 +40,8 @@ class Solution {
     
     a^n%b = (a^(n/2)%b * a^(n/2)%b)%b (n为偶数, 奇数的话就是2^5%b = ((2^2)%b * (2^3)%b)%b)
     所以要知道a^n%b, 只需知道a(n/2)%b, 要知道a(n/2)%b, 只需知道a(n/4)%b...所以只需要算log(n)次就结束了(比O(n)好)
-    因为product每次都是余数, 对b求余的余数一定小于b, 所以long能够装下(Integet.MAX_VALUE - 1) * (Integet.MAX_VALUE - 1)
+    因为product每次都是余数, 对b求余的余数一定小于b, 所以long能够装下(Integet.MAX_VALUE - 1) * (Integet.MAX_VALUE - 1) ->
+    (b是Integer.MAX_VALUE, 然后a最大是Integet.MAX_VALUE - 1, 这样product就是Integet.MAX_VALUE - 1, 第一次运算就会得到
+    (Integet.MAX_VALUE - 1) * (Integet.MAX_VALUE - 1), 然后product越算越小)
     */
 };
