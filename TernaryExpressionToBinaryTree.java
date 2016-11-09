@@ -6,7 +6,8 @@ b e
 / \
 c d
 
-我⽤用递归写的，time complexity O(nlogn), space O(1). 时间复杂度⾼高是因为要查找String的分割点，这个每次都要O(N)
+我⽤用递归写的，time complexity O(nlogn)(小于nlogn, 要扫描logn回, 但是每次扫描的长度会小于n), space O(1). 
+时间复杂度⾼高是因为要查找String的分割点，这个每次都要O(N)
 */
 
 package pocketgems;
