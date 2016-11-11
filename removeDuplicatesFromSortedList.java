@@ -53,7 +53,31 @@ public class Solution {
             return head.val == head.next.val ? head.next : head;
     } 
     
-     
+    
+    //for unsorted list
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head == null || head.next == null) {
+            return head;
+        }   
+        
+        Set<Integer> set = new HashSet<>();
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        head = dummy;
+        
+        while(head.next != null) {
+            if(!set.contains(head.next.val)) {
+                set.add(head.next.val);
+                head = head.next;
+            } else {
+                head.next = head.next.next;
+                
+            }
+        }
+        return dummy.next;
+    }
+ 
+ 
     /*用两个指针
     public static ListNode deleteDuplicates(ListNode head) { 
         // write your code here
