@@ -60,7 +60,7 @@ public class Solution {
             return head;
         }   
         
-        Set<Integer> set = new HashSet<>();
+        Set<Integer> set = new HashSet<>(); //用一个hashSet存访问过的值, 再遇到相同的值就跳过
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         head = dummy;
