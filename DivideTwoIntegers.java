@@ -3,6 +3,9 @@
 If it is overflow, return MAX_INT.*/
 
 public class Solution {
+    /*复杂度是log2(diviend / divisor), 就是两个数化成二进制数位数的差(这个是最坏情况, 就是每次diviend只能被减去一位, 比如1111100, 100; 
+    100乘以2到头, 只能消下去1111100中的一个1, 然后从新乘还只能消掉一个1; 好点儿的1111100, 111; 这样一次会减下去挺多, 次数就比位数差要小了): 
+    log2(diviend) + 1是它二进制数的位数, log2(divisor) + 1是它二进数位数, 两个数相减就是结果*/
     public int divide(int dividend, int divisor) {
         if (divisor == 0 || dividend == Integer.MIN_VALUE && divisor == -1) { //如果除数是0, 或者被除数是最小值同时除数还是-1的话
             return Integer.MAX_VALUE; //这两种情况都越界, 所以返回最大值
