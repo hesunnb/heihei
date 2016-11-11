@@ -23,7 +23,7 @@ public class Solution {
     public int atoi(String str) {
         // write your code here
         
-        if(str == null || str.length() == 0) {
+        if(str == null) {
             return 0;
         }
         
