@@ -10,7 +10,7 @@ public class Solution {
         //用Java的函数库棒棒哒
         if(s == null || s.length() == 0)
         {
-            return ""; //如果要是"",它翻转完了也是"",所以不能返回null
+            return s; //如果要是"",它翻转完了也是"",所以不能返回null
         }
         
         String[] array = s.split(" ");
