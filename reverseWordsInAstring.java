@@ -30,45 +30,34 @@ public class Solution {
         //所以在这里要处理返回"", 否则下面的substring取值就是(0, -1), 该报错啦
         
         //剩下的就是把最后一个空格给去掉
-        
+    }
     
-        
-        
-        //用两个栈来实现翻转过程
-        /*Stack statement=new Stack();
-        Stack unit=new Stack();
-        
-        int i=0;
-        while(i<=s.length()) //必须要加等于，因为如果输入为"world",没有空格，为了能够执行到把unit栈中的值放到statement栈中，就需要进入下面的if语句，所以要把=加上来，然后倒一次
-        {
-            if(i==s.length()||s.charAt(i)==' ') //正式的单词前面或后面或中间又连续的空格都会被直接跳过，到下面的i++，因为遇到一个空格的时候，unit栈中的东西都被倒到statement栈中了，所以unit为空，之后的空格也一直为空，下面的就都不执行，只有i++
-            {
-                if(!unit.isEmpty())
-                {
-                    if(!statement.isEmpty()) //只有statement栈中不为空的时候，才加入空格，不会加入多余的空格
-                    {
-                        statement.push(' ');
-                    }
-                }
-                while(!unit.isEmpty())
-                {
-                    statement.push(unit.peek()); //倒一下
-                    unit.pop();
-                }
-            }
-            else
-            {
-                unit.push(s.charAt(i));
-            }
-            i++;
+    
+    //针对不让用split的情况
+    public String reverseWords(String s) {
+        if(s == null || s.length() == 0) {
+            return s;
         }
-        StringBuffer result=new StringBuffer(); //StringBuffer类的字符串可以在尾部追加值，而string类的不可以
-        while(!statement.isEmpty())
-        {
-            result.append(statement.peek());
-            statement.pop();
+        
+        s = s.trim();
+        if(s.length() == 0) {
+            return s;
         }
-        return result.toString(); //该题返回string类型，所以要toString转换一下*/
+        
+        StringBuilder sb = new StringBuilder();
+        int left = 0;
+        for(int i = 0; i < s.length(); i++) { //现在开头结尾的肯定都是字母了
+            if(s.charAt(i) != ' ') { //是字母都跳过去
+                continue;
+            }
+            sb.insert(0, " " + s.substring(left, i)); //插入截取出来的单词
+            while(s.charAt(i) == ' ') { //跳过中间的空格
+                i++;
+            }
+            left = i; //left到了新的单词的头部
+        }
+        sb.insert(0, s.substring(left)); //插入最后一个单词
+        return sb.toString(); //返回结果
     }
 }
 
