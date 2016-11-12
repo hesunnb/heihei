@@ -52,6 +52,35 @@ public class Solution {
               3. 1,1,1,2,3,5,6,6  尾重复
     */
     
+    //for unsorted list, 删掉所有重复的, 扫两遍, 第一遍用哈希表存每个元素出现的次数, 第二次扫描大于1的就全部移除
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+        Map<Integer, Integer> map = new HashMap<>();
+        ListNode node = head;
+        while(node != null) {
+            if(!map.containsKey(node.val)) {
+                map.put(node.val, 1);
+            } else {
+                map.put(node.val, map.get(node.val) + 1);
+            }
+            node = node.next;
+        }
+        
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        head = dummy;
+        while(head.next != null) {
+            if(map.get(head.next.val) > 1) {
+                head.next = head.next.next;
+            } else {
+                head = head.next;
+            }
+        }
+        return dummy.next;
+    }
+ 
     //也是引用虚拟节点的方法，来自于网上用了一个虚拟节点，两个指针 
     /*public static ListNode deleteDuplicates(ListNode head) {
         // write your code here
