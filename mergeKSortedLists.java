@@ -159,8 +159,8 @@ public class Solution {
     
 //方法3：Heap的方法:(用comparator),思路就是把每个链表的头结点装入优先级队列然后根据比较器自动挑出最小的，取出来，
         //然后从取出点的那个链表再加入一个结点继续比较
-        //复杂度：nklog(k),k是lists的长度，n是每个链表的长度，comparator是用二分法来找位置然后加入值的，
-        //所以每加入一个值就是一个log(k),总共加入nk次
+        //复杂度：knlog(n), n是lists的长度, k是每个链表的长度
+        //堆的长度是n, 所以每加入一个值就是一个log(n),总共加入nk次
     public ListNode mergeKLists(List<ListNode> lists) {  
         // write your code here
         //List里面装的都是每个链表的头结点
