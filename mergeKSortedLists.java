@@ -161,36 +161,36 @@ public class Solution {
         //然后从取出点的那个链表再加入一个结点继续比较
         //复杂度：knlog(n), n是lists的长度, k是每个链表的长度
         //堆的长度是n, 所以每加入一个值就是一个log(n),总共加入nk次
-    public ListNode mergeKLists(List<ListNode> lists) {  
-        // write your code here
-        //List里面装的都是每个链表的头结点
-
-        if(lists == null || lists.size() == 0) //leetcode中是(ListNode[] lists),就把list.size()全部换成lists.length就行啦
-        {
+    //List里面装的都是每个链表的头结点
+    public ListNode mergeKLists(ListNode[] lists) {
+        if(lists == null || lists.length == 0) {
             return null;
         }
-        Queue<ListNode> heap = new PriorityQueue<ListNode>(lists.size(), ListNodeComparator);
-        for(int i = 0; i < lists.size(); i++) //加入所有链表的头结点
-        {
-            if(lists.get(i) != null)
-            {
-                heap.add(lists.get(i));
+        
+        Queue<ListNode> queue = new PriorityQueue<ListNode>(lists.length, new listComparator());
+        for(int i = 0; i < lists.length; i++) { //加入所有链表的头结点
+            if(lists[i] != null) {
+                queue.add(lists[i]);
             }
         }
         
         ListNode dummy = new ListNode(0);
         ListNode tail = dummy;
-        while(!heap.isEmpty())
-        {
-            ListNode head = heap.poll();
-            tail.next = head;
-            tail = head;
-            if(head.next != null)
-            {
-                heap.add(head.next); //每次再加入一个点继续比较
+        while(!queue.isEmpty()) {
+            ListNode node = queue.poll();
+            tail.next = node;
+            tail = node;
+            if(node.next != null) {
+                queue.add(node.next); //每次再加入一个点继续比较
             }
         }
         return dummy.next;
+    }
+    
+    class listComparator implements Comparator<ListNode> {
+        public int compare(ListNode l1, ListNode l2) {
+            return l1.val - l2.val;
+        }
     }
     
     private Comparator<ListNode> ListNodeComparator = new Comparator<ListNode>() //匿名类的写法
