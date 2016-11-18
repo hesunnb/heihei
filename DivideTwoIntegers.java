@@ -23,7 +23,7 @@ public class Solution {
         int result = 0;
         while(a >= b){
             int shift = 0;
-            while(a >= (b << shift)){ //a向左移位直到比b大
+            while(a >= (b << shift)){ //b向左移位直到比a大
                 shift++; //记录移位次数
             }
             a -= b << (shift - 1); //a减去b刚刚比a小的那个数
