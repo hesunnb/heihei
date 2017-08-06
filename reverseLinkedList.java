@@ -22,15 +22,13 @@ public class Solution {
     //链表testCase的考虑就是1个节点, 2个节点, 3个节点, 基本就可以了
     public ListNode reverse(ListNode head)
     {
-        if(head == null || head.next == null)
-        {
+        if(head == null || head.next == null) {
             return head;
         }
         
         ListNode prev = null;
         ListNode temp = null;
-        while(head != null)
-        {
+        while(head != null) {
             temp = head.next; //把head的下一个节点保存一下
             head.next = prev; //head的指针指向前一个节点
             prev = head; //prev向后窜
@@ -57,15 +55,15 @@ public class Solution {
     //也是虚拟节点法，跟着走一遍就好啦 
     public ListNode reverse(ListNode head) {
         // write your code here
-        if(head == null || head.next == null)
-        {
+        
+        if(head == null || head.next == null) {
             return head;
         }
+        
         ListNode dummy = new ListNode(0);
         ListNode p = head;
         ListNode q = head;
-        while(q != null)
-        {
+        while(q != null) {
             q = q.next;
             p.next = dummy.next;
             dummy.next = p;
