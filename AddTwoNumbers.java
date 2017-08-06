@@ -27,6 +27,10 @@ public class Solution {
     public ListNode addLists(ListNode l1, ListNode l2) {
         // write your code here
         
+	if(l1 == null || l2 == null) {
+            return null;
+        }
+	    
         ListNode head = new ListNode(0);
         ListNode cur1 = l1; //用cur1和cur2往后走的好处是没有改变l1与l2的值, 这样这个函数中如果有其它程序想用这两个链表可以直接使用l1与l2
         ListNode cur2 = l2;
