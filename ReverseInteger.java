@@ -16,7 +16,7 @@ public class Solution {
             if(next_rst/10 != rst) { //这句就是看看有没有越界发生，发生啦截取后的值除以10以后肯定和原来的不一样
             //int的值在计算的情况下，结果大于intmax会截取比如int n = 123456789 * 123456789，会截取；但是如果直接int n = 123456789999L, 
 	    //就是把long给int，是不可以哒   
-                rst  = 0;
+                rst = 0;
                 break;
             }
             rst = next_rst; //没有越界的情况下给结果
