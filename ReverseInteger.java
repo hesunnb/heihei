@@ -3,12 +3,14 @@ public class Solution {
      * @param n the integer to be reversed
      * @return the reversed integer
      */
+	
+    //考虑的testcase:12345, 1000都满足
     public int reverseInteger(int n) {
         // Write your code here
         
         int rst = 0; //rst就是reverseInteger的缩写
         
-        while(n != 0) {
+        while(n != 0) { 
             int next_rst = rst * 10 + n % 10; //把尾数提取出来，存下
             n = n / 10; //把尾数撇掉
             if(next_rst/10 != rst) { //这句就是看看有没有越界发生，发生啦截取后的值除以10以后肯定和原来的不一样
