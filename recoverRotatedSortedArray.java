@@ -5,7 +5,8 @@ public class Solution {
      */
     public void recoverRotatedSortedArray(ArrayList<Integer> nums) {
         // write your code
-        //[4,5,1,2,3],如果不考虑O[1]的空间，做法就是，开一个数组，找到原数组中的最小值，然后从最小值开始右侧先拷贝到新数组中，然后从头到最小值前一位置再拷贝到新数组中，还得把新数组复制回去，相当费劲
+        //[4,5,1,2,3],如果不考虑O[1]的空间, 做法就是, 开一个数组, 找到原数组中的最小值, 然后从最小值开始右侧先拷贝到新数组中, 
+        //然后从头到最小值前一位置再拷贝到新数组中，还得把新数组复制回去，相当费劲
         
        for(int index = 0; index < nums.size() - 1; index++) //减一是为了防止越界
        {
