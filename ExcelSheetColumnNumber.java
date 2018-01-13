@@ -12,6 +12,23 @@ For example:
     
 class Solution {
 
+//solution1:
+    public int titleToNumber(String s) {
+        
+        if(s == null || s.length() == 0) {
+            return -1;
+        }
+        
+        int result = 0;
+		for (int i = 0; i < s.length(); i++) {
+			result = result * 26 + (s.charAt(i) - 'A' + 1); 
+            //相当于逢26进1, 跟逢10进1一个道理, 类比一下就明白了, 从高位向低位走, 乘上进位加相应位上的数
+		}
+		return result;
+    }
+    
+    
+    
 //solution2:
     public int titleToNumber(String s) {
         
