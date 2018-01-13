@@ -21,7 +21,8 @@ class Solution {
         
         int result = 0;
         for(int i = s.length(); i > 0; i--) {
-        	result += (int)Math.pow(26, i - 1) * (s.charAt(s.length() - i) - 'A' + 1); //每一位都乘以相应的26的个数, 然后再乘以相对A的差值
+        	result += (int)Math.pow(26, i - 1) * (s.charAt(s.length() - i) - 'A' + 1); 
+            //每一位都乘以相应的26的个数, 然后再乘以相对A的差值
         }
         return result;
     }
