@@ -14,7 +14,7 @@ public class Solution {
 	        result += n & 1; //因为每次都是移位完了加n&1, 所以每次都是在0的基础上加的不影响
 	        n >>>= 1;   // CATCH: must do unsigned shift, >>>逻辑右移补0, >>算数右移补1
 	        if (i < 31) // CATCH: for last digit, don't shift! i是0的时候, result移位完就已经是2位了, 所以i在30的时候, 
-          //result就是32位; n一定移位32次, i移位31次, 所以像001000这种的不影响的, 就变为000100
+          //result就是移位至第32位; n一定移位32次, i移位31次, 所以像001000这种的不影响的, 就变为000100
 	            result <<= 1;
 	    }
 	    return result;
