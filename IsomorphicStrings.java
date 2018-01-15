@@ -20,8 +20,8 @@ class Solution {
     //solution1:
     public boolean isIsomorphic(String s, String t) {
         if(s == null || t == null) {
-			    return false;
-		    }
+	    return false;
+	}
         
         int[] m1 = new int[256]; //用于装256个ASCII码字符
         int[] m2 = new int[256];
@@ -41,8 +41,8 @@ class Solution {
     //solution2:(own)
     public boolean isIsomorphic(String s, String t) {
         if(s == null || t == null) {
-			    return false;
-		    }
+	    return false;
+	}
 		
         Map<Character, Character> map = new HashMap<>();
         for(int i = 0; i < s.length(); i++) {
