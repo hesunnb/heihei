@@ -99,6 +99,7 @@ public int countPrimes(int n) {
 
 
 class Solution {
+    //复杂度: O(n log log n)
     public int countPrimes(int n) {
         boolean isPrime[] = new boolean[n];
         for(int i = 2; i < n; i++) { //假设n是97, 那么2到96都是true
