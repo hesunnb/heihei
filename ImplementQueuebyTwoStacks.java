@@ -49,6 +49,11 @@ public class Queue {
         }
         return stack1.peek();
     }
+ 
+    /** Returns whether the queue is empty. */
+    public boolean empty() {
+        return stack1.isEmpty() && stack2.isEmpty();
+    }
     
     private void stack2ToStack1() {
         while(!stack2.isEmpty()) {
