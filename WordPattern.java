@@ -12,7 +12,7 @@ You may assume pattern contains only lowercase letters, and str contains lowerca
 
 class Solution {
 
-    //solution2:(own), 与Isomorphic Strings这道题意思非常接近, 属于类型题
+    //solution2:(own), 与Isomorphic Strings同构字符串这道题意思非常接近, 属于类型题
     public boolean wordPattern(String pattern, String str) {
         
         if(pattern == null || str == null) {
