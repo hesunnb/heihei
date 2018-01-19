@@ -92,7 +92,7 @@ class Solution {
     }
     //对于上述细节的举例:
     /*public static void testFuc() {
-		String s = "x";
+	    String s = "x";
 	    Character c = s.charAt(0);
 	    System.out.println(c.equals(s)); //说明equals比较内容的同时也比较类型
 	    
