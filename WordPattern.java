@@ -21,7 +21,6 @@ class Solution {
         
         String[] sArr = str.split(" ");
         if(sArr.length != pattern.length()) {
-        	System.out.println(1);
         	return false;
         }
         
