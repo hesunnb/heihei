@@ -19,7 +19,7 @@ class Solution {
 
     //solution1:
     public boolean isIsomorphic(String s, String t) {
-        if(s == null || t == null) {
+        if(s == null || t == null || s.length() != t.length()) {
 	    return false;
 	}
         
@@ -40,7 +40,7 @@ class Solution {
     
     //solution2:(own)
     public boolean isIsomorphic(String s, String t) {
-        if(s == null || t == null) {
+        if(s == null || t == null || s.length() != t.length()) {
 	    return false;
 	}
 		
