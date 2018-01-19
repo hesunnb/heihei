@@ -90,4 +90,25 @@ class Solution {
         }
         return true;
     }
+    //对于上述细节的举例:
+    /*public static void testFuc() {
+		String s = "x";
+	    Character c = s.charAt(0);
+	    System.out.println(c.equals(s)); //说明equals比较内容的同时也比较类型
+	    
+	    Map map = new HashMap();
+	    map.put('c',1); //在map中key的比较也是使用equals, 所以即使内容相同而类型不同的话也是不相等的
+	    map.put("c",1);
+	    System.out.println(map);
+	    
+	    Integer i1 = 1; //这种和字符串常量一样, 相同值都是相同地址, 然后分配给不用的引用, 如果是new Integer就
+	    Integer i2 = 1; //不相等了
+	    System.out.println(i1 == i2);
+	    
+	    String s1 = "a";
+	    String s2 = new String("a");
+	    Character c3 = 'a';
+	    System.out.println(Objects.equals(s1, s2)); //Objects.equals()这个方法比较的还是内容
+	    System.out.println(Objects.equals(s1, c3)); //同时这个方法也比较类型, 类型不同即使内容相同也不行
+	}*/
 }
