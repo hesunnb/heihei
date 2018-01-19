@@ -12,7 +12,30 @@ You may assume pattern contains only lowercase letters, and str contains lowerca
 
 class Solution {
 
-    
+    //solution1:(用Objects.equals()方法解决了int i循环的问题)
+    public boolean wordPattern(String pattern, String str) {
+        if(pattern == null || str == null) {
+            return false;
+        }
+        
+        String[] sArr = str.split(" ");
+        if(sArr.length != pattern.length()) {
+        	return false;
+        }
+        
+        Map map = new HashMap();
+        for(int i = 0; i < pattern.length(); i++) {
+            //配对的双方的下标应该同时变化, 如果不同时变化就说明不符合模式条件; 然后哈希表的put方法对相同的key放入不同的值的时候会返回之前的
+            //old value
+            if(!Objects.equals(map.put(pattern.charAt(i), i), map.put(sArr[i], i))) { 
+                //在这里使用Objects.equals()方法解决了用int i循环的问题
+                //Objects.equals()比较的是值与对象类型(一些细节比较附在下面), 同时也能比较null与null的相等, 因为a.equals(b)这种方式null会出现
+                //问题
+                return false;
+            }
+        }
+        return true;
+    }
     
     
     //solution2:(使用了Integer i进行循环, 避免了autoboxing-same-value-to-different-objects-problem的问题)
