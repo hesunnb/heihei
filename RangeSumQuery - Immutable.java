@@ -16,7 +16,7 @@ class NumArray {
     int[] nums;
     public NumArray(int[] nums) {
         if(nums == null) { //构造函数也可以返回, 就是不接着往下初始化了
-        	return;
+            return;
         }
         for(int i = 1; i < nums.length; i++) { //nums[i]就是从下标0到下标i的所有元素的和
             nums[i] += nums[i - 1];
