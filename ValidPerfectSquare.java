@@ -50,9 +50,9 @@ class Solution {
             if (mid * mid == num) {
                 return true;
             } else if (mid * mid < num) {
-                low = mid + 1;
+                low = mid;
             } else {
-                high = mid - 1;
+                high = mid;
             }
         }
         if(low * low == num) {
