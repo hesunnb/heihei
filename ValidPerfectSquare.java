@@ -63,4 +63,18 @@ class Solution {
         }
         return false;
     }
+    
+    
+    //solution3: Newton Method
+    public boolean isPerfectSquare(int num) {
+        if(num <= 0) {
+            return false;
+        }
+        
+        long x = num;
+        while (x * x > num) {
+            x = (x + num / x) >> 1;
+        }
+        return x * x == num;
+    }
 }
