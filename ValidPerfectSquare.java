@@ -44,9 +44,9 @@ class Solution {
             return false;
         }
         
-        long low = 1, high = num; //low是0是1都可以
-        while (low <= high) {
-            long mid = (low + high) / 2; //因为num是positive number, 所以(low+high) >>> 1逻辑右移也可
+        long low = 0, high = num; //low是0, 二分模板套用更改的
+        while (low + 1 < high) {
+            long mid = low + (high - low) / 2; //因为num是positive number, 所以(low+high) >>> 1逻辑右移也可
             if (mid * mid == num) {
                 return true;
             } else if (mid * mid < num) {
@@ -54,6 +54,12 @@ class Solution {
             } else {
                 high = mid - 1;
             }
+        }
+        if(low * low == num) {
+        	return true;
+        }
+        if(high * high == num) {
+        	return true;
         }
         return false;
     }
