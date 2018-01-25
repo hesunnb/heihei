@@ -38,7 +38,7 @@ class Solution {
     
     
     
-    //solution2: binary search time complexity is O(log(n))
+    //solution2: binary search time complexity is O(log(n)), O(log(n))比O(sqrt(n))快
     public boolean isPerfectSquare(int num) {
         if(num <= 0) {
             return false;
