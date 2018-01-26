@@ -22,7 +22,7 @@ class Solution {
     x ^ (y ^ z) = (x ^ y) ^ z. Therefore if we XOR the characters in strings s and t and suppose s = ‘abcd’ and t = ‘abcde’, then:
     (a ^ b ^ c ^ d) ^ (a ^ b ^ c ^ d ^ e) = (a ^ a) ^ (b ^ b) ^ (c ^ c) ^ (d ^ d) ^ e = 0 ^ 0 ^ 0 ^ 0 ^ e = e
     Therefore by XOR’ing all characters in strings s and t the end result you get is the extra character added in t*/
-    //solution1:
+    //solution1: (异或法)
     public char findTheDifference(String s, String t) {
         
         if(s == null || t == null) {
@@ -50,7 +50,7 @@ class Solution {
      }*/
 
 	
-     //solution2:
+     //solution2: (ASCII码差值法)
      public char findTheDifference(String s, String t) {
         
         if(s == null || t == null) {
