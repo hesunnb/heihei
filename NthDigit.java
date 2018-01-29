@@ -29,19 +29,19 @@ class Solution {
         }
         
         int len = 1;
-	long count = 9;
+	long base = 9;
 	int start = 1;
 
-	while (n > len * count) {
-		n -= len * count;
-		len += 1;
-		count *= 10;
-		start *= 10;
+	while (n > len * base) { //判断n落在的区间
+		n -= len * base;
+		len += 1; //len 用来记录target 数的长度
+		base *= 10; 
+		start *= 10; //循环的时候不用，等会用来重组target 数
 	}
 
 	start += (n - 1) / len;
 	String s = Integer.toString(start);
-	return Character.getNumericValue(s.charAt((n - 1) % len));
+	return Character.getNumericValue(s.charAt((n - 1) % len)); //在target 中的位置
     }
     /*分析
     1,2 … 8,9, 10, 11, 12 … 98, 99, 100, 101, 102 … 998, 999, 1000 …
@@ -66,5 +66,7 @@ class Solution {
     digit, we know range from 1th digit to 9th digit belongs to numbers from 1 to 9 and range from 10th to 189th belongs to numbers 
     from 10 to 99, right? So it is obvious that the next number should be 100 and the 192th digit should be the 3rd digit of 
     100(now n=3). OK, back to the code, if we donot minus 1 from n and then devide the len, the 192th digit would go to the next 
-    number which is 101.*/
+    number which is 101.
+    比如要找第192位, 192-189=3, 而3减1, 2减1, 1减1对应的0,1,2正好是charAt的三个位置, 而start从100开始正好(n - 1) / len=0, 余数能够对应
+    到100的各个位上*/
 }
