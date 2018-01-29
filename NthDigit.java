@@ -39,9 +39,9 @@ class Solution {
 		start *= 10;
 	}
 
-	start += n / len;
+	start += (n - 1) / len;
 	String s = Integer.toString(start);
-	return Character.getNumericValue(s.charAt(n % len - 1));
+	return Character.getNumericValue(s.charAt((n - 1) % len));
     }
     /*分析
     1,2 … 8,9, 10, 11, 12 … 98, 99, 100, 101, 102 … 998, 999, 1000 …
