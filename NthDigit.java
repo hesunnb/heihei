@@ -29,19 +29,19 @@ class Solution {
         }
         
         int len = 1;
-		long count = 9;
-		int start = 1;
+	long count = 9;
+	int start = 1;
 
-		while (n > len * count) {
-			n -= len * count;
-			len += 1;
-			count *= 10;
-			start *= 10;
-		}
+	while (n > len * count) {
+		n -= len * count;
+		len += 1;
+		count *= 10;
+		start *= 10;
+	}
 
-		start += n / len;
-		String s = Integer.toString(start);
-		return Character.getNumericValue(s.charAt(n % len - 1));
+	start += n / len;
+	String s = Integer.toString(start);
+	return Character.getNumericValue(s.charAt(n % len - 1));
     }
     /*分析
     1,2 … 8,9, 10, 11, 12 … 98, 99, 100, 101, 102 … 998, 999, 1000 …
