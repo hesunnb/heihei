@@ -58,7 +58,6 @@ class Solution {
             map[s.charAt(i)]++;
         }
         
-        boolean flag = false;
         for(int i = 0; i < map.length; i++) {
             if(map[i] != 0) {
                 if(map[i] % 2 == 0) { //就查是不是偶数, 就是成对的, 是就加上
@@ -69,7 +68,7 @@ class Solution {
                 }
             } 
         }
-        if(flag) {
+        if(result != s.length()) {
             result += 1; //如果要是出现过奇数的话, 补上一位, 因为最后回文串里只能有一个奇数
         }
         return result;
