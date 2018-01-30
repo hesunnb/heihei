@@ -20,7 +20,7 @@ One longest palindrome that can be built is "dccaccd", whose length is 7.*/
 
 class Solution {
 
-    //solution1:方法好在用hashset就一遍循环然后还不用设置自己方法的那个flag位
+    //solution1:方法好在用hashset就一遍循环
     public int longestPalindrome(String s) {
         
         if(s == null || s.length() == 0) {
@@ -67,7 +67,7 @@ class Solution {
                 }
             } 
         }
-        if(result != s.length()) {
+        if(result != s.length()) { //运用长度来判断是不是偶数个
             result += 1; //如果要是出现过奇数的话, 补上一位, 因为最后回文串里只能有一个奇数
         }
         return result;
