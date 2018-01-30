@@ -24,6 +24,35 @@ Both numbers with value 2 are both considered as second maximum.*/
 
 class Solution {
 
+    //solution1:非常好, 用Integer对象来解决问题
+    public int thirdMax(int[] nums) {
+        
+        if(nums == null || nums.length == 0) {
+            return Integer.MIN_VALUE;
+        }
+        
+        Integer max1 = null;
+        Integer max2 = null;
+        Integer max3 = null;
+        for (Integer n : nums) {
+            if (n.equals(max1) || n.equals(max2) || n.equals(max3)) {
+                continue; //出现过的数就不比较了, 如果是比现在三个数小的数重复出现, 比如1已经被替换掉了, 1又出现了, 虽然三个数都不equals1, 
+                //但是1不能替换走现在的三个数中的任意一个; 那如果更大数出现就会进来了, 与这三个数相同的数也会直接跳过, 所以ok
+            }
+            if (max1 == null || n > max1) { //max1最大
+                max3 = max2;
+                max2 = max1;
+                max1 = n;
+            } else if (max2 == null || n > max2) { //max2次大
+                max3 = max2;
+                max2 = n;
+            } else if (max3 == null || n > max3) { //max3第三大
+                max3 = n;
+            }
+        }
+        return max3 == null ? max1 : max3; //用Integer的好处就是利用对象类型避开了只有两个数的时候不好判断返回值的情况
+    }
+    
     //solution2:优先级队列和set
     public int thirdMax(int[] nums) {
         
