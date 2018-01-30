@@ -64,7 +64,6 @@ class Solution {
                     result += map[i];
                 } else {
                     result += (map[i] - 1); //不是的话加上比奇数小的偶数
-                    flag = true;
                 }
             } 
         }
