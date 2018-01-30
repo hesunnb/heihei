@@ -19,7 +19,31 @@ One longest palindrome that can be built is "dccaccd", whose length is 7.*/
 
 class Solution {
 
-
+    //solution1:方法好在用hashset就一遍循环然后还不用设置自己方法的那个flag位
+    public int longestPalindrome(String s) {
+        
+        if(s == null || s.length() == 0) {
+            return 0;
+        }
+        
+        Set<Character> hs = new HashSet<Character>();
+        int count = 0;
+        for(int i = 0; i < s.length(); i++) {
+            if(hs.contains(s.charAt(i))) {
+                hs.remove(s.charAt(i)); //如果成对出现就移出
+                count++; //count指对数, 对数加1
+            } else {
+                hs.add(s.charAt(i)); //如果第一次出现, 就加入到set中
+            }
+        }
+        
+        if(!hs.isEmpty()) {
+            return count * 2 + 1; //扫完字符串如果set中最后还有剩余, 说明有奇数个的存在, 补上一个
+        }
+        return count * 2; //字符串s都是偶数个字母, 直接返回乘以2
+    }
+    
+    
     //solution2:(own)
     public int longestPalindrome(String s) {
         
