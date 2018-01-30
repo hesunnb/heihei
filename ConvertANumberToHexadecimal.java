@@ -30,12 +30,12 @@ class Solution {
         }
         
         char[] map = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
-        String result = "";
+        StringBuilder result = new StringBuilder("");
         while(num != 0) {
-            result = map[num & 15] + result; //顺序不能反, 不能写成+=, 高位是要加在前面的, 15的二进制是1111, &15是取出4位用的
+            result.insert(0, map[num & 15]); //顺序不能反, 不能写成+=, 高位是要加在前面的, 15的二进制是1111, &15是取出4位用的
             num >>>= 4; //num逻辑右移4位
         }
-        return result;
+        return result.toString();
     }
     /*
     Basic idea: each time we take a look at the last four digits of
