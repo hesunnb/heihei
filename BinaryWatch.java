@@ -28,8 +28,8 @@ class Solution {
         for(int h = 0; h < 12; h++) {
             for(int m = 0; m < 60; m++) {
                 //if(Integer.bitCount(h) + Integer.bitCount(m) == num) { //两种解法
-                if(Integer.bitCount((h << 6) + m) == num) {
-                    result.add(String.format("%d:%02d", h, m));
+                if(Integer.bitCount((h << 6) + m) == num) { //Integer.bitCount是查一个整型数化为二进制里面有多少个1
+                    result.add(String.format("%d:%02d", h, m)); //%d用于接收整型数, %02d的02是说总共有两位, 当m不够两位时用0补齐
                 }
             }
         }
