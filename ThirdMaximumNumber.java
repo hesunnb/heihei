@@ -53,6 +53,7 @@ class Solution {
         return max3 == null ? max1 : max3; //用Integer的好处就是利用对象类型避开了只有两个数的时候不好判断返回值的情况
     }
     
+    
     //solution2:优先级队列和set
     public int thirdMax(int[] nums) {
         
