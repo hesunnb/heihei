@@ -30,6 +30,7 @@ The substring with start index = 2 is "ab", which is an anagram of "ab".*/
 
 
 class Solution {
+    //关于substring的问题有统一模板, 这个就是使用的模板
     public List<Integer> findAnagrams(String s, String p) {
         
         List<Integer> result = new ArrayList<>();
