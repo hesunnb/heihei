@@ -28,10 +28,10 @@ class Solution {
             //字母出现的时候d的值一直都会被计算
             
             while (counter > 0) { //当有重复字母的时候马上进入这个循环, 处理有重复字母的情况
-                char charTemp = s.charAt(begin);
-                if (map.get(charTemp) > 1) counter--; //遇到重复字母counter就--, 然后去掉重复字母, 此时end与begin之间就没有重
+                char tempc = s.charAt(begin);
+                if (map.get(tempc) > 1) counter--; //遇到重复字母counter就--, 然后去掉重复字母, 此时end与begin之间就没有重
                 //复字母了然后退出此while循环, 从新计算d的长度
-                map.put(charTemp, map.get(charTemp)-1);
+                map.put(tempc, map.get(tempc)-1);
                 begin++;
             }
             d = Math.max(d, end - begin); //end与begin之间一直都是map里面的所有字母, 有重复字母的时候就会进入子while循环去重, 
