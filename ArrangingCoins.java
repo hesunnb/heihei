@@ -29,6 +29,25 @@ Because the 4th row is incomplete, we return 3.*/
 
 class Solution {
 
+    //solution1:求根公式法
+    public int arrangeCoins(int n) {
+        if(n <= 0) {
+            return 0;
+        }
+        
+        return (int) ((Math.sqrt(1 + 8.0 * n) - 1) / 2); //纯数学问题, Negative root is ignored and positive root is used instead. 
+        //Note that 8.0 * n is very important because it will cause Java to implicitly autoboxed the intermediate result into double 
+        //data type. The code will not work if it is simply 8 * n. Alternatively, an explicit casting can be done 8 * (long) n).
+        
+        /*1 + 2 + 3 + 4 + 5 + 6 + 7 + ... + x <= n
+        (x * ( x + 1)) / 2 <= n
+        然后就是x^2 + x - 2n <= 0
+        不等式求根, 求根公式是x = (-b+-sqrt(b^2-4ac)) / 2
+        因为是<=, 所以x1 <= x <= x2; 如果是>=, x <= x1 或 x >= x2
+        所以这里取x2的值就是最终的值*/
+    }
+    
+    
     /*solution2:二分法, 以n为结尾数进行二分
     1 + 2 + 3 + 4 + 5 + 6 + 7 + ... + x <= n
     (x * ( x + 1)) / 2 <= n
