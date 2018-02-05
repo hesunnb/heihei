@@ -20,15 +20,13 @@ public class Solution {
         // write your code here
         
         //方法一：find the first position >= target（首选）
-        if(A == null || A.length == 0)
-        {
+        if(A == null || A.length == 0) {
             return 0;
         }
         
         int start = 0, end = A.length - 1;
-        while(start + 1 < end)
-        {
-           int mid = start + (end - start) / 2;
+        while(start + 1 < end) {
+            int mid = start + (end - start) / 2;
             if(A[mid] == target) {
                 return mid;
             } else if (A[mid] < target) {
@@ -40,16 +38,13 @@ public class Solution {
         
         //退出来以后，start和end的值现在已经固定了，接下来就是判断target相对于start和end的位置
         //==是target存在于数组中的情况
-        if(A[start] >= target) //target在start前返回start的下标
-        {
+        if(A[start] >= target) { //target在start前返回start的下标
             return start;
         }
-        else if(A[end] >= target) //target在start后end前返回end下标
-        {
+        else if(A[end] >= target) { //target在start后end前返回end下标
             return end;
         }
-        else //target在end后返回end下标+1
-        {
+        else { //target在end后返回end下标+1
             return end + 1;
         }
         
