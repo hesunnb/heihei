@@ -20,7 +20,9 @@ Explanation: It's the substring "abc" four times. (And the substring "abcabc" tw
 
 class Solution {
 
-    //solution1:运用周期性
+    //solution1:运用周期性, 如果s里面的一个子串可以重复几次就能完全表示s, 那么s就具有周期性, s+s就是仅仅使用两个s单元连接来验证周期性,
+    //所以就转化为验证s是否有周期性的问题, s+s之后去掉头尾, 保证原来的两个s不具有周期性, 然后看两个s的连接处有没有周期性, 如果有, 说明
+    //s本身就具有周期性, 那么具有周期性的字符串自然能够找出其中的某个子串来组成s
     public boolean repeatedSubstringPattern(String s) {
         
         if(s == null || s.length() == 0) {
