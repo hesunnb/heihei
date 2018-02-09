@@ -26,6 +26,8 @@ You need to output 2.*/
 
 
 class Solution {
+    
+    //solution2:(own)把s数组装到list中, 然后二分查找list满足g, 每次从list里面移除找到的结果
     public int findContentChildren(int[] g, int[] s) {
         if(g == null || s == null || g.length == 0 || s.length == 0) {
             return 0;
@@ -46,11 +48,14 @@ class Solution {
                 continue;
             }
             list.remove(index);
+            if(list.size() == 0) { //这个要加, list里面没东西也就结束了
+                break;
+            }
         }
         return sum;
     }
     
-    public int searchValue(List<Integer> list, int target) {
+    private int searchValue(List<Integer> list, int target) {
         
         int start = 0, end = list.size() - 1;
         while(start + 1 < end) {
