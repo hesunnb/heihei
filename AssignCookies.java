@@ -27,6 +27,24 @@ You need to output 2.*/
 
 class Solution {
     
+    //solution1:greedy
+    public int findContentChildren(int[] g, int[] s) {
+        if(g == null || s == null || g.length == 0 || s.length == 0) {
+            return 0;
+        }
+        
+        Arrays.sort(g);
+        Arrays.sort(s);
+        int i = 0;
+        for(int j = 0; i < g.length && j < s.length; j++) { //正好j往后走刚刚满足i处的元素
+            if(g[i] <= s[j]) { //i被满足
+                i++;
+            }
+        }
+        return i;
+    }
+    
+    
     //solution2:(own)把s数组装到list中, 然后二分查找list满足g, 每次从list里面移除找到的结果
     public int findContentChildren(int[] g, int[] s) {
         if(g == null || s == null || g.length == 0 || s.length == 0) {
