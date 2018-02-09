@@ -20,6 +20,29 @@ Explanation: It's the substring "abc" four times. (And the substring "abcabc" tw
 
 class Solution {
 
+    //solution1:运用周期性
+    public boolean repeatedSubstringPattern(String s) {
+        
+        if(s == null || s.length() == 0) {
+            return false;
+        }
+        
+        String str = s + s;
+        return str.substring(1, str.length() - 1).contains(s);  
+    }
+    /*The explanation for why that works is pretty straight forward.
+
+    Consider a string S="helloworld". Now, given another string T="lloworldhe", can we figure out if T is a rotated version of S? 
+    Yes, we can! We check if S is a substring of T+T.
+
+    Fine. How do we apply that to this problem? We consider every rotation of string S such that it’s rotated by k units [k < len(S)] 
+    to the left. Specifically, we’re looking at strings "elloworldh", "lloworldhe", "loworldhel", etc...
+
+    If we have a string that is periodic (i.e. is made up of strings that are the same and repeat R times), then we can check if the 
+    string is equal to some rotation of itself, and if it is, then we know that the string is periodic. Checking if S is a sub-string 
+    of (S+S)[1:-1] basically checks if the string is present in a rotation of itself for all values of R such that 0 < R < len(S).*/
+    
+    
     //solution2:(own), testcase:"a"是false, 因为a后面没有appending的东西
     public boolean repeatedSubstringPattern(String s) {
         
