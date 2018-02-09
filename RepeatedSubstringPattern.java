@@ -27,7 +27,7 @@ class Solution {
             return false;
         }
         
-        for(int i = 0; i < s.length() / 2; i++) { //每次只要从头开始截取字串判断就行
+        for(int i = 0; i < s.length() / 2; i++) { //每次只要从头开始截取字串判断就行, 走一半就够了, 前一半与后一半比较一次就够了
             int len = i + 1;
             String baseString = s.substring(0, len); //从头开始的基础字串
             int j = 0;
