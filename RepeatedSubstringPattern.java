@@ -45,7 +45,33 @@ class Solution {
     of (S+S)[1:-1] basically checks if the string is present in a rotation of itself for all values of R such that 0 < R < len(S).*/
     
     
-    //solution2:(own), testcase:"a"是false, 因为a后面没有appending的东西
+    //solution2:跟自己写的方法思路一致, 就是这个是从长到小收缩, 我是从小到大扩张, 这个写法更简洁些
+    public boolean repeatedSubstringPattern(String s) {
+        
+        if(s == null || s.length() == 0) {
+            return false;
+        }
+        
+        int len = s.length();
+    	for(int i = len / 2; i >= 1; i--) { //只看一半就够
+    		if(len % i == 0) { //The length of the repeating substring must be a divisor of the length of the input string
+    			int m = len / i; //能够分成m段
+    			String baseString = s.substring(0,i); //就是说从0到i的子串的长度必须能够被s的长度整除
+    			int j;
+    			for(j = 1; j < m; j++) { //一步一步的截取子串
+    				if(!baseString.equals(s.substring(j*i,j*i+i))) { //i就是baseString的长度
+                        break;
+                    }
+    			}
+    			if(j == m) //如果j能够正好走到最后, 那么说明找到了子串
+    			    return true;
+    		}
+    	}
+    	return false; 
+    }
+    
+    
+    //solution3:(own), testcase:"a"是false, 因为a后面没有appending的东西
     public boolean repeatedSubstringPattern(String s) {
         
         if(s == null || s.length() == 0) {
