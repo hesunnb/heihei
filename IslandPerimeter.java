@@ -15,6 +15,39 @@ Explanation: The perimeter is the 16 yellow stripes in the image below:*/
 
 
 class Solution {
+ 
+    //solution1:
+    public int islandPerimeter(int[][] grid) {
+        if(grid == null || grid[0] == null) {
+            return -1;
+        }
+        
+        int islands = 0, neighbours = 0;
+
+        //每个岛屿都乘以4就是每个岛的周长, neighbours * 2就是如果岛屿与岛屿相接, 那么每个岛屿都应该去掉一条边, 所以就是*2
+        //每个岛屿都只计算右边和下边的, 这样除了最外边一层(比如题目中的4*4的图, 最外边包裹的那层16条边)所有的边都判断到了
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] == 1) {
+                    islands++; // count islands
+                    
+                    if (i < grid.length - 1 && grid[i + 1][j] == 1) { //如果相邻的话就会有重复边, 其实neighbours就是重复边的条数
+                        neighbours++;
+                    } // count down neighbours
+                    
+                    if (j < grid[i].length - 1 && grid[i][j + 1] == 1) { //最右边一列和最下边一层是会访问到的, 最下边一层会判断右边的岛屿
+                        //最右边一列会判断下边的岛屿
+                        neighbours++;
+                    } // count right neighbours
+                }
+            }
+        }
+
+        return islands * 4 - neighbours * 2;
+    }
+ 
+ 
+    //solution2:(own)
     public int islandPerimeter(int[][] grid) {
         if(grid == null || grid[0] == null) {
             return -1;
