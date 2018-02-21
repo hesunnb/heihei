@@ -46,6 +46,67 @@ class Solution {
     Time complexity: max(O(nlogn), O(mlogn)) - m is the length of houses, n is the length of heaters. nlogn是排序的时间, mlogn是二分查找
     的时间*/
     
+    //solution1:自己写二分, 就是searchInsertPosition那道题
+    public int findRadius(int[] houses, int[] heaters) {
+        
+        if(houses == null || heaters == null || houses.length == 0 || heaters.length == 0) {
+            return -1;
+        }
+        
+        Arrays.sort(heaters);
+        int result = Integer.MIN_VALUE;
+        
+        for (int house : houses) {
+            int index = searchInsert(heaters, house); //自己写的就不用处理库中Arrays.binarySearch的返回值了
+            int dist1 = 0;
+            int dist2 = 0;
+            if(index - 1 >= 0) { //如果左边有加热器, 或者右边没有加热器的corner case
+                dist1 = house - heaters[index - 1]; //house到左边加热器的距离
+            } else {
+                dist1 = Integer.MAX_VALUE;
+            }
+            
+            if(index < heaters.length) { //如果右边有加热器, 或者左边没有加热器的corner case
+                dist2 = heaters[index] - house; //house到右边加热器的距离
+            } else {
+                dist2 = Integer.MAX_VALUE;
+            }
+        
+            result = Math.max(result, Math.min(dist1, dist2));
+        }
+        
+        return result;
+    }
+    
+    public int searchInsert(int[] A, int target) {
+       
+        int start = 0, end = A.length - 1;
+        while(start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if(A[mid] == target) {
+                return mid;
+            } else if (A[mid] < target) {
+                start = mid;
+            } else {
+                end = mid;
+            }
+        }
+        
+        //退出来以后，start和end的值现在已经固定了，接下来就是判断target相对于start和end的位置
+        //==是target存在于数组中的情况
+        if(A[start] >= target) { //target在start前返回start的下标
+            return start;
+        }
+        else if(A[end] >= target) { //target在start后end前返回end下标
+            return end;
+        }
+        else { //target在end后返回end下标+1
+            return end + 1;
+        }
+    }
+    
+    
+    //solution2:用库的Arrays.binarySearch
     public int findRadius(int[] houses, int[] heaters) {
         
         if(houses == null || heaters == null || houses.length == 0 || heaters.length == 0) {
