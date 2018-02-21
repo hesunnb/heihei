@@ -36,6 +36,16 @@ class Solution {
     
     1
     1,2,3,4*/
+    /*The idea is to leverage decent Arrays.binarySearch() function provided by Java.
+
+    1. For each house, find its position between those heaters (thus we need the heaters array to be sorted).
+    2. Calculate the distances between this house and left heater and right heater, get a MIN value of those two values. Corner cases 
+    are there is no left or right heater.
+    3. Get MAX value among distances in step 2. It’s the answer.
+    
+    Time complexity: max(O(nlogn), O(mlogn)) - m is the length of houses, n is the length of heaters. nlogn是排序的时间, mlogn是二分查找
+    的时间*/
+    
     public int findRadius(int[] houses, int[] heaters) {
         
         if(houses == null || heaters == null || houses.length == 0 || heaters.length == 0) {
