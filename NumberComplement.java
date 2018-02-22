@@ -28,11 +28,25 @@ class Solution {
         return ~num & (Integer.highestOneBit(num) - 1); //~包括符号位也会取反, 对于8位就满的值(计算器8位), 那么01111111就是最大值127, 
         //10000000是-128, -1变为正的127, 所以没有问题
         
-        /*As several people pointed out, we don’t need to left shift 1. That’s true because the highest 1 bit will always become 0 in the
-        Complement result. So we don’t need to take care of that bit.*/
+        /*As several people pointed out, we don’t need to left shift 1. That’s true because the highest 1 bit will always become 0 in 
+        the Complement result. So we don’t need to take care of that bit.*/
     }
     
     
     //solution2:
-    
+    public int findComplement(int num) {
+        
+        int sum = 0;
+        int count = 0;
+        
+        while (sum < num) {
+            sum += Math.pow(2, count); //i+Math.pow(2, j)的时候i转成double进行运算, 把结果重新赋给i的时候又转成int
+            count++;
+        }
+        
+        return sum - num;
+    }
+    /*for example:
+    100110, its complement is 011001, the sum is 111111. So we only need get the min number large or equal to num, then do 
+    substraction*/
 }
