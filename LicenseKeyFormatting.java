@@ -37,7 +37,7 @@ class Solution {
         }
         
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < S.length(); i++) {
+        for(int i = 0; i < S.length(); i++) { //把'-'都去掉放到StringBuilder中
             char c = S.charAt(i);
             if(c == '-') continue;
             if(Character.isLowerCase(c)) {
@@ -46,19 +46,19 @@ class Solution {
             sb.append(c);
         }
 
-        int pos = sb.length() % K;
-        if(pos != 0 && pos < sb.length()) {
+        int pos = sb.length() % K; //计算最开始插入的地方
+        if(pos != 0 && pos < sb.length()) { //对于"2",2这种例子, pos要比字符串长度小才行, 要不会得到"2-"
         	sb.insert(pos, '-');
-        	pos += 1;
+        	pos += 1; //加1是把刚加入的'-'位置空过去
         }
         while(pos < sb.length()) {
         	System.out.println(pos);
         	pos += K;
-        	if(pos >= sb.length()) {
+        	if(pos >= sb.length()) { //如果加K之后已经到了字符串尾, 就不再加'-'了
         		break;
         	}
         	sb.insert(pos, '-');
-        	pos += 1;
+        	pos += 1; //把刚加入的'-'位置空过去
         }
         
         return sb.toString();
