@@ -21,7 +21,7 @@ class Solution {
         
         int[] sortNums = nums.clone();
         Arrays.sort(sortNums); //排序好的数组
-		    Map<Integer, Integer> map = new HashMap<>();
+	Map<Integer, Integer> map = new HashMap<>();
         for(int i = 0; i < sortNums.length; i++) { //把每个人的分数和对应的名次存到map中
             map.put(sortNums[i], sortNums.length - i);
         }
@@ -37,7 +37,7 @@ class Solution {
             } else {
                 result[i] = String.valueOf(map.get(nums[i])); //除了头3名之外, 其余人直接赋值相应名次
             }
-		    }
+	}
         return result;
     }
 }
