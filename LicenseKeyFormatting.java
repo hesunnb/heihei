@@ -90,12 +90,12 @@ class Solution {
         	pos += 1; //加1是把刚加入的'-'位置空过去
         }
         while(pos < sb.length()) {
-        	pos += K;
-        	if(pos >= sb.length()) { //如果加K之后已经到了字符串尾, 就不再加'-'了
-        		break;
-        	}
-        	sb.insert(pos, '-');
-        	pos += 1; //把刚加入的'-'位置空过去
+        pos += K;
+        if(pos >= sb.length()) { //如果加K之后已经到了字符串尾, 就不再加'-'了
+            break;
+        }
+        sb.insert(pos, '-');
+        pos += 1; //把刚加入的'-'位置空过去
         }
         
         return sb.toString();
