@@ -52,7 +52,6 @@ class Solution {
         	pos += 1; //加1是把刚加入的'-'位置空过去
         }
         while(pos < sb.length()) {
-        	System.out.println(pos);
         	pos += K;
         	if(pos >= sb.length()) { //如果加K之后已经到了字符串尾, 就不再加'-'了
         		break;
