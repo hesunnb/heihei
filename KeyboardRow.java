@@ -51,7 +51,7 @@ class Solution {
     }
     
     
-    //solution3:(own)
+    //solution2:(own)
     public String[] findWords(String[] words) {
         
         if(words == null || words.length == 0) {
@@ -92,5 +92,16 @@ class Solution {
         
         return list.toArray(new String[0]); //toArray方法用泛型这个, 传入数组小于集合长度会新建一个数组进行拷贝,
         //向传入数组中拷贝
+    }
+    
+    
+    //solution3:用Stream, 是java的一个工具
+    public String[] findWords(String[] words) {
+        
+        if(words == null || words.length == 0) {
+            return new String[0];
+        }
+        
+        return Stream.of(words).filter(s -> s.toLowerCase().matches("[qwertyuiop]*|[asdfghjkl]*|[zxcvbnm]*")).toArray(String[]::new);
     }
 }
