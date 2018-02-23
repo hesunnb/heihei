@@ -51,7 +51,23 @@ class Solution {
         //掉过来返回结果
     }
     
-    //solution2:(own)
+    
+    //solution2:自己感觉这个方法更好
+    public String licenseKeyFormatting(String S, int K) {
+        
+        if(S == null || S.length() == 0 || K <= 0) {
+            return "";
+        }
+        
+        StringBuilder sb = new StringBuilder(S.toUpperCase().replaceAll("-",""));
+        for(int p = sb.length() - K; p > 0; p -= K) { //倒着插入'-'就不会出现正序循环考虑sb长度变化的问题了
+            sb.insert(p, "-");
+        }
+        return sb.toString();
+    }
+    
+    
+    //solution3:(own)
     public String licenseKeyFormatting(String S, int K) {
         
         if(S == null || S.length() == 0) {
