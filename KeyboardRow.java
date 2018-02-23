@@ -17,7 +17,6 @@ class Solution {
 
     public String[] findWords(String[] words) {
         
-        List<String> list = new ArrayList<>();
         if(words == null || words.length == 0) {
             return new String[0];
         }
@@ -53,10 +52,6 @@ class Solution {
             }
         }
         
-        String[] result = new String[list.size()];
-        for(int i = 0; i < result.length; i++) {
-        	result[i] = list.get(i);
-        }
-        return result;
+        return list.toArray(new String[0]);
     }
 }
