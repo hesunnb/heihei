@@ -29,6 +29,28 @@ String S is non-empty.*/
 
 class Solution {
 
+    //solution1:
+    public String licenseKeyFormatting(String S, int K) {
+        
+        if(S == null || S.length() == 0 || K <= 0) {
+            return "";
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        for (int i = S.length() - 1; i >= 0; i--) {
+            if (S.charAt(i) != '-') {
+                if(sb.length() % (K + 1) == K) { //对(K + 1)求余=K这步特别好, 比如K=4, 因为算上'-'是K+1一组, 4,9,14...正好
+                    //都是能整除5之后多4个, 这4个是K个字符, 然后是一个'-'
+                    sb.append('-');
+                }
+                sb.append(S.charAt(i));
+            }
+        }
+            
+        return sb.reverse().toString().toUpperCase(); //倒着循环的原因是正好第一组不知道有多少个, 然后剩出来的都给第一组, 然后reverse
+        //掉过来返回结果
+    }
+    
     //solution2:(own)
     public String licenseKeyFormatting(String S, int K) {
         
