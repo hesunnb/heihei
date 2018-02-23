@@ -21,6 +21,7 @@ class Solution {
             return new String[0];
         }
         
+        List<String> list = new ArrayList<>();
         String row1 = "qwertyuiop";
         String row2 = "asdfghjkl";
         String row3 = "zxcvbnm";
@@ -52,6 +53,7 @@ class Solution {
             }
         }
         
-        return list.toArray(new String[0]);
+        return list.toArray(new String[0]); //toArray方法用泛型这个, 传入数组小于集合长度会新建一个数组进行拷贝,
+        //向传入数组中拷贝
     }
 }
