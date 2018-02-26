@@ -17,7 +17,23 @@ Note: The input will be a non-empty word consisting of uppercase and lowercase l
 
 class Solution {
     
-    //例子里面只有这三种情况的字符串; 中间带空格的, 然后其它字符像.;-这些testcase中都没有
+    //solution1: 例子里面只有这三种情况的字符串; 中间带空格的, 然后其它字符像.;-这些testcase中都没有
+    public boolean detectCapitalUse(String word) {
+        
+        if(word == null || word.length() == 0) {
+            return false;
+        }
+        
+        int cnt = 0;
+        for(char c: word.toCharArray()) {
+            if('Z' - c >= 0) cnt++;
+        }
+        return (cnt==0 || cnt==word.length() || (cnt==1 && 'Z' - word.charAt(0)>=0));
+        //分别对应全是小写, 全是大写, 首字母大写
+    }
+    
+    
+    //solution2: 例子里面只有这三种情况的字符串; 中间带空格的, 然后其它字符像.;-这些testcase中都没有
     public boolean detectCapitalUse(String word) {
         
         if(word == null || word.length() == 0) {
