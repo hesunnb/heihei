@@ -38,16 +38,16 @@ class Solution {
         int len = candies.length / 2;
         int kind = 0;
         
-    	  for(int i = 0; i < list.size(); i++) { //因为只统计糖果种类, 所以做一个循环, 从每种里面拿出一个给kind, 如果还没循环完一遍kind
+    	for(int i = 0; i < list.size(); i++) { //因为只统计糖果种类, 所以做一个循环, 从每种里面拿出一个给kind, 如果还没循环完一遍kind
         //的长度就已经是candies的一半了那说明每种给一个就足够了; 如果全部循环完了kind比candies的一半还要小, 那剩下的无异于就是增加数目来达到
         //candies的一半, 对种类没有影响
             if(kind < len) {
                 kind += 1;
-        	  } else {
+            } else {
                 break;
             }
         }
 
-		    return kind;
+	return kind;
     }
 }
