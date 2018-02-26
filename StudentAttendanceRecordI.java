@@ -46,4 +46,17 @@ class Solution {
     
     
     //solution2:
+    public boolean checkRecord(String s) {
+        
+        if(s == null || s.length() == 0) {
+            return false;
+        }
+        
+        if(s.indexOf("A") != s.lastIndexOf("A") || s.contains("LLL")) { //这个方法很巧妙
+            return false;
+        }
+        return true;
+    }
+    
+    //solution3:
 }
