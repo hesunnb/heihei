@@ -21,6 +21,27 @@ The number in given array is in range [-100,000, 100,000].*/
 
 class Solution {
 
+    //solution1:用HashSet
+    public int distributeCandies(int[] candies) {
+        
+        if(candies == null || candies.length == 0) {
+            return 0;
+        }
+        
+        Set<Integer> kinds = new HashSet<>();
+        for (int candy : candies) {
+            kinds.add(candy);
+        }
+        if(kinds.size() >= candies.length / 2) { //思路差不多, 种类数大于candies的一半, 比如1,2,3,4,5,6,7,8 这个就是kinds和candies一样,
+            //完全大于, -> 1,1,2,2,3,3,4,4 kinds是1,2,3,4 正好等于candies的一半, 这些情况就是每种糖只拿出一个就够了; 1,1,1,1,2,2,2,3,3,4 kinds
+            //是1,2,3,4少于candies的一半, 因为每种都已经拿过了, 剩下的也就是徒增数目, 对种类没有影响
+            return candies.length / 2;
+        } else {
+            return kinds.size();
+        }
+    }
+	
+	
     //solution2:(own)
     public int distributeCandies(int[] candies) {
         
