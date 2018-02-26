@@ -33,7 +33,13 @@ class Solution {
     }
     
     
-    //solution2: 例子里面只有这三种情况的字符串; 中间带空格的, 然后其它字符像.;-这些testcase中都没有
+    //solution2: 正则
+    public boolean detectCapitalUse(String word) {
+        return word.matches("[A-Z]+|[a-z]+|[A-Z][a-z]+");
+    }
+    
+    
+    //solution3: 例子里面只有这三种情况的字符串; 中间带空格的, 然后其它字符像.;-这些testcase中都没有
     public boolean detectCapitalUse(String word) {
         
         if(word == null || word.length() == 0) {
