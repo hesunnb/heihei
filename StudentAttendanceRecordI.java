@@ -58,5 +58,13 @@ class Solution {
         return true;
     }
     
-    //solution3:
+    //solution3:正则表达式
+    public boolean checkRecord(String s) {
+        
+        if(s == null || s.length() == 0) {
+            return false;
+        }
+        
+        return !s.matches(".*LLL.*|.*A.*A.*"); //四个L及多个L都包含三个L的情况
+    }
 }
