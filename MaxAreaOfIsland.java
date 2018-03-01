@@ -46,13 +46,13 @@ class Solution {
             count = maxArea(grid, count + 1, i - 1, j); //把count的值每次都保存下来, 作为当前已经搜索到的岛屿面积
         } 
         if(i < grid.length - 1 && grid[i + 1][j] == 1) {
-        	count = maxArea(grid, count + 1, i + 1, j);
+            count = maxArea(grid, count + 1, i + 1, j);
         } 
         if(j > 0 && grid[i][j - 1] == 1) {
-        	count = maxArea(grid, count + 1, i, j - 1);
+            count = maxArea(grid, count + 1, i, j - 1);
         } 
         if(j < grid[0].length - 1 && grid[i][j + 1] == 1) {
-        	count = maxArea(grid, count + 1, i, j + 1);
+            count = maxArea(grid, count + 1, i, j + 1);
         }
         return count;
     }
