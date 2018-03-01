@@ -36,9 +36,29 @@ The given r and c are all positive.*/
 
 
 class Solution {
+ 
+    //solution1:
     public int[][] matrixReshape(int[][] nums, int r, int c) {
         
-        if(nums == null || nums.length == 0 || (nums.length*nums[0].length) != (r * c) || r <= 0 || c <= 0) {
+        if(nums == null || nums.length == 0 || (nums.length*nums[0].length) != (r*c) || r <= 0 || c <= 0) {
+            return nums;
+        }
+        
+        int m = nums[0].length;
+        int[][] result = new int[r][c];
+        
+        for (int i = 0; i < r*c; i++) {
+            result[i/c][i%c] = nums[i/m][i%m]; //各自矩阵对各自的列求余就可以了, 因为此时这两个矩阵的数目元素一定是一样的
+        }
+        
+        return result;
+    }
+ 
+    
+    //solution2:(own)
+    public int[][] matrixReshape(int[][] nums, int r, int c) {
+        
+        if(nums == null || nums.length == 0 || (nums.length*nums[0].length) != (r*c) || r <= 0 || c <= 0) {
             return nums;
         }
         
