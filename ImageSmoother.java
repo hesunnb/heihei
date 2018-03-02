@@ -22,6 +22,8 @@ The length and width of the given matrix are in the range of [1, 150].*/
 
 class Solution {
 
+    //discuss还有o(1)解法, 不过是c的
+ 
     //solution2:(own)就是最简单的把周围的点的值都加上然后计算
     public int[][] imageSmoother(int[][] M) {
         
