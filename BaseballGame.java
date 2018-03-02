@@ -37,29 +37,31 @@ Every integer represented in the list will be between -30000 and 30000.*/
 
 
 class Solution {
+    
     public int calPoints(String[] ops) {
         
         if(ops == null || ops.length == 0) {
             return Integer.MIN_VALUE;
         }
         
+        int sum = 0;
         List<Integer> list = new ArrayList<>(); //开个list, 按照要求装入数据即可, testcase里面并没有出现C,D,+开头滴情况
         for(int i = 0; i < ops.length; i++) {
             if(ops[i].equals("C")) {
+                sum -= list.get(list.size() - 1);
                 list.remove(list.size() - 1);
             } else if(ops[i].equals("D")) {
                 list.add(list.get(list.size() - 1) * 2);
+                sum += list.get(list.size() - 1);
             } else if(ops[i].equals("+")) {
                 list.add(list.get(list.size() - 1) + list.get(list.size() - 2));
+                sum += list.get(list.size() - 1);
             } else {
                 list.add(Integer.parseInt(ops[i]));
+                sum += list.get(list.size() - 1);
             }
         }
         
-        int sum = 0;
-        for(int i : list) {
-            sum += i;
-        }
         return sum;
     }
 }
