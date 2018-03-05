@@ -12,6 +12,34 @@ Input: "LL"
 Output: false*/
 
 class Solution {
+    
+    //solution1:宗旨就是回到原点的话, 上下走的应该一样, 左右应该走的一样
+    public boolean judgeCircle(String moves) {
+        
+        if(moves == null || moves.length() == 0) {
+            return false;
+        }
+        
+        int x = 0, y = 0;
+        for(int i = 0; i < moves.length(); i++) {
+            if(moves.charAt(i) == 'U') {
+                x++;
+            } else if(moves.charAt(i) == 'D') {
+                x--;
+            } else if(moves.charAt(i) == 'L') {
+                y++;
+            } else if(moves.charAt(i) == 'R') {
+                y--;
+            }
+        }
+        if(x == 0 && y == 0) {
+            return true;
+        }
+        return false;
+    }
+    
+    
+    //solution2:(own)
     public boolean judgeCircle(String moves) {
         
         if(moves == null || moves.length() == 0) {
