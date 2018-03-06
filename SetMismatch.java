@@ -13,6 +13,32 @@ The given array's numbers won't have any order.*/
 
 
 class Solution {
+    
+    //solution1:
+    public int[] findErrorNums(int[] nums) {
+        
+        if(nums == null || nums.length == 0) {
+            return null;
+        }
+        
+        int[] res = new int[2];
+        for (int i : nums) {
+            if (nums[Math.abs(i) - 1] < 0) { //如果已经变为负, 说明此数重复了
+                res[0] = Math.abs(i);
+            } else {
+                nums[Math.abs(i) - 1] *= -1; //把元素变成下标, 把下标对应的值变为负
+            }
+        }
+        for (int i=0;i<nums.length;i++) {
+            if (nums[i] > 0) {
+                res[1] = i+1; //因为数组当中缺少的那个数对应的变成下标的值不是负数, 所以到这个地方把下标+1就是对应的值了
+            }
+        }
+        return res;
+    }
+    
+    
+    //solution3:(own)
     public int[] findErrorNums(int[] nums) {
         
         if(nums == null || nums.length == 0) {
