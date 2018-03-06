@@ -37,7 +37,24 @@ class Solution {
     }
     
     
-    //solution2: 开了O(sqrt(n))的空间, 复杂度也是O(sqrt(n))
+    //solution2: 这个方法其实更好, 复杂度O(sqrt(n))
+    public boolean judgeSquareSum(int c) {
+        
+        if (c < 0) {
+            return false;
+        }
+
+        for(int i = 0; i <= (int)Math.sqrt(c); i++) {
+            int t = (int)Math.sqrt(c - i*i);
+            if(t*t + i*i == c) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    //solution3: 开了O(sqrt(n))的空间, 复杂度也是O(sqrt(n))
     public boolean judgeSquareSum(int c) {
         HashSet<Integer> set = new HashSet<Integer>();
         
