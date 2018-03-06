@@ -38,6 +38,26 @@ class Solution {
     }
     
     
+    //solution2:
+    public int[] findErrorNums(int[] nums) {
+        
+        if(nums == null || nums.length == 0) {
+            return null;
+        }
+        
+        Set<Integer> set = new HashSet<>();
+        int duplicate = 0, n = nums.length;
+        long sum = (n * (n+1)) / 2; //long的好处是防止越界, 如果题目给的数组长度再大一些就用long了
+        for(int i : nums) {
+            if(set.contains(i)) duplicate = i;
+            sum -= i; //求出原始的sum然后不断减i, 就是原数组与重复数组数的差值(可正可负, 比如[2,2]输出[2,1]这种就是负数), 
+            //把差值直接加在duplicate上就行, 简化了判断差值正负
+            set.add(i);
+        }
+        return new int[] {duplicate, (int)sum + duplicate};
+    }
+    
+    
     //solution3:(own)
     public int[] findErrorNums(int[] nums) {
         
