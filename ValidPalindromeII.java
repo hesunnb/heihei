@@ -30,7 +30,7 @@ class Solution {
         int start = 0, end = s.length() - 1;
         while (start < end) {
             if (s.charAt(start) != s.charAt(end)) {
-                return isPalindromic(s, start+1, end) || isPalindromic(s, start, end-1);
+                return isPalindromic(s, start+1, end) || isPalindromic(s, start, end-1); //移掉左边一位或右边一位继续判断
             }
             start++;
             end--;
