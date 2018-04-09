@@ -23,7 +23,7 @@ The binary representation of 10 is: 1010.*/
 
 class Solution {
     
-    //solution2:
+    //solution1:
     public boolean hasAlternatingBits(int n) {
         
         //0和1都算真
@@ -43,8 +43,25 @@ class Solution {
         n & (n+1)   0 0 0 0 0 0 0 0
         */
 
-        n = n ^ (n>>1);
-        return (n & n+1) == 0;
+        n = n ^ (n>>>1);
+        return (n & (n+1)) == 0;
+    }
+    
+    //solution2:
+    public boolean hasAlternatingBits(int n) {
+        
+        //0和1都算真
+        if(n < 0) {
+            return false;
+        }
+        /*Xor the number with itself shifted right twice and check whether everything after the leading 1-bit became/stayed 0. 
+        Xor is 0 iff the bits are equal, so we get 0-bits iff the pair of leading 1-bit and the 0-bit in front of it are repeated 
+        until the end.
+
+        000101010
+      ^ 000001010
+      = 000100000*/
+        return ((n ^= n>>>2) & (n-1)) == 0; //方法思路同solution1, 一个+1法, 一个-1法
     }
     
     //solution3:
