@@ -24,7 +24,8 @@ The binary representation of 10 is: 1010.*/
 class Solution {
     public boolean hasAlternatingBits(int n) {
         
-        if(n <= 0) {
+        //0和1都算真
+        if(n < 0) {
             return false;
         }
         
