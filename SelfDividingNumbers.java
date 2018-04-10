@@ -15,6 +15,30 @@ Note:
 The boundaries of each input argument are 1 <= left <= right <= 10000.*/
 
 class Solution {
+    
+    //solution1:没有用转成字符串
+    public List<Integer> selfDividingNumbers(int left, int right) {
+        
+        List<Integer> result = new ArrayList<>();
+        
+        if(left < 1 || right > 10000) {
+            return result;
+        }
+        
+        for (int i = left; i <= right; i++) {
+            int j = i;
+            for (; j > 0; j /= 10) {
+                if ((j % 10 == 0) || (i % (j % 10) != 0)) { //0本身或者以0结尾不行, 不能整除的也不行
+                    break;
+                }
+            }
+            if (j == 0) result.add(i); 
+        }
+
+        return result;
+    }
+    
+    //solution2:转成字符串
     public List<Integer> selfDividingNumbers(int left, int right) {
         
         List<Integer> result = new ArrayList<>();
