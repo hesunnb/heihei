@@ -25,6 +25,24 @@ Each element nums[i] will be an integer in the range [-1000, 1000].*/
 
 class Solution {
     
+    //solution1:更易理解与写
+    public int pivotIndex(int[] nums) {
+        int sum = 0, left = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        
+        for (int i = 0; i < nums.length; i++) { //对于2,0,0,0   0,0,0,2都适用
+            if (left * 2 == sum - nums[i]) {
+                return i;
+            }
+            left += nums[i];
+        }
+
+        return -1;  
+    }
+    
+    //solution2:想法和上面一样, 写法不同
     //testcase: 0,0,0,0,0    1,0,0,0,0这种的返回的index是0, 也就是说0下标的左边和就是0; 同理0,0,0,0,1这种返回下标4
     public int pivotIndex(int[] nums) {
         
