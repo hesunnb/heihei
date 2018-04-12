@@ -11,6 +11,26 @@ Elements of the given array will be in the range [-10,000, 10,000].*/
 
 class Solution {
 
+    //solution1:相同的想法, 用sliding window
+    public double findMaxAverage(int[] nums, int k) {
+        if(nums == null || nums.length == 0 || k <= 0 || k > nums.length) {
+            return Double.NEGATIVE_INFINITY;
+        }
+        
+        int sum = 0;
+        for (int i = 0; i < k; i++) {
+            sum += nums[i];
+        }
+        int max = sum;
+        
+        for (int i = k; i < nums.length; i++) {
+            sum += nums[i] - nums[i - k]; //加上最新的, 减掉k个之前的
+            max = Math.max(max, sum); //找最大和
+        }
+        
+        return max / 1.0 / k; //最后变成double一返回就行
+    }
+    
     //solution2:
     public double findMaxAverage(int[] nums, int k) {
         
