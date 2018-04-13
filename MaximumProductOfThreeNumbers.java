@@ -11,6 +11,8 @@ The length of the given array will be in range [3,104] and all elements are in t
 Multiplication of any three numbers in the input won't exceed the range of 32-bit signed integer.*/
 
 class Solution {
+    
+    //solution1:one pass
     public int maximumProduct(int[] nums) {
         
         if(nums == null || nums.length == 0) {
@@ -41,5 +43,19 @@ class Solution {
             }
         }
         return Math.max(max1*max2*max3, max1*min1*min2);
+    }
+    
+    
+    //solution2:排个序
+    public int maximumProduct(int[] nums) {
+        
+        if(nums == null || nums.length == 0) {
+            return Integer.MIN_VALUE;
+        }
+        
+        Arrays.sort(nums);
+        int a = nums[nums.length - 1] * nums[nums.length - 2] * nums[nums.length - 3]; //3个最大
+        int b = nums[0] * nums[1] * nums[nums.length - 1]; //1个最大, 2个最小
+        return a > b ? a : b;
     }
 }
