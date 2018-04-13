@@ -8,13 +8,13 @@ the contiguous subarray [4,−1,2,1] has the largest sum = 6.*/
 // Dicussion Solution(O(n))
 public class Solution {
     public int maxSubArray(int[] A) {
-        if (A == null || A.length == 0) {
+        if (nums == null || nums.length == 0) {
             return 0;
         }
-        int maxSoFar=A[0], maxEndingHere=A[0];
-        for (int i=1;i<A.length;++i){
-            maxEndingHere= Math.max(maxEndingHere+A[i],A[i]);
-            maxSoFar=Math.max(maxSoFar, maxEndingHere); 
+        int maxSoFar = nums[0], maxEndingHere = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            maxEndingHere = Math.max(maxEndingHere + nums[i], nums[i]);
+            maxSoFar = Math.max(maxSoFar, maxEndingHere); 
         }
         return maxSoFar;
     }
