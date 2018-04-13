@@ -51,6 +51,29 @@ public class Solution {
     }
     
     
+    //leetcode是这个问题的简化版, 只有升序
+    public int findLengthOfLCIS(int[] nums) {
+        
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        int longestHere = 1;
+        int longestSoFar = 1;
+        int i = 0;
+        while(i < nums.length - 1) {
+            while(i < nums.length - 1 && nums[i] < nums[i + 1]) {
+                longestHere++;
+                i++;
+            }
+            longestSoFar = Math.max(longestSoFar, longestHere);
+            i++;
+            longestHere = 1;
+        }
+        return longestSoFar;
+    }
+    
+    
     //从头到位, 从尾到头, 按照一个顺序扫两遍
     public int longestIncreasingContinuousSubsequence(int[] A) {
         if (A == null || A.length == 0) {
