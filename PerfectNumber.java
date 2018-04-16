@@ -16,7 +16,7 @@ class Solution {
         
         int sum = 0;
         for(int i = 1; i <= (int)Math.sqrt(num); i++) {
-            if(num % i == 0) {
+            if(num % i == 0) { //这里有一点就是平方数, 比如25, 49会有两个因子5,5,7,7, 但是平方数都不是perfect number
                 sum = sum + i + num / i;
             }
         }
