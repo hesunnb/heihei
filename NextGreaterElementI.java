@@ -22,6 +22,8 @@ All elements in nums1 and nums2 are unique.
 The length of both nums1 and nums2 would not exceed 1000.*/
 
 class Solution {
+    
+    //solution1: discuss里面都用栈, 感觉非常不错
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         
         int[] result = new int[nums1.length];
@@ -38,6 +40,32 @@ class Solution {
             }
             stack.push(num);
         }   
+        for (int i = 0; i < nums1.length; i++)
+            result[i] = map.getOrDefault(nums1[i], -1); //最后只需要查哈希表就能得到结果
+        return result;
+    }
+    
+    
+    //solution2: 如果不用栈, 用循环也可以解决找到右边第一大元素的问题
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        
+        int[] result = new int[nums1.length];
+        
+        if(nums1 == null || nums2 == null || nums1.length == 0 || nums2.length == 0) {
+            return result;
+        }
+        
+        Map<Integer, Integer> map = new HashMap<>(); // map from x to next greater element of x
+        
+        for (int i = 0; i < nums2.length - 1; i++) {
+            for(int j = i + 1; j < nums2.length; j++) {
+                if(nums2[j] > nums2[i]) {
+                    map.put(nums2[i], nums2[j]);
+                    break;
+                }
+            }
+        }
+        
         for (int i = 0; i < nums1.length; i++)
             result[i] = map.getOrDefault(nums1[i], -1); //最后只需要查哈希表就能得到结果
         return result;
