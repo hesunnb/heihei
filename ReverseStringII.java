@@ -9,6 +9,35 @@ The string consists of lower English letters only.
 Length of the given string and k will in the range [1, 10000]*/
 
 class Solution {
+    
+    //solution1: 没用StringBuilder
+    public String reverseStr(String s, int k) {
+        
+        if(s == null || s.length() == 0 || k <= 0) {
+            return s;
+        }
+        
+        char[] arr = s.toCharArray();
+        int n = arr.length;
+        int i = 0;
+        while(i < n) {
+            int j = Math.min(i + k - 1, n - 1); //取j为交换的尾处
+            swap(arr, i, j); //交换i,j之间的元素
+            i += 2 * k; //i往后走
+        }
+        return String.valueOf(arr);
+    }
+    
+    private void swap(char[] arr, int l, int r) {
+        while (l < r) {
+            char temp = arr[l];
+            arr[l++] = arr[r];
+            arr[r--] = temp;
+        }
+    }
+    
+    
+    //solution2: 用了StringBuilder
     public String reverseStr(String s, int k) {
         
         if(s == null || s.length() == 0 || k <= 0) {
