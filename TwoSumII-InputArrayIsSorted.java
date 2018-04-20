@@ -15,7 +15,6 @@ class Solution {
     public int[] twoSum(int[] numbers, int target) {
         
         int[] result = new int[2];
-        
         if (numbers == null || numbers.length < 2) {
             return result;
         }
