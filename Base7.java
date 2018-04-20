@@ -9,6 +9,8 @@ Output: "-10"
 Note: The input will be in range of [-1e7, 1e7].*/
 
 class Solution {
+    
+    //solution1:
     public String convertToBase7(int num) {
         
         StringBuilder result = new StringBuilder();
@@ -26,5 +28,11 @@ class Solution {
             return result.append("-").reverse().toString(); //负数添个负号
         }
         return result.reverse().toString();
+    }
+    
+    //solution2:
+    public String convertToBase7(int num) {
+        
+        return Integer.toString(num, 7);
     }
 }
