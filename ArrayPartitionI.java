@@ -20,7 +20,8 @@ class Solution {
         int result = 0;
         Arrays.sort(nums);
         for(int i = 0; i < nums.length; i += 2) {
-            result += Math.min(nums[i], nums[i + 1]);
+            //result += Math.min(nums[i], nums[i + 1]); //因为已经排好序了, 所以不用再用Math.min了
+            result += nums[i];
         }
         return result;
     }
