@@ -21,7 +21,37 @@ All the integers in the given input belong to the range: [-1e7, 1e7].*/
 
 class Solution {
 
-    //solution2:(own)
+    //solution1: 遍历哈希表的方法
+    public int findPairs(int[] nums, int k) {
+        
+        if(nums == null || nums.length == 0 || k < 0) {
+            return 0;
+        }
+        
+        Map<Integer, Integer> map = new HashMap<>();
+        int result = 0;
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (k == 0) {
+                //count how many elements in the array that appear more than twice.
+                if (entry.getValue() >= 2) {
+                    result++;
+                } 
+            } else {
+                if (map.containsKey(entry.getKey() - k)) { //因为是遍历哈希表, 每个元素就出现一次, 所以不用像遍历nums那样去重
+                    result++;
+                }
+            }
+        }
+        
+        return result;
+    }
+    
+    
+    //solution2:(own), 遍历数组的方法
     public int findPairs(int[] nums, int k) {
         
         if(nums == null || nums.length == 0 || k < 0) {
@@ -36,12 +66,12 @@ class Solution {
         }
         
         for(int num : nums) {
-            if(k == 0) {
+            if(k == 0) { //k==0单独分一类
                 if(map.get(num) > 1) {
                     result++;
                     map.put(num, 0);
                 }
-            } else if(map.containsKey(num - k) && map.get(num) != 0) {
+            } else if(map.containsKey(num - k) && map.get(num) != 0) { //遍历数组要去重考虑
                 result++;
                 map.put(num, 0);
             }
