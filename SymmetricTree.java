@@ -47,7 +47,33 @@ class Solution {
     }
     
     
-    //solution2: 迭代法, 栈
+    //solution2: solution3的简化版, null也可以往栈里面加, 加入null的判断就行了
+    public boolean isSymmetric(TreeNode root) {
+        if(root == null)  return true;
+    
+        Stack<TreeNode> stack = new Stack<TreeNode>(); //把栈直接改成队列也一样
+        stack.push(root.left); 
+        stack.push(root.right);
+       
+        while(!stack.empty()) { //如果把这里写成stack.size() > 1 是因为下面一次要弹出两个值, 所以stack的大小必须大于1才能满足
+            //连续弹两回, 但是这里null也加入, 所以一直都会加入偶数个, 不存在stack里面只有1个元素的情况
+            TreeNode right = stack.pop();
+            TreeNode left = stack.pop();
+            if(left == null && right == null) continue; //接着弹出
+            if(left == null ^ right == null) return false; //^是异或, 不同为真, 
+            //改写就是if((left == null && right != null) || (left != null && right == null)) return false;
+            if(left.val != right.val) return false;
+            stack.push(left.left);
+            stack.push(right.right);
+            stack.push(left.right);
+            stack.push(right.left);
+        }
+
+        return true;
+    }
+    
+    
+    //solution3: 迭代法, 栈
     public boolean isSymmetric(TreeNode root) {
         if(root == null)  return true;
     
