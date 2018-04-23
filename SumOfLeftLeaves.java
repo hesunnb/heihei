@@ -20,6 +20,8 @@ There are two left leaves in the binary tree, with values 9 and 15 respectively.
  * }
  */
 class Solution {
+    
+    //solution1: 递归
     public int sumOfLeftLeaves(TreeNode root) {
         if(root == null) {
             return 0;
@@ -39,6 +41,37 @@ class Solution {
         }
         if(right != null) {
             sum = sumOfLeftLeavesHelper(right.left, right.right, sum);
+        }
+        return sum;
+    }
+    
+    
+    //solution2: 栈, 遍历法
+    public int sumOfLeftLeaves(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        
+        int sum = 0;
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root.right);
+        stack.push(root.left);
+        
+        while(!stack.isEmpty()) { //因为放每次就是放两个, 弹出也是每次弹出两个, 所以不会有left和right与弹出来的对不上的时候
+            TreeNode left = stack.pop();
+            TreeNode right = stack.pop();
+            if(left != null) {
+                if(left.left == null && left.right == null) { //确保是左叶子节点
+                    sum += left.val; //加入值
+                }
+                stack.push(left.right);
+                stack.push(left.left);
+            }
+            
+            if(right != null) {
+                stack.push(right.right);
+                stack.push(right.left);
+            }
         }
         return sum;
     }
