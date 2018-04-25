@@ -42,32 +42,26 @@ public class Solution {
         // write your code here
 
         //①一个队列实现(首选), BFS遍历
-        public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root)
-        {
+        public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
             ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-            if(root == null)
-            {
+            if(root == null) {
                 return result;
             }
             
             Queue<TreeNode> Q = new LinkedList<TreeNode>();
             Q.offer(root);
             
-            while(!Q.isEmpty()) //有点就继续，没有点就退出了，说明刚刚加进来的点没有子节点了
-            {
+            while(!Q.isEmpty()) { //有点就继续，没有点就退出了，说明刚刚加进来的点没有子节点了
                 ArrayList<Integer> level = new ArrayList<Integer>();
                 int size = Q.size(); //为的就是保留上次size的值，不能让size随着节点数的增加而实时变化
-                for(int i = 0; i < size; i++)
-                {
+                for(int i = 0; i < size; i++) {
                     TreeNode tn = Q.poll();
                     level.add(tn.val);
                     
-                    if(tn.left != null)
-                    {
+                    if(tn.left != null) {
                         Q.offer(tn.left);
                     }
-                    if(tn.right != null)
-                    {
+                    if(tn.right != null) {
                         Q.offer(tn.right);
                     }
                 }
@@ -77,7 +71,6 @@ public class Solution {
         }
 
 
-        
         //version 2: DFS
         public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root)
         {
