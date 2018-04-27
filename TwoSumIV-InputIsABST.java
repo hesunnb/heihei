@@ -34,27 +34,27 @@ Output: False*/
  * }
  */
 class Solution {
-
-    //solution2: 用个哈希表
+    
+    //solution3: 用一个HashSet, 对于非BST也有效
     public boolean findTarget(TreeNode root, int k) {
         
         if(root == null) {
             return false;
         }
         
-        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-        return findTargetHelper(root, k, map);
+        Set<Integer> set = new HashSet<>();
+        return findTargetHelper(root, k, set);
     }
     
-    private boolean findTargetHelper(TreeNode root, int k, Map<Integer, Integer> map) {
+    private boolean findTargetHelper(TreeNode root, int k, Set<Integer> set) {
         if(root == null) {
             return false;
         }
-        if(map.containsKey(k - root.val)) {
+        if(set.contains(k - root.val)) {
             return true;
         } else {
-            map.put(root.val, 0);
+            set.add(root.val);
         }
-        return findTargetHelper(root.left, k, map) || findTargetHelper(root.right, k, map);
+        return findTargetHelper(root.left, k, set) || findTargetHelper(root.right, k, set);
     }
 }
