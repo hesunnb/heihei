@@ -32,6 +32,18 @@ Note: The merging process must start from the root nodes of both trees.*/
  */
 class Solution {
 
+    //solution1: discuss管这个方法叫shared node, 就是谁在那个节点处有值就取谁, 其实就是从头到尾自己创建了一棵树出来
+    public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+        if (t1 == null) return t2;
+        if (t2 == null) return t1;
+
+        TreeNode node = new TreeNode(t1.val + t2.val);
+        node.left = mergeTrees(t1.left, t2.left);
+        node.right = mergeTrees(t1.right, t2.right);
+        return node;
+    }
+	
+
     //solution2: (own), 用construct tree的原因是自己在mergeTrees里面递归的时候, 新建完的节点还要值加和覆盖调t1新建节点的值, 所以为了
     //避免覆盖, 单独弄了一个construct tree的函数
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
