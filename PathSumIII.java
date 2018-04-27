@@ -37,4 +37,26 @@ class Solution {
         }
         return count;
     }
+    
+    
+    //也是subtree的方法, discuss, 连加估计现场想不起来
+    public int pathSum(TreeNode root, int sum) {
+        if(root == null) {
+            return 0;
+        }
+        return findPath(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum); //相当于自己方法的count连加
+    }
+    
+    public int findPath(TreeNode root, int sum){
+        int res = 0;
+        if(root == null) {
+            return res;
+        }
+        if(sum == root.val) {
+            res++;
+        }
+        res += findPath(root.left, sum - root.val); //这里是+=的原因是每个节点自己最开始的res都是0, 所以也是根左右的连加的方法
+        res += findPath(root.right, sum - root.val); //而我自己的方法是他们共用一个count, 只要根加1就行了, 左右子树的不用再加入
+        return res;
+    }
 }
