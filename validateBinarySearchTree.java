@@ -40,27 +40,23 @@ public class Solution {
     boolean firstNode = true;
     public boolean isValidBST(TreeNode root) {
         // write your code here
-        if(root == null)
-        {
+        if(root == null) {
             return true;
         }
         //分为三步: 左是不是bst, 根的比较, 右是不是bst(左根右)
-        if(!isValidBST(root.left)) 
-        {
+        if(!isValidBST(root.left)) {
             return false;    
         }
-        if(!firstNode && lastvalue >= root.val) //比较就是在这里完成的, 如果每次lastvalue都没有root.val大, 那就是升序
+        if(!firstNode && lastvalue >= root.val) { //比较就是在这里完成的, 如果每次lastvalue都没有root.val大, 那就是升序
         //firstNode的作用在于第一次根节点的比较, 如果这棵树只是一个根节点, 且值为Integer
         //.MIN_VALUE, 那么这时候lastvalue和Integer.MIN_VALUE就是相等的, 然后就要返回false
         //, 但是只有一个根节点也是二叉搜索树, 所以加一个firstNode, 让第一次lastvalue和root.value不比较
         //二叉搜索树当中不能有重复节点, 比如已经有一个1, 这个树中就不能再有1啦, 1在左边或右边都是不对哒
-        {
             return false;
         }
         firstNode = false; //在这里第一次过后把firstNode改为假，这样上面就可以开始比较了
         lastvalue = root.val; //替换值，进行比较，看看是不是升序
-        if(!isValidBST(root.right))
-        {
+        if(!isValidBST(root.right)) {
             return false;
         }
         return true;
@@ -75,18 +71,14 @@ public class Solution {
         TreeNode cur = root;
         TreeNode pre = null;
          
-        while(!st.isEmpty() || cur != null)
-        {
-            if(cur != null)
-            {
-             st.push(cur);
-             cur = cur.left; //处理左, 左边有值, 不断装
+        while(!st.isEmpty() || cur != null) {
+            if(cur != null) {
+                st.push(cur);
+                cur = cur.left; //处理左, 左边有值, 不断装
             }
-            else
-            {
+            else {
                 TreeNode node = st.pop(); //处理根, 弹出来进行大小判断
-                if(pre != null && node.val <= pre.val)
-                {
+                if(pre != null && node.val <= pre.val) {
                     return false;
                 }
                 pre = node;
