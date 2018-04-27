@@ -35,7 +35,7 @@ Output: False*/
  */
 class Solution {
     
-    //solution3: 用一个HashSet, 对于非BST也有效
+    //solution2: 用一个HashSet, 对于非BST也有效
     public boolean findTarget(TreeNode root, int k) {
         
         if(root == null) {
@@ -56,5 +56,37 @@ class Solution {
             set.add(root.val);
         }
         return findTargetHelper(root.left, k, set) || findTargetHelper(root.right, k, set);
+    }
+    
+    
+    //solution3: BST中序遍历得到一个升序数组, 然后双指针前后查有没有等于k的组合
+    public boolean findTarget(TreeNode root, int k) {
+        
+        if(root == null) {
+            return false;
+        }
+        
+        List<Integer> nums = new ArrayList<>();
+        inorder(root, nums);
+        for(int i = 0, j = nums.size() - 1; i < j;) {
+            if(nums.get(i) + nums.get(j) == k) {
+                return true;
+            }
+            if(nums.get(i) + nums.get(j) < k) {
+                i++;
+            } else {
+                j--;
+            }
+        }
+        return false;
+    }
+    
+    private void inorder(TreeNode root, List<Integer> nums){
+        if(root == null) {
+            return;
+        }
+        inorder(root.left, nums);
+        nums.add(root.val);
+        inorder(root.right, nums);
     }
 }
