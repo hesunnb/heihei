@@ -35,6 +35,37 @@ Output: False*/
  */
 class Solution {
     
+    //solution1: 因为是二叉搜索树, 所以从根到尾找一遍用logn的时间, 总体时间nlogn, 空间O(h), h是树的高度, 这个空间是考虑递归所占用的空间
+    public boolean findTarget(TreeNode root, int k) {
+        return dfs(root, root,  k);
+    }
+    
+    public boolean dfs(TreeNode root,  TreeNode cur, int k){
+        if(cur == null) {
+            return false; 
+        }
+        return search(root, cur, k - cur.val) || dfs(root, cur.left, k) || dfs(root, cur.right, k); //根左右的递归顺序, cur
+        //每次走一位, root走全树
+    }
+    
+    public boolean search(TreeNode root, TreeNode cur, int value){
+        if(root == null) {
+            return false;
+        }
+        if(root.val == value && root != cur) { //比如说k=5, 那么根节点就是5, 题目要求两个节点和, 再有一个0可以, 但不能只是一个节点等于
+            //k就返回真, 所以要加root != cur
+            return true;
+        }
+        if(root.val < value && search(root.right, cur, value)) {
+            return true;
+        }
+        if(root.val > value && search(root.left, cur, value)) { //root值比value大, 向左找, 向小的地方找, 看上图例子就行, 比如k=9, 
+            //其实就在找有没有节点等于value, 比较root与value的值进行向左向右
+            return true;
+        }
+        return false;
+    }
+    
     //solution2: 用一个HashSet, 对于非BST也有效
     public boolean findTarget(TreeNode root, int k) {
         
