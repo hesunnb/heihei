@@ -68,4 +68,43 @@ class Solution {
         root.right = trimBSTHelper(root.right, L, R);
         return root;
     }
+    
+    
+    //solution2: 迭代法, 也是通过移除左右子树的方式进行循环
+    public TreeNode trimBST(TreeNode root, int L, int R) {
+        if (root == null || L > R) {
+            return null;
+        }
+        //Find a valid root which is used to return.
+        while (root.val < L || root.val > R) {
+            if (root.val < L) {
+                root = root.right;
+                if(root == null) break; //比如树是[1,0,2], 边界是5,6这种情况就break, 防止访问null的val
+            }
+            if (root.val > R) {
+                root = root.left;
+                if(root == null) break;
+            }
+        }
+        
+        TreeNode dummy = root;
+        // Remove the invalid nodes from left subtree.
+        while (dummy != null) {
+            while (dummy.left != null && dummy.left.val < L) {
+                dummy.left = dummy.left.right; 
+                // If the left child is smaller than L, then we just keep the right subtree of it. 
+            }
+            dummy = dummy.left;
+        }
+        dummy = root;
+        // Remove the invalid nodes from right subtree
+        while (dummy != null) {
+            while (dummy.right != null && dummy.right.val > R) {
+                dummy.right = dummy.right.left;
+                // If the right child is biggrt than R, then we just keep the left subtree of it. 
+            }
+            dummy = dummy.right;
+        }
+        return root;
+    }
 }
