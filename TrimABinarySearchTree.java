@@ -44,6 +44,8 @@ Output:
  * }
  */
 class Solution {
+    
+    //solution1: 递归
     public TreeNode trimBST(TreeNode root, int L, int R) {
         if(root == null || L > R) {
             return root;
