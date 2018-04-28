@@ -35,7 +35,9 @@ Output: False*/
  */
 class Solution {
     
-    //solution1: 因为是二叉搜索树, 所以从根到尾找一遍用logn的时间, 总体时间nlogn, 空间O(h), h是树的高度, 这个空间是考虑递归所占用的空间
+    //solution1: 因为是二叉搜索树, 所以从根到尾找一遍用logn的时间, 总体时间nlogn; 空间O(h), h是树的高度, 这个空间是考虑递归所占用的空间,
+    //h是树的高度, logn是最好的情况, n是最差的情况, 如果二叉搜索树从中间开始完美的向两边展开, 并且是完全二叉树, 那么搜索一次用logn, 如果树
+    //是一条直线下来, 那么就是n了
     public boolean findTarget(TreeNode root, int k) {
         return dfs(root, root,  k);
     }
