@@ -56,6 +56,26 @@ class Solution {
         return min;
     }
    
+    
+    //solution2: Make use of the property of BST that value of nodes is bounded by their "previous" and "next" node.
+    long minDiff = Long.MAX_VALUE;
+    public int getMinimumDifference(TreeNode root) {
+        helper(root,Long.MIN_VALUE,Long.MAX_VALUE);
+        return (int)minDiff;
+    }
+    
+    private void helper(TreeNode curr, long lb, long rb){
+        if(curr==null) return;
+        if(lb!=Long.MIN_VALUE){
+            minDiff = Math.min(minDiff,curr.val - lb);
+        }
+        if(rb!=Long.MAX_VALUE){
+            minDiff = Math.min(minDiff,rb - curr.val);
+        }
+        helper(curr.left,lb,curr.val);
+        helper(curr.right,curr.val,rb);
+    }
+   
    
     //solution3: (own)中序遍历一遍放到ArrayList里面, 然后扫一遍求最小值即可
     public int getMinimumDifference(TreeNode root) {
