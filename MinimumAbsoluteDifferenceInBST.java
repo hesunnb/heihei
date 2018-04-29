@@ -27,6 +27,8 @@ Note: There are at least two nodes in this BST.*/
  * }
  */
 class Solution {
+   
+    //中序遍历一遍放到ArrayList里面, 然后扫一遍求最小值即可
     public int getMinimumDifference(TreeNode root) {
         if(root == null) {
             return Integer.MIN_VALUE;
