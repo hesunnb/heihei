@@ -29,8 +29,8 @@ Note: There are at least two nodes in this BST.*/
 class Solution {
    
     //solution1: 中序遍历的同时直接找出最小值
-    TreeNode prev; //要用全局前一个节点的原因就是, 你在一个栈中改变了prev的值, 指向了别的节点, 但是你并没有返回它, 回到别的节点自己的栈中它自己的prev
-    //并没有改变, 所以就不对了; 如果非要带着prev传的话, 可以把它放到一个ArrayList<TreeNode>里面, 然后带着ArrayList<TreeNode>传就行了
+    TreeNode prev; //要用全局前一个节点的原因就是, 你在一个栈中改变了prev的值, 指向了别的节点, 但是你并没有返回它, 回到别的节点自己的栈中它自己
+    //的prev并没有改变, 所以就不对了; 如果非要带着prev传的话, 可以把它放到一个ArrayList<TreeNode>里面, 然后带着ArrayList<TreeNode>传就行了
     public int getMinimumDifference(TreeNode root) {
         if(root == null) {
             return Integer.MIN_VALUE;
