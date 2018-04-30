@@ -97,8 +97,8 @@ class Solution {
         
         //TreeSet用floor, ceiling查询元素用O(lgn)的时间, TreeSet加入元素的时候自动排序
         if (!set.isEmpty()) {
-            if (set.floor(root.val) != null) { //这个不等于null要加, 因为如果root.val比set中所有元素都要小的话, set就没有符合条件的结果, 此时就会
-                //返回null
+            if (set.floor(root.val) != null) { //这个不等于null要加, 因为如果root.val比set中所有元素都要小的话, set就没有符合条件的结果, 
+               //此时就会返回null
                 min = Math.min(min, root.val - set.floor(root.val)); 
             }
             if (set.ceiling(root.val) != null) { //同理
