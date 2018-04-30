@@ -77,7 +77,43 @@ class Solution {
     }
    
    
-    //solution3: (own)中序遍历一遍放到ArrayList里面, 然后扫一遍求最小值即可
+    //solution3: follow up, 如果输入的树不是bst怎么办
+    /*What if it is not a BST? (Follow up of the problem) The idea is to put values in a TreeSet and then every time we can use O(lgn) 
+    time to lookup for the nearest values. Time complexity O(nlgn), space complexity O(n).*/
+    public int getMinimumDifference(TreeNode root) {
+        if(root == null) {
+            return Integer.MIN_VALUE;
+        }
+        
+        TreeSet<Integer> set = new TreeSet<>();
+        int min = Integer.MAX_VALUE;
+        return getMinimumDifferenceHelper(root, set, min);
+    }
+    
+    private int getMinimumDifferenceHelper(TreeNode root, TreeSet<Integer> set, int min) {
+        if (root == null) {
+            return min;
+        }
+        
+        //TreeSet用floor, ceiling查询元素用O(lgn)的时间, TreeSet加入元素的时候自动排序
+        if (!set.isEmpty()) {
+            if (set.floor(root.val) != null) { //这个不等于null要加, 因为如果root.val比set中所有元素都要小的话, set就没有符合条件的结果, 此时就会
+                //返回null
+                min = Math.min(min, root.val - set.floor(root.val)); 
+            }
+            if (set.ceiling(root.val) != null) { //同理
+                min = Math.min(min, set.ceiling(root.val) - root.val);
+            }
+        }
+        set.add(root.val);
+        
+        min = getMinimumDifferenceHelper(root.left, set, min);
+        min = getMinimumDifferenceHelper(root.right, set, min);
+        return min;
+    }
+   
+   
+    //solution4: (own)中序遍历一遍放到ArrayList里面, 然后扫一遍求最小值即可
     public int getMinimumDifference(TreeNode root) {
         if(root == null) {
             return Integer.MIN_VALUE;
