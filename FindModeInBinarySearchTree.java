@@ -64,4 +64,47 @@ class Solution {
         prev = root.val;
         traverse(root.right, list);
     }
+   
+   
+    //solution2: two pass, 第一次找出mode的个数, 然后第二次把mode都放进数组; 它这个在discuss里面叫properO(1)space, 因为用
+    //ArrayList的时候, 如果一棵树全都是unique的节点, 那么Arraylist就是O(n)space, 因为最后还要把ArrayList拷贝给数组, 所以在这里
+    //把ArrayList算到了用空间的范畴, 这个就看具体怎么看了, 面试的时候solution1为主, 这个讨论的时候用
+    public int[] findMode(TreeNode root) {
+        inorder(root);
+        modes = new int[modeCount];
+        modeCount = 0;
+        currCount = 0;
+        inorder(root);
+        return modes;
+    }
+
+    private int currVal;
+    private int currCount = 0;
+    private int maxCount = 0;
+    private int modeCount = 0;
+    
+    private int[] modes;
+
+    private void handleValue(int val) {
+        if (val != currVal) {
+            currVal = val;
+            currCount = 0;
+        }
+        currCount++;
+        if (currCount > maxCount) {
+            maxCount = currCount;
+            modeCount = 1;
+        } else if (currCount == maxCount) {
+            if (modes != null) //第一次modes为空, 统计modeCount个数; 第二次modes不为空, 向modes中放值
+                modes[modeCount] = currVal;
+            modeCount++;
+        }
+    }
+    
+    private void inorder(TreeNode root) {
+        if (root == null) return;
+        inorder(root.left);
+        handleValue(root.val);
+        inorder(root.right);
+    }
 }
