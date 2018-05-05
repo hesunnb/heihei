@@ -70,4 +70,37 @@ class Solution {
         }
         return root;
     }
+  
+  
+    //solution3: morris中序遍历解法, 因为这道题是反向中序遍历以得到降序序列, 所以这个morris的遍历过程也要反过来
+    public TreeNode convertBST(TreeNode root) {
+        TreeNode cur = root, prev = null;
+        int sum = 0;
+        while(cur != null) {
+            if (cur.right == null) {
+                cur.val += sum;
+                sum = cur.val;
+                cur = cur.left;
+            }
+            else {
+                // find predecessor
+                prev = cur.right;
+                while(prev.left != null && prev.left != cur) {
+                    prev = prev.left;
+                }
+                    
+                if (prev.left == null) {
+                    prev.left = cur;
+                    cur = cur.right;
+                }
+                else {
+                    prev.left = null;
+                    cur.val += sum;
+                    sum = cur.val;
+                    cur = cur.left;
+                }
+            }
+        }
+        return root;
+    }
 }
