@@ -26,7 +26,7 @@ class Solution {
     
     /*Since this is a BST, we can do a reverse inorder traversal to traverse the nodes of the tree in descending order. In the
     process, we keep track of the running sum of all nodes which we have traversed thus far.*/
-    //树的遍历除了典型的前中后还有一些变种
+    //solution1: 树的遍历除了典型的前中后还有一些变种
     public TreeNode convertBST(TreeNode root) {
         if(root == null) {
             return null;
@@ -44,5 +44,30 @@ class Solution {
         sum = root.val;
         sum = convertBSTHelper(root.left, sum);
         return sum;
+    }
+  
+  
+    //solution2: iterative method
+    public TreeNode convertBST(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        int sum = 0;
+        TreeNode cur = root; //因为最后还要返回这棵树, 所以root保留, 用个cur遍历树
+        
+        if(root == null) {
+            return null;
+        }
+        
+        while(cur != null || !stack.isEmpty()) { //最开始stack没有加进root, 所以要root!=null才能进入循环, 这里和前序后序不一样
+            while(cur != null) { //右
+                stack.push(cur);
+                cur = cur.right;
+            }
+            
+            cur = stack.pop(); //注意这里使用root完成的, 接下来还要加root的左节点
+            cur.val += sum; //根
+            sum = cur.val;
+            cur = cur.left; //左
+        }
+        return root;
     }
 }
