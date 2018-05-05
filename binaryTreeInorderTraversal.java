@@ -35,7 +35,6 @@ public class Solution {
     }
     
     
-    
     //version 2: non_recursion(2个while)
     public ArrayList<Integer> inorderTraversal(TreeNode root) {
         Stack<TreeNode> sk = new Stack<TreeNode>();
@@ -81,37 +80,34 @@ public class Solution {
     }
     
     
-    //version 3: non-recursion(自己代码, 3个while)
-    /**public ArrayList<Integer> inorderTraversal(TreeNode root) {
-        Stack<TreeNode> sk = new Stack<TreeNode>();
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        
-        if(root == null)
-        {
-            return result;
-        }
-        
-        while(root != null)
-        {
-            sk.push(root);
-            root = root.left;
-        }
-            
-        while(!sk.isEmpty())
-        {
-            TreeNode node = sk.pop();
-            result.add(node.val);
-            if(node.right != null)
-            {
-                node = node.right;
-                sk.push(node);
-                while(node.left != null)
-                {
-                    node = node.left;
-                    sk.push(node);
+    //solution4: morris traversal, 就是把叶子节点能够连接到它的后继, 然后在用完节点值之后把树还原, 把之前的连接断开, 有前中后3个版本,
+    //最常用的是中序版本
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        TreeNode cur = root, prev = null;
+        while(cur != null) {
+            if (cur.left == null) {
+                result.add(cur.val);
+                cur = cur.right;
+            }
+            else {
+                // find predecessor
+                prev = cur.left;
+                while(prev.right != null && prev.right != cur) {
+                    prev = prev.right;
+                }
+                    
+                if (prev.right == null) {
+                    prev.right = cur;
+                    cur = cur.left;
+                }
+                else {
+                    prev.right = null;
+                    result.add(cur.val);
+                    cur = cur.right;
                 }
             }
         }
         return result;
-    }*/
+    }
 }
