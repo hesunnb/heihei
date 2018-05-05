@@ -20,8 +20,7 @@ public class Solution {
     //version 1: divide & conquer
     public ArrayList<Integer> inorderTraversal(TreeNode root) {
         ArrayList<Integer> result = new ArrayList<Integer>();
-        if(root == null)
-        {
+        if(root == null) {
             return result;
         }
         
@@ -42,15 +41,12 @@ public class Solution {
         Stack<TreeNode> sk = new Stack<TreeNode>();
         ArrayList<Integer> result = new ArrayList<Integer>();
         
-        if(root == null)
-        {
+        if(root == null) {
             return result;
         }
         
-        while(root != null || !sk.isEmpty()) //最开始stack没有加进root, 所以要root!=null才能进入循环, 这里和前序后序不一样
-        {
-            while(root != null) //左
-            {
+        while(root != null || !sk.isEmpty()) { //最开始stack没有加进root, 所以要root!=null才能进入循环, 这里和前序后序不一样
+            while(root != null) { //左
                 sk.push(root);
                 root = root.left;
             }
@@ -67,18 +63,15 @@ public class Solution {
     public ArrayList<Integer> inorderTraversal(TreeNode root) {
         // write your code here
         ArrayList<Integer> result = new ArrayList<Integer>();
-        if(root == null)
-        {
+        if(root == null) {
             return result;
         }
         traversal(root, result);
         return result;
     }
     
-    private void traversal(TreeNode root, ArrayList<Integer> result)
-    {
-        if(root == null)
-        {
+    private void traversal(TreeNode root, ArrayList<Integer> result) {
+        if(root == null) {
             return;
         }
         
