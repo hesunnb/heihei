@@ -12,6 +12,8 @@ Then length of the input array is in range [1, 10,000].
 The input array may contain duplicates, so ascending order here means <=.*/
 
 class Solution {
+    
+    //solution1: o(n)time, o(1)space, one pass
     public int findUnsortedSubarray(int[] nums) {
         
         /*I use the variables beg and end to keep track of minimum subarray A[beg...end] which must be sorted for the entire array A to 
@@ -30,5 +32,29 @@ class Solution {
             if (nums[n-1-i] > min) beg = n-1-i; 
         }
         return end - beg + 1;
+    }
+    
+    
+    //solution2: o(n)time, o(1)space, two pass
+    public int findUnsortedSubarray(int[] nums) {
+        
+        //testcase: 也用[2,3,5,6,4,8,10,9,15]
+        int l = 0, r = nums.length - 1, max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+        
+        while (l < r && nums[l] <= nums[l + 1]) l++; //找到左边界
+
+        if (l >= r) return 0; //原序列正序
+
+        while (nums[r] >= nums[r - 1]) r--; //找到右边界
+
+        for (int k = l; k <= r; k++) { //找到左右边界中最大和最小值
+            max = Math.max(max, nums[k]);
+            min = Math.min(min, nums[k]);
+        }
+
+        while (l >= 0 && min < nums[l]) l--; //以最小值为基准l向左收缩
+        while (r < nums.length && nums[r] < max) r++; //以最大值为基准r向右伸展
+
+        return (r - l - 1); //返回最终长度
     }
 }
