@@ -41,8 +41,8 @@ class Solution {
             for(int j = i; j < s.length();) { //j从i开始, 从每一行开始找, 找numRows行就ok了
                 if(flag == 0) { //这里用了flag, 可能不太尽如人意
                     if(step1 != 0) { //等于0的时候不能append值, 否则就加重复了
-                		    sb.append(s.charAt(j));
-                	  }
+                        sb.append(s.charAt(j));
+                	}
                     j += step1; //j跳前面的步数
                     flag = 1;
                 } else if(flag == 1) {
