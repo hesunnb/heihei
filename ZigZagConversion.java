@@ -26,6 +26,33 @@ P     I*/
 
 class Solution {
 
+    //solution1: 用了O(n)时间, O(n)空间, 但是易于模拟
+    public String convert(String s, int numRows) {
+        if(s == null || s.length() == 0 || numRows == 1 || numRows > s.length()) {
+            return s;
+        }
+        
+        StringBuilder[] sb = new StringBuilder[numRows];
+        for (int i = 0; i < sb.length; i++) {
+        	sb[i] = new StringBuilder(); //每一行一个StringBuilder
+        }
+
+        int i = 0;
+        while (i < s.length()) {
+            for (int idx = 0; idx < numRows && i < s.length(); idx++) { // vertically down
+                sb[idx].append(s.charAt(i++)); //从上到下, 每一行对应的StringBuilder加入对应的s中的字符
+            }
+            for (int idx = numRows-2; idx >= 1 && i < s.length(); idx--) { // obliquely up
+                sb[idx].append(s.charAt(i++)); //去掉头尾行, 中间行加入对应的字母
+            }
+        }
+        for (int idx = 1; idx < sb.length; idx++) { //统一加到第一个StringBuilder里面
+            sb[0].append(sb[idx]);
+        }
+        return sb[0].toString();
+    }
+    
+    
     //solution2: (own)
     public String convert(String s, int numRows) {
         if(s == null || s.length() == 0 || numRows == 1 || numRows > s.length()) {
