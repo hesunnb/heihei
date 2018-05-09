@@ -53,7 +53,7 @@ class Solution {
     }
     
     
-    //solution2: (own)
+    //solution2: //按照规律进行挑选
     public String convert(String s, int numRows) {
         if(s == null || s.length() == 0 || numRows == 1 || numRows > s.length()) {
             return s;
