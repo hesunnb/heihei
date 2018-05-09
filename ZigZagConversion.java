@@ -64,7 +64,6 @@ class Solution {
         for(int i = 0; i < numRows; i++) {
             int step1 = step - 2 * i; //比如有7行, 那么就是+12,+0; +10,+2; +8,+4; +6,+6; +4,+8; +2,+10; +0,+12
             int step2 = step - step1; //step1就是前面的步数, step2就是后面的步数
-            int flag = 0;
             for(int j = i; j < s.length();) { //j从i开始, 从每一行开始找, 找numRows行就ok了
                 
                 if(step1 != 0 && j < s.length()) { //等于0的时候不能append值, 否则就加重复了
