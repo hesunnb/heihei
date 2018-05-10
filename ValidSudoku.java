@@ -48,6 +48,9 @@ The given board contain only digits 1-9 and the character '.'.
 The given board size is always 9x9.*/
 
 class Solution {
+  
+    //Note里面写了, 给定的board只包含digits 1-9 and the character '.', 面试的时候得确认一下, 如果还包含'A'之类的还得判断一下
+    //Character.isDigit(board[i][j])
     public boolean isValidSudoku(char[][] board) {
         
         if(board == null) {
