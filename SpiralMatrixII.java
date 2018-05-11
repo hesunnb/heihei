@@ -20,7 +20,7 @@ class Solution {
         int colBegin = 0;
         int colEnd = n - 1;
         
-        int num = 1;
+        int num = 1; //遍历的时候改为往里面放值就可以了, 方法思路都同SpiralMatrix
         while (rowBegin <= rowEnd && colBegin <= colEnd) {
             // Traverse Right
             for (int j = colBegin; j <= colEnd; j ++) {
