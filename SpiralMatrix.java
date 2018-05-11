@@ -68,7 +68,7 @@ class Solution {
     }
     
     
-    //solution2: 没有用solution1的后面两步的判断
+    //solution2: 没有用solution1的后面两步的判断, 个人感觉solution2更好, 就是while(true)有些突兀
     public List<Integer> spiralOrder(int[][] matrix) {
         
         List<Integer> result = new ArrayList<Integer>();
