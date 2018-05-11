@@ -96,14 +96,12 @@ class Solution {
             colEnd--;
             if(colBegin > colEnd || rowBegin > rowEnd) break;
             
-            
             // Traverse Left
             for (int j = colEnd; j >= colBegin; j--) {
                 result.add(matrix[rowEnd][j]);
             }
             rowEnd--;
             if(colBegin > colEnd || rowBegin > rowEnd) break;
-            
             
             // Traver Up
             for (int j = rowEnd; j >= rowBegin; j--) {
