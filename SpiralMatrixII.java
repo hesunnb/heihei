@@ -23,20 +23,20 @@ class Solution {
         int num = 1; //遍历的时候改为往里面放值就可以了, 方法思路都同SpiralMatrix
         while (rowBegin <= rowEnd && colBegin <= colEnd) {
             // Traverse Right
-            for (int j = colBegin; j <= colEnd; j ++) {
+            for (int j = colBegin; j <= colEnd; j++) {
                 result[rowBegin][j] = num++;
             }
             rowBegin++;
             
             // Traverse Down
-            for (int j = rowBegin; j <= rowEnd; j ++) {
+            for (int j = rowBegin; j <= rowEnd; j++) {
                 result[j][colEnd] = num++;
             }
             colEnd--;
             
             if (rowBegin <= rowEnd) { //discuss里面说唯一不好的地方就是要在这里判断一下rowBegin <= rowEnd, 和下面colBegin <= colEnd
                 // Traverse Left
-                for (int j = colEnd; j >= colBegin; j --) {
+                for (int j = colEnd; j >= colBegin; j--) {
                     result[rowEnd][j] = num++;
                 }
             }
@@ -44,7 +44,7 @@ class Solution {
             
             if (colBegin <= colEnd) { //n*n的正方形矩阵, 这两个判断用不上, 但是像上面的m*n的矩形矩阵就会用上这两个判断了
                 // Traver Up
-                for (int j = rowEnd; j >= rowBegin; j --) {
+                for (int j = rowEnd; j >= rowBegin; j--) {
                     result[j][colBegin] = num++;
                 }
             }
