@@ -68,5 +68,51 @@ class Solution {
     }
     
     
-    //solution2:
+    //solution2: 没有用solution1的后面两步的判断
+    public List<Integer> spiralOrder(int[][] matrix) {
+        
+        List<Integer> result = new ArrayList<Integer>();
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return result;
+        }
+        
+        int rowBegin = 0; //用四个位置限制住要遍历的矩阵
+        int rowEnd = matrix.length-1;
+        int colBegin = 0;
+        int colEnd = matrix[0].length - 1;
+        
+        while(true) {
+            // Traverse Right
+            for (int j = colBegin; j <= colEnd; j++) {
+                result.add(matrix[rowBegin][j]);
+            }
+            rowBegin++;
+            if(colBegin > colEnd || rowBegin > rowEnd) break;
+            
+            // Traverse Down
+            for (int j = rowBegin; j <= rowEnd; j++) {
+                result.add(matrix[j][colEnd]);
+            }
+            colEnd--;
+            if(colBegin > colEnd || rowBegin > rowEnd) break;
+            
+            
+            // Traverse Left
+            for (int j = colEnd; j >= colBegin; j--) {
+                result.add(matrix[rowEnd][j]);
+            }
+            rowEnd--;
+            if(colBegin > colEnd || rowBegin > rowEnd) break;
+            
+            
+            // Traver Up
+            for (int j = rowEnd; j >= rowBegin; j--) {
+                result.add(matrix[j][colBegin]);
+            }
+            colBegin ++;
+            if(colBegin > colEnd || rowBegin > rowEnd) break;
+        }
+        
+        return result;
+    }
 }
