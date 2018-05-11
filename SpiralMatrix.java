@@ -55,7 +55,7 @@ class Solution {
             }
             rowEnd--;
             
-            if (colBegin <= colEnd) {
+            if (colBegin <= colEnd) { //n*n的正方形矩阵, 这两个判断用不上, 但是像上面的m*n的矩形矩阵就会用上这两个判断了
                 // Traver Up
                 for (int j = rowEnd; j >= rowBegin; j --) {
                     result.add(matrix[j][colBegin]);
