@@ -40,7 +40,7 @@ class Solution {
     行扫完再扫列, 然后把更新完的矩阵赋给matrix即可, 这个算法的空间复杂度太高. 将其优化到O(m+n)的方法是, 用一个长度为m的一维数组记录各行中是否有0, 
     用一个长度为n的一维数组记录各列中是否有0, 最后直接更新matrix数组即可*/
     //要inplace, O(mn)时间, O(1)空间
-    //用第一行和第一列存放0来标志这行这列是否应该全被置0
+    //solution1: 用第一行和第一列存放0来标志这行这列是否应该全被置0
     public void setZeroes(int[][] matrix) {
     
         if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
@@ -70,6 +70,51 @@ class Solution {
                 if(matrix[i][j] == 0) {
                     matrix[i][0] = 0;
                     matrix[0][j] = 0;
+                }
+            }
+        }
+        
+        for(int i = 1; i < m; i++) {
+            for(int j = 1; j < n; j++) {
+                if(matrix[i][0] == 0 || matrix[0][j] == 0) { //如果标志是0，就赋值为0
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        
+        if(emptyRow0) { //最后把0行0列进行赋0值处理
+            for(int i = 0; i < n; i++) {
+                matrix[0][i] = 0;
+            }
+        }
+        
+        if(emptyCol0) {
+            for(int i = 0; i < m; i++) {
+                matrix[i][0] = 0;
+            }
+        }
+    }
+  
+    
+    //solution2: 稍微精简一些, 把最开始的3个for合到一起了, 复杂度和顶上的一样, 都是需要扫描两遍矩阵
+    public void setZeroes(int[][] matrix) {
+        
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return;
+        }
+        
+        boolean emptyRow0 = false;
+        boolean emptyCol0 = false;
+        int m = matrix.length;
+        int n = matrix[0].length;
+        
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(matrix[i][j] == 0) { //前提条件是这个元素是0
+                    if(i == 0) emptyRow0 = true; //如果这个0元素出现在第一行, 那么第一行就都要为0
+                    if(j == 0) emptyCol0 = true; //如果这个0元素出现在第一列, 那么第一列就都要为0
+                    matrix[0][j] = 0; //其余的时候把第一行和第一列置0, 作为接下来清0的标志
+                    matrix[i][0] = 0;
                 }
             }
         }
