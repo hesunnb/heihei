@@ -15,7 +15,7 @@ class Solution {
         if(s == null || s.length() == 0) {
             return new ArrayList<String>();
         }
-        
+        //用一个窗口不断向右走
         Set<String> seen = new HashSet<>(), repeated = new HashSet<>();
         for (int i = 0; i + 9 < s.length(); i++) {
             String ten = s.substring(i, i + 10);
