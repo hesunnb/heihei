@@ -29,7 +29,8 @@ class Solution {
         res.append(((numerator > 0) ^ (denominator > 0)) ? "-" : "");
         long num = Math.abs((long)numerator);
         long den = Math.abs((long)denominator); //有一个testcase是输入分子-1, 分母-2147483648, 
-        //正确答案应是"0.0000000004656612873077392578125", 分母的绝对值大于Integer.MAX_VALUE, 所以要转成long, note:-1除以-2147483648是可以整除的
+        //正确答案应是"0.0000000004656612873077392578125", 分母的绝对值大于Integer.MAX_VALUE, 所以要转成long, note:-1除以-2147483648是可以
+        //整除的
         
         // integral part
         res.append(num / den);
