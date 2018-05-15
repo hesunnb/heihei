@@ -46,7 +46,8 @@ class Solution {
 
 	for (int i = 0; i < row; i++) {
 	    check(board, i, 0, row, col); //检查最左侧一列, 行在变而列不动
-	    if (col > 1) {
+	    if (col > 1) { //因为前面已经判断小于等于2了, 所以这里的大于1条件可以不加, 但是discuss里面没有顶上自己加的条件, 所以这里有判断
+		//为了完整, 这里的判断不要去了
 		check(board, i, col - 1, row, col); //检查最右侧一列
 	    }
 	}
