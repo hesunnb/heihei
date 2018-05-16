@@ -17,6 +17,7 @@ Note: If there are several possible values for h, the maximum one is taken as th
 class Solution {
     
     //题的意思就是说有h篇文章的引用>=h, n-h篇文章的引用<=h
+    //题的解法就是木桶排序
     //testcase: 注意at least包含等于h, no more than也包含等于h
     /*[3,3,3,3]这个返回3, 3本身就是临界, 既能算到h篇文章里, 也能算到n-h篇文章里, 所以当木桶排完之后, 4>3, 就说明这有3个3算进h篇文章, 
     1个3算进n-h篇文章; [3,3,5,5]也返回3, 3篇文章2个, 5篇文章2个, 那么总共的2+2的4又可以拆成>=3的有3个, 小于等于3的有1个; [1,1]返回1*/
