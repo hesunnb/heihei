@@ -71,7 +71,7 @@ class Solution {
         return 3;  
     }  
 	
-	private boolean isSquare(int n) {
+    private boolean isSquare(int n) {
         int sqrtN = (int)(Math.sqrt(n));  
         return (sqrtN*sqrtN == n);  
     }
