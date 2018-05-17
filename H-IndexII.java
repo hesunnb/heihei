@@ -16,6 +16,33 @@ Note: If there are several possible values for h, the maximum one is taken as th
 
 class Solution {
     
+    //solution1: 用二分法
+    //和H-Index的区别就是给的citations数组是升序的
+    /*The idea is to search for the first index from the sorted array so that :
+    citations[index] >= length(citations) - index. 
+    And return (length - index) as the result.*/
+    public int hIndex(int[] citations) {
+        
+        if(citations == null || citations.length == 0) {
+            return 0;
+        }
+        
+        int len = citations.length;
+        int left = 0, right = len - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (citations[mid] == len - mid) {
+                return len - mid;
+            } else if (citations[mid] < len - mid) {
+                left = mid + 1;
+            } else { 
+                right = mid - 1;
+            }
+        }
+        return len - left;
+    }
+  
+  
     //solution2: (own)
     //和H-Index的区别就是给的citations数组是升序的
     //testcase: [0]返回0, [100]返回1, [100,100,100,100]返回4, [0,1,3,5,6]返回3, [2,10,10,10]返回3
