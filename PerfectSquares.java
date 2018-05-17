@@ -13,7 +13,7 @@ Explanation: 13 = 4 + 9.*/
 
 class Solution {
     
-    //solution1: 动态规划
+    //solution1: 动态规划, 复杂度: O(n * sqrt(n))
     public int numSquares(int n) {
         
         if(n <= 0) {
