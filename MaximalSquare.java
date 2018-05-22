@@ -79,5 +79,26 @@ class Solution {
     }
     
     
-    //solution3: discuss还有不用空间的版本, 需要用的时候看
+    //solution3: 不用空间的版本, 其实更简便, O(mn)时间, O(1)space
+    public int maximalSquare(char[][] matrix) {
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return 0;
+        }
+        
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int max = '0';
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(matrix[i][j]!='0' && i!=0 && j!=0) { //非第一行和第一列
+                    matrix[i][j] = (char)(Math.min(Math.min(matrix[i-1][j], matrix[i][j-1]), matrix[i-1][j-1]) + 1);
+                    //不用像discuss那样减'0', 就算'A','B', 也可以写入矩阵, 最后计算的时候再减'0'相乘即可
+                }
+                if(matrix[i][j] > max){ //第一行和第一列直接保留, 然后算max就行
+                    max = matrix[i][j];
+                }
+            }
+        }
+        return (max-'0') * (max-'0');
+    }
 }
