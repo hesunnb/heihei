@@ -77,4 +77,7 @@ class Solution {
         // return the area
         return max * max;
     }
+    
+    
+    //solution3: discuss还有不用空间的版本, 需要用的时候看
 }
