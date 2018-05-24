@@ -35,6 +35,9 @@ class Solution {
                 if (board[i][j] == 0 && lives == 3) {
                     board[i][j] = 2; // Make the 2nd bit 1: 00 ---> 10
                 }
+                //因为In the beginning, every 2nd bit is 0, 所以所有细胞最开始都是死亡状态, 那么如果一个细胞符合条件要在2nd bit变为
+                //死亡状态, 那么就其实就不需要更改它的状态了, 因为默认就是死亡状态, 所以周围活细胞<2, >3这种就不用判断更改了, 因为判断
+                //完也是要把2nd bit改为死亡状态, 而2nd bit默认已经是死亡状态了, 所以不用判断<2, >3了
             }
         }
 
