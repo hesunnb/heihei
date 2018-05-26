@@ -127,4 +127,6 @@ class Solution {
         if (c+1 <= row.length-1)  result += row[c+1];
         return result;
     }
+    
+    //infinite board还没有解决
 }
