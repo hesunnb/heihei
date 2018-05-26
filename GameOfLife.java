@@ -17,6 +17,8 @@ In this question, we represent the board using a 2D array. In principle, the boa
 area encroaches the border of the array. How would you address these problems?*/
 
 class Solution {
+    
+    //solution1: O(1) space
     public void gameOfLife(int[][] board) {
         if (board == null || board.length == 0 || board[0].length == 0) {
             return;
@@ -82,4 +84,47 @@ class Solution {
     To get the next state, simply do
 
     board[i][j] >> 1*/
+    
+    
+    //solution2: 针对输入是boolean[][] board的情况
+    public void gameOfLife(int[][] board) {
+        if (board.length == 0 || board[0].length == 0) return;
+        int rows = board.length, cols = board[0].length;
+        // previous row always exists (it's all 0s above board's first row)
+        int[] prevRow = new int[cols];
+        for (int r = 0; r < rows; ++r) {
+            int prev = 0; // fakes a dead cell in front of current row
+            for (int c = 0; c < cols; ++c) {
+                int neigh = neigh(board, r, c, prevRow, prev);
+                if (0 <= c-1) prevRow[c-1] = prev; // only overwrite once not needed
+                prev = board[r][c];
+                board[r][c] =        neigh == 3 /* lives on(3)/reproduction */
+                    || board[r][c] + neigh == 3 /* lives on(2) */ ? 1 : 0;
+            }
+            prevRow[cols-1] = prev; // fill in the gap for last item's late write
+        }
+    }
+    
+    /**
+     *     prevRow[c-1]*     prevRow[c]      prevRow[c+1]*
+     *             prev  board[r  ] [c]  board[r  ] [c+1]*
+     * board[r+1]*[c-1]* board[r+1]*[c]* board[r+1]*[c+1]*
+     *
+     * starred: needs bound check
+     */
+    private int neigh(int[][] board, int r, int c, int[] prevRow, int prev) {
+        int rows = board.length, cols = board[0].length;
+        int neigh = prev; // remember, board[r][c] doesn't count;
+        if (true)          neigh += validSum(prevRow, c); // prevRow always exists
+        if (c+1 <= cols-1) neigh += board[r][c+1]; // only one needs validation from current row
+        if (r+1 <= rows-1) neigh += validSum(board[r+1], c); // only if there's a next row
+        return neigh;
+    }
+    private int validSum(int[] row, int c) {
+        int result = 0;
+        if (0 <= c-1)             result += row[c-1];
+        if (true)                 result += row[c];
+        if (c+1 <= row.length-1)  result += row[c+1];
+        return result;
+    }
 }
