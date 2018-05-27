@@ -56,7 +56,37 @@ class Solution {
     }
     
     
-    //solution2: (own), 用哈希表解决
+    //solution2: 用两个数组, 扫一遍字符串, 扫一遍数组
+    public String getHint(String secret, String guess) {
+        
+        if(secret == null || guess == null) {
+            return "";
+        }
+        
+        int bulls = 0;
+        int cows = 0;
+        int[] nums1 = new int[10];
+        int[] nums2 = new int[10];
+        for(int i = 0; i < secret.length(); i++){
+            char s = secret.charAt(i);
+            char g = guess.charAt(i);
+            if(s == g){
+                bulls++;
+            }
+            else{ //bulls并没有加到数组里面来
+                nums1[s - '0']++;
+                nums2[g - '0']++;
+            }
+        }
+        
+        for(int i = 0; i < 10; i++) {
+            cows += Math.min(nums1[i], nums2[i]);
+        }
+        return bulls + "A" + cows + "B";
+    }
+    
+    
+    //solution3: (own), 用哈希表解决
     public String getHint(String secret, String guess) {
         
         if(secret == null || guess == null) {
