@@ -27,6 +27,35 @@ Note: You may assume that the secret number and your friend's guess only contain
 
 class Solution {
 
+    //solution1: one-pass, 用一个数组就行
+    public String getHint(String secret, String guess) {
+        
+        if(secret == null || guess == null) {
+            return "";
+        }
+        
+        int bulls = 0;
+        int cows = 0;
+        int[] numbers = new int[10]; //用来装0~9
+        for (int i = 0; i < secret.length(); i++) {
+            if (secret.charAt(i) == guess.charAt(i)) {
+                bulls++;
+            }
+            else {
+                if (numbers[secret.charAt(i)-'0'] < 0) { //secret来判断guess在这个位置上是否出现过
+                    cows++;
+                }
+                if (numbers[guess.charAt(i)-'0'] > 0) { //guess来判断secret在这个位置上是否出现过
+                    cows++;
+                }
+                numbers[secret.charAt(i)-'0']++; //secret用++来表示这个数出现过
+                numbers[guess.charAt(i)-'0']--; //guess用--来表示这个数出现过
+            }
+        }
+        return bulls + "A" + cows + "B";
+    }
+    
+    
     //solution2: (own), 用哈希表解决
     public String getHint(String secret, String guess) {
         
