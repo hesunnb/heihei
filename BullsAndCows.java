@@ -37,7 +37,7 @@ class Solution {
         int bulls = 0;
         int cows = 0;
         int[] numbers = new int[10]; //用来装0~9
-        for (int i = 0; i < secret.length(); i++) {
+        for (int i = 0; i < secret.length(); i++) { //题目中说了assume他们的长度总是一样
             if (secret.charAt(i) == guess.charAt(i)) {
                 bulls++;
             }
