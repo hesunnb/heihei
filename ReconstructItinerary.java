@@ -21,6 +21,11 @@ class Solution {
     
     //testCase: 对应discuss的图: 
     //String[][] tickets = {{"JFK","A"},{"JFK","D"},{"A","C"},{"C","D"},{"C","JFK"},{"B","C"},{"D","B"},{"D","A"}};
+    /*首先从起点'JFK出发， d旬捆←斗sub-psth: JFK->.岛叫:->D->A，在A处出现d回d
+    end何有宿可以是自铀)， JI:tIIIJ将叫回鹏当申. d伽遁回.对于洒回到的节点D. 还有可
+    以继辑走的subpa由， d阳缠绵拢，得: D->B->C-晶'JFK->D. 此时的D为d髓de时，说明
+    可以将D1I圄鹏当中，而且处于自副阻四点之前.u提雄，每次翻都归国d end的节
+    点.噩'加南点都翩翩d endl*/
     public List<String> findItinerary(String[][] tickets) {
         
     }
