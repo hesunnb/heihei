@@ -21,12 +21,31 @@ class Solution {
     
     //testCase: 对应discuss的图: 
     //String[][] tickets = {{"JFK","A"},{"JFK","D"},{"A","C"},{"C","D"},{"C","JFK"},{"B","C"},{"D","B"},{"D","A"}};
-    /*首先从起点'JFK出发， d旬捆←斗sub-psth: JFK->.岛叫:->D->A，在A处出现d回d
-    end何有宿可以是自铀)， JI:tIIIJ将叫回鹏当申. d伽遁回.对于洒回到的节点D. 还有可
-    以继辑走的subpa由， d阳缠绵拢，得: D->B->C-晶'JFK->D. 此时的D为d髓de时，说明
-    可以将D1I圄鹏当中，而且处于自副阻四点之前.u提雄，每次翻都归国d end的节
-    点.噩'加南点都翩翩d endl*/
+    
+    /*首先从起点JFK出发, dfs找到一个sub-path: JFK->A->C->D->A, 在A处出现dead end(不再有可以走的边), 此时将A加到解当中, dfs返回. 对于返回到的节点D, 
+    还有可以继续走的subpath, dfs继续找, 得：D->B->C->JFK->D. 此时的D为dead end, 说明可以将D加到解当中, 而且处于已经加过的点之前. 以此类推, 每次都加
+    dead end的节点. 直到所有点都是dead end!*/
+    
+    Map<String, PriorityQueue<String>> flights;
+    LinkedList<String> path;
+    
     public List<String> findItinerary(String[][] tickets) {
-        
+        flights = new HashMap<>();
+        path = new LinkedList<>();
+        for (String[] ticket : tickets) {
+            flights.putIfAbsent(ticket[0], new PriorityQueue<>()); //用优先级队列存地点保证lexical order
+            flights.get(ticket[0]).add(ticket[1]);
+        }
+        dfs("JFK");
+        return path;
+    }
+    
+    private void dfs(String departure) { //就是从JFK出发找环, 找到第一个环的dead end就是最后一个点, 然后回退到上一个点继续找环, 遇到的dead end作为
+        //倒数第二个点, 依次进行下去
+        PriorityQueue<String> arrivals = flights.get(departure);
+        while (arrivals != null && !arrivals.isEmpty()) {
+            dfs(arrivals.poll());
+        }
+        path.addFirst(departure);
     }
 }
