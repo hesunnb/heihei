@@ -19,6 +19,7 @@ Explanation: Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","
 
 class Solution {
     
+    //solution1: 递归, 欧拉路径, 有向图, 且图是连通图, 每个边恰好走一遍, 存在欧拉cycle
     //testCase: 对应discuss的图: 
     //String[][] tickets = {{"JFK","A"},{"JFK","D"},{"A","C"},{"C","D"},{"C","JFK"},{"B","C"},{"D","B"},{"D","A"}};
     
@@ -47,5 +48,29 @@ class Solution {
             dfs(arrivals.poll());
         }
         path.addFirst(departure);
+    }
+    
+    
+    //solution2: 用栈
+    Map<String, PriorityQueue<String>> flights;
+    LinkedList<String> path;
+    
+    public List<String> findItinerary(String[][] tickets) {
+        flights = new HashMap<>();
+        path = new LinkedList<>();
+        for (String[] ticket : tickets) {
+            flights.putIfAbsent(ticket[0], new PriorityQueue<String>());  //用优先级队列存地点保证lexical order
+            flights.get(ticket[0]).add(ticket[1]);
+        }
+        
+        Stack<String> stack = new Stack<>();
+        stack.push("JFK");
+        while (!stack.empty()) { //用栈模拟, 过程和用dfs的一样
+            while (flights.containsKey(stack.peek()) && !flights.get(stack.peek()).isEmpty())
+                stack.push(flights.get(stack.peek()).poll());
+            path.add(0, stack.pop());
+        }
+        
+        return path;
     }
 }
