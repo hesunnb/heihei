@@ -33,7 +33,7 @@ class Solution {
         flights = new HashMap<>();
         path = new LinkedList<>();
         for (String[] ticket : tickets) {
-            flights.putIfAbsent(ticket[0], new PriorityQueue<>()); //用优先级队列存地点保证lexical order
+            flights.putIfAbsent(ticket[0], new PriorityQueue<String>()); //用优先级队列存地点保证lexical order
             flights.get(ticket[0]).add(ticket[1]);
         }
         dfs("JFK");
