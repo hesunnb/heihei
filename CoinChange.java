@@ -25,7 +25,7 @@ class Solution {
         int[] dp = new int[amount + 1]; //java数组的最大长度就是Integer.MAX_VALUE, 所以amount不能是Integer.MAX_VALUE
         //ArrayList的最大长度是Integer.MAX_VALUE - 8
         for(int i = 0; i < dp.length; i++) {
-        	dp[i] = Integer.MAX_VALUE;
+            dp[i] = Integer.MAX_VALUE;
         }
         
         dp[0] = 0;
