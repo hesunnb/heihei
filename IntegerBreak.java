@@ -6,6 +6,30 @@ For example, given n = 2, return 1 (2 = 1 + 1); given n = 10, return 36 (10 = 3 
 Note: You may assume that n is not less than 2 and not larger than 58.*/
 
 class Solution {
+    
+    //solution1: 用动归解, 动归的方法并没有math方法好, 但是解法更通用, 适合面试
+    public int integerBreak(int n) {
+        
+        if(n < 2 || n > 58) {
+            return Integer.MIN_VALUE;
+        }
+        
+        int[] dp = new int[n + 1];
+        dp[1] = 1;
+        for(int i = 2; i <= n; i ++) { //n在2到58之间, 所以i从2开始
+           for(int j = 1; j < i; j ++) {
+               dp[i] = Math.max(dp[i], (Math.max(j,dp[j])) * (Math.max(i - j, dp[i - j]))); 
+               //让下标与下标对应值比较, 挑出大的进行相乘
+               //比如i=6, 就是输入为6的时候, j和i-j组成对应相加的因子, 而j和i-j这两个因子(下标)分别对应以它们为下标数组中的值, 数组中的值就是输入
+               //为i的时候能得到的乘积最大值, 和输入为i-j的时候能得到的乘积最大值; 那么再进行相乘得到新的值的时候, 谁大就挑哪个, 因为一个因子的拆分
+               //的乘积就是以它为下标在数组中对应的值, 如果这个值还没有它本身大的时候就不用进行拆分了, 就直接选择因子相乘, 反之就用大的数组中的值
+           }
+        }
+        return dp[n];
+    }
+    
+    
+    //solution2: math方法解, 巧妙
     public int integerBreak(int n) {
         
         if(n < 2 || n > 58) {
