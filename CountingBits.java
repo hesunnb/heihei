@@ -6,8 +6,8 @@ For num = 5 you should return [0,1,1,2,1,2].
 
 Follow up:
 
-It is very easy to come up with a solution with run time O(n*sizeof(integer)). But can you do it in linear time O(n) /possibly in a single 
-pass?
+It is very easy to come up with a solution with run time O(n*sizeof(integer)). But can you do it in linear time O(n) /possibly in a 
+single pass?
 Space complexity should be O(n).
 Can you do it like a boss? Do it without using any builtin function like __builtin_popcount in c++ or in any other language.*/
 
@@ -50,8 +50,8 @@ class Solution {
     dp[8] = dp[0] + 1;
     ...
 
-    This is the function we get, now we need find the other pattern for the function to get the general function. After we analyze the above 
-    function, we can get
+    This is the function we get, now we need find the other pattern for the function to get the general function. After we analyze the 
+    above function, we can get
     dp[0] = 0;
 
     dp[1] = dp[1-1] + 1;
