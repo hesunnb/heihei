@@ -74,4 +74,23 @@ class Solution {
     Obviously, we can find the pattern for above example, so now we get the general function
 
     dp[index] = dp[index - offset] + 1;*/
+    
+    /*There is one imporant observation we can make about the number of bits in each number.
+
+    Each Power of 2 has exactly only 1 bit. (2 : 0010 , 4: 0100, 8:1000, 16:10000)
+    Each number after the power of 2 follows a pecular pattern :
+    0 → 0
+    1 → 0
+    2 → 1 + dp[0] Nearest Power of 2
+    3 → 1 + dp[1] 1 greater than nearest
+    4 → 1 + dp[0] Nearest
+    5 → 1+ dp[1] 1 greater than nearest
+    6 → 1+ dp[2] 2 greater than nearest
+    7 → 1+ dp[3] 3 greater than nearest
+    8 → 1+ dp[0] Nearest
+    9 → 1+ dp[1]
+    10 → 1+ dp[2]
+    11 → 1+ dp[3]
+    12 → 1+ dp[4]
+    You can easily see the pattern here.*/
 }
