@@ -54,10 +54,10 @@ class Solution {
         return num.startsWith(sum, start) && isValid(x1, x2, start + sum.length(), num); //startWith用法如下, 这句话就是如果第一段相加
         //结果满足就递归进行下一段, 继续相加判断
         /*String s = "199100199";
-		System.out.println(s.startsWith("100", 3)); //startWith是判断对于s这个字符串从下标3开始"100"是不是"100199"这个子串的prefix
-		System.out.println(s.startsWith("100", 2)); //从下标2开始是"9100199", 包含"100", 但是"100"并不是"9100199"的前缀, 所以假
+	System.out.println(s.startsWith("100", 3)); //startWith是判断对于s这个字符串从下标3开始"100"是不是"100199"这个子串的prefix
+	System.out.println(s.startsWith("100", 2)); //从下标2开始是"9100199", 包含"100", 但是"100"并不是"9100199"的前缀, 所以假
 		
-		String ss = "199";
-		System.out.println(ss.startsWith("199", 0)); //true*/
+	String ss = "199";
+	System.out.println(ss.startsWith("199", 0)); //true*/
     }
 }
