@@ -21,7 +21,7 @@ Output: true
 Explanation: The additive sequence is: 1, 99, 100, 199. 
              1 + 99 = 100, 99 + 100 = 199
 Follow up:
-How would you handle overflow for very large input integers?*/
+How would you handle overflow for very large input integers?: 用BigInteger*/
 
 import java.math.BigInteger;
 
