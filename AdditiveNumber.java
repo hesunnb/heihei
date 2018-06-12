@@ -30,7 +30,14 @@ class Solution {
     /*The idea is quite straight forward. Generate the first and second of the sequence, check if the rest of the string match the sum
     recursively. i and j are length of the first and second number. i should in the range of [0, n/2]. The length of their sum should 
     >=max(i,j)*/
+	
+    //solution2: 用递归
     public boolean isAdditiveNumber(String num) {
+	
+	if(num == null || num.length() == 0) {
+            return false;
+        }
+	
         int n = num.length();
         for (int i = 1; i <= n / 2; i++) { //i和j分别是第一个和第二个数的长度
             if (num.charAt(0) == '0' && i > 1) return false; //"011235"这种例子就是真, 当i的长度为1的时候, 0作为单独一个数计算; 当i的长度为
@@ -59,5 +66,38 @@ class Solution {
 		
 	String ss = "199";
 	System.out.println(ss.startsWith("199", 0)); //true*/
+    }
+	
+
+    //solution3: 用迭代法, 也要用到BigInteger, 引入java.math.BigInteger;
+    public boolean isAdditiveNumber(String num) {
+        
+        if(num == null || num.length() == 0) {
+            return false;
+        }
+        
+        int n = num.length();
+        for (int i = 1; i <= n / 2; i++) {
+            if (num.charAt(0) == '0' && i > 1) return false; //跟上面一样, 如果第一个数以0开头, 长度还比1大, 直接返回假
+            for (int j = 1; Math.max(j, i) <= n - i - j; j++) {
+                if (num.charAt(i) == '0' && j > 1) break; //如果第二个数以0开头, 长度还比1大, 直接break, 后面的数就不看了
+                if (isValid(i, j, num)) return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean isValid(int i, int j, String num) {
+        
+        String sum;
+        BigInteger x1 = new BigInteger(num.substring(0, i));
+        BigInteger x2 = new BigInteger(num.substring(i, i + j));
+        for (int start = i + j; start < num.length(); start += sum.length()) {
+            x2 = x2.add(x1);
+            x1 = x2.subtract(x1);
+            sum = x2.toString();
+            if (!num.startsWith(sum, start)) return false;
+        }
+        return true;
     }
 }
