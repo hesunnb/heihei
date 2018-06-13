@@ -31,6 +31,39 @@ class Solution {
     recursively. i and j are length of the first and second number. i should in the range of [0, n/2]. The length of their sum should 
     >=max(i,j)*/
 	
+    //solution1: 用long, 没有overflow的时候用long就可以, overflow用BigInteger
+    public boolean isAdditiveNumber(String num) {
+        
+        if(num == null || num.length() == 0) {
+            return false;
+        }
+        
+        int n = num.length();
+        for (int i = 1; i <= n / 2; i++) {
+            if (num.charAt(0) == '0' && i > 1) return false; //跟上面一样, 如果第一个数以0开头, 长度还比1大, 直接返回假
+            for (int j = 1; Math.max(j, i) <= n - i - j; j++) {
+                if (num.charAt(i) == '0' && j > 1) break; //如果第二个数以0开头, 长度还比1大, 直接break, 后面的数就不看了
+                if (isValid(i, j, num)) return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean isValid(int i, int j, String num) {
+        
+        String sum;
+        long x1 = Long.parseLong(num.substring(0, i));
+        long x2 = Long.parseLong(num.substring(i, i + j));
+        for (int start = i + j; start < num.length(); start += sum.length()) {
+            x2 = x2 + x1;
+            x1 = x2 - x1;
+            sum = String.valueOf(x2);
+            if (!num.startsWith(sum, start)) return false;
+        }
+        return true;
+    }
+	
+	
     //solution2: 用递归
     public boolean isAdditiveNumber(String num) {
 	
