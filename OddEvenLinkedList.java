@@ -26,6 +26,29 @@ The first node is considered odd, the second node even and so on ...*/
  */
 class Solution {
 
+    //solution1:
+    public ListNode oddEvenList(ListNode head) {
+        
+        if(head == null || head.next == null || head.next.next == null) {
+            return head; //没有链表, 或者链表长度为1,2的时候直接返回
+        }
+    
+        ListNode odd = head, even = head.next, evenHead = even; 
+    
+        while (even != null && even.next != null) { //如果even.next == null, 那么even就是链表的最后一个值, 此时odd也不需要再往后走了
+            //直接odd.next = evenHead连接即可; 如果even == null, 说明之前一步, even后面还有一个节点, even走两步变为null, 此时odd也要走两步
+            //连接完最后一个odd的节点(也就是链表的最后一个节点), 然后odd.next = evenHead连接
+            odd.next = odd.next.next; 
+            even.next = even.next.next; 
+            odd = odd.next;
+            even = even.next;
+        }
+        odd.next = evenHead;
+    
+        return head;
+    }
+    
+    
     //solution2: (own)
     public ListNode oddEvenList(ListNode head) {
         
