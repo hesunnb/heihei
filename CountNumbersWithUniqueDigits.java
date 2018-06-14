@@ -8,16 +8,21 @@ class Solution {
         if(n < 0) {
             return Integer.MIN_VALUE;
         }
+        
         if (n == 0) { //0<= x < 1, 只有0, 所以结果只有1种
             return 1;
-        }
+        }   
         
-        int ans = 10, base = 9; //对于n==1, 结果是10, 就直接返回ans
-        for (int i = 2; i <= n && i <= 10; i++) { //对于2<= n <=10, 进行计算
-            base = base * (9 - i + 2);
-            ans += base;
+        int res = 10; //对于n==1, 结果是10, 就直接返回res
+        int uniqueDigits = 9;
+        int availableNumber = 9;
+        while (n > 1 && availableNumber > 0) { //对于2<= n <=10, 进行计算
+            uniqueDigits = uniqueDigits * availableNumber;
+            res += uniqueDigits;
+            availableNumber--;
+            n--;
         }
-        return ans; //对于n>11的情况, 都返回n==10的结果, 就是能获得的最大值了
+        return res; //对于n>11的情况, 都返回n==10的结果, 就是能获得的最大值了
     }
     /*This is a digit combination problem. Can be solved in at most 10 loops.
 
