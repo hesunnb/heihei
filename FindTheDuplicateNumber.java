@@ -26,7 +26,7 @@ class Solution {
             return Integer.MIN_VALUE;
         }
         
-        int low = 1, high = nums.length - 1;
+        int low = 1, high = nums.length - 1; //因为题目数的范围就是1到n, 所以low和high的值这样定
         while (low <= high) {
             int mid = low + (high - low) / 2;
             int cnt = 0;
