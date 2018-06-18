@@ -18,7 +18,7 @@ Output: 0*/
 class Solution {
 
     //利用search in rotated sorted array的红绿线方法
-    //复杂度：O(logn)
+    //复杂度: O(logn)
     public int findMin(int[] nums) {
     
         if(nums == null || nums.length == 0) {
@@ -32,11 +32,11 @@ class Solution {
                 start = mid; //start向右窜
             }
             else if(nums[mid] < nums[end]) { //绿线上的情况
-                end = mid; //小于的情况下，让end不断左窜
+                end = mid; //小于的情况下, 让end不断左窜
             }
         }
         
-        if(nums[start] < nums[end]) { //start,end定有一个是最小值，哪个小返回哪个
+        if(nums[start] < nums[end]) { //start, end定有一个是最小值, 哪个小返回哪个
             return nums[start];
         } else {
             return nums[end];
