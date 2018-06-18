@@ -31,7 +31,7 @@ class Solution {
             if(nums[start] < nums[mid] && nums[start] > nums[end]) { //保证start一定是红线的开头且mid在红线上的情况
                 start = mid; //start向右窜
             }
-            else if(nums[mid] < nums[end]) { //绿线上的情况
+            else if(nums[mid] < nums[end]) { //绿线上的情况, 这个else的条件也可以不加
                 end = mid; //小于的情况下, 让end不断左窜
             }
         }
