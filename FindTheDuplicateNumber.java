@@ -18,6 +18,29 @@ There is only one duplicate number in the array, but it could be repeated more t
 
 class Solution {
 
+    //solution1: 快慢指针法, 尚未很懂, 需要看discuss
+    public int findDuplicate(int[] nums) {
+        
+        if(nums == null || nums.length <= 1) { //按照题目要求, n至少是1, 然后数组至少应该有两个数
+            return Integer.MIN_VALUE;
+        }
+        
+        int slow = nums[0];
+        int fast = nums[nums[0]];
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }
+
+        fast = 0;
+        while (fast != slow) {
+            fast = nums[fast];
+            slow = nums[slow];
+        }
+        return slow;
+    }
+	
+	
     //solution2: nlog(n)二分解法, 二分搜索基于index和range, 见Kth Smallest Element in a Sorted Matrix, 对于index的已有模板,
     //那对于这种数组中有重复, unsorted array这种就用这个当模板吧
     public int findDuplicate(int[] nums) {
