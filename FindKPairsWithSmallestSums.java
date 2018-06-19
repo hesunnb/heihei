@@ -27,6 +27,8 @@ All possible pairs are returned from the sequence:
 [1,3],[2,3]*/
 
 class Solution {
+    
+    //与leetcode378是类似题
     public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         
         List<int[]> result = new ArrayList<>();
