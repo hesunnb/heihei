@@ -28,7 +28,7 @@ All possible pairs are returned from the sequence:
 
 class Solution {
     
-    //与leetcode378是类似题, 复杂度klog(n)+n, 队列每弹出一个值是log(n), 走k遍
+    //与leetcode378是类似题, 复杂度klog(k)+k, +k忽略, 队列每弹出一个值是log(k), 走k遍
     public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         
         List<int[]> result = new ArrayList<>();
@@ -39,7 +39,8 @@ class Solution {
         PriorityQueue<Tuple> pq = new PriorityQueue<Tuple>();
         int m = nums1.length, n = nums2.length;
         
-        for(int j = 0; j <= n-1; j++) {
+        for(int j = 0; j <= n-1 && j < k; j++) { //因为每一个nums2的元素都携带一个nums1的数组进行配对, 所以只需要nums2里面前k个元素去配对
+            //就可以了, k后面的nums2中的元素根本用不到, 因为k后面的nums2中的元素与nums1配对的结果一定比前k个去配对要大, 所以就不用往队列里装了
             pq.offer(new Tuple(0, j, nums1[0]+nums2[j])); //以nums1的第一个元素为基准, nums2的所有元素都与其配对, 这样配对完了以后, 
             //nums2的每个元素都有一列nums1, 所有的nums1都在起点处, 就是nums1的第一个元素
         }
