@@ -28,7 +28,7 @@ All possible pairs are returned from the sequence:
 
 class Solution {
     
-    //与leetcode378是类似题, 复杂度klog(k)+n
+    //与leetcode378是类似题, 复杂度klog(n)+n, 队列每弹出一个值是log(n), 走k遍
     public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         
         List<int[]> result = new ArrayList<>();
