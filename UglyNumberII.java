@@ -31,7 +31,7 @@ class Solution {
             multi3 = res[next3] * 3;
             multi5 = res[next5] * 5;
             int ugly = Math.min(multi2, Math.min(multi3, multi5));
-            if (ugly == multi2) {
+            if (ugly == multi2) { //比如multi2和multi3同时和ugly相等的话, 两个的下标都要分别+1
                 next2++;
             }
             if (ugly == multi3) {
