@@ -30,7 +30,8 @@ randomSet.insert(2);
 randomSet.getRandom();*/
 
 
-//solution2: (own), Hashset和ArrayList的add, remove方法都不是O(1)
+//solution2: (own), ArrayList的add方法是O(1), remove方法是O(n)
+//HashSet底层如果是HashMap实现的, 那么add和remove是O(1); 如果底层是红黑树, 那么就是O(logN)
 class RandomizedSet {
 
     Set<Integer> set;
