@@ -83,7 +83,7 @@ public int nthUglyNumber(int n) {
     }
     
     
-    public int nthUglyNumber(int n) {
+    public int nthUglyNumber(int n) { //上面两个版本用于理解, 面试直接写这个吧
         int[] res = new int[n];
         res[0] = 1;
         int[] next = new int[3];
