@@ -30,7 +30,7 @@ randomSet.insert(2);
 randomSet.getRandom();*/
 
 
-//solution2: (own)
+//solution2: (own), Hashset和ArrayList的add, remove方法都不是O(1)
 class RandomizedSet {
 
     Set<Integer> set;
