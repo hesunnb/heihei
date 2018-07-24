@@ -30,7 +30,7 @@ randomSet.insert(2);
 randomSet.getRandom();*/
 
 
-//solution3: (own)
+//solution2: (own)
 class RandomizedSet {
 
     Set<Integer> set;
@@ -55,6 +55,40 @@ class RandomizedSet {
     public int getRandom() {
         return set.toArray(setArray)[(int)(Math.random()*set.size())];
         //用set以及toArray, 配合随机数
+    }
+}
+
+
+//solution3: (own)
+class RandomizedSet {
+
+    List<Integer> list;
+    /** Initialize your data structure here. */
+    public RandomizedSet() {
+        list = new ArrayList<>();
+    }
+    
+    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+    public boolean insert(int val) {
+        if(list.contains(val)) {
+            return false;
+        }
+        return list.add(val); //add方法返回boolean
+    }
+    
+    /** Removes a value from the set. Returns true if the set contained the specified element. */
+    public boolean remove(int val) {
+        if(!list.contains(val)) {
+            return false;
+        }
+        list.remove(new Integer(val)); //remove返回被删除的值; 一个新的用法就是ArrayList的remove如果直接传int默认就是下标, 
+        //传对象才是ArrayList中的值, 所以要想删除ArrayList中的值的话得传入相应的对象才行
+        return true;
+    }
+    
+    /** Get a random element from the set. */
+    public int getRandom() {
+        return list.get((int)(Math.random()*list.size()));
     }
 }
 
