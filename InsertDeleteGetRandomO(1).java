@@ -74,7 +74,7 @@ class RandomizedSet {
         return list.get(rand.nextInt(list.size()));
         //return list.get((int)(Math.random()*list.size())); //Math.random()和nextInt差不多吧, 稍微复杂点儿
         //nextInt方法的作用是生成一个随机的int值, 该值介于[0,n)的区间, 也就是0到n之间的随机int值, 包含0而不包含n.
-		//nextInt方法是O(1)的
+	//nextInt方法是O(1)的
     }
 }
 
