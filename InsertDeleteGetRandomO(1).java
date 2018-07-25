@@ -104,7 +104,8 @@ class RandomizedSet {
     /** Get a random element from the set. */
     public int getRandom() {
         return set.toArray(setArray)[(int)(Math.random()*set.size())];
-        //用set以及toArray, 配合随机数
+        //用set以及toArray, 配合随机数; 如果HashSet底层是用HashMap实现, 那么insert和remove都没有问题, 但是Hashset没有直接的get方法,
+	//HashSet用iterator, 是需要遍历的, 所以getRandom()这里慢了
     }
 }
 
