@@ -30,6 +30,55 @@ randomSet.insert(2);
 randomSet.getRandom();*/
 
 
+//solution1: O(1)的好方法
+class RandomizedSet {
+
+    ArrayList<Integer> list;
+    HashMap<Integer, Integer> map;
+    java.util.Random rand = new java.util.Random();
+    /** Initialize your data structure here. */
+    public RandomizedSet() {
+        list = new ArrayList<Integer>();
+        map = new HashMap<Integer, Integer>();
+    }
+    
+    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+    public boolean insert(int val) {
+        if (map.containsKey(val)) {
+            return false;
+        }
+        list.add(val); //先加入值
+        map.put(val, list.size() - 1); //加入的值都是在list中的最后一个值, 就相当于把这个值的下标放入了map中
+        return true;
+    }
+    
+    /** Removes a value from the set. Returns true if the set contained the specified element. */
+    public boolean remove(int val) {
+        if (!map.containsKey(val)) {
+            return false;
+        }
+        int index = map.get(val);
+        if (index < list.size() - 1) { // not the last one than swap the last one with this val
+            int lastone = list.get(list.size() - 1); //取list的最后一个值
+            list.set(index, lastone); //替换掉要remove的值
+            map.put(lastone, index); //更新最后一个值的index
+        }
+        map.remove(val);
+        list.remove(list.size() - 1); //直接删除list的最后一个值; 这个交换为的就是要调用ArrayList的remove方法去删除list中的最后一个值, 
+        //因为ArrayList的remove方法是O(n), 但是删除最后一个值是O(1),
+        return true;
+    }
+    
+    /** Get a random element from the set. */
+    public int getRandom() {
+        return list.get(rand.nextInt(list.size()));
+        //return list.get((int)(Math.random()*list.size())); //Math.random()和nextInt差不多吧, 稍微复杂点儿
+        //nextInt方法的作用是生成一个随机的int值, 该值介于[0,n)的区间, 也就是0到n之间的随机int值, 包含0而不包含n.
+		//nextInt方法是O(1)的
+    }
+}
+
+
 //solution2: (own), ArrayList的add方法是O(1), remove方法是O(n)
 //HashSet底层如果是HashMap实现的, 那么add和remove是O(1); 如果底层是红黑树, 那么就是O(logN)
 class RandomizedSet {
