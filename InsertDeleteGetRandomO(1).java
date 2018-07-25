@@ -65,7 +65,7 @@ class RandomizedSet {
         }
         map.remove(val);
         list.remove(list.size() - 1); //直接删除list的最后一个值; 这个交换为的就是要调用ArrayList的remove方法去删除list中的最后一个值, 
-        //因为ArrayList的remove方法是O(n), 但是删除最后一个值是O(1),
+        //因为ArrayList的remove方法是O(n), 但是删除最后一个值是O(1), 可以参考ArrayList的源码
         return true;
     }
     
