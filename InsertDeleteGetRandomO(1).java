@@ -71,7 +71,8 @@ class RandomizedSet {
     
     /** Get a random element from the set. */
     public int getRandom() {
-        return list.get(rand.nextInt(list.size()));
+        return list.get(rand.nextInt(list.size())); //如果list为empty, 调用这个getRandom()方法就会报异常, nextInt里面必须传正数; 
+	//当然除了nextInt, list.get(0)也会报异常; 但是这个getRandom函数就这么给的, 必须返回一个int, 所以这里也没办法, 面试时候注意
         //return list.get((int)(Math.random()*list.size())); //Math.random()和nextInt差不多吧, 稍微复杂点儿
         //nextInt方法的作用是生成一个随机的int值, 该值介于[0,n)的区间, 也就是0到n之间的随机int值, 包含0而不包含n.
 	//nextInt方法是O(1)的
