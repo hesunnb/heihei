@@ -34,4 +34,5 @@ collection.getRandom();*/
 下标, 但是优先级队列的操作是O(logn), 不是O(1), 所以不能用优先级队列*/
 
 /*An iterator over a normal HashSet is actually O(h/n), where h is table capacity. HashSet底层是HashMap, h就是HashMap的size, n是HastSet
-的size, 所以就算是用next()取HashSet中的第一个元素, 也是这个复杂度, 和ArrayList直接用下标取的那种是不同的*/
+的size, 所以就算是用next()取HashSet中的第一个元素, 也是这个复杂度, 和ArrayList直接用下标取的那种是不同的; LinkedHashSet的next就取链表的第一个, 
+所以是O(1)*/
