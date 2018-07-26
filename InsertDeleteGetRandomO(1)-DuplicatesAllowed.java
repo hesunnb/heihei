@@ -32,3 +32,6 @@ collection.getRandom();*/
 元素的最后一个index, 比如开始是11233对应1[0,1] 2[2] 3[4,5]; 删掉一个1, 变成1323对应1[0] 2[2] 3[4,1]; 当你再删一个1的时候就会出现把index为
 1的3给删掉了, 但是list删除的是最后一个3, 对不上了, 如果最后一个元素不是3就直接出错了, 所以考虑换成优先级队列, 这样就可以每次都删除元素的最后一个
 下标, 但是优先级队列的操作是O(logn), 不是O(1), 所以不能用优先级队列*/
+
+/*An iterator over a normal HashSet is actually O(h/n), where h is table capacity. HashSet底层是HashMap, h就是HashMap的size, n是HastSet
+的size, 所以就算是用next()取HashSet中的第一个元素, 也是这个复杂度, 和ArrayList直接用下标取的那种是不同的*/
