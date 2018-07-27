@@ -36,3 +36,63 @@ collection.getRandom();*/
 /*An iterator over a normal HashSet is actually O(h/n), where h is table capacity. HashSet底层是HashMap, h就是HashMap的size, n是HastSet
 的size, 所以就算是用next()取HashSet中的第一个元素, 也是这个复杂度, 和ArrayList直接用下标取的那种是不同的; LinkedHashSet的next就取链表的第一个, 
 所以是O(1)*/
+class RandomizedCollection {
+
+    ArrayList<Integer> list;
+    HashMap<Integer, Set<Integer>> map;
+    java.util.Random rand = new java.util.Random();
+    /** Initialize your data structure here. */
+    public RandomizedCollection() {
+        list = new ArrayList<>();
+        map = new HashMap<>();
+    }
+    
+    /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
+    public boolean insert(int val) {
+        boolean contain = map.containsKey(val);
+        if (!contain) {
+            map.put(val, new LinkedHashSet<Integer>());
+        }
+        list.add(val); //先加入值
+        map.get(val).add(list.size() - 1); //加入的值都是在list中的最后一个值, 就相当于把这个值的下标放入了map中; 因为直接get的就是对应值的HashSet
+        //所以就不用再put了
+        return !contain;
+    }
+    
+    /** Removes a value from the collection. Returns true if the collection contained the specified element. */
+    public boolean remove(int val) {
+        if (!map.containsKey(val)) {
+            return false;
+        }
+        int index = map.get(val).iterator().next();
+        map.get(val).remove(index); //因为HashSet的底层是HashMap实现的, 所以HashSet的remove方法是O(1), remove方法返回boolean, ArrayList的
+        //remove方法返回删除的那个值
+        if (index < list.size() - 1) { // not the last one than swap the last one with this val
+            int lastone = list.get(list.size() - 1); //取list的最后一个值
+            list.set(index, lastone); //替换掉要remove的值
+            map.get(lastone).remove(list.size() - 1); //list用最后一个值的下标来取到那个值, 而这个值的下标也一定在它自己的HashSet中并且也是
+            //最后的下标
+            map.get(lastone).add(index); //更新最后一个值的index
+        }
+        
+        if(map.get(val).isEmpty()) {
+            map.remove(val);
+        }
+        
+        list.remove(list.size() - 1);
+        return true;
+    }
+    
+    /** Get a random element from the collection. */
+    public int getRandom() {
+        return list.get(rand.nextInt(list.size()));
+    }
+}
+
+/**
+ * Your RandomizedCollection object will be instantiated and called as such:
+ * RandomizedCollection obj = new RandomizedCollection();
+ * boolean param_1 = obj.insert(val);
+ * boolean param_2 = obj.remove(val);
+ * int param_3 = obj.getRandom();
+ */
