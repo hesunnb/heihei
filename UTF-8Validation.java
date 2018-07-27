@@ -15,8 +15,9 @@ Given an array of integers representing the data, return whether it is a valid u
 
 Note:
 The input is an array of integers. Only the least significant 8 bits of each integer is used to store the data. This means each integer 
-represents only 1 byte of data. /*这句话的意思就是: Integer都是32位的, 那么这32位中只有最低的8位在这里起作用, 所以一个Integer就代表了一个字节
-的数据; 所以最终的解法就按照上面那个图来, 遍历一遍满足这4种格式就行*/
+represents only 1 byte of data. 
+//这句话的意思就是: Integer都是32位的, 那么这32位中只有最低的8位在这里起作用, 所以一个Integer就代表了一个字节
+//的数据; 所以最终的解法就按照上面那个图来, 遍历一遍满足这4种格式就行
 
 Example 1:
 
