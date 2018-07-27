@@ -35,6 +35,8 @@ The next byte is a continuation byte which starts with 10 and that's correct.
 But the second continuation byte does not start with 10, so it is invalid.*/
 
 class Solution {
+   
+    //solution1: (own), O(n)+位运算, 遍历一遍, 按照上面4种格式进行check
     public boolean validUtf8(int[] data) {
         
         if(data == null || data.length == 0) {
@@ -53,7 +55,7 @@ class Solution {
                 }
             }
             
-            if(sum == 0) { //如果是0xxxxxxx, 直接返回
+            if(sum == 0) { //如果是0xxxxxxx, 直接返回, 因为肯定是有效的
                 continue;
             } else {
                 if(sum < 2 || sum > 4 || data.length < i+sum) return false; //如果查出来的1的个数为1个或者5,6...太多了, 
