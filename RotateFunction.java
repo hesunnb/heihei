@@ -22,23 +22,67 @@ So the maximum value of F(0), F(1), F(2), F(3) is F(3) = 26.*/
 
 class Solution {
 
-    //solution1: 数学公式推导法
+    //solution1: 最易理解的方法O(n)搞定
     public int maxRotateFunction(int[] A) {
         
         if(A == null || A.length == 0) {
             return 0;
         }
         
-        int allSum = 0; //数组元素的和
+        int sum = 0, F = 0, len = A.length;
+        
+        for(int i = 0; i < len; i++){
+            sum += A[i];
+            F += (A[i] * i);
+        }
+        
+        int max = F;
+        for(int j = 1; j < len; j++){
+            // for next iteration lets remove one entry value of each entry and the prev 0 * k
+            F = F - sum + A[j-1]*len;
+            max = Math.max(max, F);
+        }
+        
+        return max;
+    }
+    /*Consider we have 5 coins A,B,C,D,E
+
+    According to the problem statement
+    F(0) = (0A) + (1B) + (2C) + (3D) + (4E)
+    F(1) = (4A) + (0B) + (1C) + (2D) + (3E)
+    F(2) = (3A) + (4B) + (0C) + (1D) + (2*E)
+
+    This problem at a glance seem like a difficult problem. I am not very strong in mathematics, so this is how I visualize this problem
+
+    We can construct F(1) from F(0) by two step:
+    Step 1. taking away one count of each coin from F(0), this is done by subtracting "sum" from "iteration" in the code below
+    after step 1 F(0) = (-1A) + (0B) + (1C) + (2D) + (3*E)
+
+    Step 2. Add n times the element which didn't contributed in F(0), which is A. This is done by adding "A[j-1]len" in the code below.
+    after step 2 F(0) = (4A) + (0B) + (1C) + (2D) + (3E)
+
+    At this point F(0) can be considered as F(1) and F(2) to F(4) can be constructed by repeating the above steps.
+
+    Hope this explanation helps, cheers!*/
+    
+    //solution2: 数学公式推导法
+    public int maxRotateFunction(int[] A) {
+        
+        if(A == null || A.length == 0) {
+            return 0;
+        }
+        
+        int sum = 0; //数组元素的和
         int len = A.length;
         int F = 0;
         for (int i = 0; i < len; i++) {
             F += i * A[i]; //F最开始的值就是F(0)了
-            allSum += A[i];
+            sum += A[i];
         }
+        
         int max = F;
         for (int i = len - 1; i >= 1; i--) {
-            F = F + allSum - len * A[i]; //算其他的F()
+            F = F + sum - len * A[i]; //算其他的F()
             max = Math.max(F, max);
         }
         return max;
@@ -62,7 +106,7 @@ class Solution {
     ...*/
     
     
-    //solution2: (own)
+    //solution3: (own)
     public int maxRotateFunction(int[] A) {
         
         if(A == null || A.length == 0) {
