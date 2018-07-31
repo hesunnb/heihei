@@ -31,13 +31,13 @@ class Solution {
         
         int sum = 0, F = 0, len = A.length;
         
-        for(int i = 0; i < len; i++){
+        for(int i = 0; i < len; i++) {
             sum += A[i];
             F += (A[i] * i);
         }
         
         int max = F;
-        for(int j = 1; j < len; j++){
+        for(int j = 1; j < len; j++) {
             // for next iteration lets remove one entry value of each entry and the prev 0 * k
             F = F - sum + A[j-1]*len;
             max = Math.max(max, F);
