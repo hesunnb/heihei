@@ -26,7 +26,27 @@ return: 3, for 3 arithmetic slices in A: [1, 2, 3], [2, 3, 4] and [1, 2, 3, 4] i
 
 class Solution {
 
-    //solution2: (own)
+    //solution1: 动归解法, 时间O(n)
+    public int numberOfArithmeticSlices(int[] A) {
+        
+        if(A == null || A.length < 3) {
+            return 0;
+        }
+        
+        int curr = 0, sum = 0;
+        for (int i = 2; i < A.length; i++) {
+            if (A[i]-A[i-1] == A[i-1]-A[i-2]) {
+                curr += 1; //动归解法, cur就是算上A[i]这个数的时候, 有多少个Arithmetic Slices
+                sum += curr; //sum存的是之前所有的Arithmetic Slices
+            } else {
+                curr = 0;
+            }
+        }
+        return sum;
+    }
+    
+    
+    //solution2: (own), 时间O(n^2)
     public int numberOfArithmeticSlices(int[] A) {
         
         if(A == null || A.length < 3) {
