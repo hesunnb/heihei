@@ -38,8 +38,8 @@ class Solution {
     public int lengthLongestPath(String input) {
         
         if(input == null || input.length() == 0) {
-			return 0;
-		}
+	    return 0;
+	}
         
         //有效路径必须以文件结尾(包含.), 不能是文件夹
         //"\t"本身就是一个字符, 不是由'\'和't'组成的, 别懵了, "\t"就占下标的一个位置
