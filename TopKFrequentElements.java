@@ -10,6 +10,11 @@ Your algorithm's time complexity must be better than O(n log n), where n is the 
 //类似题目: 451. Sort Characters By Frequency
 public class Solution {
     public List<Integer> topKFrequent(int[] nums, int k) {
+        
+        if(nums == null || nums.length == 0 || k > nums.length || k < 1) {
+            return new ArrayList<Integer>();
+        }
+        
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         //优先级队列, 比较的类型是Map.Entry<Integer, Integer>
         PriorityQueue<Map.Entry<Integer, Integer>> queue = new PriorityQueue<Map.Entry<Integer, Integer>>(new topKcomparator());
