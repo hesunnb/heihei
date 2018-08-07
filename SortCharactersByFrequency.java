@@ -35,6 +35,8 @@ Explanation:
 Note that 'A' and 'a' are treated as two different characters.*/
 
 class Solution {
+    
+    //solution1: normal的方法, map + priorityQueue
     public String frequencySort(String s) {
         
         if(s == null || s.length() == 0) {
@@ -71,5 +73,37 @@ class Solution {
         public int compare(Map.Entry<Character, Integer> e1, Map.Entry<Character, Integer> e2) {
             return e2.getValue() - e1.getValue(); //第一个减第二个就是最小堆, 第二个减第一个就是最大堆
         }
+    }
+    
+    
+    //solution2: map + 木桶法
+    public String frequencySort(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : s.toCharArray()) {
+            if (map.containsKey(c)) {
+                map.put(c, map.get(c) + 1);
+            } else {
+                map.put(c, 1);
+            }
+        }
+        List<Character> [] bucket = new List[s.length() + 1];
+        for (char key : map.keySet()) {
+            int frequency = map.get(key); //frequency就是这个字母出现的次数
+            if (bucket[frequency] == null) {
+                bucket[frequency] = new ArrayList<>(); 
+            }
+            bucket[frequency].add(key); //把次数当成下标, 在这个下标处new ArrayList, 并且添加出现相同次数的字母
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int pos = bucket.length - 1; pos >=0; pos--) {
+            if (bucket[pos] != null) {
+                for (char num : bucket[pos]) { //倒着扫, 高频率的先添加
+                    for (int i = 0; i < map.get(num); i++) {
+                        sb.append(num);
+                    }
+                }
+            }
+        }
+        return sb.toString();
     }
 }
