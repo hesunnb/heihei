@@ -16,11 +16,7 @@ public class Solution {
             
         //向哈希表中加东西
         for (int i = 0; i < nums.length; i++) {
-            if (!hashmap.containsKey(nums[i])) {
-                hashmap.put(nums[i], 1);
-            } else {
-                hashmap.put(nums[i], hashmap.get(nums[i]) + 1);
-            }
+            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
         }
         
         //向优先级队列中加东西, 优先级队列是最小堆(大小为k)
