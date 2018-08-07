@@ -34,6 +34,7 @@ Explanation:
 "bbaA" is also a valid answer, but "Aabb" is incorrect.
 Note that 'A' and 'a' are treated as two different characters.*/
 
+//类似题目: 347. Top K Frequent Elements
 class Solution {
     
     //solution1: normal的方法, map + priorityQueue
