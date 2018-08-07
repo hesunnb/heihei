@@ -10,7 +10,7 @@ Your algorithm's time complexity must be better than O(n log n), where n is the 
 //类似题目: 451. Sort Characters By Frequency
 public class Solution {
     public List<Integer> topKFrequent(int[] nums, int k) {
-        Map<Integer, Integer> hashmap = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         //优先级队列, 比较的类型是Map.Entry<Integer, Integer>
         PriorityQueue<Map.Entry<Integer, Integer>> queue = new PriorityQueue<Map.Entry<Integer, Integer>>(new topKcomparator());
             
@@ -20,7 +20,7 @@ public class Solution {
         }
         
         //向优先级队列中加东西, 优先级队列是最小堆(大小为k)
-        for (Map.Entry<Integer, Integer> entry : hashmap.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             if (queue.size() < k) {
                 queue.offer(entry);
             } else if (queue.peek().getValue() < entry.getValue()) {
