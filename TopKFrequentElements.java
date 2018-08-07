@@ -19,12 +19,11 @@ public class Solution {
             map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
         }
         
-        //对于最小堆来说  进堆操作和出堆操作的时间复杂度都是O(logn)，也就是元素需要上浮或者下潜log(n)层，但是构建一个最小堆的过程时间复杂度为O(n)
         //向优先级队列中加东西, 优先级队列是最小堆(大小为k)
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             if (queue.size() < k) {
                 queue.offer(entry);
-            } else if (queue.peek().getValue() < entry.getValue()) { //复杂度这里就是map.size()*log(k) < nlog(k)
+            } else if (queue.peek().getValue() < entry.getValue()) {
                 queue.poll();
                 queue.offer(entry);
             }
@@ -32,8 +31,11 @@ public class Solution {
         
         //取出结果
         List<Integer> ans = new ArrayList<Integer>();
-        for (Map.Entry<Integer, Integer> entry : queue)
-            ans.add(entry.getKey());
+        while(!queue.isEmpty()) {
+            Map.Entry<Integer, Integer> entry = queue.poll();
+            ans.add(0, entry.getKey()); //保证出现次数多的数在前
+        }
+            
         return ans;
     }
     
