@@ -38,7 +38,8 @@ public class Solution {
         List<Integer> ans = new ArrayList<Integer>();
         while(!queue.isEmpty()) {
             Map.Entry<Integer, Integer> entry = queue.poll();
-            ans.add(0, entry.getKey()); //保证出现次数多的数在前
+            ans.add(0, entry.getKey()); //保证出现次数多的数在前; 还有一点要注意, ArrayList的add(0, 什么)和StringBuilder的insert(0, 什么)
+            //含义是一样的, 但是执行效果却有很大不同, ArrayList的执行效率没有太大变化, StringBuilder却慢了很多! 会差800多ms
         }
             
         return ans;
