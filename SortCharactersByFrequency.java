@@ -86,7 +86,7 @@ class Solution {
                 map.put(c, 1);
             }
         }
-        List<Character> [] bucket = new List[s.length() + 1];
+        List<Character> [] bucket = new List[s.length() + 1]; //比如{1,1,1}, 那么1出现的次数是3, 3作为下标就要s.length() + 1才能装下
         for (char key : map.keySet()) {
             int frequency = map.get(key); //frequency就是这个字母出现的次数
             if (bucket[frequency] == null) {
