@@ -1,34 +1,33 @@
-/*You have two numbers represented by a linked list, where each node contains a single digit. The digits are stored in forward order, 
-such that the 1's digit is at the head of the list. Write a function that adds the two numbers and returns the sum as a linked list.
+/*You are given two non-empty linked lists representing two non-negative integers. The most significant digit comes first and each of 
+their nodes contain a single digit. Add the two numbers and return it as a linked list.
 
-Example
-Given 6->1->7 + 2->9->5. That is, 617 + 295.
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
 
-Return 9->1->2. That is, 912.*/
+Follow up:
+What if you cannot modify the input lists? In other words, reversing the lists is not allowed.
+
+Example:
+
+Input: (7 -> 2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 8 -> 0 -> 7*/
+
+
 
 /**
  * Definition for singly-linked list.
  * public class ListNode {
  *     int val;
  *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;      
- *     }
+ *     ListNode(int x) { val = x; }
  * }
  */
-
-
-//自己的方法
-public class Solution {
-    /*
-     * @param l1: The first list.
-     * @param l2: The second list.
-     * @return: the sum list of l1 and l2.
-     */
+class Solution {
     
-    public ListNode addLists2(ListNode l1, ListNode l2) {
-        // write your code here
+    //solution1: follow up里面不让reverse linked list, 所以用discuss的方法
+    
+    
+    //solution2: 自己的方法, 运用反转链表
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         
         if(l1 == null || l2 == null) {
             return null;
@@ -92,5 +91,4 @@ public class Solution {
         
         return prev3;
     }
-    
-};
+}
