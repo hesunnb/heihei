@@ -42,11 +42,11 @@ class Solution {
     }
     
     private int partition(int[] nums, int start, int end) { //快排中的partition方法
-        int pivot = nums[end];
+        int pivot = nums[end]; //pivot就是支点, 以谁作为参考
         int store = start;
         for (int i = start; i < end; i++) {
             if (nums[i] < pivot) {
-                swap(nums, i, store);
+                swap(nums, i, store); //把比pivot小的元素都窜到store前面去; store指的永远是比pivot大的元素的下标
                 store++;
             }
         }
