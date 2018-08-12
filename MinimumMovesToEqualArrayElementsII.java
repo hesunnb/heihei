@@ -18,7 +18,7 @@ Only two moves are needed (remember each move increments or decrements one eleme
 
 class Solution {
     
-    //solution1:
+    //solution1: nlogn, 因为排序
     public int minMoves2(int[] nums) {
         if(nums == null || nums.length == 0) {
             return 0;
@@ -44,7 +44,7 @@ class Solution {
     100到5和1到50, 100到50走的距离是一样的, 所以{1,1,8,100}就都走到5*/
     
     
-    //solution2:
+    //solution2: 平均O(n), 最差O(n^2)
     //如果用快速选择做, 此题就是kthLargestElement的变种; 比如{1,1,8,100}, 那么应该选5, 然后所有元素都向5靠拢, 但是其实1到8之间的所有数都可以, 
     //比如都向6靠拢,7靠拢, 所走的步数都是一样的, 所以最后就成了如果是奇数个那么找到排序后的中位数(因为不整体排序, 所以用快速选择), 如果是偶数个, 
     //那么中间任意两个数都行, 比如{1,1,8,100}, 中间的1和8都可以
