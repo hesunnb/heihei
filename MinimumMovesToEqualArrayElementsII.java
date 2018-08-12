@@ -101,4 +101,36 @@ class Solution {
         nums[m] = nums[n];
         nums[n] = temp;
     }
+    
+    
+    //solution3: 上面写的是标准快排, 这个是优化过的快排
+    public int minMoves2(int[] nums) {
+        
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        int sum = 0, median = quickselect(nums, nums.length/2+1, 0, nums.length-1);
+        for (int i=0;i<nums.length;i++) sum += Math.abs(nums[i] - median);
+        return sum;
+    }
+
+    public int quickselect(int[] nums, int k, int start, int end) {
+        int l = start, r = end, pivot =nums[(l+r)/2]; //标准快排轴都选最左或最右, 这个选的是中间
+        while (l<=r) {
+            while (nums[l] < pivot) l++;
+            while (nums[r] > pivot) r--;
+            if (l>=r) break;
+            swap(nums, l++, r--);
+        }
+        if (l-start+1 > k) return quickselect(nums, k, start, l-1);
+        if (l-start+1 == k && l==r) return nums[l];
+        return quickselect(nums, k-r+start-1, r+1, end);
+    }
+
+    public void swap(int[]nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
 }
