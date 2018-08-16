@@ -15,6 +15,7 @@ Output:
 
 class Solution {
     
+    //FindAllDuplicatesInAnArray类似题
     //标记法, 把nums中元素按照位置去理解, 把出现过的位置标记为负, 重复出现的位置不标记, 最后不是负数的位置就是没有出现过的元素
     public List<Integer> findDisappearedNumbers(int[] nums) {
         
