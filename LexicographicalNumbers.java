@@ -5,6 +5,8 @@ For example, given 13, return: [1,10,11,12,13,2,3,4,5,6,7,8,9].
 Please optimize your algorithm to use less time and space. The input size may be as large as 5,000,000.*/
 
 class Solution {
+    
+    //solution1: O(n)
     public List<Integer> lexicalOrder(int n) {
         
         List<Integer> result = new ArrayList<>();
@@ -34,4 +36,38 @@ class Solution {
     We should also consider n = 600, and the current number = 499, the next number is 5 because there are all "9"s after "4" in "499" 
     so we should divide 499 by 10 until the last digit is not "9".
     It is like a tree, and we are easy to get a sibling, a left most child and the parent of any node.*/
+    
+    
+    //solution2: 递归
+    public List<Integer> lexicalOrder(int n) {
+        
+        List<Integer> result = new ArrayList<>();
+        if(n < 1) {
+            return result;
+        }
+        
+        for(int i = 1; i < 10; i++) { //从1到9的打头
+          lexicalOrderhelper(i, n, result); 
+        }
+        return result;
+    }
+
+    public void lexicalOrderhelper(int cur, int n, List<Integer> result){
+        if(cur > n)
+            return;
+        else {
+            result.add(cur);
+            for(int i = 0; i < 10; i++) { //每个节点的所有可能的9个子节点
+                if(10*cur+i > n)
+                    return;
+                lexicalOrderhelper(10*cur+i, n, result);
+            }
+        }
+    }
+    /*The idea is pretty simple. If we look at the order we can find out we just keep adding digit from 0 to 9 to every digit and 
+    make it a tree.
+    Then we visit every node in pre-order. 
+           1        2        3    ...
+          /\        /\       /\
+       10 ...19  20...29  30...39   ....*/
 }
