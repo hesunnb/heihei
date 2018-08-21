@@ -26,6 +26,8 @@ class Solution {
     
     //This is a NP problem, Time complexity should be O(4^n), n is the length of array, 
     //T(n) = 4 T(n-1) + O(1) = 4^n T(0) + 4^n + 4^(n-1) + ... + 4 + 1 = O(4^n)
+    
+    //Partition to K Equal Sum Subsets类型题, 这个题目就是这种问题的抽象
     public boolean makesquare(int[] nums) {
     	if (nums == null || nums.length < 4) {
             return false;
