@@ -12,7 +12,7 @@ Note:
 
 class Solution {
     
-    //Matchsticks to Square类型题, NP常规暴力搜索
+    //Partition Equal Subset Sum, Matchsticks to Square类型题, NP常规暴力搜索
     public boolean canPartitionKSubsets(int[] nums, int k) {
         if (nums == null || nums.length < k) {
             return false;
