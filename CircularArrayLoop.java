@@ -23,6 +23,6 @@ class Solution {
             return false;
         }
         
-        
+        //[-2,-2,-2]这个例子可以验证getIndex函数往回倒着走的程序
     }
 }
