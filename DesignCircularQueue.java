@@ -101,19 +101,23 @@ class MyCircularQueue {
 //solution2: 用数组实现
 class MyCircularQueue {
 
-    private int[] a;
-    private int front = 0, rear = -1, len = 0;
+    private int[] buffer;
+    private int front, rear, len;
+    private int size;
     
     /** Initialize your data structure here. Set the size of the queue to be k. */
     public MyCircularQueue(int k) {
-        a = new int[k];
+        buffer = new int[k];
+        front = 0;
+        rear = 0;
+        size = k;
     }
     
     /** Insert an element into the circular queue. Return true if the operation is successful. */
     public boolean enQueue(int value) {
         if (!isFull()) {
-            rear = (rear + 1) % a.length; //rear起始位置是-1, 对rear和front进行求余来进行循环
-            a[rear] = value;
+            buffer[rear] = value;
+            rear = (rear + 1) % size; //让rear也从0开始, 与Design circular Deque那道题保持一致, 方便记忆
             len++;
             return true;
         }
@@ -123,7 +127,7 @@ class MyCircularQueue {
     /** Delete an element from the circular queue. Return true if the operation is successful. */
     public boolean deQueue() {
         if (!isEmpty()) {
-            front = (front + 1) % a.length; //front起始位置是0
+            front = (front + 1) % size; //front起始位置是0
             len--;
             return true;
         }
@@ -132,12 +136,12 @@ class MyCircularQueue {
     
     /** Get the front item from the queue. */
     public int Front() {
-        return isEmpty() ? -1 : a[front];
+        return isEmpty() ? -1 : buffer[front];
     }
     
     /** Get the last item from the queue. */
     public int Rear() {
-        return isEmpty() ? -1 : a[rear];
+        return isEmpty() ? -1 : buffer[(rear - 1 + size) % size];
     }
     
     /** Checks whether the circular queue is empty or not. */
@@ -147,7 +151,7 @@ class MyCircularQueue {
     
     /** Checks whether the circular queue is full or not. */
     public boolean isFull() {
-        return len == a.length;
+        return len == size;
     }
 }
 /**
