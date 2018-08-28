@@ -109,6 +109,86 @@ class MyCircularDeque {
     }
 }
 
+
+//solution2: 数组
+class MyCircularDeque {
+
+    private int[] buffer;
+    private int front, rear, len;
+    
+    /** Initialize your data structure here. Set the size of the deque to be k. */
+    public MyCircularDeque(int k) {
+        buffer = new int[k];
+        front = buffer.length;
+        rear = -1;
+        len = 0;
+    }
+    
+    /** Adds an item at the front of Deque. Return true if the operation is successful. */
+    //用一个例子来表名为什么insertFront要这么写: insertFront(5), deleteFront(), insertLast(3), insertFront(7)
+    public boolean insertFront(int value) {
+        if(!isFull()) {
+            front = (front - 1 + buffer.length) % buffer.length; 
+            buffer[front] = value;
+            len++;
+            return true;
+        }
+        return false;
+    }
+    
+    /** Adds an item at the rear of Deque. Return true if the operation is successful. */
+    public boolean insertLast(int value) {
+        if(!isFull()) {
+            rear = (rear + 1) % buffer.length;
+            buffer[rear] = value;
+            len++;
+            return true;
+        }
+        return false;
+    }
+    
+    /** Deletes an item from the front of Deque. Return true if the operation is successful. */
+    public boolean deleteFront() {
+        if (!isEmpty()) {
+            front = (front + 1) % buffer.length; 
+            len--;
+            return true;
+        }
+        return false;
+    }
+    
+    /** Deletes an item from the rear of Deque. Return true if the operation is successful. */
+    public boolean deleteLast() {
+        if (!isEmpty()) {
+            rear = (rear - 1 + buffer.length) % buffer.length; //insertFront(9), deleteLast()
+            len--;
+            return true;
+        }
+        return false;
+    }
+    
+    /** Get the front item from the deque. */
+    public int getFront() {
+        return isEmpty() ? -1 : buffer[front % buffer.length]; //insertLast(1), getFront()
+    }
+    
+    /** Get the last item from the deque. */
+    public int getRear() {
+        return isEmpty() ? -1 : buffer[(rear + buffer.length) % buffer.length]; 
+        //例子: insertFront(9), getRear(), 为啥要加buffer.length
+        //k=3, insertLast(1), insertLast(2), insertFront(3), getRear()
+    }
+    
+    /** Checks whether the circular deque is empty or not. */
+    public boolean isEmpty() {
+        return len == 0;
+    }
+    
+    /** Checks whether the circular deque is full or not. */
+    public boolean isFull() {
+        return len == buffer.length;
+    }
+}
 /**
  * Your MyCircularDeque object will be instantiated and called as such:
  * MyCircularDeque obj = new MyCircularDeque(k);
