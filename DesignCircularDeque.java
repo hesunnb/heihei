@@ -115,21 +115,23 @@ class MyCircularDeque {
 
     private int[] buffer;
     private int front, rear, len;
+    private int size;
     
     /** Initialize your data structure here. Set the size of the deque to be k. */
     public MyCircularDeque(int k) {
         buffer = new int[k];
-        front = buffer.length;
-        rear = -1;
+        front = buffer.length - 1; //front和rear都改为在数组内的下标起步, 不用front = buffer.length, rear = -1这种, 能过, 但比较奇怪
+        rear = 0;
         len = 0;
+        size = k;
     }
     
     /** Adds an item at the front of Deque. Return true if the operation is successful. */
     //用一个例子来表名为什么insertFront要这么写: insertFront(5), deleteFront(), insertLast(3), insertFront(7)
     public boolean insertFront(int value) {
         if(!isFull()) {
-            front = (front - 1 + buffer.length) % buffer.length; 
-            buffer[front] = value;
+            buffer[front] = value; //先给值, 再移动下标
+            front = (front - 1 + size) % size; //记的方法就是只要front和rear往下标为0的方向走, 就有-1, 为的是调到数组的size - 1下标
             len++;
             return true;
         }
@@ -139,8 +141,8 @@ class MyCircularDeque {
     /** Adds an item at the rear of Deque. Return true if the operation is successful. */
     public boolean insertLast(int value) {
         if(!isFull()) {
-            rear = (rear + 1) % buffer.length;
             buffer[rear] = value;
+            rear = (rear + 1) % size; //正方向走一旦走到size的位置求余自动到0下标位置
             len++;
             return true;
         }
@@ -150,7 +152,7 @@ class MyCircularDeque {
     /** Deletes an item from the front of Deque. Return true if the operation is successful. */
     public boolean deleteFront() {
         if (!isEmpty()) {
-            front = (front + 1) % buffer.length; 
+            front = (front + 1) % size; 
             len--;
             return true;
         }
@@ -160,7 +162,7 @@ class MyCircularDeque {
     /** Deletes an item from the rear of Deque. Return true if the operation is successful. */
     public boolean deleteLast() {
         if (!isEmpty()) {
-            rear = (rear - 1 + buffer.length) % buffer.length; //insertFront(9), deleteLast()
+            rear = (rear - 1 + size) % size; //insertFront(9), deleteLast()
             len--;
             return true;
         }
@@ -169,12 +171,12 @@ class MyCircularDeque {
     
     /** Get the front item from the deque. */
     public int getFront() {
-        return isEmpty() ? -1 : buffer[front % buffer.length]; //insertLast(1), getFront()
+        return isEmpty() ? -1 : buffer[(front + 1) % size]; //insertLast(1), getFront()
     }
     
     /** Get the last item from the deque. */
     public int getRear() {
-        return isEmpty() ? -1 : buffer[(rear + buffer.length) % buffer.length]; 
+        return isEmpty() ? -1 : buffer[(rear - 1 + size) % size]; 
         //例子: insertFront(9), getRear(), 为啥要加buffer.length
         //k=3, insertLast(1), insertLast(2), insertFront(3), getRear()
     }
@@ -186,7 +188,7 @@ class MyCircularDeque {
     
     /** Checks whether the circular deque is full or not. */
     public boolean isFull() {
-        return len == buffer.length;
+        return len == size;
     }
 }
 /**
