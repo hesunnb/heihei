@@ -44,7 +44,8 @@ public class Solution {
                     left++; //left变大了, i没变, 所以right也一定要变小才能从新计算
                     right--; //也就是sum = 0的时候一定要两个指针都变
                     while(left < right && nums[left] == nums[left - 1]) { // to skip duplicates, 重复的话相当于值没变, 
-                    //而一会儿right是要变的, 所以left要跳过重复, 不跳过的话会在result中加入重复的结果, 比如[1,0,-1], [1,0,-1]加入两个
+                    //left++了, 如果left的值没变, 还要得到0, 必然right的值也不能变, 所以left与right都没变就重复了
+                    //所以left要跳过重复, 不跳过的话会在result中加入重复的结果, 比如[-2,0,0,2,2]
                         left++;
                     }
                     while(left < right && nums[right] == nums[right + 1]) { // to skip duplicates, right也是
