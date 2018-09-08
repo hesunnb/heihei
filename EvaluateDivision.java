@@ -22,6 +22,7 @@ class Solution {
     /*Image a/b = k as a link between node a and b, the weight from a to b is k, the reverse link is 1/k. Query is to find a path 
     between two nodes.*/
     public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
+        //把各种为null的判断加上
         HashMap<String, ArrayList<String>> pairs = new HashMap<String, ArrayList<String>>(); //有向图用一个哈希表就能存下来
         HashMap<String, ArrayList<Double>> valuesPair = new HashMap<String, ArrayList<Double>>(); //pair图对应的values
         for (int i = 0; i < equations.length; i++) {
