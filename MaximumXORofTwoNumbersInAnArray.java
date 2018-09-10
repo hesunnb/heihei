@@ -21,7 +21,7 @@ class Solution {
         }
         
         int max = 0, mask = 0;
-        for(int i = 31; i >= 0; i--) {
+        for(int i = 31; i >= 0; i--) { //因为ai < 2^31, 所以i从30开始就行, 因为第31位本身就是符号位
             mask = mask | (1 << i); //mask译为掩蔽, 在这里用来取前31-i位, 看下面的注解可以理解为取从有效位开始的前1,2...一直到最后一位
             Set<Integer> set = new HashSet<>();
             for(int num : nums){
