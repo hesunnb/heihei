@@ -45,7 +45,7 @@ class Solution {
     next level node equals the distance of the current node + 1.*/
     public List<List<String>> findLadders(String beginWord, String endWordWord, List<String> wordList) {
         HashSet<String> dict = new HashSet<String>(wordList); //判断集合
-	List<List<String>> res = new ArrayList<List<String>>(); //结果集合
+        List<List<String>> res = new ArrayList<List<String>>(); //结果集合
 	HashMap<String, ArrayList<String>> nodeNeighbors = new HashMap<String, ArrayList<String>>();// Neighbors for
 																								// every node
 	HashMap<String, Integer> distance = new HashMap<String, Integer>();// Distance of every node from the beginWord node, 相当于
