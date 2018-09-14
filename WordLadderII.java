@@ -38,16 +38,15 @@ class Solution {
 
     The basic idea is:
 
-    1). Use BFS to find the shortest distance between start and end, tracing the distance of crossing nodes from start node to end node, 
-    and store node's next level neighbors to HashMap;
+    1). Use BFS to find the shortest distance between start and end, tracing the distance of crossing nodes from start node to end node
+    , and store node's next level neighbors to HashMap;
 
     2). Use DFS to output paths with the same distance as the shortest distance from distance HashMap: compare if the distance of the 
     next level node equals the distance of the current node + 1.*/
     public List<List<String>> findLadders(String beginWord, String endWordWord, List<String> wordList) {
         HashSet<String> dict = new HashSet<String>(wordList); //判断集合
         List<List<String>> res = new ArrayList<List<String>>(); //结果集合
-        HashMap<String, ArrayList<String>> nodeNeighbors = new HashMap<String, ArrayList<String>>();// Neighbors for
-																								// every node
+        HashMap<String, ArrayList<String>> nodeNeighbors = new HashMap<String, ArrayList<String>>(); //Neighbors for every node
         HashMap<String, Integer> distance = new HashMap<String, Integer>();// Distance of every node from the beginWord node, 相当于
 //wordLadderⅠ里面的visited, 只不过这回不用set, 用map, 同时把level作为distance加入到了哈希表中
         ArrayList<String> solution = new ArrayList<String>(); //dfs中每一条成功路径都存入到solution中作为一个结果
@@ -70,7 +69,7 @@ class Solution {
 	queue.offer(beginWord);
 	distance.put(beginWord, 0);
 
-        while (!queue.isEmpty()) {
+	while (!queue.isEmpty()) {
 	    int size = queue.size();
 	    while (size > 0) {
 		String cur = queue.poll();
