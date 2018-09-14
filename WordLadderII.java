@@ -46,17 +46,17 @@ class Solution {
     public List<List<String>> findLadders(String beginWord, String endWordWord, List<String> wordList) {
         HashSet<String> dict = new HashSet<String>(wordList); //判断集合
         List<List<String>> res = new ArrayList<List<String>>(); //结果集合
-	HashMap<String, ArrayList<String>> nodeNeighbors = new HashMap<String, ArrayList<String>>();// Neighbors for
+        HashMap<String, ArrayList<String>> nodeNeighbors = new HashMap<String, ArrayList<String>>();// Neighbors for
 																								// every node
-	HashMap<String, Integer> distance = new HashMap<String, Integer>();// Distance of every node from the beginWord node, 相当于
+        HashMap<String, Integer> distance = new HashMap<String, Integer>();// Distance of every node from the beginWord node, 相当于
 //wordLadderⅠ里面的visited, 只不过这回不用set, 用map, 同时把level作为distance加入到了哈希表中
-	ArrayList<String> solution = new ArrayList<String>(); //dfs中每一条成功路径都存入到solution中作为一个结果
+        ArrayList<String> solution = new ArrayList<String>(); //dfs中每一条成功路径都存入到solution中作为一个结果
 
-	dict.add(beginWord); //dict加入beginWord的原因是要向nodeNeighbors中加入每个节点时不要落下beginWord, 否则就得不到beginWord的
+        dict.add(beginWord); //dict加入beginWord的原因是要向nodeNeighbors中加入每个节点时不要落下beginWord, 否则就得不到beginWord的
 	//neighbors了
-	bfs(beginWord, endWordWord, dict, nodeNeighbors, distance);
-	dfs(beginWord, endWordWord, dict, nodeNeighbors, distance, solution, res);
-	return res;
+        bfs(beginWord, endWordWord, dict, nodeNeighbors, distance);
+        dfs(beginWord, endWordWord, dict, nodeNeighbors, distance, solution, res);
+        return res;
     }
 
     // BFS: Trace every node's distance from the beginWord node (level by level).
