@@ -116,16 +116,16 @@ class Solution {
     private void dfs(String cur, String endWord, Set<String> dict, HashMap<String, ArrayList<String>> nodeNeighbors, 
 	    HashMap<String, Integer> distance, ArrayList<String> solution, List<List<String>> res) {
 	solution.add(cur);
-	if (endWord.equals(cur)) {
+	if(endWord.equals(cur)) {
 	    res.add(new ArrayList<String>(solution));
 	} else {
-	    for (String next : nodeNeighbors.get(cur)) {
+	    for(String next : nodeNeighbors.get(cur)) {
 		if (distance.get(next) == distance.get(cur) + 1) { //正常的dfs, 在neighbors中只找下一级的节点(因为neighbors中有同级的, 也有
                 //上一级的)
 		    dfs(next, endWord, dict, nodeNeighbors, distance, solution, res);
 		}
 	    }
 	}
-	solution.remove(solution.size() - 1);
+        solution.remove(solution.size() - 1);
     }
 }
