@@ -126,6 +126,6 @@ class Solution {
 		}
 	    }
 	}
-        solution.remove(solution.size() - 1);
+       solution.remove(solution.size() - 1);
     }
 }
