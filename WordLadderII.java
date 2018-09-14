@@ -44,7 +44,7 @@ class Solution {
     2). Use DFS to output paths with the same distance as the shortest distance from distance HashMap: compare if the distance of the next
     level node equals the distance of the current node + 1.*/
     public List<List<String>> findLadders(String beginWord, String endWordWord, List<String> wordList) {
-	HashSet<String> dict = new HashSet<String>(wordList); //判断集合
+        HashSet<String> dict = new HashSet<String>(wordList); //判断集合
 	List<List<String>> res = new ArrayList<List<String>>(); //结果集合
 	HashMap<String, ArrayList<String>> nodeNeighbors = new HashMap<String, ArrayList<String>>();// Neighbors for
 																								// every node
@@ -52,14 +52,16 @@ class Solution {
 //wordLadderⅠ里面的visited, 只不过这回不用set, 用map, 同时把level作为distance加入到了哈希表中
 	ArrayList<String> solution = new ArrayList<String>(); //dfs中每一条成功路径都存入到solution中作为一个结果
 
-	dict.add(beginWord); //dict加入beginWord的原因是要向nodeNeighbors中加入每个节点时不要落下beginWord, 否则就得不到beginWord的neighbors了
+	dict.add(beginWord); //dict加入beginWord的原因是要向nodeNeighbors中加入每个节点时不要落下beginWord, 否则就得不到beginWord的
+	//neighbors了
 	bfs(beginWord, endWordWord, dict, nodeNeighbors, distance);
 	dfs(beginWord, endWordWord, dict, nodeNeighbors, distance, solution, res);
 	return res;
     }
 
 	// BFS: Trace every node's distance from the beginWord node (level by level).
-	private void bfs(String beginWord, String endWord, Set<String> dict, HashMap<String, ArrayList<String>> nodeNeighbors, HashMap<String, Integer> distance) {
+	private void bfs(String beginWord, String endWord, Set<String> dict, HashMap<String, ArrayList<String>> nodeNeighbors, 
+		HashMap<String, Integer> distance) {
 		for (String str : dict) {
 			nodeNeighbors.put(str, new ArrayList<String>());
 		}
@@ -76,8 +78,8 @@ class Solution {
                 	break;
                 }
 
-				int curDistance = distance.get(cur);
-				char[] curArray = cur.toCharArray();
+		int curDistance = distance.get(cur);
+		char[] curArray = cur.toCharArray();
                 for(int i = 0; i < curArray.length; i++) {
                     for(char c = 'a'; c <= 'z'; c++) { //26个字符替换匹配
                     	if(curArray[i] == c) continue; //用来排除和cur相同的字符串, 就是排除本身
