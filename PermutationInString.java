@@ -15,13 +15,21 @@ The input strings only contain lower case letters.
 The length of both given strings is in range [1, 10,000].*/
 
 class Solution {
+
+    //substring相关问题用统一
+    //minimum-window-substring
+    //longest-substring-without-repeating-characters
+    //substring-with-concatenation-of-all-words
+    //longest-substring-with-at-most-two-distinct-characters
+    //find-all-anagrams-in-a-string
+    //Permutation-in-String
     public boolean checkInclusion(String s1, String s2) {
 		
-		if(s1 == null || s2 == null || s2.length() < s1.length()) {
-			return false;
-		}
+	if(s1 == null || s2 == null || s2.length() < s1.length()) {
+		return false;
+	}
 		
-		Map<Character, Integer> map = new HashMap<>();
+	Map<Character, Integer> map = new HashMap<>();
         for(char c : s1.toCharArray()) {
             map.put(c, map.getOrDefault(c, 0) + 1); //getOrDefault是jdk8的新函数, 如果map中没有c字符, 那么会返回一个默认值0
             //(这个默认值是自己规定的), 如果有c字符, 就得到c字符对应的值
