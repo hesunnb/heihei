@@ -64,7 +64,7 @@ class Solution {
                         counter++;
                     }
                 }
-                if(counter > 0) { //当counter大于0的时候说明end与begin之间有一个p中的字母要被排出在end与begin之间了
+                if(counter > 0) { //当counter大于0的时候说明end与begin之间有一个p中的字母要被排出在end与begin之间了, 就是begin处所在的字符
                     if(end - begin == p.length()) { //此时就判断在排出之前end与begin的差是否与p的长度相等
                         result.add(begin);
                     }
