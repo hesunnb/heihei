@@ -16,7 +16,7 @@ The length of both given strings is in range [1, 10,000].*/
 
 class Solution {
 
-    //substring相关问题用统一
+    //substring相关问题用统一模板
     //minimum-window-substring
     //longest-substring-without-repeating-characters
     //substring-with-concatenation-of-all-words
