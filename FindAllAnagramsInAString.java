@@ -31,6 +31,12 @@ The substring with start index = 2 is "ab", which is an anagram of "ab".*/
 
 class Solution {
     //关于substring的问题有统一模板, 这个就是使用的模板
+    //minimum-window-substring
+    //longest-substring-without-repeating-characters
+    //substring-with-concatenation-of-all-words
+    //longest-substring-with-at-most-two-distinct-characters
+    //find-all-anagrams-in-a-string
+    //Permutation-in-String
     public List<Integer> findAnagrams(String s, String p) {
         
         List<Integer> result = new ArrayList<>();
