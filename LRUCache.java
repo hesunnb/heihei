@@ -67,7 +67,7 @@ public class LRUCache {
         return map.get(key).value;
     }
     
-    public void set(int key, int value) {
+    public void put(int key, int value) {
         if(capacity <= 0) {
             return;
         }
