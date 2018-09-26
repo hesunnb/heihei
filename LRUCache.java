@@ -109,7 +109,6 @@ public class LRUCache {
 //version2: LinkedHashSet简化版, 因为LinkedHashSet底层操作的就是双向链表, 所以把双向链表的操作部分用LinkedHashSet来实现
 class LRUCache {
 
-    //双向链表
     private class Node { //内部类
         int key;
         int value;
