@@ -121,7 +121,7 @@ class LRUCache {
     
     private int capacity;
     private Map<Integer, Node> map = new HashMap<Integer, Node>();
-    private LinkedHashSet<Node> set = new LinkedHashSet<>();
+    private LinkedHashSet<Node> set = new LinkedHashSet<>(); //替代前面的双向链表
     
     public LRUCache(int capacity) { //构造函数
         this.capacity = capacity;
