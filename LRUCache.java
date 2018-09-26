@@ -165,3 +165,30 @@ class LRUCache {
         set.add(insert); //把这个新节点放到链表末尾
     }
 }
+
+//version3: 最简LinkedHashMap方法, java的LinkedHashMap已经做好了这个LRUCache, 通过LinkedHashMap实现的
+class LRUCache {
+
+    private LinkedHashMap<Integer, Integer> map;
+    private final int CAPACITY;
+    public LRUCache(int capacity) {
+        CAPACITY = capacity;
+        map = new LinkedHashMap<Integer, Integer>(capacity, 0.75f, true) {
+            protected boolean removeEldestEntry(Map.Entry eldest) {
+                return size() > CAPACITY;
+            }
+        }; //这种重写方式就是对于这个map实例有效, 这个map的get, put方法会相应的调用这个重写的removeEldestEntry方法
+    }
+    /*0.75f是加载因子, 加载因子是表示Hsah表中元素的填满的程度. 若:加载因子越大, 填满的元素越多, 好处是:空间利用率高了, 但:冲突的机会加大了.
+    反之, 加载因子越小, 填满的元素越少, 好处是:冲突的机会减小了, 但:空间浪费多了.
+    
+    true for access-order, false for insertion-order.
+    true表示最近最少使用次序(即java的LinkedHashMap帮你实现了LRUCache), false表示插入顺序*/
+    public int get(int key) {
+        return map.getOrDefault(key, -1);
+    }
+    
+    public void put(int key, int value) {
+        map.put(key, value);
+    }
+}
