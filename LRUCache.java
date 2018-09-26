@@ -73,8 +73,10 @@ public class LRUCache {
             return;
         }
         
-        if(get(key) != -1) { //说明链表中现在存在这个点
-            map.get(key).value = value;
+        //因为链表中的value永远都是正数, 所以用-1来代表无效
+        if(get(key) != -1) { //说明链表中现在存在这个点, 存在这个点get函数就会返回这个点的value(为正数), 这就说明get函数被正常执行了
+            //get函数正常执行就会把这个点moveToTail
+            map.get(key).value = value; //把这个点moveToTail之后直接更改它的值就可以了
             return; //改完值马上返回
         }
         
