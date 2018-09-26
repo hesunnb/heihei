@@ -154,8 +154,8 @@ class LRUCache {
         }
         
         if(map.size() == capacity) { //要移除第一个节点
-        	Iterator<Node> ite = set.iterator();
-        	Node removeNode = ite.next();
+            Iterator<Node> ite = set.iterator();
+            Node removeNode = ite.next();
             map.remove(removeNode.key); //从哈希表中移除第一个点的内容
             set.remove(removeNode); //从set中移除头结点
         }
