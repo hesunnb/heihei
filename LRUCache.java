@@ -138,8 +138,8 @@ class LRUCache {
         }
         
         Node current = map.get(key); //因为操作了值为key的这个点, 所以要把它移向链表的最后, 首先先把这个点从链表分离
-        set.remove(current);
-        set.add(current);
+        set.remove(current); //从set中移除这个点
+        set.add(current); //加到链表末尾
         
         return map.get(key).value;
     }
@@ -158,7 +158,7 @@ class LRUCache {
         	Iterator<Node> ite = set.iterator();
         	Node removeNode = ite.next();
             map.remove(removeNode.key); //从哈希表中移除第一个点的内容
-            set.remove(removeNode);
+            set.remove(removeNode); //从set中移除头结点
         }
         
         Node insert = new Node(key, value); //说明链表没有这个节点, 就新建一个节点
