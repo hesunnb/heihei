@@ -95,4 +95,4 @@ class LFUCache {
 		min = 1; //表名count为1的LinkedHashSet目前有元素
 		lists.get(1).add(key); //向LinkedHashSet中添加元素
 	}
-} 
+}
