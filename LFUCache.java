@@ -36,7 +36,7 @@ Expected:
 //version1: 三个哈希表 + 一个LinkedHashSet版本, 也是最好的版本, 双端链表用LinkedHashSet代替了, 如果要用双端链表, 见version2
 class LFUCache {
 
-	HashMap<Integer, Integer> vals; //key, value
+    HashMap<Integer, Integer> vals; //key, value
 	HashMap<Integer, Integer> counts; //key, count
 	HashMap<Integer, LinkedHashSet<Integer>> lists; //count, LinkedHashSet
 	int capacity;
