@@ -96,3 +96,4 @@ class LFUCache {
 		lists.get(1).add(key); //向LinkedHashSet中添加元素
 	}
 } 
+ 
