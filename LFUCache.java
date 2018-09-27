@@ -36,7 +36,7 @@ Expected:
 //version1: 三个哈希表 + 一个LinkedHashSet版本, 也是最好的版本, 双端链表用LinkedHashSet代替了, 如果要用双端链表, 见version2
 class LFUCache {
 
-    HashMap<Integer, Integer> vals; //key, value
+	HashMap<Integer, Integer> vals; //key, value
 	HashMap<Integer, Integer> counts; //key, count
 	HashMap<Integer, LinkedHashSet<Integer>> lists; //count, LinkedHashSet
 	int capacity;
@@ -54,11 +54,11 @@ class LFUCache {
 		if (capacity <= 0) {
 			return -1;
 		}
-		
+
 		if (!vals.containsKey(key)) {
 			return -1;
 		}
-		
+
 		int count = counts.get(key); //得到对应的count
 		counts.put(key, count + 1);
 		lists.get(count).remove(key); //从lists中对应的count中删除
@@ -66,7 +66,7 @@ class LFUCache {
 			min++; //以题目给的例子就能看出count==min的作用, 不能只有lists.get(count).size() == 0的条件, 有可能count==2的LinkedHashSet
 			//没有了, 但是此时count==1的LinkedHashSet还有元素, 所以min还只能是1, 不能++
 		}
-		
+
 		if (!lists.containsKey(count + 1)) {
 			lists.put(count + 1, new LinkedHashSet<>()); //没有就新建
 		}
