@@ -64,7 +64,7 @@ class LFUCache {
         lists.get(count).remove(key); // 从lists中对应的count中删除
         if (count == min && lists.get(count).size() == 0) {
             min++; // 以题目给的例子就能看出count==min的作用, 不能只有lists.get(count).size() == 0的条件,
-                   // 有可能count==2的LinkedHashSet
+            // 有可能count==2的LinkedHashSet
             // 没有了, 但是此时count==1的LinkedHashSet还有元素, 所以min还只能是1, 不能++
         }
 
