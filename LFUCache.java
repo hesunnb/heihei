@@ -10,7 +10,7 @@ Could you do both operations in O(1) time complexity?
 
 Example:
 
-LFUCache cache = new LFUCache( 2 /* capacity */ );
+LFUCache cache = new LFUCache( 2  capacity  );
 
 cache.put(1, 1);
 cache.put(2, 2);
