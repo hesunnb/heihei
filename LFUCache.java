@@ -36,13 +36,15 @@ Expected:
 //version1: 三个哈希表 + 一个LinkedHashSet版本, 也是最好的版本, 双端链表用LinkedHashSet代替了, 如果要用双端链表, 见version2
 class LFUCache {
 
+class LFUCache {
+
     HashMap<Integer, Integer> vals; //key, value
 	HashMap<Integer, Integer> counts; //key, count
 	HashMap<Integer, LinkedHashSet<Integer>> lists; //count, LinkedHashSet
 	int capacity;
 	int min = -1; //当capacity满了删除元素的时候用到
 
-	public LFUCache(int capacity) {
+    public LFUCache(int capacity) {
 		this.capacity = capacity;
 		vals = new HashMap<>();
 		counts = new HashMap<>();
@@ -50,7 +52,7 @@ class LFUCache {
 		lists.put(1, new LinkedHashSet<>()); //初始化先把count为1的给一个LinkedHashSet
 	}
 
-	public int get(int key) {
+    public int get(int key) {
 		if (capacity <= 0) {
 			return -1;
 		}
@@ -95,5 +97,6 @@ class LFUCache {
 		min = 1; //表名count为1的LinkedHashSet目前有元素
 		lists.get(1).add(key); //向LinkedHashSet中添加元素
 	}
+}
 } 
  
