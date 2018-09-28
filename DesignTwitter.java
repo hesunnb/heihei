@@ -36,7 +36,7 @@ twitter.getNewsFeed(1);*/
 
 class Twitter {
 
-    class Message {
+    class Message { //用message就能用time, 可以区分时间, 并且添加和移除都用的对象, 不会出现重复的情况, 一个message对象就是一个, Integer就不行了
         int tweetId;
         int time;
         Message(int tweetId, int time) {
@@ -45,9 +45,9 @@ class Twitter {
         }
     }
     
-    Map<Integer, Set<Integer>> followMap; //followeeId, followerId
-    Map<Integer, List<Message>> ownTwitter;
-    Map<Integer, List<Message>> ownFollowTwitter;
+    Map<Integer, Set<Integer>> followMap; //followeeId, followerId; 被follow的人作为key, 主动follow的人作为value
+    Map<Integer, List<Message>> ownTwitter; //userId, 每个user自己主动发的twitter存在这个list中
+    Map<Integer, List<Message>> ownFollowTwitter; //userId, 每个user自己主动发的twitter与follow人的twitter的合集
     int count = 0;
     /** Initialize your data structure here. */
     public Twitter() {
@@ -58,16 +58,16 @@ class Twitter {
     
     /** Compose a new tweet. */
     public void postTweet(int userId, int tweetId) {
-        Message message = new Message(tweetId, count++);
-        if(!ownTwitter.containsKey(userId)) {
+        Message message = new Message(tweetId, count++); //new一个message
+        if(!ownTwitter.containsKey(userId)) { //向ownTwitter放入自己的推文
             List<Message> list = new ArrayList<>();
             list.add(message);
             ownTwitter.put(userId, list);
         } else {
-            ownTwitter.get(userId).add(0, message);
+            ownTwitter.get(userId).add(0, message); //注意要加在index为0处, 因为最新发的推文往前排
         }
         
-        if(!ownFollowTwitter.containsKey(userId)) {
+        if(!ownFollowTwitter.containsKey(userId)) { //同理
             List<Message> list = new ArrayList<>();
             list.add(message);
             ownFollowTwitter.put(userId, list);
@@ -75,11 +75,11 @@ class Twitter {
             ownFollowTwitter.get(userId).add(0, message);
         }
         
-        if(followMap.get(userId) == null) {
+        if(followMap.get(userId) == null) { //比如最开始只发了推文, 没有加入follow关系的时候, 那么就初始化, 否则下面获取到的set就是null了
         	followMap.put(userId, new HashSet<Integer>());
         }
         Set<Integer> set = followMap.get(userId);
-    	for(int i : set) {
+    	for(int i : set) { //一个人发了推文, follow这个人的所有人都要加入这条推文; 如果set的size()是0, 那么下面这条for循环都不会执行
             ownFollowTwitter.get(i).add(0, message);
         }
     }
@@ -92,8 +92,13 @@ class Twitter {
         if(!ownFollowTwitter.containsKey(userId)) {
             return result;
         }
+        int sum = 0;
         for(Message m : ownFollowTwitter.get(userId)) {
+            if(sum == 10) { //只返回最新的10条
+                break;
+            }
             result.add(m.tweetId);
+            sum++;
         }
         return result;
     }
@@ -104,7 +109,8 @@ class Twitter {
             return;
         }
         
-        if(ownFollowTwitter.get(followerId) == null) {
+        if(ownFollowTwitter.get(followerId) == null) { //也得初始化, 比如最开始不postTweet, 直接就follow, 那么如果不初始化, 下面followerList
+            //followeeList就有可能为null了
         	ownFollowTwitter.put(followerId, new ArrayList<Message>());
         }
         if(ownTwitter.get(followeeId) == null) {
@@ -137,7 +143,6 @@ class Twitter {
             followerList.add(followeeList.get(j));
             j++;
         }
-        
     }
     
     /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
@@ -150,12 +155,11 @@ class Twitter {
             return;
         }
         
+        followMap.get(followeeId).remove(followerId); //unfollow注意, followMap也要解除相关关系
         List<Message> followerList = ownFollowTwitter.get(followerId);
         List<Message> followeeList = ownTwitter.get(followeeId);
-        for(Message m : followeeList) {
-            if(followerList.contains(m)) {
-                followerList.remove(m);
-            }
+        for(Message m : followeeList) { //删除相关follow的message
+            followerList.remove(m); //message好处就是直接就删除了, 因为是对象, 地址不重复
         }
     }
 }
