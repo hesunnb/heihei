@@ -59,11 +59,11 @@ public class Solution {
     
     /*
     testCase:
-    nums  4 2 4 5 3 7 1  
-    count 4 m m m m m m  
-          2 4 5 m m m m //每次都相当于新来一个值, 然后找到count中第一个比它大的值然后替换掉
-          2 3 5 7 m m m
-          1 3 5 7 m m m
+    nums  min 4 2 4 5 3 7 1  
+    count min 4 m m m m m m  
+          min 2 4 5 m m m m //每次都相当于新来一个值, 然后找到count中第一个比它大的值然后替换掉
+          min 2 3 5 7 m m m
+          min 1 3 5 7 m m m
     */
 }
 
