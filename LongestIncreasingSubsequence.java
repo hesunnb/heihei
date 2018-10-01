@@ -24,7 +24,7 @@ public class Solution {
             count[i] = Integer.MAX_VALUE;
         }
         
-        for(int i = 0; i < nums.length; i++) { //遍历nums, 对每一个数就行二分查找
+        for(int i = 0; i < nums.length; i++) { //遍历nums, 对每一个数进行二分查找
             // find the first number in count > nums[i]
             int index = binarySearch(count, nums[i]);
             count[index] = nums[i];
@@ -59,11 +59,11 @@ public class Solution {
     
     /*
     testCase:
-    nums  4 2 4 5 3 7 1  //就是有好几条路线在同时走, 从头开始要是递减就直到遇到最小的, 如4, 2那么最开始就有两条路线, 当然如果后面遇到比
-    count 4 4 5 7 m m m  //2还小的, 就又多出一条路线
-          2 4 5 7        //每次都相当于新来一个值, 然后找到count中第一个比它大的值然后替换掉
-          2 3 7
-          1
+    nums  4 2 4 5 3 7 1  
+    count 4 m m m m m m  
+          2 4 5 m m m m //每次都相当于新来一个值, 然后找到count中第一个比它大的值然后替换掉
+          2 3 5 7 m m m
+          1 3 5 7 m m m
     */
 }
 
