@@ -88,17 +88,17 @@ class Solution {
         return waiting[0].size();
     }
     /*Explanation:
-    I go through S once, and while I'm doing that, I move through all words accordingly. That is, I keep track of how much of each word I've 
-    already seen, and with each letter of S, I advance the words waiting for that letter. To quickly find the words waiting for a certain 
-    letter, I store each word (and its progress) in a list of words waiting for that letter. Then for each of the lucky words whose current 
-    letter just occurred in S, I update their progress and store them in the list for their next letter.
+    I go through S once, and while I'm doing that, I move through all words accordingly. That is, I keep track of how much of each word
+    I've already seen, and with each letter of S, I advance the words waiting for that letter. To quickly find the words waiting for a 
+    certain letter, I store each word (and its progress) in a list of words waiting for that letter. Then for each of the lucky words 
+    whose current letter just occurred in S, I update their progress and store them in the list for their next letter.
 
     Let's go through the given example:
 
     S = "abcde"
     words = ["a", "bb", "acd", "ace"]
-    I store that "a", "acd" and "ace" are waiting for an 'a' and "bb" is waiting for a 'b' (using parentheses to show how far I am in each 
-    word):
+    I store that "a", "acd" and "ace" are waiting for an 'a' and "bb" is waiting for a 'b' (using parentheses to show how far I am in 
+    each word):
 
     'a':  ["(a)", "(a)cd", "(a)ce"]
     'b':  ["(b)b"]
@@ -107,7 +107,8 @@ class Solution {
     'b':  ["(b)b"]
     'c':  ["a(c)d", "a(c)e"]
     None: ["a"]
-    You see "a" is already waiting for nothing anymore, while "acd" and "ace" are now waiting for 'c'. Next I see 'b' and update accordingly:
+    You see "a" is already waiting for nothing anymore, while "acd" and "ace" are now waiting for 'c'. Next I see 'b' and update 
+    accordingly:
 
     'b':  ["b(b)"]
     'c':  ["a(c)d", "a(c)e"]
