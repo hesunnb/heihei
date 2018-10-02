@@ -39,7 +39,7 @@ class Solution {
         return j == s.length();
     }
   
-    //version for Follow up:
+    //version for Follow up: 针对这个follow up有一个题目: NumberOfMatchingSubsequences
     /*// Follow-up: O(N) time for pre-processing, O(Mlog?) for each S. //M是每一个S的长度, ?是每个list的长度
     // Eg-1. s="abc", t="bahbgdca"
     // idx=[a={1,7}, b={0,3}, c={6}]
