@@ -40,6 +40,6 @@ class Solution {
 		findSubsequenceshelper(list, i + 1, nums, result);
 		list.remove(list.size() - 1);
 	    }
-	} 
+	}
     }
 } 
