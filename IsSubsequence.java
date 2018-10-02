@@ -22,7 +22,22 @@ In this scenario, how would you change your code?*/
 
 class Solution {
   
-  
+    //version1: O(s.length() + t.length())时间
+    public boolean isSubsequence(String s, String t) {
+        
+        if(s == null || t == null) {
+            return false;
+        }
+        
+        int i = 0, j = 0;
+        while(i < t.length() && j < s.length()) {
+            if(t.charAt(i) == s.charAt(j)) {
+                j++;
+            }
+            i++;
+        }
+        return j == s.length();
+    }
   
     //version for Follow up:
     /*// Follow-up: O(N) time for pre-processing, O(Mlog?) for each S. //M是每一个S的长度, ?是每个list的长度
