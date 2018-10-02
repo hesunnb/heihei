@@ -83,8 +83,8 @@ class Solution {
         }
         return true;
     }
-    /*对prev的值和binarySearch的解释: The prev variable is an index where previous character was picked from the sequence. And for the next 
-    character to be picked, you have to select it only after this index is the string 'T'.
+    /*对prev的值和binarySearch的解释: The prev variable is an index where previous character was picked from the sequence. And for the 
+    next character to be picked, you have to select it only after this index is the string 'T'.
 
     For instance, if S = "abcd" and T = "abdced".
     The index list mapping looks like,
@@ -94,6 +94,6 @@ class Solution {
     c -> 3
     d -> 2,5
     e -> 4
-    After you pick a, and b, c will be picked, and index is 3. Now if you have to pick d, you can't pick index 2 because c was picked at 3, 
-    so you have to binary search for index which comes after 3. So it returns 5.*/
+    After you pick a, and b, c will be picked, and index is 3. Now if you have to pick d, you can't pick index 2 because c was picked 
+    at 3, so you have to binary search for index which comes after 3. So it returns 5.*/
 }
