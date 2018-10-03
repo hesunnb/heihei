@@ -28,6 +28,8 @@ class Node {
 };
 */
 class Solution {
+ 
+    //verion1: 递归
     public List<Integer> preorder(Node root) {
         ArrayList<Integer> result = new ArrayList<Integer>();
         travelsal(root, result);
@@ -43,6 +45,26 @@ class Solution {
         for(int i = 0; i < root.children.size(); i++) {
             travelsal(root.children.get(i), result);
         }
+    }
+ 
+ 
+    //version2: 迭代
+    public List<Integer> preorder(Node root) {
+        Stack<Node> sk = new Stack<Node>();
+        List<Integer> result = new ArrayList<Integer>();
+        if(root == null) {
+            return result;
+        }
+        
+        sk.push(root); //先放根
+        while(!sk.isEmpty()) {
+            Node node = sk.pop();
+            result.add(node.val); 
+            for(int i = node.children.size() - 1; i >= 0; i--) {
+                sk.push(node.children.get(i));
+            }
+        }
+        return result;
     }
 }
 
