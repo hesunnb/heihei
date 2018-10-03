@@ -40,7 +40,6 @@ public class Solution {
     }
     
     
-    
     //version 2: divide & conquer
     public ArrayList<Integer> postorderTraversal(TreeNode root) {
         ArrayList<Integer> result = new ArrayList<Integer>();
@@ -60,35 +59,29 @@ public class Solution {
     }
     
     
-    
     //version 3: non-recursion
-    public ArrayList<Integer> postorderTraversal(TreeNode root) {
+    public List<Integer> postorderTraversal(TreeNode root) {
         Stack<TreeNode> sk = new Stack<TreeNode>();
-        ArrayList<Integer> result = new ArrayList<Integer>();
+        List<Integer> result = new ArrayList<Integer>();
         
-        if(root == null)
-        {
+        if(root == null) {
             return result;
         }
         
         sk.push(root);
-        while(!sk.isEmpty())
-        {
-            root = sk.pop();
-            result.add(0, root.val); //每次在头加入值, 后序是左右根, 倒着就是根右左, 和前序非常像, 所以用根右左遍历, 
+        while(!sk.isEmpty()) {
+            TreeNode node = sk.pop();
+            result.add(0, node.val); //每次在头加入值, 后序是左右根, 倒着就是根右左, 和前序非常像, 所以用根右左遍历, 
             //然后倒着插入到result当中就可以了！
-            if(root.left != null)
-            {
-                sk.push(root.left);
+            if(node.left != null) {
+                sk.push(node.left);
             }
-            if(root.right != null)
-            {
-                sk.push(root.right);   
+            if(node.right != null) {
+                sk.push(node.right);   
             }
         }
         return result;
     }
-    
     
     
     //version 4: iterative(用curr和prev)
