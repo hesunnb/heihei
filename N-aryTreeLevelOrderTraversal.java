@@ -34,23 +34,29 @@ class Node {
 };
 */
 class Solution {
-    public List<Integer> postorder(Node root) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
+    public List<List<Integer>> levelOrder(Node root) {
+
+        List<List<Integer>> result = new ArrayList<>();
         if(root == null) {
             return result;
         }
-        traversal(root, result);
+
+        Queue<Node> Q = new LinkedList<Node>();
+        Q.offer(root);
+
+        while(!Q.isEmpty()) { //有点就继续，没有点就退出了，说明刚刚加进来的点没有子节点了
+            ArrayList<Integer> level = new ArrayList<Integer>();
+            int size = Q.size(); //为的就是保留上次size的值，不能让size随着节点数的增加而实时变化
+            for(int i = 0; i < size; i++) {
+                Node node = Q.poll();
+                level.add(node.val);
+
+                for(int j = 0; j < node.children.size(); j++) {
+                    Q.offer(node.children.get(j));
+                }
+            }
+            result.add(level);
+        }
         return result;
-    }
-    
-    private void traversal(Node root, ArrayList<Integer> result) {
-        if(root == null) {
-            return;
-        }
-        
-        for(int i = 0; i < root.children.size(); i++) {
-            traversal(root.children.get(i), result);
-        }
-        result.add(root.val);
     }
 }
