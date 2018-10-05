@@ -29,6 +29,8 @@ The size of the given array will be in the range [1,1000].*/
  * }
  */
 class Solution {
+      
+    //version1: 递归
     public TreeNode constructMaximumBinaryTree(int[] nums) {
     
         if(nums == null || nums.length == 0) {
