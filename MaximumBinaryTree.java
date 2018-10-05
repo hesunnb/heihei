@@ -30,7 +30,8 @@ The size of the given array will be in the range [1,1000].*/
  */
 class Solution {
       
-    //version1: 递归
+    //version1: 递归O(nlogn), 最差O(n^2)-->比如6,5,4,3,2,1 遍历的次数就是n+(n-1)+(n-2)+...
+    //nlogn就是n+n/2+n/4....
     public TreeNode constructMaximumBinaryTree(int[] nums) {
     
         if(nums == null || nums.length == 0) {
