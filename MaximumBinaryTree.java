@@ -63,4 +63,34 @@ class Solution {
         }
         return index;
     }
+      
+    
+    //version2:
+    //O(n)用栈
+    public TreeNode constructMaximumBinaryTree(int[] nums) {
+        
+        if(nums == null || nums.length == 0) {
+            return null;
+        }
+
+        //比如4,2,1,3,0,5 用这个例子就能看出这个栈是怎么工作的
+        //4,2,1,5,0,3
+        Stack<TreeNode> stack = new Stack<>();
+        for(int i = 0; i < nums.length; i++) {
+            TreeNode curr = new TreeNode(nums[i]);
+            while(!stack.isEmpty() && stack.peek().val < nums[i]) { //如果栈顶元素比来的值小, 那么就从栈顶元素开始拿, 然后放到来的值的左子树
+                curr.left = stack.pop();
+            }
+            if(!stack.isEmpty()) { //然后小的都拿完了就会遇到大的, 连接到大的值的右子树
+                stack.peek().right = curr;
+            }
+            stack.push(curr); //把当前节点放入栈, 待比较
+        }
+        
+        TreeNode result = null;
+        while(!stack.isEmpty()) {
+            result = stack.pop(); //最后在栈底的就是根节点
+        }
+        return result;
+    }
 }
