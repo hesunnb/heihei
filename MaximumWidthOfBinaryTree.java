@@ -77,14 +77,14 @@ class Solution {
             int size = queue.size();
             max = Math.max(max, queue.peekLast().val - queue.peekFirst().val + 1); //每一层的宽度
             for (int i = 0; i < size; i++) {
-                root = queue.poll();
-                if (root.left != null) {
-                    root.left.val = root.val * 2; //计算相应子节点的下标位置
-                    queue.offer(root.left);
+                TreeNode node = queue.poll();
+                if (node.left != null) {
+                    node.left.val = node.val * 2; //计算相应子节点的下标位置
+                    queue.offer(node.left);
                 }
-                if (root.right != null) {
-                    root.right.val = root.val * 2 + 1;
-                    queue.offer(root.right);
+                if (node.right != null) {
+                    node.right.val = node.val * 2 + 1;
+                    queue.offer(node.right);
                 }
             }
         }
