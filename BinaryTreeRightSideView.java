@@ -53,4 +53,34 @@ class Solution {
         }
         return result;
     }
+    
+    
+    //非常棒的dfs解
+    public List<Integer> rightSideView(TreeNode root) {
+        /*The core idea of this algorithm:
+
+        1.Each depth of the tree only select one node.
+        2. View depth is current size of result list.*/
+        List<Integer> result = new ArrayList<Integer>();
+        if(root == null) {
+            return result;
+        }
+        rightSideViewHelper(root, result, 0);
+        return result;
+    }
+    
+    public void rightSideViewHelper(TreeNode curr, List<Integer> result, int currDepth){
+        if(curr == null) {
+            return;
+        }
+        
+        //每层只选一个, currDepth == result.size()相等的时候, 就是初到这层的时候, 又因为是跟右左的顺序, 所以加入的都是最右侧的值
+        if(currDepth == result.size()) { //根右左的遍历顺序, 遍历优先向右走, 新到一层优先是右侧, 然后加值, 右侧没有才向左侧走
+            result.add(curr.val);
+        }
+        
+        rightSideViewHelper(curr.right, result, currDepth + 1);
+        rightSideViewHelper(curr.left, result, currDepth + 1);
+        
+    }
 }
