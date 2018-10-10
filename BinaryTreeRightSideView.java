@@ -69,7 +69,7 @@ class Solution {
         return result;
     }
     
-    public void rightSideViewHelper(TreeNode curr, List<Integer> result, int currDepth){
+    private void rightSideViewHelper(TreeNode curr, List<Integer> result, int currDepth) {
         if(curr == null) {
             return;
         }
@@ -81,6 +81,5 @@ class Solution {
         
         rightSideViewHelper(curr.right, result, currDepth + 1);
         rightSideViewHelper(curr.left, result, currDepth + 1);
-        
     }
 }
