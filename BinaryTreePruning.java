@@ -57,19 +57,19 @@ class Solution {
         
         boolean left = pruneTreeHelper(root.left);
         boolean right = pruneTreeHelper(root.right);
-        if(!left) {
+        if(!left) { //左边null裁掉左边
             root.left = null;
         }
-        if(!right) {
+        if(!right) { //右边null裁掉右边
             root.right = null;
         }
         
-        if(left || right) {
+        if(left || right) { //左右一边有一个是真, 就是有1, 就返回真
             return true;
         }
-        if(root.val == 1) {
+        if(root.val == 1) { //左右两边都为false, 但是根是1, 也返回真
             return true;
         }
-        return false;
+        return false; //其余都返回假
     }
 }
