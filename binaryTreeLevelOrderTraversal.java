@@ -72,21 +72,17 @@ public class Solution {
 
 
         //version 2: DFS
-        public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root)
-        {
+        public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
             ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
             levelmaker(result, root, 0);
             return result;
         }
         
-        private void levelmaker(ArrayList<ArrayList<Integer>> result, TreeNode root, int level)
-        {
-            if(root == null)
-            {
+        private void levelmaker(ArrayList<ArrayList<Integer>> result, TreeNode root, int level) {
+            if(root == null) {
                 return;
             }
-            if(level >= result.size())
-            {
+            if(level >= result.size()) {
                 result.add(new ArrayList<Integer>()); //向result里边加盒, 和2问不一样的就是这里是正序加, 2是反序加盒
             }
             levelmaker(result, root.left, level + 1);
