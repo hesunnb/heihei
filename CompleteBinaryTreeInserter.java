@@ -37,6 +37,8 @@ Note:
  *     TreeNode(int x) { val = x; }
  * }
  */
+
+//solution1:
 class CBTInserter {
 
     //BFS解法
@@ -80,6 +82,48 @@ class CBTInserter {
     
     public TreeNode get_root() {
         return root;
+    }
+}
+
+
+//solution2: 更优bfs解法, 只遍历一遍树
+class CBTInserter {
+
+    /*Store tree nodes to a list self.tree in bfs order.
+    Node tree[i] has left child tree[2 * i + 1] and tree[2 * i + 2]
+
+    So when insert the Nth node (0-indexed), we push it into the list.
+    we can find its parent tree[(N - 1) / 2] directly.*/
+    List<TreeNode> tree;
+    public CBTInserter(TreeNode root) {
+        tree = new ArrayList<>();
+        tree.add(root);
+        for (int i = 0; i < tree.size(); i++) { //好处就是只在初始化的时候遍历一遍树, 之后就不需要再遍历树了; 正常bfs做法是
+            //每insert一次就要bfs一遍树
+            if (tree.get(i).left != null) {
+                tree.add(tree.get(i).left);
+            }
+            if (tree.get(i).right != null) { //正好是完全二叉树, 只需要按序加就可以了
+                tree.add(tree.get(i).right);
+            }
+        }
+    }
+
+    public int insert(int v) {
+        int N = tree.size(); //先保留大小, 再加入节点
+        TreeNode node = new TreeNode(v);
+        tree.add(node); //新加的节点也要加在尾部
+        if (N % 2 == 1) {
+            tree.get((N - 1) / 2).left = node;
+        }
+        else {
+            tree.get((N - 1) / 2).right = node;
+        }
+        return tree.get((N - 1) / 2).val;
+    }
+
+    public TreeNode get_root() {
+        return tree.get(0);
     }
 }
 
