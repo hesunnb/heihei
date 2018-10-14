@@ -29,7 +29,9 @@ public class Solution {
     //时间的话就是(O(二叉搜索树的个数 * n))
     public List<TreeNode> generateTrees(int n) {
         // write your code here
-
+        if(n <= 0) {
+            return new ArrayList<TreeNode>();
+        }
         return helper(1, n);
     }
     
