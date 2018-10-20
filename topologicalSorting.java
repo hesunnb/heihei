@@ -12,7 +12,7 @@ public class Solution {
      * @return: Any topological order for the given graph.
      */    
      
-    /*一个有环的有向图就没有入度为0的点，就不能被拓扑排序；所以拓扑排序也可以用来判断一个有向图有没有环(就看result中最后点的数目是不是和graph最开始
+    /*一个有环的有向图不能被拓扑排序；所以拓扑排序也可以用来判断一个有向图有没有环(就看result中最后点的数目是不是和graph最开始
     给的点的数目相同，少了就是有环)*/
     
     //这里的label值可以重复，但是这道题跟lebal没啥太大关系
