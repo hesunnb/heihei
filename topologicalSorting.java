@@ -24,11 +24,11 @@ public class Solution {
         if(graph == null) {
             return null;
         }
-        //添加所有点到哈希表(除啦入度的点)
+
         HashMap<DirectedGraphNode, Integer> map = new HashMap<DirectedGraphNode, Integer>();
         ArrayList<DirectedGraphNode> result = new ArrayList<DirectedGraphNode>();
         
-        for(int i = 0; i < graph.size(); i++) {
+        for(int i = 0; i < graph.size(); i++) { //计算所有点的入度放入哈希表, 入度为0的点哈希表中就不会存在
             DirectedGraphNode node = graph.get(i);
             for(int j = 0; j < node.neighbors.size(); j++) {
                 DirectedGraphNode neighbor = node.neighbors.get(j);
