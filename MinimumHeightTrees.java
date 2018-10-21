@@ -49,7 +49,7 @@ class Solution {
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
 
         if(n <= 1 || edges == null) {
-            return Collections.singletonList(0);
+            return Collections.singletonList(0); //这是一个新的用法, 返回一个不可变的list, 里面的元素一旦规定就不能更改了
         }
 
         List<Set<Integer>> adj = new ArrayList<>(n);
