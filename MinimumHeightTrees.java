@@ -43,9 +43,8 @@ Note:
 */
 
 class Solution {
-
         
-    //solution2: 类似拓扑排序的bfs
+    //solution1: 类似拓扑排序的bfs
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
 
         if(n <= 1 || edges == null) {
@@ -54,7 +53,7 @@ class Solution {
 
         List<Set<Integer>> adj = new ArrayList<>(n);
         for (int i = 0; i < n; i++) { //这道题The graph contains n nodes which are labeled from 0 to n - 1, 所以这里用下标默认替代了label值
-            adj.add(new HashSet<>());
+            adj.add(new HashSet<>()); //如果label不是从0 to n - 1, 换成别的比如char, 那么用哈希表就可以了
         }
         for (int[] edge : edges) { //把无向图加入到adj里面
             adj.get(edge[0]).add(edge[1]);
