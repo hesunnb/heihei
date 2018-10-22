@@ -27,6 +27,15 @@ Visually, the graph looks like the following:
          \_/
 Note: The information about the tree serialization is only meant so that you can understand error output if you get a wrong answer. 
 You don't need to understand the serialization to solve the problem.*/
+
+/**
+ * Definition for undirected graph.
+ * class UndirectedGraphNode {
+ *     int label;
+ *     List<UndirectedGraphNode> neighbors;
+ *     UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
+ * };
+ */
 public class Solution {
      
     //用BFS做(通过一个点找到其它所有的点)，与二叉树的不同，除啦队列，还需要用到hashmap，作用是存储访问过的点，因为图中访问到每个结点时会重复访问
