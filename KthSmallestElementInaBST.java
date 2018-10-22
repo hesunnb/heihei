@@ -26,8 +26,8 @@ Input: root = [5,3,6,2,4,null,null,1], k = 3
 Output: 3
 
 Follow up:
-What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the 
-kthSmallest routine?
+What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize 
+the kthSmallest routine?
 */
 
 /**
@@ -41,6 +41,8 @@ kthSmallest routine?
  */
 class Solution {
 
+    //follow up: followup用优先级队列的意思就是把树保存在优先级队列里面, 当insert和delete节点的时候顺便更新这个优先级队列, 
+    //然后查找的时候直接扫优先级队列就行
     //dfs
     private int result = 0;
     public int kthSmallest(TreeNode root, int k) {
