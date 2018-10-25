@@ -27,12 +27,9 @@ class Solution {
             return result;
         }
         
-        for(int i = 0; i < graph[0].length; i++) {
-            List<Integer> list = new ArrayList<>();
-            list.add(0); //加入起始点
-            list.add(graph[0][i]); //加入起始点对应数组的第i个
-            allPathsSourceTargetHelper(graph, list, result, graph[0][i]);
-        }
+        List<Integer> list = new ArrayList<>();
+        list.add(0); //加入起始点
+        allPathsSourceTargetHelper(graph, list, result, 0);
         return result;
     }
     
