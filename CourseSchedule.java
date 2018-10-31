@@ -29,7 +29,7 @@ class Solution {
             return false;
         }
 
-	Map<Integer, List<Integer>> map = new HashMap<>();
+        Map<Integer, List<Integer>> map = new HashMap<>();
         boolean[] visited = new boolean[numCourses];
 
         for(int[] course : prerequisites) {
