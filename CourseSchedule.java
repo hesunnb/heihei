@@ -29,14 +29,14 @@ class Solution {
             return false;
         }
 
-        Map<Integer, List<Integer>> map = new HashMap<>();
-	boolean[] visited = new boolean[numCourses];
+	    Map<Integer, List<Integer>> map = new HashMap<>();
+	    boolean[] visited = new boolean[numCourses];
 
         for(int[] course : prerequisites) {
             if(!map.containsKey(course[1])) {
                 map.put(course[1], new ArrayList<Integer>());
             }
-	    map.get(course[1]).add(course[0]);
+	        map.get(course[1]).add(course[0]);
         }
         
         for(int i = 0; i < numCourses; i++) {
