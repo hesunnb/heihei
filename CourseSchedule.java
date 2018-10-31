@@ -29,8 +29,8 @@ class Solution {
             return false;
         }
 
-	    Map<Integer, List<Integer>> map = new HashMap<>();
-	    boolean[] visited = new boolean[numCourses];
+	Map<Integer, List<Integer>> map = new HashMap<>();
+        boolean[] visited = new boolean[numCourses];
 
         for(int[] course : prerequisites) {
             if(!map.containsKey(course[1])) {
@@ -53,7 +53,7 @@ class Solution {
         }
         visited[index] = true;
         if(map.containsKey(index)) {
-        	for(int i : map.get(index)) {
+            for(int i : map.get(index)) {
                 if(!dfs(map, i, visited)) {
                     return false;
                 }
