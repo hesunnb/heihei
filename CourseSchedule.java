@@ -36,7 +36,7 @@ class Solution {
             if(!map.containsKey(course[1])) {
                 map.put(course[1], new ArrayList<Integer>());
             }
-	        map.get(course[1]).add(course[0]);
+            map.get(course[1]).add(course[0]);
         }
         
         for(int i = 0; i < numCourses; i++) {
