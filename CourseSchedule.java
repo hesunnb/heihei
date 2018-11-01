@@ -23,7 +23,56 @@ The input prerequisites is a graph represented by a list of edges, not adjacency
 You may assume that there are no duplicate edges in the input prerequisites.*/
 
 class Solution {
-    //dfs方法
+  
+    //solution1: bfs方法, 推荐使用, O(m)m为边的个数复杂度, 检测图有没有环最有效的方法
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        if(prerequisites == null) { //numCourses < prerequisites.length并不能说明问题, prerequisites只是描述课程间的关系, 与
+            //numCourses的大小无关
+            return false;
+        }
+
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        int[] inDegree = new int[numCourses];
+        Queue<Integer> queue = new LinkedList();
+        int count = 0;
+        
+        for(int[] coursePair : prerequisites) {
+            if(!map.containsKey(coursePair[1])) {
+                map.put(coursePair[1], new ArrayList<Integer>()); //前提条件的课作为key, 后续的课程作为值; 这里的哈希表是用来存图的
+                //区别于topologicalSorting.java里面的map, 因为topologicalSorting.java中每一个节点已经给了neighbours, 所以哈希表就用来存
+                //入度了; 这里用哈希表存图, 邻接点的关系, 用一个数组存入度
+            }
+            map.get(coursePair[1]).add(coursePair[0]);
+            inDegree[coursePair[0]]++; //加入入度
+        }
+        
+        for(int i = 0; i < inDegree.length; i++) {
+            if(inDegree[i] == 0) { 
+                queue.add(i); //加入入度为0的点
+            }
+        }
+        
+        while(queue.size() != 0) {
+            int course = queue.poll();
+            count++; //弹出课, 加数量
+            if(map.containsKey(course)) {
+                for(int i : map.get(course)) { //减去邻接点的入度数
+                    inDegree[i]--;
+                    if(inDegree[i] == 0) { //入度为0加入队列
+                        queue.add(i);
+                    }
+                }
+            }
+        }
+        
+        if(count != numCourses) { //不想等就是假
+            return false;
+        }
+        return true;
+    }  
+
+  
+    //solution2: dfs方法, 会有重复点查询, 开栈也费时间
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         if(prerequisites == null) { //numCourses < prerequisites.length并不能说明问题, prerequisites只是描述课程间的关系, 与
             //numCourses的大小无关
