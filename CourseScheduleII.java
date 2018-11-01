@@ -25,46 +25,51 @@ Topological sort could also be done via BFS.*/
 
 public class Solution {
     
-    //思路也是拓扑排序
+    //bfs解法:
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        int[][] matrix = new int[numCourses][numCourses]; //开一个二维数组, 用来存每对儿关系的
-        int[] indegree = new int[numCourses]; //用来存每个节点的入度的
-
-        for (int i=0; i<prerequisites.length; i++) { //扫一遍这个二维数组
-            int ready = prerequisites[i][0]; //准备上的课
-            int pre = prerequisites[i][1]; //所需的前提
-            if (matrix[pre][ready] == 0) { //等于0这个条件还是要加的, testcase里面会有[1,9]给两遍的情况, 这时候就要忽略
-                indegree[ready]++; //增加入度个数
-            }
-            matrix[pre][ready] = 1;
+        if(prerequisites == null) { //numCourses < prerequisites.length并不能说明问题, prerequisites只是描述课程间的关系, 与
+            //numCourses的大小无关
+            return new int[]{};
         }
-    
-        int count = 0;
+
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        int[] inDegree = new int[numCourses];
         Queue<Integer> queue = new LinkedList();
-        List<Integer> list = new ArrayList<Integer>();
-        for (int i=0; i<indegree.length; i++) { //扫描入度为0的点
-            if (indegree[i] == 0) {
-                queue.offer(i); //加入队列
-                list.add(i); //加入结果list
+        List<Integer> list = new ArrayList<>();
+        int count = 0;
+        
+        for(int[] coursePair : prerequisites) {
+            if(!map.containsKey(coursePair[1])) {
+                map.put(coursePair[1], new ArrayList<Integer>()); //前提条件的课作为key, 后续的课程作为值; 这里的哈希表是用来存图的
+                //区别于topologicalSorting.java里面的map, 因为topologicalSorting.java中每一个节点已经给了neighbours, 所以哈希表就用来存
+                //入度了; 这里用哈希表存图, 邻接点的关系, 用一个数组存入度
+            }
+            map.get(coursePair[1]).add(coursePair[0]);
+            inDegree[coursePair[0]]++; //加入入度
+        }
+        
+        for(int i = 0; i < inDegree.length; i++) {
+            if(inDegree[i] == 0) { 
+                queue.add(i); //加入入度为0的点
             }
         }
         
-        while (!queue.isEmpty()) {
+        while(queue.size() != 0) {
             int course = queue.poll();
-            count++; //计算上过课的个数
-            for (int i=0; i<numCourses; i++) {
-                if (matrix[course][i] != 0) { //不等于0说明有映射关系, 有入度
-                    indegree[i]--; //入度减1
-                    if (indegree[i] == 0) { //入度为0, 加入队列和结果集
-                        queue.offer(i);
-                        list.add(i);
+            count++;
+            list.add(course);
+            if(map.containsKey(course)) {
+                for(int i : map.get(course)) { //减去邻接点的入度数
+                    inDegree[i]--;
+                    if(inDegree[i] == 0) { //入度为0加入队列
+                        queue.add(i);
                     }
                 }
             }
         }
         
-        if(count != numCourses) { //如果上的课与所给课程不等, 说明图有(count会小于numCourses), 返回空数组
-            return new int[0];
+        if(count != numCourses) {
+            return new int[]{};
         }
         
         int[] result = new int[list.size()]; //把结果拷贝到数组中
