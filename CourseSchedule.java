@@ -40,7 +40,8 @@ class Solution {
             map.get(course[1]).add(course[0]);
         }
         
-        for(int i = 0; i < numCourses; i++) { //numCourses就在这里有用, 从每一节出发判断有没有环
+        for(int i = 0; i < numCourses; i++) { //numCourses就在这里有用, 从每一节课出发判断有没有环; 递归的过程中是不需要
+            //numCourses参与的, 就是说判断有没有环的过程不需要numCourses这个变量
             if(!dfs(map, i, visited)) {
                 return false;
             }
