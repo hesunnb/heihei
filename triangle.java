@@ -16,7 +16,8 @@ public class Solution {
         int n = triangle.length;
         for(int i = n - 1; i > 0; i--) {
             for(int j = 0; j < i; j++) {
-                triangle[i - 1][j] = Math.min(triangle[i][j] + triangle[i - 1][j], triangle[i][j + 1] + triangle[i - 1][j]); //从底向上两两与上面的做和然后替换掉上面的数
+                triangle[i - 1][j] = Math.min(triangle[i][j] + triangle[i - 1][j], triangle[i][j + 1] + triangle[i - 1][j]); //从底向上
+                //两两与上面的做和然后替换掉上面的数
             }
         }
         return triangle[0][0];
@@ -55,12 +56,10 @@ public class Solution {
     //开了O(n2)的空间, 一个二维数组, 时间O(n2)
     public int minimumTotal(int[][] triangle) {
         // write your code here
-        if(triangle == null || triangle.length == 0)
-        {
+        if(triangle == null || triangle.length == 0) {
             return -1;
         }
-        if(triangle[0] == null || triangle[0].length == 0)
-        {
+        if(triangle[0] == null || triangle[0].length == 0) {
             return -1;
         }
         
@@ -70,25 +69,21 @@ public class Solution {
         
         //初始化:initialize(走两边，先把f这个矩阵的左右两边算出来)
         f[0][0] = triangle[0][0];
-        for(int i = 1; i < n; i++)
-        {
+        for(int i = 1; i < n; i++) {
             f[i][0] = f[i - 1][0] + triangle[i][0];
             f[i][i] = f[i - 1][i - 1] + triangle[i][i];
         }
         
         //自上而下:top - down(就是把中间空的地方填充了,用之前的和加上triangle里的值)
-        for(int i = 2; i < n; i++)
-        {
-            for(int j = 1; j < i; j++)
-            {
+        for(int i = 2; i < n; i++) {
+            for(int j = 1; j < i; j++) {
                 f[i][j] = Math.min(f[i - 1][j], f[i - 1][j - 1]) + triangle[i][j];
             }
         }
         
         //答案:answer
         int result = f[n - 1][0]; //最后一行的第一个值
-        for(int i = 1; i < n; i++)
-        {
+        for(int i = 1; i < n; i++) {
             result = Math.min(f[n - 1][i], result);
         }
         return result;
