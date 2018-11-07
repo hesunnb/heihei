@@ -15,10 +15,8 @@ Output: 7
 Explanation: Because the path 1→3→1→1→1 minimizes the sum.*/
 
 public class Solution {
-    /**
-     * @param grid: a list of lists of integers.
-     * @return: An integer, minimizes the sum of all numbers along its path
-     */
+
+    //solution1: 二维数组
     public int minPathSum(int[][] grid) {
         // write your code here
         
@@ -49,5 +47,30 @@ public class Solution {
             }
         }
         return sum[m - 1][n - 1]; //返回最右下角值
+    }
+  
+  
+    //solution2: O(n)空间优化
+    public int minPathSum(int[][] grid) {
+        
+        if(grid == null || grid.length == 0 || grid[0].length == 0) {
+            return -1;
+        }
+        
+        int m = grid.length;
+        int n = grid[0].length;
+        int[] dp = new int[n]; 
+        
+        for (int i = 0; i < m; i++) {
+            dp[0] += grid[i][0]; //每行首先加上第一个值
+            for (int j = 1; j < n; j++) { //然后从第二个值开始
+                if(i == 0) {
+                    dp[j] = dp[j - 1] + grid[i][j]; //第一行不用Math.min比较, 直接求
+                } else {
+                    dp[j] = Math.min(dp[j], dp[j - 1]) + grid[i][j]; //接下来的都要用Math.min比较
+                }
+            }
+        }
+        return dp[n - 1]; //返回最后一个值
     }
 }
