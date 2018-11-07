@@ -1,3 +1,31 @@
+/*A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
+
+The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid 
+(marked 'Finish' in the diagram below).
+
+Now consider if some obstacles are added to the grids. How many unique paths would there be?
+
+
+
+An obstacle and empty space is marked as 1 and 0 respectively in the grid.
+
+Note: m and n will be at most 100.
+
+Example 1:
+
+Input:
+[
+  [0,0,0],
+  [0,1,0],
+  [0,0,0]
+]
+Output: 2
+Explanation:
+There is one obstacle in the middle of the 3x3 grid above.
+There are two ways to reach the bottom-right corner:
+1. Right -> Right -> Down -> Down
+2. Down -> Down -> Right -> Right*/
+
 public class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         
@@ -15,7 +43,8 @@ public class Solution {
             if(obstacleGrid[i][0] == 0) { //一直都是拿obstacleGrid原数组做比对, 然后再相应的向自己的sum数组中填值
                 sum[i][0] = 1;
             } else {
-                break; //在初始化第一行和第一列的时候，只要有一个是障碍，那么障碍后面的地方就都到达不了了，所以这里就break，让sum这个点的后方全部都为０，就是没有路径到达
+                break; //在初始化第一行和第一列的时候，只要有一个是障碍，那么障碍后面的地方就都到达不了了，所以这里就break，让sum这个点的后方全部
+                //都为0, 就是没有路径到达
             }
         }
         
@@ -57,7 +86,8 @@ public class Solution {
             for(int j = 0; j < n; j++) { //对于每一行每次都要从头扫到尾, 因为有障碍的关系
                 if(obstacleGrid[i][j] == 1) {
                     sum[j] = 0;
-                } else if(j > 0) { //j > 0才进行递推, j = 0的时候是直接指定值的(最开始默认为1(sum[0] = 1)), 有障碍的时候强制归0, 以后j = 0的时候就全是0了)
+                } else if(j > 0) { //j > 0才进行递推, j = 0的时候是直接指定值的(最开始默认为1(sum[0] = 1)), 有障碍的时候强制归0, 
+                    //以后j = 0的时候就全是0了)
                     sum[j] += sum[j - 1];
                 }
             }
