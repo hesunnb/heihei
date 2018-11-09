@@ -94,4 +94,34 @@ public class Solution {
         }
         return sum[n - 1];
     }
+  
+  
+    //O(1)空间, The idea is simple, set all obstacles to be 0 while doing the DP. No extra space is used.
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        
+        if(obstacleGrid == null || obstacleGrid.length == 0 || obstacleGrid[0].length == 0) {
+            return 0;
+        }
+        
+        int m = obstacleGrid.length;
+        int n = obstacleGrid[0].length;
+        
+        obstacleGrid[0][0]^=1; //取反
+        //初始化
+
+        for(int i = 1;i < m; i++) {
+            obstacleGrid[i][0] = (obstacleGrid[i][0]==1) ? 0 : obstacleGrid[i-1][0]; //这个地方不能直接是1的原因比如输入是[1,0], 输出结果是0
+            //所以要追随前面的结果
+        }
+
+        for(int j = 1; j < n; j++) { //新遇到的1都变成0, 其余的都跟随上一位的结果
+            obstacleGrid[0][j] = (obstacleGrid[0][j]==1)? 0 : obstacleGrid[0][j-1];
+        }
+        for(int i = 1; i < m; i++) {
+            for(int j = 1 ; j < n; j++) { //遇到1变成0, 其余的计算
+                obstacleGrid[i][j] = (obstacleGrid[i][j]==1) ? 0 : obstacleGrid[i-1][j] + obstacleGrid[i][j-1];
+            }
+        }
+        return obstacleGrid[m-1][n-1];
+    }
 }
