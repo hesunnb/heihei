@@ -2,7 +2,6 @@ public class Solution {
 
     //动归
     public int jump(int[] A) {
-
         if(A == null || A.length == 0) {
             return 0;
         }
@@ -23,6 +22,7 @@ public class Solution {
         }
         return result[A.length - 1];
     }
+    
     
     //贪心(一道题一个贪心方法，所以这题的贪心和１问的贪心就不一样了)
     // version 2: Greedy
