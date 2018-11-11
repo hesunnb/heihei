@@ -55,7 +55,7 @@ public class Solution {
                 //同时还要满足头尾元素相等
             }
         }
-            return isPalindrome;
+        return isPalindrome;
     }
     
     /*testCase: "abba", "abbcca"
