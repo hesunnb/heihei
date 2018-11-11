@@ -48,7 +48,8 @@ public class Solution {
                 if(!canSegment[i - lastwordlength]) { //true代表能切到的地方, false就是不能切到的地方, 所以都要从true的位置开始取substring
                     continue;
                 }
-                
+                //true的位置会取substring, 如果dict不包含这个substring, 还会接着往头部找别的true取substring判断(一直向头走, 遇到true就取
+                //substring)判断
                 String word = s.substring(i - lastwordlength, i); //这个取substring也是倒着往头部取, 长度越来越长
                 if(dict.contains(word)) {
                     canSegment[i] = true;
