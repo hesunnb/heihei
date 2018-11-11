@@ -43,15 +43,13 @@ public class Solution {
         
         canSegment[0] = true;
         for(int i = 1; i <= s.length(); i++) {
-            canSegment[i] = false;
-            //让单词长度不超过dict中最大的词长, 在从头找的过程中要是有一次没有满足在maxLength的长度内找到一个在dict中的单词, 
-            //那么在下一个canSegment[i]时, 它的前maxLength个就会都是false, 从而不会去进行下面的substring的判断
+            canSegment[i] = false; //每个新地方初始为false
             for(int lastwordlength = 1; lastwordlength <= maxLength && lastwordlength <= i; lastwordlength++) {
-                if(!canSegment[i - lastwordlength]) { //它会取到最近的一个true来进行下面的substring的判断
+                if(!canSegment[i - lastwordlength]) { //true代表能切到的地方, false就是不能切到的地方, 所以都要从true的位置开始取substring
                     continue;
                 }
                 
-                String word = s.substring(i - lastwordlength, i);
+                String word = s.substring(i - lastwordlength, i); //这个取substring也是倒着往头部取, 长度越来越长
                 if(dict.contains(word)) {
                     canSegment[i] = true;
                     break;
