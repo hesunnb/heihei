@@ -37,6 +37,7 @@ public class Solution {
         return f[s.length()]; //f最后的值就是最小的切数
     }
     
+    //区间型动归, 按照区间长度进行动归
     private boolean[][] getIsPalindrome(String s) { //得到一个字符串的回文表，可用来判断s中的回文串个数
         boolean[][] isPalindrome = new boolean[s.length()][s.length()]; 
         for(int i = 0; i < s.length(); i++) {
