@@ -38,7 +38,7 @@ public class Solution {
             return true; //在s为""的时候, 它的dict也是[], dict不会出现s里面没有的东西, 所以要为true
         }
         
-        boolean[] canSegment = new boolean[s.length() + 1];
+        boolean[] canSegment = new boolean[s.length() + 1]; //长度+1, 也是前几个的意思
         int maxLength = getMaxLength(dict);
         
         canSegment[0] = true;
