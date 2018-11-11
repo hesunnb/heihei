@@ -24,7 +24,7 @@ public class Solution {
     }
     
     private void partitionHelper(List<List<String>> result, List<String> path, String s, int pos) {
-        if(pos == s.length()) { //pos如果能到s.length()这个位置就说明回文一定存在了, 因为只有满足回文最有一个等于s.length()的i才能传进来
+        if(pos == s.length()) { //pos如果能到s.length()这个位置就说明回文一定存在了, 因为只有满足回文最后一个等于s.length()的i才能传进来
             result.add(new ArrayList<String>(path));
         }
         
