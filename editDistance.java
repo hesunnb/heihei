@@ -43,7 +43,7 @@ public class Solution {
             result[0][j] = j;
         }
         
-        //如果word1或者word2的长度为０, 下面这两个循环都会有一个不执行, 从而直接返回结果
+        //如果word1或者word2的长度为0, 下面这两个循环都会有一个不执行, 从而直接返回结果
         for(int i = 1; i <= word1.length(); i++) {
             for(int j = 1; j <= word2.length(); j++) {
                 if(word1.charAt(i - 1) == word2.charAt(j - 1)) {
