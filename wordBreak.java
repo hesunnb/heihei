@@ -86,7 +86,8 @@ public class Solution {
                     continue;
                 }
                 
-                String word = s.substring(lastwordlength, i); //这回是正着取substring
+                String word = s.substring(lastwordlength, i); //这回是正着取substring, 如果没有maxLength的限制, 有一个问题就是这个substring
+                //可能会取的很大很长, 会有MLE的可能
                 if(dict.contains(word)) {
                     canSegment[i] = true;
                     break;
