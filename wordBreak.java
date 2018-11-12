@@ -29,6 +29,7 @@ public class Solution {
 
     //一个例子: s="aaaaaaa", list{"aaaa", "aaa"}, 如果要是从头扫s, list包含一个子串就去掉, 这样返回的结果就不对, 因为"aaa","aaa","a"就返回
     //false了
+    //solution1: 就这个最好
     public boolean wordBreak(String s, Set<String> dict) {
         
         //思路: 动规, 因为dict是词典, 其中会有最长的单词, 所以枚举长度就行(比如ｓ的长度是100万, 你不用像palindrome partitioning 2那道题一样, 
@@ -69,7 +70,7 @@ public class Solution {
     }
     
     
-    //solution2: 正着找的版本
+    //solution2: 正着找的版本, 会MLE
     public boolean wordBreak(String s, List<String> dict) {
         
         if(s == null || s.length() == 0) {
@@ -99,4 +100,43 @@ public class Solution {
     //回文串正着找倒着找没区别的原因是, 回文串没有长度限制, 多长的都有; 这道题它是看包含, 在dict中已经有了对比的对象, 
     //所以倒着找超过maxLength就break省时, 如果正着找就用不到maxLength了, 如果用maxLength就得写成从i-maxLength处开始正着找, 
     //那么这个和倒着找就没区别了
+    
+    
+    //solution3: 正着找的版本的略微优化, 也会TLE
+    public boolean wordBreak(String s, Set<String> dict) {
+        
+        if(s == null || s.length() == 0) {
+            return true;
+        }
+        
+        boolean[] canSegment = new boolean[s.length() + 1];
+        int maxLength = getMaxLength(dict);
+        
+        canSegment[0] = true;
+        for(int i = 1; i <= s.length(); i++) {
+            canSegment[i] = false; 
+            for(int lastwordlength = 0; lastwordlength < i; lastwordlength++) {
+                if((i - lastwordlength) > maxLength || !canSegment[lastwordlength]) { //正着找的时候虽然在这里面进行了优化, 
+                    //就是i与lastwordlength的长度在maxLength之间我才会去取substring, 这样不会MLE, 但是因为每次都从头开始扫, 所以复杂度
+                    //接近全o(n ^ 2), 会TLE; 但是倒着找, 每次最多找maxLength的长度, 就不会TLE
+                    continue;
+                }
+                
+                String word = s.substring(lastwordlength, i); //这回是正着取substring
+                if(dict.contains(word)) {
+                    canSegment[i] = true;
+                    break;
+                }
+            }
+        }
+        return canSegment[s.length()];
+    }
+    
+    private int getMaxLength(Set<String> dict) {
+        int maxLength = 0;
+        for(String word : dict) { //每次从dict中取出一个元素给word，直到没有元素为止
+            maxLength = Math.max(maxLength, word.length());
+        }
+        return maxLength;
+    }
 }
