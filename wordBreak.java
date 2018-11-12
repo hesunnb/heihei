@@ -96,5 +96,6 @@ public class Solution {
         return canSegment[s.length()];
     }
     //回文串正着找倒着找没区别的原因是, 回文串没有长度限制, 多长的都有; 这道题它是看包含, 在dict中已经有了对比的对象, 
-    //所以倒着找超过maxLength就break省时, 如果正着找就用不到maxLength了, 如果用maxLength就得写成从i-maxLength处开始正着找, 那么这个和倒着找就没区别了
+    //所以倒着找超过maxLength就break省时, 如果正着找就用不到maxLength了, 如果用maxLength就得写成从i-maxLength处开始正着找, 
+    //那么这个和倒着找就没区别了
 }
