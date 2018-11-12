@@ -29,7 +29,7 @@ public class Solution {
 
     //一个例子: s="aaaaaaa", list{"aaaa", "aaa"}, 如果要是从头扫s, list包含一个子串就去掉, 这样返回的结果就不对, 因为"aaa","aaa","a"就返回
     //false了
-    //solution1: 就这个最好
+    //solution1: 就这个最好, 时间复杂度:o(NL), L是maxLength, N是s.length()
     public boolean wordBreak(String s, Set<String> dict) {
         
         //思路: 动规, 因为dict是词典, 其中会有最长的单词, 所以枚举长度就行(比如ｓ的长度是100万, 你不用像palindrome partitioning 2那道题一样, 
