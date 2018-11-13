@@ -54,7 +54,7 @@ public class Solution {
         HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
         List<UndirectedGraphNode> nodes = new ArrayList<UndirectedGraphNode>();
        
-        //clone nodes 
+        //clone nodes克隆所有的点
         nodes.add(node);
         map.put(node, new UndirectedGraphNode(node.label)); //先加入第一个结点
         
@@ -70,7 +70,7 @@ public class Solution {
             }
         }
         
-        //clone neighbors
+        //clone neighbors克隆所有的边
         for(int i = 0; i < nodes.size(); i++) {
             UndirectedGraphNode newNode = nodes.get(i); //取出nodes中的点
             for(int j = 0; j < newNode.neighbors.size(); j++) { //按照该点neighbors的数量遍历
