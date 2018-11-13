@@ -56,7 +56,8 @@ public class Solution {
             //这也是比较独特的初始化i和j不一样的一道题
         }
         
-        for(int i = 1; i <= S.length(); i++) { //S或者T中有空串的情况也包括在内了，有空串循环有一个肯定不能执行，然后直接返回值(第一行尾或第一列尾)
+        for(int i = 1; i <= S.length(); i++) { //S或者T中有空串的情况也包括在内了，有空串循环有一个肯定不能执行，然后直接返回值
+            //(第一行尾或第一列尾)
             for(int j = 1; j <= T.length(); j++) {
                 result[i][j] = result[i - 1][j]; //保留上次匹配的结果，在S未加入新字母之前的结果
                 if(S.charAt(i - 1) == T.charAt(j - 1)) {
