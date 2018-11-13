@@ -9,11 +9,7 @@ When s3 = "aadbbcbcac", return true.
 When s3 = "aadbbbaccc", return false.*/
 
 public class Solution {
-    /**
-     * Determine whether s3 is formed by interleaving of s1 and s2.
-     * @param s1, s2, s3: As description.
-     * @return: true or false.
-     */
+
     public boolean isInterleave(String s1, String s2, String s3) {
         // write your code here
         if(s1.length() + s2.length() != s3.length()) { //首先长度和要一样, ["", "", "1"]这种长度就不等
@@ -37,7 +33,8 @@ public class Solution {
         
         for(int i = 1; i <= s1.length(); i++) { //从第二行开始扫描
             for(int j = 1; j <= s2.length(); j++) { //每次扫描扫描列的长度
-                if((s3.charAt(i + j - 1) == s1.charAt(i - 1) && result[i - 1][j]) || (s3.charAt(i + j - 1) == s2.charAt(j - 1) && result[i][j - 1])) { //1代表能走的路径, 0代表不能走的路径, 判断相等的同时上下看能不能走来确定路径
+                if((s3.charAt(i + j - 1) == s1.charAt(i - 1) && result[i - 1][j]) || (s3.charAt(i + j - 1) == s2.charAt(j - 1) && 
+                                    result[i][j - 1])) { //1代表能走的路径, 0代表不能走的路径, 判断相等的同时上下看能不能走来确定路径
                     result[i][j] = true;
                 }
             }
