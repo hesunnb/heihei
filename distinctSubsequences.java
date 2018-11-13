@@ -68,6 +68,10 @@ public class Solution {
         return result[S.length()][T.length()];
         
         //f[i][j]表示S的前i个字符中选取T的前j个字符, 有多少种方案
+        /*f[i][j] = f[i-1][j] + f[i-1][j-1] (S[i-1]==T[j-1])
+                  = f[i-1][j]               (S[i-1]!=T[j-1]) //这个就是方程, 按照文字方法读出来就好理解多了
+        //前i个字符中选取T的前j个字符 = 前i-1个字符中选取T的前j个字符 + 前i-1个字符中选取T的前j-1个字符...
+        */
         /**
          *       r a b b i t (T串)
          *     1 0 0 0 0 0 0
