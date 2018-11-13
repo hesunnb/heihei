@@ -52,7 +52,7 @@ public class Solution {
        
         int[][] result = new int[S.length() + 1][T.length() + 1];
         for(int i = 0; i <= S.length(); i++) {
-            result[i][0] = 1; //在s当中挑出t的空串总有一种方案；而第一行默认就是0(j > 0),除了第一个)，意思就是在空串当中挑不出来T当中的内容；
+            result[i][0] = 1; //在s当中挑出t的空串总有一种方案；第一行除了第一个默认就是0(j > 0), 意思就是在空串当中挑不出来T当中的内容; 
             //这也是比较独特的初始化i和j不一样的一道题
         }
         
@@ -67,6 +67,7 @@ public class Solution {
         }
         return result[S.length()][T.length()];
         
+        //f[i][j]表示S的前i个字符中选取T的前j个字符, 有多少种方案
         /**
          *       r a b b i t (T串)
          *     1 0 0 0 0 0 0
