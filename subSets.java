@@ -35,8 +35,7 @@ class Solution {
         // write your code here
         //递归方法：递归树
         List<List<Integer>> result = new ArrayList<List<Integer>>(); //装ArrayList的ArrayList
-        if(nums == null || nums.length == 0)
-        {
+        if(nums == null || nums.length == 0) {
             return result;
         }
         List<Integer> list = new ArrayList<Integer>(); //这个list是一直跟着变化的
@@ -47,12 +46,10 @@ class Solution {
         return result;
     }
     
-    private void subsetsHelper(List<List<Integer>> result, List<Integer> list, int[] nums, int pos)
-    {
+    private void subsetsHelper(List<List<Integer>> result, List<Integer> list, int[] nums, int pos) {
         result.add(new ArrayList<Integer>(list)); //每次都要加, 第一次加入的是空集
         
-        for (int i = pos; i < nums.length; i++) 
-        {
+        for (int i = pos; i < nums.length; i++)  {
             list.add(nums[i]); //按照顺序先加入1
             subsetsHelper(result, list, nums, i+1); //把所有开头为1的找出子集
             list.remove(list.size()-1);//把1删掉换成下一个数
@@ -68,24 +65,19 @@ class Solution {
     //3 ->010 -> [2]
     //4 ->111 -> [1,2,3]
     //复杂度是o(n*2^n),比如n=3，对三个数进行排列，总共有2^n个子集，每个子集都要扩展成n位数(000这样的)
-    public ArrayList<ArrayList<Integer>> subsets(int[] nums)
-    {
+    public ArrayList<ArrayList<Integer>> subsets(int[] nums) {
         ArrayList<ArrayList<Integer>> results = new ArrayList<ArrayList<Integer>>();
-        if(nums == null || nums.length == 0)
-        {
+        if(nums == null || nums.length == 0) {
             return results;
         }
 
         int n = nums.length;
         Arrays.sort(nums);
         
-        for(int i = 0; i < (1 << n); i++) //2^n个子集，循环2^n次，把每个数都比较一次, 1 << n是个常数
-        {
+        for(int i = 0; i < (1 << n); i++) { //2^n个子集，循环2^n次，把每个数都比较一次, 1 << n是个常数
             ArrayList<Integer> list = new ArrayList<Integer>();
-            for(int j = 0; j < n; j++) //把每位数扩展成n位
-            {
-                if((i & (1 << j)) != 0) //让i与每种情况都按位与
-                {
+            for(int j = 0; j < n; j++) { //把每位数扩展成n位
+                if((i & (1 << j)) != 0) { //让i与每种情况都按位与
                     list.add(nums[j]); //把相应的每位的组成加入
                 }
             }
