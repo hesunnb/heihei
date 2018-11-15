@@ -36,10 +36,10 @@ public class Solution {
         }
         
         for(int i = 0; i < nums.length; i++) {
-            if(list.contains(nums[i])) { //包含就跳过包含的元素, 这个contains的方法要学习
-                continue;
+            if(list.contains(nums[i])) { //包含就跳过包含的元素, 因为contains是o(n), 所以优化这个的话就用哈希表判断存不存在, 加入和删除的
+                continue; //同时也在哈希表中加入和删除即可
             }
-            list.add(nums[i]);
+            list.add(nums[i]); 
             permuteHelper(result, list, nums);
             list.remove(list.size() - 1); //移除每步的末尾元素
         }
