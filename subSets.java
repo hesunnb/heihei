@@ -31,23 +31,23 @@ class Solution {
     //时间复杂度: O(n * 2^(n - 1)), 每个数会出现2^(n - 1)次, 总共有n个数
     //比如1和2的子集是[],[1],[2],[1,2]; 此时加入一个3, 只需要在前面这些子集中分别加入3, 然后再与[],[1],[2],[1,2]这4个子集合并, 
     //便会得到新的子集, 从而得到上述的复杂度
-    public ArrayList<ArrayList<Integer>> subsets(int[] nums) {
+    public List<List<Integer>> subsets(int[] nums) {
         // write your code here
         //递归方法：递归树
-        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>(); //装ArrayList的ArrayList
+        List<List<Integer>> result = new ArrayList<List<Integer>>(); //装ArrayList的ArrayList
         if(nums == null || nums.length == 0)
         {
             return result;
         }
-        ArrayList<Integer> list = new ArrayList<Integer>(); //这个list是一直跟着变化的
-        Arrays.sort(nums); //排个序
+        List<Integer> list = new ArrayList<Integer>(); //这个list是一直跟着变化的
+        Arrays.sort(nums); //排个序, 当然这道题不排序也可以, 只有要求字典序输出的时候排个序就行
         
         subsetsHelper(result, list, nums, 0); //调用找出子集函数
         
         return result;
     }
     
-    private void subsetsHelper(ArrayList<ArrayList<Integer>> result, ArrayList<Integer> list, int[] nums, int pos)
+    private void subsetsHelper(List<List<Integer>> result, List<Integer> list, int[] nums, int pos)
     {
         result.add(new ArrayList<Integer>(list)); //每次都要加, 第一次加入的是空集
         
