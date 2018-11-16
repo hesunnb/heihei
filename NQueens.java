@@ -61,7 +61,7 @@ class Solution {
                 row[index] = i; //在横坐标的地方记录纵坐标, 用一个数组完成二维数组记录有效位置的功能
                 solveNQueensCore(row, index + 1, n, result); //当前行如果该位置有效, 就去找下一行的有效位置(下一行就是index + 1)
                 row[index] = 0; //solveNQueensCore返回之后, 说明当前点的所有可能结果已经递归完, 这时候要把当前点的位置清0, 
-                //然后继续扫描当前行的下一个点
+                //然后继续扫描当前行的下一个点; 其实不清0也可以, 因为isValid每次都判断index前面的值, 而这些值都是有效的
             }
         }
     }
