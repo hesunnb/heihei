@@ -36,10 +36,10 @@ class Solution {
      
     //用一维数组解决, 下标是行, 值是列
     //时间复杂度: O(n!) 第一行n, 第二行大概n - 1, 大三行大概n - 2...  n!
-    ArrayList<ArrayList<String>> solveNQueens(int n) {
+    List<List<String>> solveNQueens(int n) {
         // write your code here
         
-        ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+        List<List<String>> result = new ArrayList<List<String>>();
         if(n <= 0) {
             return result;
         }
@@ -49,9 +49,9 @@ class Solution {
         return result;
     }
     
-    private void solveNQueensCore(int[] row, int index, int n, ArrayList<ArrayList<String>> result) { //index每次要访问的行
+    private void solveNQueensCore(int[] row, int index, int n, List<List<String>> result) { //index每次要访问的行
         if(index == n) {
-            ArrayList<String> singleResult = translateString(row);
+            List<String> singleResult = translateString(row);
             result.add(singleResult);
             return;
         }
@@ -66,8 +66,8 @@ class Solution {
         }
     }
     
-    private ArrayList<String> translateString(int[] row) {
-        ArrayList<String> temp = new ArrayList<String>();
+    private List<String> translateString(int[] row) {
+        List<String> temp = new ArrayList<String>();
         for(int i = 0; i < row.length; i++) {
             StringBuilder sb = new StringBuilder();
             for(int j = 0; j < row.length; j++) {
