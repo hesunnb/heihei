@@ -36,6 +36,7 @@ class Solution {
      
     //用一维数组解决, 下标是行, 值是列
     //时间复杂度: O(n!) 第一行n, 第二行大概n - 1, 大三行大概n - 2...  n!
+    //换一种理解方式就是求出n的所有permutations, 然后在所有的permutations里面找出符合nqueens规则的permutation
     List<List<String>> solveNQueens(int n) {
         // write your code here
         
