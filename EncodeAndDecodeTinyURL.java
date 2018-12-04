@@ -32,7 +32,7 @@ public class Codec {
     (or '0001Z' for align).*/
     
     
-    //solution2: 这个方法不是很好, 虽然实现了, 用了两个哈希, 与实际有些区别
+    //solution2: 这个方法就是去重, 相同的长链接不会放入两次, solution1是实际考虑, solution2是算法考虑, 看面试时候的情况了
     Map<String, String> index = new HashMap<String, String>();
     Map<String, String> revIndex = new HashMap<String, String>();
     String BASE_HOST = "http://tinyurl.com/";
@@ -62,6 +62,21 @@ public class Codec {
     public String decode(String shortUrl) {
         return index.get(shortUrl.replace(BASE_HOST, "")); //把BASE_HOST替换掉取出longUrl
     }
+    /*从算法的角度考虑, solution1有如下问题:
+    Using increasing numbers as codes like that is simple but has some disadvantages, which the below solution fixes:
+    1. If I'm asked to encode the same long URL several times, it will get several entries. That wastes codes and memory.
+    2. People can find out how many URLs have already been encoded. Not sure I want them to know.
+    3. People might try to get special numbers by spamming me with repeated requests shortly before their desired number comes up.
+    4. Only using digits means the codes can grow unnecessarily large. Only offers a million codes with length 6 (or smaller). 
+    Using six digits or lower or upper case letters would offer (10+26*2)6 = 56,800,235,584 codes with length 6.
+    
+    solution2的优点:
+    It's possible that a randomly generated code has already been generated before. In that case, another random code is generated 
+    instead. Repeat until we have a code that's not already in use. How long can this take? Well, even if we get up to using half of 
+    the code space, which is a whopping 626/2 = 28,400,117,792 entries, then each code has a 50% chance of not having appeared yet. 
+    So the expected/average number of attempts is 2, and for example only one in a billion URLs takes more than 30 attempts. 
+    And if we ever get to an even larger number of entries and this does become a problem, then we can just use length 7. 
+    We'd need to anyway, as we'd be running out of available codes.*/
 }
 
 // Your Codec object will be instantiated and called as such:
