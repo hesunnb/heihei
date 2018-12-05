@@ -33,6 +33,7 @@ public class Codec {
     
     
     //solution2: 这个方法就是去重, 相同的长链接不会放入两次, solution1是实际考虑, solution2是算法考虑, 看面试时候的情况了
+    //应该还是solution2好
     Map<String, String> index = new HashMap<String, String>();
     Map<String, String> revIndex = new HashMap<String, String>();
     String BASE_HOST = "http://tinyurl.com/";
