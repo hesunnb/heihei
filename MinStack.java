@@ -17,6 +17,42 @@ minStack.top();      --> Returns 0.
 minStack.getMin();   --> Returns -2.
 */
 
+//two stack solution basic:
+class MinStack {
+
+    /** initialize your data structure here. */
+    private Stack<Integer> sk;
+    private Stack<Integer> minSk;
+    public MinStack() {
+        sk = new Stack<Integer>();
+        minSk = new Stack<Integer>();
+    }
+    
+    public void push(int x) {
+        if(minSk.isEmpty() || x <= minSk.peek()) { //当minSk是空或者x的值比栈顶元素小, 那么就直接放入这个x
+            minSk.push(x);
+        } else {
+            minSk.push(minSk.peek()); //如果x的值比minSk的栈顶元素要大, 那么就放入minSk的栈顶元素, 即重复放入当前最小值以填充位置,
+            //这里没有做空间优化, 空间优化见下一个解法
+        }
+        sk.push(x);
+    }
+    
+    public void pop() {
+        minSk.pop();
+        sk.pop();
+    }
+    
+    public int top() {
+        return sk.peek();
+    }
+    
+    public int getMin() {
+        return minSk.peek();
+    }
+}
+
+
 //two stack solution
 public class MinStack {
 
@@ -29,7 +65,7 @@ public class MinStack {
     }
     
     public void push(int x) {
-        if(minSk.isEmpty() || x <= minSk.peek()) { //小于等于minSk的顶端就放进去
+        if(minSk.isEmpty() || x <= minSk.peek()) { //小于等于minSk的顶端就放进去, 大的就不放了, 省空间
             minSk.push(x);
         }
         sk.push(x);
