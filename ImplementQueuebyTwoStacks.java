@@ -36,7 +36,7 @@ public class Queue {
 
     public int pop() {
         // write your code here
-        while(stack1.isEmpty()) { //stack1中没有元素就从stack2拿
+        while(stack1.isEmpty()) { //stack1中没有元素就从stack2拿, 这个地方改成if也可
             stack2ToStack1();
         }
         return stack1.pop(); //stack1返回结果
@@ -44,7 +44,7 @@ public class Queue {
 
     public int top() {
         // write your code here
-        while(stack1.isEmpty()) {
+        while(stack1.isEmpty()) { //同理这个地方用if也可
             stack2ToStack1();
         }
         return stack1.peek();
