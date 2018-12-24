@@ -69,7 +69,8 @@ class Solution {
       
     
     //version2:
-    //O(n)用栈
+    //O(n)用栈, 也是单调栈, 不过是单调递减栈; 
+    //对于每个数i, 求左边第一个比他大的数x, 和右边第一个比他大的数y, if(x<y), i是x的右儿子, else i是y的左儿子
     public TreeNode constructMaximumBinaryTree(int[] nums) {
         
         if(nums == null || nums.length == 0) {
