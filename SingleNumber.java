@@ -34,4 +34,11 @@ public class Solution {
         
         return result;
     }
+    /*异或规律总结:
+    a ^ a = 0
+    a ^ 0 = a
+    a ^ b = c => b ^ c = a => c ^ a = b
+    a ^ b = b ^ a
+    (a ^ b) ^ c = c ^ (b ^ a)
+    */
 }
