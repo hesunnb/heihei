@@ -37,6 +37,8 @@ public class Solution {
         // Get its last set bit
         diff &= -diff; //3与5在set bit位是不相等的, 所以能够分到不同的两组, 其余的数按照set bit也会分成两组, 进入两组的数组随意,
         //因为都是两两进入, 所以没有问题
+        /*计算机都是采用补码进行运算, Integer.toBinaryString()显示的都是补码; 比如6与-6按位与, 因为-6是取反+1, 取反按位与的结果一定是0, 
+        但是取反之后又+1, 所以按位与的时候一定会留下一个1, 这个1也就是想要的set bit*/
         
         // Pass 2 :
         int[] result = {0,0}; // this array stores the two numbers we will return
@@ -50,4 +52,10 @@ public class Solution {
         
         return result;
     }
+    /*
+    比如6跟-6。。
+    6的原码是0110， 补码一样是0110，取反则是1001，加1则是1010即是-6的补码。
+    验证一下，-6的原码是1110， 反码是1001，加1是1010.
+    从-6的补码取反是0101，加1是0110。即是6的补码
+    */
 }
