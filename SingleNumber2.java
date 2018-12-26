@@ -30,7 +30,7 @@ public class Solution {
             return Integer.MIN_VALUE;
         }
         
-        int result = 0;
+        int result = 0; //如果落单的数是0, 那么result在后面就没有参与运算, 直接返回0
         
         for(int i = 0; i < 32; i++) {
             int sum = 0;
@@ -41,7 +41,7 @@ public class Solution {
                 }
             }
             
-            if(sum == 1) { //所以在这里就在result中把多出来那一位放到result里面
+            if(sum == 1) { //所以在这里就在result中把多出来那一位放到result里面; 题中说落单的数只出现1次, 不会有两次的情况出现
                 result |= (sum << i); //sum只可能是1, 因为别人都是3个一起的, 只有一个数多余, 所以出来的不是0就只能是1
             }
         }
