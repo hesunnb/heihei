@@ -14,7 +14,7 @@ If you have figured out the O(n) solution, try coding another solution using the
 public class Solution {
     
     //greedy: O(n)
-    public int maxSubArray(int[] A) {
+    public int maxSubArray(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
@@ -28,7 +28,7 @@ public class Solution {
     
     //Prefix Sum: O(n)
     public int maxSubArray(int[] A) {
-        if (A == null || A.length == 0){
+        if (A == null || A.length == 0) {
             return 0;
         }
         
