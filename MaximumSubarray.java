@@ -76,7 +76,10 @@ public class Solution {
 
 
 //Minimum Subarray:
-public int minSubArray(ArrayList<Integer> nums) {
+public class Solution {
+    
+    //greedy: O(n)
+    public int minSubArray(ArrayList<Integer> nums) {
         // write your code
         
         if(nums == null || nums.size() == 0) {
@@ -94,3 +97,23 @@ public int minSubArray(ArrayList<Integer> nums) {
         
         return minSoFar;
     }
+    
+    
+    //prefix: O(n)
+    public int minSubArray(List<Integer> nums) {
+        // write your code here
+        
+        if (nums == null || nums.size() == 0) {
+            return 0;
+        }
+        
+        int min = Integer.MAX_VALUE, sum = 0, maxSum = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            sum += nums.get(i);
+            min = Math.min(min, sum - maxSum);
+            maxSum = Math.max(maxSum, sum);
+        }
+
+        return min;
+    }
+}
