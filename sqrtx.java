@@ -41,4 +41,22 @@ public class Solution {
         }
         return start;
     }
+  
+    
+    //O(根号n)的解法
+    public int mySqrt(int x) {
+        
+        int result = 0;
+        for(int i = 1; i <= x; i++) {
+            if(x / i == i) { //防止i*i越界所以写成除法
+                return i;
+            } else if(i < x / i) {
+                result = i; //result保留着每一步的值
+                continue;
+            } else {
+                return result; //一旦i*i>x, 那么就返回上一步的i, 就是result本身了
+            }
+        }
+        return 0;
+    }
 }
