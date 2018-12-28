@@ -16,11 +16,11 @@ Note: Your solution should be in logarithmic time complexity.
 */
 
 public class Solution {
-	
+
     public int trailingZeroes(int n) {
         
         int sum = 0;
-        while(n > 0) {
+        while(n > 0) { //其实就是在查有多少个5, 因为尾部的0都来自于2*5, 2的个数永远比5多, 所以有多少个5就有多少个trailingzero
             n = n / 5;
             sum += n;
         }
