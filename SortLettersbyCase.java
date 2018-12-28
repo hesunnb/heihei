@@ -10,10 +10,40 @@ For "abAcD", a reasonable answer is "acbAD"
 */
 
 public class Solution {
-    /** 
-     *@param chars: The letter array you should sort by Case
-     *@return: void
-     */
+
+    //双指针: 同PartitionArray
+    public void sortLetters(char[] nums) {
+        // write your code here
+        if(nums == null || nums.length == 0) {
+            return;
+        }
+        
+        char pivot = 'Z';
+        
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+
+            while (left <= right && nums[left] > pivot) { //大的排在前
+                left++;
+            }
+
+            while (left <= right && nums[right] <= pivot) { //小的排在后
+                right--;
+            }
+
+            if (left <= right) { //进行交换
+                char temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+                
+                left++;
+                right--;
+            }
+        }
+    }
+ 
+ 
+    //version2:
     public void sortLetters(char[] chars) {
         //write your code here
         
