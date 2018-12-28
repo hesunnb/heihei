@@ -4,7 +4,7 @@ Notice
 
 It's NOT necessary to keep the original order of lower-case letters and upper case letters.
 
- Example
+Example
 
 For "abAcD", a reasonable answer is "acbAD"
 */
