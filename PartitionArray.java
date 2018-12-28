@@ -18,6 +18,36 @@ If nums = [3,2,2,1] and k=2, a valid answer is 1.
 
 public class Solution {
      
+    //双指针法:
+    public int partitionArray(int[] nums, int k) {
+        if(nums == null || nums.length == 0){
+            return 0;
+        }
+        
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+
+            while (left <= right && nums[left] < k) { //左指针小于k的时候就往后走, 走到第一个大于k的
+                left++;
+            }
+
+            while (left <= right && nums[right] >= k) { //右指针大于k的时候往回走, 走到第一个小于k的
+                right--;
+            }
+
+            if (left <= right) { //进行交换
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+                
+                left++;
+                right--;
+            }
+        }
+        return left;
+    }
+	
+	
     //就是快排里面的partition部分
     public int partitionArray(int[] nums, int k) {
 	    //write your code here
