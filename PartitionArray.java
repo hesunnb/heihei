@@ -17,11 +17,6 @@ If nums = [3,2,2,1] and k=2, a valid answer is 1.
 */
 
 public class Solution {
-	/** 
-     *@param nums: The integer array you should partition
-     *@param k: As description
-     *return: The index after partition
-     */
      
     //就是快排里面的partition部分
     public int partitionArray(int[] nums, int k) {
@@ -47,4 +42,5 @@ public class Solution {
         nums[m] = nums[n];
         nums[n] = temp;
     }
+    //testcase: 2,1,5,6,2,3
 }
