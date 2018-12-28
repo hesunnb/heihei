@@ -20,8 +20,8 @@ public class Solution {
     public int trailingZeroes(int n) {
         
         int sum = 0;
-        while(n > 0) { //其实就是在查有多少个5, 因为尾部的0都来自于2*5, 2的个数永远比5多, 所以有多少个5就有多少个trailingzero
-            n = n / 5;
+        while(n > 0) { //其实就是在查有多少个5, 因为尾部的0都来自于2*5, 2的个数永远比5多(每两个数有一个2, 每5个数有一个5, 所以2比5多), 
+            n = n / 5; //所以有多少个5就有多少个trailingzero
             sum += n;
         }
         return sum;
