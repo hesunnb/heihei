@@ -42,6 +42,7 @@ class Solution {
     // Discussion One Pass
     public void sortColors(int[] nums) { //这个九章方法只能是3个颜色, 多啦就得快排啦
     
+	//一个testCase: [2,0,2,1,0,1,2]涵盖了所有情况
         if(nums == null || nums.length <= 1) {
             return;
         }
@@ -53,7 +54,7 @@ class Solution {
             if(nums[i] == 0) { //只有0值才能和左边的pl位置的值交换, 比如从后面刚交换过来一个0, 马上就和前面的值比较交换啦, 因为值为2的时候i不++
                 swap(nums, i, pl);
                 i++;
-                pl++; //pl先后窜
+                pl++; //pl先后窜的原因是, 没有人会和p1处的0再次交换了, 所以p1换为0之后就向后走
             }
             else if(nums[i] == 1) {
                 i++; //不用动, 只有0和2需要交换, pl指到1早晚也会被换走
