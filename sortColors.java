@@ -72,8 +72,6 @@ class Solution {
     }
     
     
-    
-    
     //直接用快排来写, 时间:O(nlogn), 平常空间: O(1), 栈空间: O(logn)
     public void sortColors(int[] nums) {
         // write your code here
