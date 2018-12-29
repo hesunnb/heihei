@@ -81,8 +81,7 @@ class Solution {
     
     private void sort(int[] a, int first, int last) {
 	int pos;
-	if(first < last)
-	{
+	if(first < last) {
 	    pos = FindPos(a , first, last); //找第一个数应该在的位置
 	    sort(a, first, pos - 1); //该点左边排
 	    sort(a, pos + 1, last); //该点右边排
