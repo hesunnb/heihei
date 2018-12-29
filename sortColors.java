@@ -83,9 +83,9 @@ class Solution {
 	int pos;
 	if(first < last)
 	{
-		pos = FindPos(a , first, last); //找第一个数应该在的位置
-		sort(a, first, pos - 1); //该点左边排
-		sort(a, pos + 1, last); //该点右边排
+	    pos = FindPos(a , first, last); //找第一个数应该在的位置
+	    sort(a, first, pos - 1); //该点左边排
+	    sort(a, pos + 1, last); //该点右边排
 	}
     }
 	
