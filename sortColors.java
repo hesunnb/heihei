@@ -24,6 +24,10 @@ class Solution {
     // Couting Sort(第一遍数数组中有多少个0和1, 第二遍按照0和1的个数覆盖原数组)
     public void sortColors(int[] nums) {
         // 2-pass
+	if(nums == null || nums.length <= 1) {
+            return;
+        }    
+	
         int count0 = 0, count1 = 0, count2 = 0;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] == 0) {count0++;}
@@ -43,7 +47,7 @@ class Solution {
     public void sortColors(int[] nums) { //这个九章方法只能是3个颜色, 多啦就得快排啦
     
 	//一个testCase: [2,0,2,1,0,1,2]涵盖了所有情况
-        if(nums == null || nums.length <= 1) {
+        if(nums == null || nums.length <= 1) { //testCase里确实有[1,0]这种例子, 不一定就是3种颜色全都有, 所以这里用<=1
             return;
         }
         
@@ -76,6 +80,9 @@ class Solution {
     //直接用快排来写, 时间:O(nlogn), 平常空间: O(1), 栈空间: O(logn)
     public void sortColors(int[] nums) {
         // write your code here
+	if(nums == null || nums.length <= 1) {
+            return;
+        }
         sort(nums, 0, nums.length - 1);
     }
     
