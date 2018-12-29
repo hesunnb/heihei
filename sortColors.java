@@ -23,7 +23,7 @@ class Solution {
 
     // Couting Sort(第一遍数数组中有多少个0和1, 第二遍按照0和1的个数覆盖原数组)
     public void sortColors(int[] nums) {
-    // 2-pass
+        // 2-pass
         int count0 = 0, count1 = 0, count2 = 0;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] == 0) {count0++;}
