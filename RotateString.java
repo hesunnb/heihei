@@ -19,7 +19,49 @@ Note:
 
 public class Solution {
 
-    //复杂度O(n):三步翻转法
+    //最巧妙的方法: 就看A+A包不包含B, 因为A+A已经包含了A所有的翻转情况
+    public boolean rotateString(String A, String B) {
+        
+        if(A == null || B == null || A.length() != B.length()) {
+            return false;
+        }
+        
+        return A.length() == B.length() && (A + A).contains(B);
+    }
+    
+    //leetcode: 三步翻转
+    public boolean rotateString(String A, String B) {
+        
+        if(A == null || B == null || A.length() != B.length()) {
+            return false;
+        }
+        
+        if(A.equals(B)) {
+            return true;
+        }
+        
+        char[] nums = A.toCharArray();
+        for(int i = 0; i < nums.length; i++) {
+            reverse(nums, 0, nums.length-2);
+            reverse(nums, 0, nums.length-1);
+            if(String.valueOf(nums).equals(B)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void reverse(char[] nums, int start, int end) { //传过来的是地址, 集合和数组都可以直接交换, 值就不可以啦
+    
+        for(int i = start, j = end; i < j; i++, j--) { //翻转的具体实现
+            char temp = nums[i]; //就是交换两个数
+            nums[i] = nums[j]; //交换
+            nums[j] = temp; //交换
+        }
+    }
+    
+    
+    //lintcode: 复杂度O(n):三步翻转法: 记RotateArray的写法
     public void rotateString(char[] str, int offset) {
         // write your code here
         
