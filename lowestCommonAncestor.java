@@ -47,8 +47,7 @@ public class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode A, TreeNode B) {
         // write your code here
         
-        if(root == null || root == A || root == B)
-        {
+        if(root == null || root == A || root == B) { //找公共祖先的重点还是找A, B
             return root; //只要找完一边或者找到一个，就马上返回，然后接着找另一边
         }
         
@@ -57,20 +56,16 @@ public class Solution {
         TreeNode right = lowestCommonAncestor(root.right, A, B);
         
         //对于一个节点来说，这两个点要么在同一棵子树上，要么分别在两棵子树上
-        if(left != null && right != null) //A,B分别在两棵子树上，返回自己
-        {
+        if(left != null && right != null) { //A,B分别在两棵子树上，返回自己
             return root;
         }
-        else if(left != null) //A,B都在左子树上，先遇到了谁，谁就是最近公共祖先
-        {
+        else if(left != null) { //A,B都在左子树上, 右子树没有A和B, 而左子树遇到了A或B, 先遇到了谁，谁就是最近公共祖先
             return left;
         }
-        else if(right != null)//A,B都在右子树上，先遇到了谁，谁就是最近公共祖先
-        {
+        else if(right != null) { //A,B都在右子树上，先遇到了谁，谁就是最近公共祖先
             return right;
         }
-        else
-        {
+        else {
             return null;
         }
     }
