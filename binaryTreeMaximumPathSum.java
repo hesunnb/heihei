@@ -130,7 +130,7 @@ public class Solution {
     }
        
     
-    //version3: 最简版本, 不用自己定义类
+    //version3: 最简版本, 不用自己定义类, 记这个就行, 自己定义类的有助于理解
     int maxValue; //用全局变量存最大路径和
     public int maxPathSum(TreeNode root) {
         maxValue = Integer.MIN_VALUE;
@@ -140,9 +140,9 @@ public class Solution {
     
     private int maxPathHelper(TreeNode node) {
         if (node == null) return 0;
-        int left = Math.max(0, maxPathHelper(node.left)); //左最大singlePath
-        int right = Math.max(0, maxPathHelper(node.right)); //右最大singlePath
+        int left = maxPathHelper(node.left); //左最大singlePath
+        int right = maxPathHelper(node.right); //右最大singlePath
         maxValue = Math.max(maxValue, left + right + node.val); //求maxPath
-        return Math.max(left, right) + node.val; //算上自己根节点的值返回新计算的singlePath
+        return Math.max(0, Math.max(left, right) + node.val); //算上自己根节点的值返回新计算的singlePath
     }
 }
