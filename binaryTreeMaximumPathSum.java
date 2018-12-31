@@ -132,7 +132,6 @@ public class Solution {
     
     //version3: 最简版本, 不用自己定义类
     int maxValue; //用全局变量存最大路径和
-    
     public int maxPathSum(TreeNode root) {
         maxValue = Integer.MIN_VALUE;
         maxPathHelper(root);
