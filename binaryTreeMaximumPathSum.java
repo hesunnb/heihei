@@ -96,7 +96,6 @@ public class Solution {
     }
     
     
-    
     //version 2: 把SinglePath也定义为至少包含一个点, 上面那个是singlepath可以不包含点, 因为计算singlepath的时候带上啦root.val
     private class ResultType {
         int singlePath, maxPath;
@@ -129,4 +128,24 @@ public class Solution {
         ResultType result = helper(root);
         return result.maxPath;
     }
+       
+    
+    //version3: 最简版本, 不用自己定义类
+    public class Solution {
+    int maxValue; //用全局变量存最大路径和
+    
+    public int maxPathSum(TreeNode root) {
+        maxValue = Integer.MIN_VALUE;
+        maxPathHelper(root);
+        return maxValue;
+    }
+    
+    private int maxPathHelper(TreeNode node) {
+        if (node == null) return 0;
+        int left = Math.max(0, maxPathHelper(node.left)); //左最大singlePath
+        int right = Math.max(0, maxPathHelper(node.right)); //右最大singlePath
+        maxValue = Math.max(maxValue, left + right + node.val); //求maxPath
+        return Math.max(left, right) + node.val; //算上自己根节点的值返回新计算的singlePath
+    }
+}
 }
