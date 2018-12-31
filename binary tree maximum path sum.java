@@ -1,3 +1,32 @@
+/*Given a non-empty binary tree, find the maximum path sum.
+
+For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child 
+connections. The path must contain at least one node and does not need to go through the root.
+
+Example 1:
+
+Input: [1,2,3]
+
+       1
+      / \
+     2   3
+
+Output: 6
+
+Example 2:
+
+Input: [-10,9,20,null,null,15,7]
+
+   -10
+   / \
+  9  20
+    /  \
+   15   7
+
+Output: 42
+
+*/
+
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -10,14 +39,9 @@
  * }
  */
 public class Solution {
-    /**
-     * @param root: The root of binary tree.
-     * @return: An integer.
-     */
-     
      
     //题目的意思是找整个树里最大的路径和, 可以是任意路径, 任意起点, 任意终点, 只要路径和最大就行
-    //思路就是把anynode to anynode拆成root to anynode, 先求single paht(root to any)
+    //思路就是把anynode to anynode拆成root to anynode, 先求single path(root to any)
     //any to any有三种情况, 最大完全在左子树, 最大完全在右子树上, 最大跨过根节点左右加根
     public int maxPathSum(TreeNode root) {
         // write your code here
@@ -26,7 +50,7 @@ public class Solution {
         //复杂度:O(n), helper内的计算都是O(1), 共有n个点, 所以O(n)
         
         // singlePath: 从root往下走到任意点的最大路径, 这条路径可以不包含任何点
-        //(比如根节点为-100, 这时候这时候计算singlepath的时候, 把-100加上会小于０, 就把整个树的single path值全都舍弃了
+        //(比如根节点为-100, 这时候计算singlepath的时候, 把-100加上会小于０, 就把整个树的single path值全都舍弃了
         //), 其实这是为了每个子树上面的节点服务的, 比如每个节点的左子树, 
         //这个左子树也有一个根节点，这个左子树因为最终single path计算结果为负, 会把整个左子树舍弃(也就是赋值为0), 
         //然后也就不会参与到计算max的过程了
@@ -39,21 +63,17 @@ public class Solution {
         return result.maxpath;
     }
     
-    class ReturnType
-    {
+    class ReturnType {
         int singlepath;
         int maxpath;
-        ReturnType(int singlepath, int maxpath)
-        {
+        ReturnType(int singlepath, int maxpath) {
             this.singlepath = singlepath;
             this.maxpath = maxpath;
         }
     }
     
-    private ReturnType maxpathhelper(TreeNode root)
-    {
-        if(root == null)
-        {
+    private ReturnType maxpathhelper(TreeNode root) {
+        if(root == null) {
             return new ReturnType(0, Integer.MIN_VALUE); //返回给上一个节点，这个Integer.MIN_VALUE会保证什么负数最开始都能在max的地方留下
         }
         
@@ -63,7 +83,9 @@ public class Solution {
         
         //Conquer:
         int singlepath = Math.max(left.singlepath, right.singlepath) + root.val; //这个就是计算root to 叶子节点的值，要把根节点自己的值加上
-        singlepath = Math.max(0, singlepath); //这个就可以达到to anynode,因为它把结果为负数的子树给舍掉了，就是赋值为0,只要结果为正的子树的值,这样就不会包含任何点，要是作为单独一道题，就是求singlepath最大，那就合一下：Math.max(0, Math.max(left.singlepath, right.singlepath)) + root.val;这样根节点的值就留下来了
+        singlepath = Math.max(0, singlepath); //这个就可以达到to anynode,因为它把结果为负数的子树给舍掉了，就是赋值为0,只要结果为正的子树的值,
+        //这样就不会包含任何点，要是作为单独一道题，就是求singlepath最大，那就合一下：
+        //Math.max(0, Math.max(left.singlepath, right.singlepath)) + root.val;这样根节点的值就留下来了
         
         int maxpath = Math.max(left.maxpath, right.maxpath); //这个是选出左右子树最大的max值
         maxpath = Math.max(maxpath, left.singlepath + right.singlepath + root.val);
@@ -72,10 +94,6 @@ public class Solution {
         //大，就用原来的
         return new ReturnType(singlepath, maxpath); //return他自己的singlepath和maxpath
     }
-    
-    
-    
-    
     
     
     
@@ -97,10 +115,12 @@ public class Solution {
         ResultType right = helper(root.right);
 
         // Conquer, 就这个地方和上面不一样
-        int singlePath = Math.max(0, Math.max(left.singlePath, right.singlePath)) + root.val; //这里每次计算完root.val的值都会留下, 所以至少包含啦点
+        int singlePath = Math.max(0, Math.max(left.singlePath, right.singlePath)) + root.val; //这里每次计算完root.val的值都会留下, 
+        //所以至少包含啦点
 
         int maxPath = Math.max(left.maxPath, right.maxPath);
-        maxPath = Math.max(maxPath, Math.max(left.singlePath, 0) + Math.max(right.singlePath, 0) + root.val); //对于负数的子树在这里进行舍弃, 就是把负值的singlepath舍掉
+        maxPath = Math.max(maxPath, Math.max(left.singlePath, 0) + Math.max(right.singlePath, 0) + root.val); //对于负数的子树在这里进行舍弃, 
+        //就是把负值的singlepath舍掉
 
         return new ResultType(singlePath, maxPath);
     }
