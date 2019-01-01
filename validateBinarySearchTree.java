@@ -89,23 +89,20 @@ public class Solution {
     }
 
 
-    //超级简练版, 两个if语句搞定
-    public boolean isValidBST(TreeNode root)
-    {
+    //囊括了Integer.MIN_VALUE和Integer.MAX_VALUE
+    public boolean isValidBST(TreeNode root) {
         //用double的就是最大和最小的, 比Integer要大多啦, 所以就没有firstnode的问题
-        return helper(root, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+        //double必须用Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 和int与long不一样, 不能用MIN_VALUE, MAX_VALUE
+        return helper(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
     
-    private boolean helper(TreeNode p, double min, double max)
-    {
-        if(p == null)
-        {
+    private boolean helper(TreeNode p, long min, long max) {
+        if(p == null) {
             return true;
         }
         
         //左边的值比传进来的值大就是false, 右边比传进来的值小就是false
-        if(p.val <= min || p.val >= max)
-        {
+        if(p.val <= min || p.val >= max) {
             return false;
         }
         
@@ -154,6 +151,7 @@ public class Solution {
         }
         
         //一切正常的话就返回正常值
-        return new returnType(true, Math.max(root.val, right.maxvalue), Math.min(root.val, left.minvalue)); //取左边最小值，取右边最大值；每个节点都有作为左节点和右节点的时候，所以做左节点用最小值，做右节点用最大值
+        return new returnType(true, Math.max(root.val, right.maxvalue), Math.min(root.val, left.minvalue)); //取左边最小值，取右边最大值；
+        每个节点都有作为左节点和右节点的时候，所以做左节点用最小值，做右节点用最大值
     }*/
 }
