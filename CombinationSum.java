@@ -15,6 +15,8 @@ A solution set is:
 ]*/
 
 public class Solution {
+  
+    //testCase里面有输入[1,1,1], target=2这种情况, 也就是给的数组允许有重复, 有重复就用prev, 如果所给数组没有重复数字, 那么有关prev的就都可以去掉
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         
         List<List<Integer>> result = new ArrayList<List<Integer>>();
