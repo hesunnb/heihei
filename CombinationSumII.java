@@ -17,6 +17,8 @@ A solution set is:
 ]*/
 
 public class Solution {
+  
+    //对于combination sum总结: 输入有重复就加个prev, 然后每个数可选多次就传i, 即自己本身的下标, 每个数可选一次就传i+1, 即自己的下一个数
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         if(candidates == null || candidates.length == 0) {
