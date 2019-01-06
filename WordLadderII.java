@@ -73,7 +73,7 @@ class Solution {
 	    int size = queue.size();
 	    while (size > 0) {
 		String cur = queue.poll();
-		if(cur.equals(endWord)) {
+		if(cur.equals(endWord)) { //这个就是用来阻止向endWord加入neighbor的, 也就是只有endWord在nodeNeighbors哈希表中没有neighbor
 		    break;
 	    	}
 
