@@ -80,9 +80,9 @@ class Solution {
 		int curDistance = distance.get(cur);
 		char[] curArray = cur.toCharArray();
 		for(int i = 0; i < curArray.length; i++) {
+		    char old = curArray[i];
 		    for(char c = 'a'; c <= 'z'; c++) { //26个字符替换匹配
-			if(curArray[i] == c) continue; //用来排除和cur相同的字符串, 就是排除本身
-			char old = curArray[i]; //保留该位置原有字符, 一定要在这个for循环里面进行old的替换与还原, 写在for外面就错了
+			if(old == c) continue; //用来排除和cur相同的字符串, 就是排除本身, 但是包含之前的值, 比如hot的neighbor会有hit
 			curArray[i] = c;
 			String next = new String(curArray);
 			if(dict.contains(next)) {
@@ -93,13 +93,13 @@ class Solution {
 			    //所以nodeNeighbors.get(cur).add(next)这句话就得不到执行, 那么log的neighbors就会加入不到哈希表中, 从而走log
 			    //节点的这条路径就获取不到了, 见图
 			}
-			curArray[i] = old;
 		    }
+		    curArray[i] = old;
 		}
 
 		for(String neighbor : nodeNeighbors.get(cur)) { //所以把add neighbors与distance.put和queue.offer分开, 这样queue就加入不到
 		    //重复的节点了, 然后每个节点的neighbor还都能获取到
-		    if(!distance.containsKey(neighbor)) {
+		    if(!distance.containsKey(neighbor)) { //hit的距离是0, hot的neighbor有hit, 但是hit在distance中已经有距离了, 所以跳过检测
 		    distance.put(neighbor, curDistance + 1);
 		    queue.offer(neighbor);
 		    /*System.out.println(cur + " " + neighbor);
