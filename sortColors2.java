@@ -98,7 +98,8 @@ class Solution {
             int left = start;
             int right = end;
             int cur = left;
-            while(cur <= right) { //和sort1一样, 起的作用就是把每次的最大值挪到end的右面, 最小值移到start的左面, 然后从新的start到end再从新排(每次能搞定两个数, 所以要k / 2次能结束)
+            while(cur <= right) { //和sort1一样, 起的作用就是把每次的最大值挪到end的右面, 最小值移到start的左面, 然后从新的start到end再从新排
+                //(每次能搞定两个数, 所以要k / 2次能结束)
                 if (colors[cur] == min) {
                     swap(left, cur, colors);
                     cur++;
