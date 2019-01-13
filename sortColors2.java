@@ -14,16 +14,26 @@ class Solution {
             sort(colors, 0, colors.length - 1);
         }
         
-        private void sort(int[] a, int first, int last) {
-    		int pos;
+        private void sort(int[] nums, int first, int last) {
     		if(first < last) {
-    			pos = FindPos(a , first, last); //找第一个数应该在的位置
-    			sort(a, first, pos - 1); //该点左边排
-    			sort(a, pos + 1, last); //该点右边排
+    			int pos = partition(nums , first, last); //找第一个数应该在的位置
+    			sort(nums, first, pos - 1); //该点左边排
+    			sort(nums, pos + 1, last); //该点右边排
     		}
     	}
        
-        
+        private int partition(int[] nums, int start, int end) { //快排中的partition方法
+            int pivot = nums[end]; //pivot就是支点, 以谁作为参考
+            int store = start;
+            for (int i = start; i < end; i++) {
+                if (nums[i] < pivot) {
+                    swap(nums, i, store); //把比pivot小的元素都窜到store前面去; store指的永远是比pivot大的元素的下标
+                    store++;
+                }
+            }
+            swap(nums, store, end);
+            return store;
+        }
         
         
         //木桶排序法, 并不通用(时间O(n), 空间: inspace)
