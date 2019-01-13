@@ -19,7 +19,7 @@ class Solution {
                 int pos = partition(nums , first, last); //找第一个数应该在的位置
                 sort(nums, first, pos - 1); //该点左边排
                 sort(nums, pos + 1, last); //该点右边排
-    		}
+            }
     	}
        
         private int partition(int[] nums, int start, int end) { //快排中的partition方法
