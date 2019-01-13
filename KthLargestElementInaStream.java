@@ -38,7 +38,7 @@ class KthLargest {
         if(pq.size() < size) { //没有值要先加入值, ["KthLargest","add","add","add","add","add"], [[1,[]],[-3],[-2],[-4],[0],[4]]
             pq.add(val);
         }
-        else if(pq.peek() < val) {
+        else if(pq.peek() < val) { //只要k个, 比peek小的自然在k外, 所以直接抛弃, 比peek大的就加入队列, 弹出目前最小, 再返回peek
             pq.offer(val);
             pq.poll();
         }
