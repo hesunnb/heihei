@@ -8,44 +8,21 @@ class Solution {
    public void sortColors2(int[] colors, int k) {
         // write your code here
         
-        //直接快排, 时间: O(nlogn), 空间: O(logn)因为要排logn次, 递归每次都要开栈
+        //快排模板
         public void sortColors2(int[] colors, int k) {
             // write your code here
             sort(colors, 0, colors.length - 1);
         }
         
-        private void sort(int[] a, int first, int last)
-    	{
+        private void sort(int[] a, int first, int last) {
     		int pos;
-    		if(first < last)
-    		{
+    		if(first < last) {
     			pos = FindPos(a , first, last); //找第一个数应该在的位置
     			sort(a, first, pos - 1); //该点左边排
     			sort(a, pos + 1, last); //该点右边排
     		}
     	}
-    	
-    	private int FindPos(int[] a, int first, int last)
-    	{
-    		int val = a[first]; //每次都以第一个数为基准
-    		while(first < last)
-    		{
-    			while(first < last && a[last] >= val) //后指针先开始，比基准数大就留下
-    			{
-    				last--;
-    			}
-    			a[first] = a[last]; //比基准数小就向前赋值
-    			
-    			while(first < last && a[first] <= val) //然后是头指针，比基准数小就留下
-    			{
-    				first++;
-    			}
-    			a[last] = a[first]; //比基准数大就向后赋值
-    		}
-    		a[first] = val; //此时first == last, 没有last < first的情况，first和last的左边都比val小，first和last的右边都比val大
-    		return first; //返回下标，第一个应该所在的位置
-    	}
-        
+       
         
         
         
@@ -94,9 +71,7 @@ class Solution {
         }
     }
     
-    
-    
-    
+
     //这个答案九章的, 不算快排, 应该没有快排好 
     public void sortColors2(int[] colors, int k) {
         int count = 0;
@@ -136,7 +111,37 @@ class Solution {
         colors[left] = colors[right];
         colors[right] = tmp;
     }
+    //counting sort和之前的一样, 就是这回数多了, 要开一个数组来记录每个元素出现啦多少回, 所以是O(k)
     
-    
-    //counting sort和之前的一样, 就是这回数多了, 要开一个数组来记录每个元素出现啦多少回, 所以是O(k) 
+    /*//直接快排, 时间: O(nlogn), 空间: O(logn)因为要排logn次, 递归每次都要开栈
+        public void sortColors2(int[] colors, int k) {
+            // write your code here
+            sort(colors, 0, colors.length - 1);
+        }
+        
+        private void sort(int[] a, int first, int last) {
+    		int pos;
+    		if(first < last) {
+    			pos = FindPos(a , first, last); //找第一个数应该在的位置
+    			sort(a, first, pos - 1); //该点左边排
+    			sort(a, pos + 1, last); //该点右边排
+    		}
+    	}
+    	
+    	private int FindPos(int[] a, int first, int last) {
+    		int val = a[first]; //每次都以第一个数为基准
+    		while(first < last) {
+    			while(first < last && a[last] >= val) { //后指针先开始，比基准数大就留下
+    				last--;
+    			}
+    			a[first] = a[last]; //比基准数小就向前赋值
+    			
+    			while(first < last && a[first] <= val) { //然后是头指针，比基准数小就留下
+    				first++;
+    			}
+    			a[last] = a[first]; //比基准数大就向后赋值
+    		}
+    		a[first] = val; //此时first == last, 没有last < first的情况，first和last的左边都比val小，first和last的右边都比val大
+    		return first; //返回下标，第一个应该所在的位置
+    	}*/
 }
