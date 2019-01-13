@@ -155,4 +155,4 @@ class Solution {
     		a[first] = val; //此时first == last, 没有last < first的情况，first和last的左边都比val小，first和last的右边都比val大
     		return first; //返回下标，第一个应该所在的位置
     	}*/
-}
+} 
