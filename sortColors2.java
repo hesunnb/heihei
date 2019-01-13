@@ -34,6 +34,12 @@ class Solution {
             swap(nums, store, end);
             return store;
         }
+       
+        private void swap(int[] nums, int m, int n) {
+            int temp = nums[m];
+            nums[m] = nums[n];
+            nums[n] = temp;
+        }
         
         
         //木桶排序法, 并不通用(时间O(n), 空间: inspace)
