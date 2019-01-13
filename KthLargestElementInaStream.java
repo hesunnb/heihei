@@ -46,6 +46,30 @@ class KthLargest {
     }
 }
 
+class KthLargest {
+
+    PriorityQueue<Integer> pq;
+    int size;
+    public KthLargest(int k, int[] nums) {
+        pq = new PriorityQueue<>();
+        size = k;
+        for(int i = 0; i < nums.length; i++) {
+            add(nums[i]); //这个就是写的稍微巧妙一些, 直接调用了自己的add方法, 也就直接控制了k个队列长度, 没有用队列的add方法
+        }
+    }
+    
+    public int add(int val) {
+        if(pq.size() < size) { //没有值要先加入值, ["KthLargest","add","add","add","add","add"], [[1,[]],[-3],[-2],[-4],[0],[4]]
+            pq.add(val);
+        }
+        else if(pq.peek() < val) {
+            pq.offer(val);
+            pq.poll();
+        }
+        return pq.peek();
+    }
+}
+
 /**
  * Your KthLargest object will be instantiated and called as such:
  * KthLargest obj = new KthLargest(k, nums);
