@@ -15,10 +15,10 @@ class Solution {
         }
         
         private void sort(int[] nums, int first, int last) {
-    		if(first < last) {
-    			int pos = partition(nums , first, last); //找第一个数应该在的位置
-    			sort(nums, first, pos - 1); //该点左边排
-    			sort(nums, pos + 1, last); //该点右边排
+            if(first < last) {
+                int pos = partition(nums , first, last); //找第一个数应该在的位置
+                sort(nums, first, pos - 1); //该点左边排
+                sort(nums, pos + 1, last); //该点右边排
     		}
     	}
        
