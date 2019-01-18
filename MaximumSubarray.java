@@ -1,4 +1,5 @@
-/*Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+/*Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its 
+sum.
 
 Example:
 
@@ -35,8 +36,8 @@ public class Solution {
         int max = Integer.MIN_VALUE, sum = 0, minSum = 0;
         for (int i = 0; i < A.length; i++) {
             sum += A[i];
-            max = Math.max(max, sum - minSum);
-            minSum = Math.min(minSum, sum);
+            max = Math.max(max, sum - minSum); //max就是当前的sum与minSum的差值
+            minSum = Math.min(minSum, sum); //minSum就是最小的sum
         }
 
         return max;
