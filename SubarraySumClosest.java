@@ -38,7 +38,7 @@ public class Solution {
         });
         int ans = Integer.MAX_VALUE;
         for (int i = 1; i <= len; i++) {
-            if (ans > sums[i].sum - sums[i-1].sum) {
+            if (ans > sums[i].sum - sums[i-1].sum) { //此处没用绝对值的原因是因为已经排序, 后减前肯定为正, 用绝对值也没问题
                 ans = sums[i].sum - sums[i-1].sum; //更新最小间距
                 int[] temp = new int[]{sums[i].index - 1, sums[i - 1].index - 1}; //因为是前序和数组, 所以下标都要减1
                 Arrays.sort(temp); //得到的下标从小到大排序
