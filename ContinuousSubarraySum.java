@@ -33,7 +33,8 @@ public class Solution {
             
             if(minSum > sum) { //这里也不能加等号, 否则[-2,0,0,1,-1,-1]过不去
                 minSum = sum;
-                start = i + 1; //这里只进行了更新, 没有被set到result当中
+                start = i + 1; //这里只进行了更新, 没有被set到result当中; 每当minSum进行更新的时候, 就说明基于之前的minSum计算的结果都已经
+                //过去了, 所以要把start和end全部后移, 后移到minSum的下一位, 就是起始位
                 end = i + 1;
             }
         }
