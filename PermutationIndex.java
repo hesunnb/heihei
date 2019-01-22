@@ -14,7 +14,7 @@ public class Solution {
      
     //用哈希表, O(n^2)时间, O(n)空间
     //详细解释见permutationIndex2
-    //思路: 目的就是求比A中所表示的排列小的排列有多少个
+    //思路: 目的就是求比A中所表示的排列小的排列有多少个, 这样就知道A中排列的位置了
     public long permutationIndex(int[] A) {
         // Write your code here
         
@@ -27,20 +27,20 @@ public class Solution {
             if(m.containsKey(A[i])) {
                 m.put(A[i], m.get(A[i]) + 1);
             } else {
-                m.put(A[i], 1);
+                m.put(A[i], 1); //因为这道题A数组中没有重复, 所以个数都为1
             }
         }
         
         long result = 0;
         for(int i = 0; i < A.length; i++) {
             for(int j = i + 1; j < A.length; j++) {
-                if(A[j] < A[i]) { 
-                    m.put(A[j], m.get(A[j]) - 1);
-                    result += generateNum(m);
-                    m.put(A[j], m.get(A[j]) + 1);
+                if(A[j] < A[i]) { //A[j]是用来每次作为开头的元素, 因为要统计比A中所代表的排列小的排列, 所以A[j](开头)所代表的值要比A[i]小
+                    m.put(A[j], m.get(A[j]) - 1); //开头的元素不参与后面其它元素的全排列
+                    result += generateNum(m); //产生全排列并计数
+                    m.put(A[j], m.get(A[j]) + 1); //把本次作为开头的元素加回来, 用于其他时候的全排列(作为非开头元素的时候)
 		}
             }
-            m.put(A[i], m.get(A[i]) - 1);
+            m.put(A[i], m.get(A[i]) - 1); //本次i的开头都计算完了, 不再参与计算了
         }
         return result + 1; //要加上自己的位置
     }
@@ -49,11 +49,11 @@ public class Solution {
         int sum = 0;
         for(int val : m.values()) {
             if(val == 0) {
-                continue; //等于0就没有计算的必要了
+                continue; //等于0就是不参与计算, 作为开头的元素是不参与判断的, 因为上面的-1
             }
-            sum += val;
+            sum += val; //sum就是在统计除了开头的元素之外, 还有多少个元素能够用来组成全排列
         }
-        return factorial(sum);
+        return factorial(sum); //因为A中没有重复, 所以不需要去重(PermutationIndex2), 直接算sum的阶乘即可
     }
     
     private long factorial(int num) {
