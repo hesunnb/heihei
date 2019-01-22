@@ -43,13 +43,13 @@ public class Solution {
     }
 	
     private long generateNum(Map<Integer, Integer> m) {
-        long denominator = 1;
+        long deno = 1; //deno是denominator分母的缩写
         int sum = 0;
         for(int val : m.values()) { //此处要学习, 因为我只需要从m.values()返回的Collection里面取值, 所以直接用增强for循环就行了
 	    if(val == 0) {
 	        continue;
 	    }
-	    denominator *= factorial(val);
+	    deno *= factorial(val);
 	    sum += val;
         }
         /*Collection c = m.values(); //不用增强for就得这样写
@@ -61,7 +61,7 @@ public class Solution {
 	    denominator *= factorial(val);
 	    sum += val;
         }*/
-        return factorial(sum) / denominator; //比如5!/3!1!1!, 第一次求除5以外所有人的全排列, 但是其余的值还有重复的, 所以还要除以它们的全排列
+        return factorial(sum) / deno; //比如5!/3!1!1!, 第一次求除5以外所有人的全排列, 但是其余的值还有重复的, 所以还要除以它们的全排列
     }
 
     private long factorial(int n) { //阶乘用long
