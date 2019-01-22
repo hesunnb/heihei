@@ -34,13 +34,10 @@ public class Solution {
         long result = 0;
         for(int i = 0; i < A.length; i++) {
             for(int j = i + 1; j < A.length; j++) {
-                if(A[j] >= A[i]) { 
-                    continue;
-                } else {
-                    m.put(A[i], m.get(A[i]) - 1);
+                if(A[j] < A[i]) { 
+                    m.put(A[j], m.get(A[j]) - 1);
                     result += generateNum(m);
-                    m.put(A[i], m.get(A[i]) + 1);
-                }
+                    m.put(A[j], m.get(A[j]) + 1);
             }
             m.put(A[i], m.get(A[i]) - 1);
         }
