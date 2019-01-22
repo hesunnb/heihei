@@ -48,16 +48,14 @@ public class Solution {
     }
     
     private long generateNum(Map<Integer, Integer> m) {
-        long denominator = 1;
         int sum = 0;
         for(int val : m.values()) {
             if(val == 0) {
                 continue; //等于0就没有计算的必要了
             }
-            denominator *= factorial(val);
             sum += val;
         }
-        return factorial(sum) / denominator;
+        return factorial(sum);
     }
     
     private long factorial(int num) {
