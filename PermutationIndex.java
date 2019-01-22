@@ -34,8 +34,7 @@ public class Solution {
         long result = 0;
         for(int i = 0; i < A.length; i++) {
             for(int j = i + 1; j < A.length; j++) {
-                if(A[j] >= A[i]) { //此处一定要大于等于, 比如5,3,3,4,2,2 第一次是求比5,0,0,0,0,0小的数, 第二次是求比
-                //5,3,0,0,0,0小的数, 所以每次都要保证A[i] < A[j]才能继续进行
+                if(A[j] >= A[i]) { 
                     continue;
                 } else {
                     m.put(A[i], m.get(A[i]) - 1);
