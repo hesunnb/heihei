@@ -38,6 +38,7 @@ public class Solution {
                     m.put(A[j], m.get(A[j]) - 1);
                     result += generateNum(m);
                     m.put(A[j], m.get(A[j]) + 1);
+		}
             }
             m.put(A[i], m.get(A[i]) - 1);
         }
