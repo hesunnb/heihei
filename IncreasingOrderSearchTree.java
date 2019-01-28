@@ -74,4 +74,20 @@ class Solution {
         prev = root;
         increasingBSTHelper(root.right); //root.right是不用改的
     }
+       
+       
+    //solution2: 值得学习的方法, tail是last node
+    public TreeNode increasingBST(TreeNode root) {
+        return increasingBST(root, null);
+    }
+
+    private TreeNode increasingBST(TreeNode root, TreeNode tail) {
+        if (root == null) {
+            return tail; //root是null的时候返回tail
+        }
+        TreeNode res = increasingBST(root.left, root); //对于左边是root的左边和root, 左边一直保持着新的根往上传(新的根包括每一个右子树的根)
+        root.left = null;
+        root.right = increasingBST(root.right, tail); //对于右边是root的右边和tail
+        return res;
+    }
 }
