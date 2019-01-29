@@ -1,130 +1,104 @@
-/*Design an algorithm and write code to serialize and deserialize a binary tree. 
-Writing the tree to a file is called 'serialization' and reading back from the file to reconstruct the exact same binary tree 
-is 'deserialization'.
+/*Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or 
+memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
 
-There is no limit of how you deserialize or serialize a binary tree, 
-you only need to make sure you can serialize a binary tree to a string and deserialize this string to the original structure.
+Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization 
+algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized 
+to the original tree structure.
 
-Example
-An example of testdata: Binary tree {3,9,20,#,#,15,7}, denote the following structure:
+Example: 
 
-  3
- / \
-9  20
-  /  \
- 15   7
-Our data serialization use bfs traversal. This is just for when you got wrong answer and want to debug the input.
+You may serialize the following tree:
 
-You can use other method to do serializaiton and deserialization.*/
+    1
+   / \
+  2   3
+     / \
+    4   5
+
+as "[1,2,3,null,null,4,5]"
+Clarification: The above format is the same as how LeetCode serializes a binary tree. You do not necessarily need to follow this 
+format, so please be creative and come up with different approaches yourself.
+
+Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.*/
 
 /**
- * Definition of TreeNode:
+ * Definition for a binary tree node.
  * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
  * }
  */
-class Solution {
-    /**
-     * This method will be invoked first, you should design your own algorithm 
-     * to serialize a binary tree which denote by a root node to a string which
-     * can be easily deserialized by your own "deserialize" method later.
-     */
+public class Codec {
+
+    // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-        // write your code here
-        if(root == null)
-        {
+        if(root == null) {
             return null;
         }
         
-        ArrayList<TreeNode> queue = new ArrayList<TreeNode>();
-        queue.add(root); //这个先加一个的原因是为了能够循环加入节点
-        for(int i = 0; i < queue.size(); i++) //这里的queue加所有的结点, 包括空结点
-        {
-            TreeNode node = queue.get(i);
-            if(node == null)
-            {
-                continue;
+        List<TreeNode> list = new ArrayList<>(); //这里用的list, 目的是把整棵树用bfs装全, 包括null
+        list.add(root); //这个先加一个的原因是为了能够循环加入节点
+        for(int i = 0; i < list.size(); i++) {
+            TreeNode node = list.get(i);
+            if(node != null) {
+                list.add(node.left);
+                list.add(node.right);
             }
-            queue.add(node.left);
-            queue.add(node.right);
         }
         
-        //把queue尾部的那些多余的null都去掉, 所以正常的表达式一定以结点结尾
-        while(queue.get(queue.size() - 1) == null)
-        {
-            queue.remove(queue.size() - 1);
+        //把queue尾部的那些多余的null都去掉, 所以正常的表达式一定以结点结尾, null没有必要加, 连接null是多余的操作
+        while(list.get(list.size() - 1) == null) {
+            list.remove(list.size() - 1);
         }
         
         StringBuilder sb = new StringBuilder();
-        sb.append(queue.get(0).val); //根肯定不是空, 所以先加进去
-        for(int i = 1; i < queue.size(); i++)
-        {
-            if(queue.get(i) == null)
-            {
+        sb.append(list.get(0).val); //根肯定不是空, 所以先加进去
+        for(int i = 1; i < list.size(); i++) {
+            if(list.get(i) == null) {
                 sb.append(",#");
-            }
-            else
-            {
-                sb.append(","); //先放一个值的原因是这里都是","+值, 这样不会让第一个值是","
-                sb.append(queue.get(i).val);
+            } else {
+                sb.append("," + list.get(i).val); //先放一个值的原因是这里都是","+值, 这样不会让第一个值是","
             }
         }
-        
         return sb.toString();
     }
-    
-    /**
-     * This method will be invoked second, the argument data is what exactly
-     * you serialized at method "serialize", that means the data is not given by
-     * system, it's given by your own serialize method. So the format of data is
-     * designed by yourself, and deserialize it here as you serialize it in 
-     * "serialize" method.
-     */
+
+    // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        // write your code here
-        if(data == null)
-        {
+        if(data == null) {
             return null;
         }
         
-        String storage[] = data.split(",");
-        ArrayList<TreeNode> queue = new ArrayList<TreeNode>();
+        List<TreeNode> list = new ArrayList<>(); //和index一起用于组建树
+        String[] dataArray = data.split(","); //用于一个点一个点扫描
         boolean isLeftChild = true;
-        int index = 0; //负责queue的下标
+        int index = 0;
         
-        queue.add(new TreeNode(Integer.parseInt(storage[0]))); //先加一个的原因是下面的循环要构建树, 
+        list.add(new TreeNode(Integer.parseInt(dataArray[0]))); //先加一个的原因是下面的循环要构建树, 
         //所以根节点一定先要在queue里面
-        for(int i = 1; i < storage.length; i++)
-        {
-            if(!storage[i].equals("#")) //用.equals()!, 不要用!=
-            {
-                TreeNode node = new TreeNode(Integer.parseInt(storage[i]));
-                if(isLeftChild) //如果现在是左子树
-                {
-                    queue.get(index).left = node;
+        for(int i = 1; i < dataArray.length; i++) {
+            if(!dataArray[i].equals("#")) {
+                TreeNode node = new TreeNode(Integer.parseInt(dataArray[i]));
+                if(isLeftChild) {
+                    list.get(index).left = node;
+                } else {
+                    list.get(index).right = node;
                 }
-                else
-                {
-                    queue.get(index).right = node;
-                }
-                queue.add(node);
+                list.add(node);
             }
             
-            if(!isLeftChild)
-            {
+            if(isLeftChild == false) {
                 index++; //访问完右子树就是访问完一个结点啦, 这时候index++, 访问下一个结点
             }
             
             isLeftChild = !isLeftChild; //一定要先判断isLeftChild, 然后再取反, 否则顺序就乱啦
         }
-        
-        return queue.get(0);
+        return list.get(0);
     }
 }
 
-
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.deserialize(codec.serialize(root));
