@@ -44,8 +44,8 @@ public class Solution {
         }
         
         for(int i = start; i <= end; i++) { //当start和end相等的时候就是到了叶子节点, 可以加节点的时候
-            List<TreeNode> left = helper(start, i - 1); //左子树都是二叉搜索树
-            List<TreeNode> right = helper(i + 1, end); //右子树都是二叉搜索树
+            List<TreeNode> left = helper(start, i - 1); //i的左子树都是二叉搜索树
+            List<TreeNode> right = helper(i + 1, end); //i的右子树都是二叉搜索树
             for(TreeNode l : left) { //组合左右的二叉搜索树
                 for(TreeNode r : right) {
                     // should new a root here because it need to 
