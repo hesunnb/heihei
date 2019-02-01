@@ -68,11 +68,47 @@ public class Solution {
                          / \     / \
                         0   7   9   1
                        /   / \     / \
-                      2   1   0    8   8
+                      2   1   0   8   8
                              / 
                             7
     */
     //dfs
+    public void connect(TreeLinkNode root) {
+        
+        if(root == null) {
+            return;
+        }
+        
+        TreeLinkNode cur = root;
+        if(cur.left != null) {
+            cur.left.next = (cur.right != null) ? cur.right : getNext(cur);
+        }
+        if(cur.right != null) {
+            cur.right.next = getNext(cur);
+        }
+        
+        connect(root.right); //用根右左的方式来完成太机智了, 问题就是根左右的时候, 上面那个例子只能先连好0->7->9, 9和1之间根左右方式遍历的时候
+        //连不上, 除非用下面那种while的方式(但是while的方式存在重复连接问题), 那么就用根右左解决, 先去右边连接, 连完了再去左边连接, 那么这时候
+        //getNext向右边找node的时候, 之前右边已经连好的连接(next指针)就能用上了, 这样7->9->1已经连好, 然后0就可以找到后面的8了
+        connect(root.left); 
+    }
+    
+    private TreeLinkNode getNext(TreeLinkNode root) {
+        TreeLinkNode node = root.next;
+        while(node != null) {
+            if(node.left != null) {
+                return node.left;
+            }
+            if(node.right != null) {
+                return node.right;
+            }
+            node = node.next;
+        }
+        return null;
+    }
+    
+  
+    //仅供参考, while能work, 但存在重复连接
     public void connect(TreeLinkNode root) {
         
         if(root == null) {
