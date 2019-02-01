@@ -72,4 +72,39 @@ public class Solution {
                              / 
                             7
     */
+    //dfs
+    public void connect(TreeLinkNode root) {
+        
+        if(root == null) {
+            return;
+        }
+        
+        TreeLinkNode cur = root;
+        while(cur != null) { //遍历一行
+            if(cur.left != null) {
+                cur.left.next = (cur.right != null) ? cur.right : getNext(cur);
+            }
+            if(cur.right != null) {
+                cur.right.next = getNext(cur);
+            }
+            cur = cur.next; //用dfs做了bfs的事情, 在dfs的时候每次root都向左走, 走到每行开头的时候就把这行都连接完了, 之后递归的时候就存在
+            //重复连接的情况, 存在多余的连接步骤
+        }
+        connect(root.left);
+        connect(root.right);
+    }
+    
+    private TreeLinkNode getNext(TreeLinkNode root) {
+        TreeLinkNode node = root.next;
+        while(node != null) { //找到下一个应该连接的节点, 用node向后窜来找节点
+            if(node.left != null) {
+                return node.left;
+            }
+            if(node.right != null) {
+                return node.right;
+            }
+            node = node.next;
+        }
+        return null;
+    }
 }
