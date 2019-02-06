@@ -1,7 +1,7 @@
 /*Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
 
-According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T 
-that has both p and q as descendants (where we allow a node to be a descendant of itself).”
+According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node 
+in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”
 
 Given binary search tree:  root = [6,2,8,0,4,7,9,null,null,3,5]
 
@@ -39,6 +39,41 @@ Note:
  */
 class Solution {
     
+    //自己思考的更全面: p与q的比较和null的返回都有
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null) {
+            return root;
+        }
+        
+        if(p.val > q.val) { //题目中并没有说p和q谁大, 所以要指定一下, 让p总是小的, q是大的
+            TreeNode temp = p;
+            p = q;
+            q = temp;
+        }
+        return lowestCommonAncestorHelper(root, p, q);
+    }
+    
+    private TreeNode lowestCommonAncestorHelper(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null) {
+            return root;
+        }
+        
+        if(root.val >= p.val && root.val <= q.val) {
+            return root;
+        } else if(root.val < p.val){
+            TreeNode node = lowestCommonAncestorHelper(root.right, p, q);
+            if(node != null) {
+                return node;
+            }
+        } else if(root.val > q.val) {
+            TreeNode node = lowestCommonAncestorHelper(root.left, p, q);
+            if(node != null) {
+                return node;
+            }
+        }
+        return null;
+    }
+ 
     //都说是二叉搜索树了, 所以一定和树的性质有关, 一般的二叉树就只能遇到pq然后比值相等了
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root.val > p.val && root.val > q.val) { //根的值比左右pq都大, 往左走
