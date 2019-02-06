@@ -62,7 +62,25 @@ public class Solution {
         return true;
     }
 
- 
+    //version1的小改版不用firstNode, 直接把lastvalue改为long就可以了
+    long lastvalue = Long.MIN_VALUE;
+    public boolean isValidBST(TreeNode root) {
+        if(root == null) {
+            return true;
+        }
+        if(!isValidBST(root.left)) {
+            return false;    
+        }
+        if(lastvalue >= root.val) { 
+            return false;
+        }
+        lastvalue = root.val;
+        if(!isValidBST(root.right)) {
+            return false;
+        }
+        return true;
+    }
+  
     //Iterator, stack traversal(non-recursion)
     //和inordertravelsal的stack的方法一样, 就是中间弹出值后要判断
     public boolean isValidBST(TreeNode root) 
