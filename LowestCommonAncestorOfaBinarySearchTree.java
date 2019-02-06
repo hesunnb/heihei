@@ -39,42 +39,8 @@ Note:
  */
 class Solution {
     
-    //自己思考的更全面: p与q的比较和null的返回都有
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(root == null) {
-            return root;
-        }
-        
-        if(p.val > q.val) { //题目中并没有说p和q谁大, 所以要指定一下, 让p总是小的, q是大的
-            TreeNode temp = p;
-            p = q;
-            q = temp;
-        }
-        return lowestCommonAncestorHelper(root, p, q);
-    }
-    
-    private TreeNode lowestCommonAncestorHelper(TreeNode root, TreeNode p, TreeNode q) {
-        if(root == null) {
-            return root;
-        }
-        
-        if(root.val >= p.val && root.val <= q.val) {
-            return root;
-        } else if(root.val < p.val){
-            TreeNode node = lowestCommonAncestorHelper(root.right, p, q);
-            if(node != null) {
-                return node;
-            }
-        } else if(root.val > q.val) {
-            TreeNode node = lowestCommonAncestorHelper(root.left, p, q);
-            if(node != null) {
-                return node;
-            }
-        }
-        return null;
-    }
- 
     //都说是二叉搜索树了, 所以一定和树的性质有关, 一般的二叉树就只能遇到pq然后比值相等了
+    //这种方法也不用考虑p和q谁大谁小, 不用指定p一定小, q一定大, 免去了交换的操作
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root.val > p.val && root.val > q.val) { //根的值比左右pq都大, 往左走
             return lowestCommonAncestor(root.left, p, q);
