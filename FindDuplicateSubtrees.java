@@ -62,7 +62,7 @@ class Solution {
             if(!set.contains(T1) && !set.contains(T2)) {
                 result.add(T1);
             }
-            set.add(T1);
+            set.add(T1); //因为duplicate的树加入到result中只需要一个, 所以要用set去重
             set.add(T2);
         }
         isSubtree(T1.left, T2, result, set);
