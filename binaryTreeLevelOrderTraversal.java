@@ -42,8 +42,8 @@ public class Solution {
         // write your code here
 
         //①一个队列实现(首选), BFS遍历
-        public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
-            ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+        public List<List<Integer>> levelOrder(TreeNode root) {
+            List<List<Integer>> result = new ArrayList<List<Integer>>();
             if(root == null) {
                 return result;
             }
@@ -52,7 +52,7 @@ public class Solution {
             Q.offer(root);
             
             while(!Q.isEmpty()) { //有点就继续，没有点就退出了，说明刚刚加进来的点没有子节点了
-                ArrayList<Integer> level = new ArrayList<Integer>();
+                List<Integer> level = new ArrayList<Integer>();
                 int size = Q.size(); //为的就是保留上次size的值，不能让size随着节点数的增加而实时变化
                 for(int i = 0; i < size; i++) {
                     TreeNode tn = Q.poll();
