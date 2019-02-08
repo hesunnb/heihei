@@ -33,6 +33,26 @@ Therefore, you need to return above trees' root in the form of a list.*/
  */
 class Solution {
 
+    //序列化方法: 把树序列化成字符串, 用map来判断重复, 非常好
+    public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+        List<TreeNode> res = new ArrayList<>();
+        serialize(root, new HashMap<>(), res);
+        return res;
+    }
+
+    private String serialize(TreeNode cur, Map<String, Integer> map, List<TreeNode> res) {
+        if (cur == null) {
+            return "#";
+        }  
+        String serial = cur.val + "," + serialize(cur.left, map, res) + "," + serialize(cur.right, map, res);
+        if (map.getOrDefault(serial, 0) == 1) { //如果要是重复了, ==1是重复, 再重复就是2,3...但是与1不相等, 所以即使重复也不加入到res当中
+            res.add(cur); //加入这个重复子树的根节点
+        }
+        map.put(serial, map.getOrDefault(serial, 0) + 1);
+        return serial;
+    }
+        
+        
     //一个疯狂的解法: 树套树套树, 套了3回
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
         List<TreeNode> result = new ArrayList<>();
