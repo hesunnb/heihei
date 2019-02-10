@@ -44,7 +44,7 @@ class Solution {
     }
 	
 
-    //solution2: (own), 用construct tree的原因是自己在mergeTrees里面递归的时候, 新建完的节点还要值加和覆盖调t1新建节点的值, 所以为了
+    //solution2: (own), 用construct tree的原因是自己在mergeTrees里面递归的时候, 新建完的节点还要值加和覆盖掉t1新建节点的值, 所以为了
     //避免覆盖, 单独弄了一个construct tree的函数
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
         if(t1 == null) { //因为传入的时候t1不可能为空, 只有一开始的根节点有可能
@@ -59,7 +59,7 @@ class Solution {
         if(t1.right != null) { //右不为空往右
             mergeTrees(t1.right, t2.right);
         }
-        if(t1 != null && t2 != null) { //加和
+        if(t1 != null && t2 != null) { //加和, 整棵树是t2merge到t1
             t1.val += t2.val;
         }
         if(t1.left == null && t2.left != null) { //如果需要建节点
