@@ -37,8 +37,8 @@ class Solution {
         if (t1 == null) return t2;
         if (t2 == null) return t1;
 
-        TreeNode node = new TreeNode(t1.val + t2.val);
-        node.left = mergeTrees(t1.left, t2.left);
+        TreeNode node = new TreeNode(t1.val + t2.val); //merge完了之后是t1上面merge过来的节点其实是指向了t2上面的节点, 两棵树掺和在一起,
+        node.left = mergeTrees(t1.left, t2.left);      //并没有独立分离, 不过这道题是满足的, 下面的方法属于clone树了
         node.right = mergeTrees(t1.right, t2.right);
         return node;
     }
@@ -73,7 +73,7 @@ class Solution {
         return t1; //最终返回的也是t1
     }
     
-    private void constructTree(TreeNode t1, TreeNode t2) {
+    private void constructTree(TreeNode t1, TreeNode t2) { //在t1新建了很多节点, 建完节点后两棵树互不干扰
         if(t1.left == null && t2.left != null) {
             t1.left = new TreeNode(t2.left.val);
             constructTree(t1.left, t2.left);
