@@ -41,7 +41,8 @@ class Solution {
     }
     
     private int maxArea(int[][] grid, int count, int i, int j) {
-        grid[i][j] = 0; //一定要清0, 要不就死递归了
+        grid[i][j] = 0; //一定要清0, 要不就死递归了; 清0不用恢复为1的原因是每次计算面积的时候相邻的1一定都计算完并改成0了, 再恢复为1就是
+        //重复计算
         if(i > 0 && grid[i - 1][j] == 1) { //向4个方向进行递归, 注意不能有else
             count = maxArea(grid, count + 1, i - 1, j); //把count的值每次都保存下来, 作为当前已经搜索到的岛屿面积
         } 
