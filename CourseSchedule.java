@@ -27,7 +27,8 @@ class Solution {
     //solution1: bfs方法, 推荐使用, O(m)m为边的个数复杂度, 检测图有没有环最有效的方法
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         if(prerequisites == null) { //numCourses < prerequisites.length并不能说明问题, prerequisites只是描述课程间的关系, 与
-            //numCourses的大小无关
+            //numCourses的大小无关; 不用判断prerequisites长度的原因是, 上课可以没有先决条件, 比如testCase: numCousrese == 1, 
+            //prerequisites.length == 0, 就说要上一门课, 此课没有先决条件, 所以这个例子应该返回true
             return false;
         }
 
