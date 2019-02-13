@@ -28,6 +28,59 @@ The cells are adjacent in only four directions: up, down, left and right.*/
 
 class Solution {
     
+    /*Using DFS method.
+
+    Assigned a large value to all the positions with value 1 and don't have 0 neighbors
+    Start dfs search from positions whose value is 1*/
+    public int[][] updateMatrix(int[][] matrix) {
+        if(matrix.length==0) {
+            return matrix;
+        }
+        
+        for(int i = 0; i<matrix.length; i++) {
+            for(int j = 0; j<matrix[0].length; j++) {
+                if(matrix[i][j]==1&&!hasNeiberZero(i, j,matrix)) {
+                    matrix[i][j] = Integer.MAX_VALUE; //更改为最大特别有必要, dfs就在于传的val一直都在加, 而要求最短距离是一个
+                    //取小值的过程, 所以从最大往回走
+                }   
+            }
+        }
+            
+        for(int i = 0; i<matrix.length; i++) {
+            for(int j = 0; j<matrix[0].length; j++) {
+                if(matrix[i][j]==1) {
+                    dfs(matrix, i, j, -1);
+                }
+            }   
+        }
+        
+        return matrix;
+    }
+    private void dfs(int[][] matrix, int x, int y, int val){
+        if(x<0||y<0||y>=matrix[0].length||x>=matrix.length||matrix[x][y]<=val) {
+            return;
+        }
+            
+        if(val>0) { //只对于递归开始的第一次有效, 比如example1, 传入-1不大于0所以不更改值, 如果不加这个判断, 那么1就被直接改为-1了
+            matrix[x][y] = val;
+        }
+        
+        dfs(matrix, x+1, y, matrix[x][y]+1); //下
+        dfs(matrix, x-1, y, matrix[x][y]+1); //上
+        dfs(matrix, x, y+1, matrix[x][y]+1); //右
+        dfs(matrix, x, y-1, matrix[x][y]+1); //左
+    }
+    
+    private boolean hasNeiberZero(int x, int y, int[][] matrix){
+        if(x>0&&matrix[x-1][y]==0) return true;
+        if(x<matrix.length-1&&matrix[x+1][y]==0) return true;
+        if(y>0&&matrix[x][y-1]==0) return true;
+        if(y<matrix[0].length-1&&matrix[x][y+1]==0) return true;
+        
+        return false;
+    }
+    
+    
     /*General idea is BFS. Some small tricks:
 
     At beginning, set cell value to Integer.MAX_VALUE if it is not 0.
