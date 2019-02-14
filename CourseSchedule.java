@@ -66,7 +66,7 @@ class Solution {
             }
         }
         
-        if(count != numCourses) { //不想等就是假
+        if(count != numCourses) { //不相等就是假
             return false;
         }
         return true;
