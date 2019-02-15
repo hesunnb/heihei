@@ -23,6 +23,9 @@ public class WordDictionary {
     // Adds a word into the data structure.
     public void addWord(String word) {
         // Write your code here
+	if(word == null) {
+	    return;
+	}
         trie.insert(word);
     }
 
@@ -30,6 +33,9 @@ public class WordDictionary {
     // contain the dot character '.' to represent any one letter.
     public boolean search(String word) {
         // Write your code here
+	if(word == null) {
+	    return false;
+	}
         return trie.search(word, 0, trie.getRoot());
     }
 }
@@ -80,10 +86,10 @@ class Trie {
         if(c == '.') { //如果是'.', 说明这个字符和所有的字符串都匹配
             Set set = now.children.keySet(); //那么就要递归搜索当前节点children里面所有的字符串
             for(Iterator i = set.iterator(); i.hasNext();) {
-		    result = search(word, index + 1, now.children.get(i.next()));
-		    if(result) { //递归搜索过程中有一个是真, 就说明符合就一直返回真, 不判断了
-		        return result;
-		    }
+		result = search(word, index + 1, now.children.get(i.next()));
+		if(result) { //递归搜索过程中有一个是真, 就说明符合就一直返回真, 不判断了
+		    return result;
+		}
 	    }
         } else {
             if(!now.children.containsKey(c)) { //不包含相应字母就返回假
