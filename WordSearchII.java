@@ -110,35 +110,28 @@ public class Solution {
 
 
 public class Solution {
-    /**
-     * @param board: A list of lists of character
-     * @param words: A list of string
-     * @return: A list of string
-     */
-     
+  
     //没有用字典树, 从1问改进, 对于有大量重复前缀的例子跑不过
-    public ArrayList<String> wordSearchII(char[][] board, ArrayList<String> words) {
-        // write your code here
+    public List<String> findWords(char[][] board, String[] words) {
+        List<String> result = new ArrayList<String>();
         
-        ArrayList<String> result = new ArrayList<String>();
-        
-        if(board == null || board.length == 0 || board[0].length == 0 || words == null || words.size() == 0) {
+        if(board == null || board.length == 0 || board[0].length == 0 || words == null || words.length == 0) {
             return result;
         }
 
-        for(int k = 0; k < words.size(); k++) {
+        for(int k = 0; k < words.length; k++) {
             for(int i = 0; i < board.length; i++) {
                 for(int j = 0; j < board[0].length; j++) {
-                    if(board[i][j] == words.get(k).charAt(0)) { //之后第一个字母相等的时候再进行递归, 能稍微减点复杂度
-                        if(!result.contains(words.get(k))) {
-                            if(findWord(board, i, j, words.get(k), 0)) {
-                                result.add(words.get(k));
+                    if(board[i][j] == words[k].charAt(0)) { //之后第一个字母相等的时候再进行递归, 能稍微减点复杂度
+                        if(!result.contains(words[k])) {
+                            if(findWord(board, i, j, words[k], 0)) {
+                                result.add(words[k]);
                                 break;
                             }
                         }
                     }
                 }
-                if(result.contains(words.get(k))) {
+                if(result.contains(words[k])) {
                 	break;
                 }
             }
