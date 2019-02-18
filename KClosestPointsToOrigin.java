@@ -54,3 +54,62 @@ class Solution {
         }
     }
 }
+
+
+/*lintCode版本, 要求更多
+612. K Closest Points
+Given some points and an origin point in two-dimensional space, find k points which are nearest to the origin.
+Return these points sorted by distance, if they are same in distance, sorted by the x-axis, and if they are same in the x-axis, 
+sorted by y-axis.
+
+Example
+Example 1:
+
+Input: points = [[4,6],[4,7],[4,4],[2,5],[1,1]], origin = [0, 0], k = 3 
+Output: [[1,1],[2,5],[4,4]]
+Example 2:
+
+Input: points = [[0,0],[0,9]], origin = [3, 1], k = 1
+Output: [[0,0]]*/
+
+public class Solution {
+ 
+    public Point[] kClosest(Point[] points, Point origin, int k) {
+        // write your code here
+        if(points == null || points.length == 0 || k > points.length) {
+            return new Point[]{};
+        }
+
+        Point[] result = new Point[k];
+        PriorityQueue<Point> pq = new PriorityQueue<>(new kClosestComparator(origin));
+        for(Point i : points) {
+            pq.offer(i);
+        }
+
+        for(int i = 0; i < k; i++) {
+            result[i] = pq.poll();
+        }
+        return result;
+    }
+
+    class kClosestComparator implements Comparator<Point> {
+
+        private Point origin;
+        kClosestComparator(Point origin) {
+            this.origin = origin;
+        }
+        @Override
+        public int compare(Point o1, Point o2) {
+            int result = (o1.x - origin.x) * (o1.x - origin.x) + (o1.y - origin.y) * (o1.y - origin.y) - 
+                         (o2.x - origin.x) * (o2.x - origin.x) - (o2.y - origin.y) * (o2.y - origin.y);
+            if(result == 0) {
+                if(o1.x == o2.x) {
+                    result = o1.y - o2.y;
+                } else {
+                    result = o1.x - o2.x;
+                }
+            }
+            return result;
+        }
+    }
+}
