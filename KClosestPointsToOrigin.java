@@ -81,7 +81,7 @@ public class Solution {
         }
 
         Point[] result = new Point[k];
-        PriorityQueue<Point> pq = new PriorityQueue<>(new kClosestComparator(origin));
+        PriorityQueue<Point> pq = new PriorityQueue<>(new kClosestComparator(origin)); //新的点是Comparator也能传参数进来
         for(Point i : points) {
             pq.offer(i);
         }
@@ -95,7 +95,7 @@ public class Solution {
     class kClosestComparator implements Comparator<Point> {
 
         private Point origin;
-        kClosestComparator(Point origin) {
+        kClosestComparator(Point origin) { //用构造函数来接收Comparator传进来的参数
             this.origin = origin;
         }
         @Override
