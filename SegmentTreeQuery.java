@@ -55,7 +55,8 @@ public class Solution {
         if (root == null || end < root.start || start > root.end) {
             return 0;
         }
-        if (root.start == root.end) { //相当于对于给定区间, 把每个值都走到线段树的最后, 然后从每个节点的max里面挑最大的max
+        if (root.start == root.end || (start <= root.start && end >= root.end)) { 
+            //相当于对于给定区间, 把每个值都走到线段树的最后, 然后从每个节点的max里面挑最大的max, 
             return root.max;
         }
         return Math.max(query(root.left, start, end), query(root.right, start, end));
