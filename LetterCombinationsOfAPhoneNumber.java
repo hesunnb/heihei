@@ -23,11 +23,10 @@ public class Solution {
     private static void letterHelper(List<String> result, StringBuilder sb, String[] numbers, int pos, int count, String digits)
     {
     	if(sb.length() == digits.length()) { //如果长度和digits相等了就说明是想要的结果
-    		result.add((new StringBuilder(sb)).toString()); //new一个StringBuilder再加入
+            result.add((new StringBuilder(sb)).toString()); //new一个StringBuilder再加入
     	}
           
-        if(count >= digits.length()) { //count用于记录访问到digits中的第几位了, 大于等于digits.length()说明到了digits末尾,
-        //就返回
+        if(count >= digits.length()) { //count用于记录访问到digits中的第几位了, 大于等于digits.length()说明到了digits末尾, 就返回
         	return;
         }
         
