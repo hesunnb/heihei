@@ -40,13 +40,31 @@ or call modify(root, 4, 0), we can get:
  * }
  */
 public class Solution {
-    /**
-     *@param root, index, value: The root of segment tree and 
-     *@ change the node's value with [index, index] to the new given value
-     *@return: void
-     */
-     
+
+    //modify的最新写法, 记这个
     //时间: Do it in O(h) time, h is the height of the segment tree.
+    public void modify(SegmentTreeNode root, int index, int value) {
+        
+        if(root == null || root.start > index || root.end < index) {
+            return;
+        }
+        
+        if (root.start == root.end) { //递归到尾部改值
+            root.max = value;
+            return;
+        }
+      
+        int mid = (root.start + root.end) / 2;
+        if (index <= mid) { //index小于等于mid, 往左走
+            modify(root.left, index, value);
+        } else { //否则往右走
+            modify(root.right, index, value);
+        }
+        //分治来改max的值
+        root.max = Math.max(root.left.max, root.right.max);
+    }
+     
+  
     public void modify(SegmentTreeNode root, int index, int value) {
         // write your code here
         
