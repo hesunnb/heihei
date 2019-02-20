@@ -49,11 +49,19 @@ query(root, 0, 2), return 4*/
  */
  
 public class Solution {
-    /**
-     *@param root, start, end: The root of segment tree and 
-     *                         an segment / interval
-     *@return: The maximum number in the interval [start, end]
-     */
+    
+    //查询区间最大值, 最新写法, 记这个
+    public int query(SegmentTreeNode root, int start, int end) {
+        if (root == null || end < root.start || start > root.end) {
+            return 0;
+        }
+        if (root.start == root.end) { //相当于对于给定区间, 把每个值都走到线段树的最后, 然后从每个节点的max里面挑最大的max
+            return root.max;
+        }
+        return Math.max(query(root.left, start, end), query(root.right, start, end));
+    }
+  
+ 
     public int query(SegmentTreeNode root, int start, int end) {
         // write your code here
         
