@@ -56,7 +56,10 @@ public class Solution {
             return 0;
         }
         if (root.start == root.end || (start <= root.start && end >= root.end)) { 
-            //相当于对于给定区间, 把每个值都走到线段树的最后, 然后从每个节点的max里面挑最大的max, 
+            //相当于对于给定区间, 把每个值都走到线段树的最后, 然后从每个节点的max里面挑最大的max.
+            //(start <= root.start && end >= root.end)这句话可以提升速度, 如果所要查询的区间比当前节点的区间要宽,
+            //那么就不用向下递归了, 因为这个节点已经包含了下面所传上来的最大值, 然后所要查询的区间比当前节点的区间还要广,
+            //那么自然就囊括了这个最大值, 直接取这个最大值就ok
             return root.max;
         }
         return Math.max(query(root.left, start, end), query(root.right, start, end));
