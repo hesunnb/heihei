@@ -29,6 +29,50 @@ maze are all walls.
 
 public class Solution {
 
+    //bfs解法, 迷宫一般都用bfs解
+    int[] dx = new int[] {-1,1,0,0};
+    int[] dy = new int[] {0,0,-1,1};
+    public boolean hasPath(int[][] maze, int[] start, int[] destination) {
+        // write your code here
+        if(maze == null || maze.length == 0 || maze[0].length == 0 || start == null || start.length == 0 || destination == null || 
+           destination.length == 0) {
+            return false;
+        }
+        
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(start);
+        maze[start[0]][start[1]] = 2;
+        while(!queue.isEmpty()) {
+            int[] curPoint = queue.poll();
+            int x = curPoint[0], y = curPoint[1];
+            for(int i = 0; i < 4; i++) {
+                int xx = x;
+                int yy = y;
+                while(isValid(maze, xx + dx[i], yy + dy[i])) { //从while循环退出就是撞到墙了
+                    xx += dx[i];
+                    yy += dy[i];
+                }
+                if(!isValid(maze, xx, yy) || maze[xx][yy] == 2) { //撞墙节点是否有效
+                    continue;
+                }
+                if(xx == destination[0] && yy == destination[1]) { //因为是撞墙节点, 所以判断destination
+                    return true;
+                }
+                queue.offer(new int[] {xx, yy}); //每次加入到queue中的节点都是撞墙的节点
+                maze[xx][yy] = 2;
+            }
+        }
+        return false;
+    }
+    
+    public boolean isValid(int[][] maze, int x, int y) {
+        if(x < 0 || y < 0 || x >= maze.length || y >= maze[0].length || maze[x][y] == 1) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     //boolean[][] visited也可以没有, 省空间, 用其他值替代一下就可以了, 比如这里用2来代表在此处撞过墙
     int[] dx = new int[]{-1,1,0,0};
     int[] dy = new int[]{0,0,-1,1};
