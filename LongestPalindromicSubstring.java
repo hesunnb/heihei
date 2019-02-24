@@ -22,6 +22,7 @@ public class Solution {
             return longest;
         }
         
+        //中心线算法, 从中间向两边扩展
         for(int i = 0; i < s.length(); i++){
             //计算奇数子字符串
             helper(s, i, 0);
