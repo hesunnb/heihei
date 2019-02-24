@@ -48,7 +48,72 @@ are all walls.
 
 public class Solution {
      
-    //与1问不同的地方就是这次得找所有有效路径, 并求出最短路径
+    //bfs解法
+    int[] dx = new int[] {-1,1,0,0};
+    int[] dy = new int[] {0,0,-1,1};
+    public int shortestDistance(int[][] maze, int[] start, int[] destination) {
+        // write your code here
+        if(maze == null || maze.length == 0 || maze[0].length == 0 || start == null || start.length == 0 || destination == null || 
+	   destination.length == 0) {
+            return -1;
+        }
+        
+        PriorityQueue<Point> queue = new PriorityQueue<>(new MazeComparator());
+        queue.offer(new Point(start[0], start[1], 0));
+        maze[start[0]][start[1]] = 2;
+        while(!queue.isEmpty()) {
+            Point curPoint = queue.poll();
+            int x = curPoint.x, y = curPoint.y, length = curPoint.length;
+            for(int i = 0; i < 4; i++) {
+                int xx = x;
+                int yy = y;
+                length = curPoint.length; //这里就是重置长度, 从新向别的方向走
+                while(isValid(maze, xx + dx[i], yy + dy[i])) { 
+                    xx += dx[i];
+                    yy += dy[i];
+                    length++;
+                }
+                if(!isValid(maze, xx, yy) || maze[xx][yy] == 2) { 
+                    continue;
+                }
+                if(xx == destination[0] && yy == destination[1]) { 
+                    return length;
+                }
+                queue.offer(new Point(xx, yy, length));
+                maze[xx][yy] = 2; //把撞墙节点加入PriorityQueue中为什么不用重新把maze[xx][yy]置为0呢, 原因就是因为是
+                //优先级队列弹出的都是length最小的, 所以一旦到达destination也是通过目前最小的length到达的, 所以不用
+                //像dfs那样重置maze[xx][yy] = 0, 然后重新出发再找
+            }
+        }
+        return -1;
+    }
+    
+    public boolean isValid(int[][] maze, int x, int y) {
+        if(x < 0 || y < 0 || x >= maze.length || y >= maze[0].length || maze[x][y] == 1) {
+            return false;
+        }
+        return true;
+    }
+    
+    class Point {
+        int x;
+        int y;
+        int length;
+        Point(int x, int y, int length) {
+            this.x = x;
+            this.y = y;
+            this.length = length;
+        }
+    }
+    
+    class MazeComparator implements Comparator<Point> {
+        public int compare(Point a, Point b) {
+            return a.length - b.length;
+        }
+    }
+	
+	
+    //dfs, 与1问不同的地方就是这次得找所有有效路径, 并求出最短路径
     int[] dx = new int[] {-1,1,0,0};
     int[] dy = new int[] {0,0,-1,1};
     int min = Integer.MAX_VALUE;
