@@ -55,7 +55,8 @@ public class Solution {
                 if(!isValid(maze, xx, yy) || maze[xx][yy] == 2) { //撞墙节点是否有效
                     continue;
                 }
-                if(xx == destination[0] && yy == destination[1]) { //因为是撞墙节点, 所以判断destination
+                if(xx == destination[0] && yy == destination[1]) { //因为是撞墙节点, 所以判断destination; 判断destination的时候
+                    //destination还没有被标记为撞墙节点, 所以直接判断返回, 被标记为撞墙节点的点都会continue, 不从撞墙节点出发
                     return true;
                 }
                 queue.offer(new int[] {xx, yy}); //每次加入到queue中的节点都是撞墙的节点
