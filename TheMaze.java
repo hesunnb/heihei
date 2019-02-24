@@ -60,7 +60,8 @@ public class Solution {
                     return true;
                 }
                 queue.offer(new int[] {xx, yy}); //每次加入到queue中的节点都是撞墙的节点
-                maze[xx][yy] = 2;
+                maze[xx][yy] = 2; //此处置为2, 弹出撞墙节点的时候是先走, 撞墙了之后再看此处有没有撞过墙, 因为撞过墙的节点就不用再加入queue
+                //了, 否则就重复了, 所以此处置2没有问题
             }
         }
         return false;
