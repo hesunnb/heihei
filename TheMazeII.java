@@ -63,11 +63,11 @@ public class Solution {
         maze[start[0]][start[1]] = 2;
         while(!queue.isEmpty()) {
             Point curPoint = queue.poll();
-            int x = curPoint.x, y = curPoint.y, length = curPoint.length;
+            int x = curPoint.x, y = curPoint.y;
             for(int i = 0; i < 4; i++) {
                 int xx = x;
                 int yy = y;
-                length = curPoint.length; //这里就是重置长度, 从新向别的方向走
+                int length = curPoint.length; //这里就是重置长度, 从新向别的方向走
                 while(isValid(maze, xx + dx[i], yy + dy[i])) { 
                     xx += dx[i];
                     yy += dy[i];
