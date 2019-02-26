@@ -53,6 +53,10 @@ public class Solution {
     int[] dy = new int[] {0,0,-1,1};
     public int shortestDistance(int[][] maze, int[] start, int[] destination) {
         // write your code here
+	if(maze == null || maze.length == 0 || maze[0].length == 0 || start == null || start.length == 0 || destination == null || 
+           destination.length == 0) {
+            return -1;
+        }
         PriorityQueue<Point> queue = new PriorityQueue<Point>(new MazeComparator());
         queue.offer(new Point(start[0], start[1], 0));
 
