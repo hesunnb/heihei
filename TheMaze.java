@@ -38,32 +38,34 @@ public class Solution {
            destination.length == 0) {
             return false;
         }
-        
         Queue<int[]> queue = new LinkedList<>();
-        queue.offer(start);
-        maze[start[0]][start[1]] = 2;
+        queue.offer(new int[]{start[0], start[1]});
+
         while(!queue.isEmpty()) {
+
             int[] curPoint = queue.poll();
-            int x = curPoint[0], y = curPoint[1];
+            int x = curPoint[0];
+            int y = curPoint[1];
+            if(x == destination[0] && y == destination[1]) {
+                return true;
+            }
+            if(maze[x][y] == 2) {
+                continue;
+            }
+            maze[x][y] = 2;
             for(int i = 0; i < 4; i++) {
-                int xx = x;
-                int yy = y;
-                while(isValid(maze, xx + dx[i], yy + dy[i])) { //从while循环退出就是撞到墙了
-                    xx += dx[i];
-                    yy += dy[i];
+                int nx = x;
+                int ny = y;
+                while(isValid(maze, nx + dx[i], ny + dy[i])) { //从while循环退出就是撞到墙了
+                    nx += dx[i];
+                    ny += dy[i];
                 }
-                if(!isValid(maze, xx, yy) || maze[xx][yy] == 2) { //撞墙节点是否有效
-                    continue;
-                }
-                if(xx == destination[0] && yy == destination[1]) { //因为是撞墙节点, 所以判断destination; 判断destination的时候
-                    //destination还没有被标记为撞墙节点, 所以直接判断返回, 被标记为撞墙节点的点都会continue, 不从撞墙节点出发
-                    return true;
-                }
-                queue.offer(new int[] {xx, yy}); //每次加入到queue中的节点都是撞墙的节点
-                maze[xx][yy] = 2; //此处置为2, 弹出撞墙节点的时候是先走, 撞墙了之后再看此处有没有撞过墙, 因为撞过墙的节点就不用再加入queue
-                //了, 否则就重复了, 所以此处置2没有问题
+                queue.offer(new int[] {nx, ny}); //每次加入到queue中的节点都是撞墙节点, 当上下左右方向不对的时候,
+                //这里会把撞墙节点重复加入, 但是弹出撞墙节点的时候已经把它标记为2了, 所以重复加入这个撞墙节点的时候
+                //再弹出就都是2, 全都continue了
             }
         }
+        
         return false;
     }
     
