@@ -38,6 +38,10 @@ public class Solution {
     char[] dir = {'u','d','l','r'};
     public String findShortestWay(int[][] maze, int[] ball, int[] hole) {
         // write your code here
+        if(maze == null || maze.length == 0 || maze[0].length == 0 || ball == null || ball.length == 0 || hole == null || 
+           hole.length == 0) {
+            return "impossible";
+        }
         PriorityQueue<Point> queue = new PriorityQueue<Point>(new MazeComparator());
         queue.offer(new Point(ball[0], ball[1], 0, new StringBuilder()));
 
