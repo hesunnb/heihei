@@ -15,10 +15,10 @@ public class Solution {
         while(aLen >= 0 || bLen >= 0 || carries == 1) { //把最后的carries是不是1的判断也合并到这里来, 就只剩一个while啦
             int sum = carries;
             if(aLen >= 0) {
-                sum += a.charAt(pa--) - '0';
+                sum += a.charAt(aLen--) - '0';
             }
             if(bLen >= 0) {
-                sum += b.charAt(pb--) - '0';
+                sum += b.charAt(bLen--) - '0';
             }
             sb.insert(0, sum % 2); //这里用insert在头部插入就行
             carries = sum / 2;   
