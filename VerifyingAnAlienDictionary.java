@@ -37,17 +37,17 @@ class Solution {
     //(own)一遍过:
     public boolean isAlienSorted(String[] words, String order) {
         if(words == null || words.length == 0 || order == null || order.length() == 0) {
-			return false;
-		}
+	    return false;
+	}
 		
-		Map<Character, Integer> map = new HashMap<>();
-		for(int i = 0; i < order.length(); i++) {
+	Map<Character, Integer> map = new HashMap<>();
+	for(int i = 0; i < order.length(); i++) {
             map.put(order.charAt(i), i);
         }
         
-		for(int i = 0; i < words.length - 1; i++) {
-			for(int j = 0; j < Math.min(words[i].length(), words[i + 1].length()); j++) {
-				if(map.get(words[i].charAt(j)) > map.get(words[i + 1].charAt(j))) {
+	for(int i = 0; i < words.length - 1; i++) {
+	    for(int j = 0; j < Math.min(words[i].length(), words[i + 1].length()); j++) {
+		if(map.get(words[i].charAt(j)) > map.get(words[i + 1].charAt(j))) {
                     return false;
                 } else if(map.get(words[i].charAt(j)) < map.get(words[i + 1].charAt(j))) {
                     break;
@@ -55,9 +55,9 @@ class Solution {
                 if(words[i].length() > words[i + 1].length()) {
                     return false;
                 }
-			}
-		}
-		 
+	    }
+	}
+	 
         return true;
     }
 }
