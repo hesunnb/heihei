@@ -53,38 +53,36 @@ public class Solution {
     int[] dy = new int[] {0,0,-1,1};
     public int shortestDistance(int[][] maze, int[] start, int[] destination) {
         // write your code here
-        if(maze == null || maze.length == 0 || maze[0].length == 0 || start == null || start.length == 0 || destination == null || 
-	   destination.length == 0) {
-            return -1;
-        }
-        
-        PriorityQueue<Point> queue = new PriorityQueue<>(new MazeComparator());
+        PriorityQueue<Point> queue = new PriorityQueue<Point>(new MazeComparator());
         queue.offer(new Point(start[0], start[1], 0));
-        maze[start[0]][start[1]] = 2;
+
         while(!queue.isEmpty()) {
+
             Point curPoint = queue.poll();
-            int x = curPoint.x, y = curPoint.y;
+            int x = curPoint.x;
+            int y = curPoint.y;
+            int len = curPoint.length;
+            if(x == destination[0] && y == destination[1]) {
+                return len;
+            }
+            if(maze[x][y] == 2) {
+                continue;
+            }
+            maze[x][y] = 2;
             for(int i = 0; i < 4; i++) {
-                int xx = x;
-                int yy = y;
-                int length = curPoint.length; //这里就是重置长度, 从新向别的方向走
-                while(isValid(maze, xx + dx[i], yy + dy[i])) { 
-                    xx += dx[i];
-                    yy += dy[i];
-                    length++;
+                int nx = x;
+                int ny = y;
+                int newLen = len; //这里就是重置长度, 从新向别的方向走
+                while(isValid(maze, nx + dx[i], ny + dy[i])) { 
+                    nx += dx[i];
+                    ny += dy[i];
+                    newLen++;
                 }
-                if(!isValid(maze, xx, yy) || maze[xx][yy] == 2) { 
-                    continue;
-                }
-                if(xx == destination[0] && yy == destination[1]) { 
-                    return length;
-                }
-                queue.offer(new Point(xx, yy, length));
-                maze[xx][yy] = 2; //把撞墙节点加入PriorityQueue中为什么不用重新把maze[xx][yy]置为0呢, 原因就是因为是
-                //优先级队列弹出的都是length最小的, 所以一旦到达destination也是通过目前最小的length到达的, 所以不用
-                //像dfs那样重置maze[xx][yy] = 0, 然后重新出发再找
+                queue.offer(new Point(nx, ny, newLen)); //当上下左右方向不对的时候, 这里会把撞墙节点重复加入, 
+                //但是弹出撞墙节点的时候已经把它标记为2了, 所以重复加入这个撞墙节点的时候再弹出就都是2, 全都continue了
             }
         }
+        
         return -1;
     }
     
