@@ -9,6 +9,7 @@ public class Solution {
     // 2. Method 2, start from the first char, compare it with all string, and then the second char
 
     // 1. Method 1, start from the first one, compare prefix with next string, until end;
+    //就用方法1就可以了
     public String longestCommonPrefix(String[] strs) {
         
         if(strs == null || strs.length == 0) {
