@@ -36,6 +36,30 @@ class Solution {
         }
     }
     
+    //StringBuilder(own)
+    public String reverseStr(String s, int k) {
+        if(s == null || s.length() == 0) {
+            return "";
+        }
+        
+        StringBuilder result = new StringBuilder();
+        int i = 0;
+        while(i + 2*k-1 < s.length()) {
+            StringBuilder sb = new StringBuilder(s.substring(i, i + k));
+            result.append(sb.reverse());
+            result.append(s.substring(i+k, i+2*k));
+            i += 2*k;
+        }
+        if(i + k - 1 < s.length()) {
+            StringBuilder sb = new StringBuilder(s.substring(i, i + k));
+            result.append(sb.reverse());
+            result.append(s.substring(i + k));
+        } else if(i + k - 1 >= s.length()) {
+            StringBuilder sb = new StringBuilder(s.substring(i));
+            result.append(sb.reverse());
+        }
+        return result.toString();
+    }
     
     //solution2: 用了StringBuilder
     public String reverseStr(String s, int k) {
