@@ -112,4 +112,26 @@ public class Solution {
             return a.length - b.length;
         }
     }
+    /*
+    x: 4 y: 3 len: 0 sb:
+    x: 4 y: 3 len: 0 sb: d
+    x: 4 y: 2 len: 1 sb: l
+    x: 4 y: 2 len: 1 sb: ld
+    x: 4 y: 2 len: 1 sb: ll
+    x: 4 y: 4 len: 1 sb: r
+    x: 4 y: 4 len: 1 sb: rd
+    x: 4 y: 4 len: 1 sb: rr
+    x: 4 y: 4 len: 1 sb: ru
+    x: 4 y: 4 len: 3 sb: lr
+    x: 4 y: 2 len: 3 sb: rl
+    x: 0 y: 3 len: 4 sb: u
+    x: 0 y: 3 len: 4 sb: uu
+    x: 0 y: 2 len: 5 sb: lu
+    x: 0 y: 2 len: 5 sb: luu
+    x: 0 y: 4 len: 5 sb: ur
+    x: 0 y: 4 len: 5 sb: urd
+    x: 0 y: 4 len: 5 sb: urr
+    x: 0 y: 4 len: 5 sb: uru
+    x: 0 y: 1 len: 6 sb: lul
+    */
 }
