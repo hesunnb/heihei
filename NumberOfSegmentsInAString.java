@@ -10,7 +10,22 @@ Output: 5*/
 
 class Solution {
 
-    //solution2:(own)用split肯定不行, 因为有多个空格连着的情况
+    //split
+    public int countSegments(String s) {
+        if(s == null || s.length() == 0) {
+            return 0;
+        }
+        
+        int count = 0;
+        String[] strArray = s.trim().split(" ");
+        for(String str : strArray) {
+            if(!str.equals("")) {
+                count++;
+            }
+        }
+        return count;
+    }
+    
     public int countSegments(String s) {
         
         if(s == null || s.length() == 0) {
