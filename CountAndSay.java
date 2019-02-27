@@ -20,6 +20,34 @@ Given n = 5, return "111221".
 */
 
 public class Solution {
+    
+    //own也不错
+    public String countAndSay(int n) {
+        if(n <= 0) {
+            return "";
+        }
+        
+        StringBuilder result = new StringBuilder("1");
+        for(int i = 0; i < n - 1; i++) {
+            StringBuilder sb = new StringBuilder();
+            int j = 0;
+            int count = 1;
+            while(j < result.length()) {
+                while(j < result.length() - 1 && result.charAt(j) == result.charAt(j + 1)) {
+                    count++;
+                    j++;
+                }
+                sb.append(count);
+                sb.append(result.charAt(j));
+                count = 1;
+                j++;
+            }
+            result = sb;
+        }
+        return result.toString();
+    }
+    
+    
     public String countAndSay(int n) {
         
         if(n <= 0) { //小于等于0不成立
