@@ -27,9 +27,7 @@ public class Solution {
             if(j == needle.length()) {
                 return i;
             }
-            
         }
-        
         return -1;
     }
 }
