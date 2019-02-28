@@ -16,7 +16,7 @@ public class Solution {
             return "";
         }
         
-        String prefix = strs[0];
+        String prefix = strs[0]; //如果只有一个单词, 也就是strs.length == 1的话, 那么longestCommonPrefix就是这个单词自己
         for(int i = 1; i < strs.length; i++) {
             int j = 0;
             while(j < prefix.length() && j < strs[i].length() && prefix.charAt(j) == strs[i].charAt(j)) { //j没有超过prefix和strs[i]的
