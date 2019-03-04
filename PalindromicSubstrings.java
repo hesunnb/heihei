@@ -29,17 +29,18 @@ class Solution {
         int result = 0;
         for (int i = 0; i < s.length(); i++) {
             ////计算奇数子字符串
-            result += helper(s, i, 0, 0);
+            result += helper(s, i, 0);
             //计算偶数子字符串
-            result += helper(s, i, 1, 0);
+            result += helper(s, i, 1);
         }
         return result;
     }
     
-    private int helper(String s, int index, int diff, int count) {
+    private int helper(String s, int index, int offset) {
 
         int left = index;
-        int right = index + diff;
+        int right = left + offset;
+        int count = 0;
         while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
             count++; //因为只要是回文串就加入, 所以不判断回文串的重复与否, 有就count++
             left--;
