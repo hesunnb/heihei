@@ -87,7 +87,7 @@ public class Solution {
             return;
         }
         
-        for(int i = start; i < s.length() && i < start + 3; i++) {
+        for(int i = start; i < start + 3 && i < s.length(); i++) {
             String tmp = s.substring(start, i + 1);
             if(isvalid(tmp)){
                 list.add(tmp);
