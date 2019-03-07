@@ -14,15 +14,9 @@ Example
 */
 
 public class Solution {
-    /**
-     * @param str: A string
-     * @return An integer
-     */
-     
+
     //时间复杂度O(n)
     public int atoi(String str) {
-        // write your code here
-        
         if(str == null) {
             return 0;
         }
@@ -42,7 +36,7 @@ public class Solution {
             sign = -1; //负号
         }
         
-        for(;index < str.length(); index++) {
+        while(index < str.length()) {
             if(str.charAt(index) < '0' || str.charAt(index) > '9') { //遇到无效字符就退出, 比如" 15+4"这个例子中途遇到一个+号就退出了, 返回15
                 break;
             }
@@ -50,6 +44,7 @@ public class Solution {
             if(num > Integer.MAX_VALUE) { //如果出现数值越界，则返回最接近的整数
                 break;
             }
+            index++
         }
         
         if(num * sign >= Integer.MAX_VALUE) {
