@@ -78,7 +78,7 @@ public class Solution {
             }
 
             StringBuilder sb = new StringBuilder();
-            for(String tmp : list){
+            for(String tmp : list) {
                 sb.append(tmp);
                 sb.append(".");
             }
