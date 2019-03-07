@@ -20,7 +20,7 @@ class Solution {
     public String multiply(String num1, String num2) {
         
         if(num1 == null || num2 == null || num1.length() == 0 || num2.length() == 0) {
-            return "";
+            return "0";
         }
         
         int m = num1.length(), n = num2.length();
