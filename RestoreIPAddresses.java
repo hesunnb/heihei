@@ -97,7 +97,7 @@ public class Solution {
         }
     }
     
-    private boolean isvalid(String s){
+    private boolean isvalid(String s) {
         if(s.charAt(0) == '0') {
             return s.equals("0"); // to eliminate cases like "00", "10"; 以'0'开头的字符串只有"0"是有效的, 其余都是无效的
         }
