@@ -43,7 +43,7 @@ class Solution {
         if(s == null || t == null || s.length() != t.length()) {
 	    return false;
 	}
-	//例子就是abb匹配ccc; abc匹配abb
+	//例子就是abb匹配ccc; abb匹配abc
         Map<Character, Character> map = new HashMap<>();
         for(int i = 0; i < s.length(); i++) {
             if(!map.containsKey(s.charAt(i))) {
