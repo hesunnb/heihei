@@ -23,40 +23,30 @@ S and T consist of lowercase letters only.*/
 
 class Solution {
 
-    //(own)
     public String customSortString(String S, String T) {
-        if(S == null || T == null) {
-            return null;
+        if(S == null || T == null || S.length() == 0 || T.length() == 0) {
+            return T;
         }
         
-        Map<Character, Integer> map = new HashMap<>();
-        for(int i = 0; i < T.length(); i++) {
-            map.put(T.charAt(i), map.getOrDefault(T.charAt(i), 0) + 1);
+        int[] count = new int[26];
+        StringBuilder sb = new StringBuilder();
+        for(char c : T.toCharArray()) { //统计T中字符串出现的次数
+            count[c - 'a']++;
         }
-        StringBuilder ssb = new StringBuilder(S);
-        for(int i = 0; i < T.length(); i++) {
-            if(!S.contains(String.valueOf(T.charAt(i)))) {
-                ssb.append(T.charAt(i));
-            } else {
-                if(map.get(T.charAt(i)) > 1) {
-                    int count = map.get(T.charAt(i));
-                    while(count - 1 > 0) {
-                        ssb.insert(ssb.indexOf(String.valueOf(T.charAt(i))), T.charAt(i));
-                        count--;
-                    }
-                    map.put(T.charAt(i), 1);
-                }
+        
+        for(char c : S.toCharArray()) { //按顺序遍历S, 依照S的顺序添加T中的字符
+            while(count[c - 'a'] > 0) {
+                sb.append(c);
+                count[c - 'a']--;
             }
         }
         
-        int j = 0;
-        while(j < ssb.length()) {
-            if(!T.contains(String.valueOf(ssb.charAt(j)))) {
-                ssb.deleteCharAt(j);
-            } else {
-                j++;
+        for(char c = 'a'; c <= 'z'; c++) { //添加S中没有的, 而T中有的字符
+            while(count[c - 'a'] > 0) {
+                sb.append(c);
+                count[c - 'a']--;
             }
         }
-        return ssb.toString();
+        return sb.toString();
     }
 }
