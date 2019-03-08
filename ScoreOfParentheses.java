@@ -61,5 +61,29 @@ class Solution {
         return cur;
     }
     
-    
+    /* O(1) Space
+    We count the number of layers.
+    If we meet '(' layers number l++
+    else we meet ')' layers number l--
+
+    If we meet "()", we know the number of layer outside,
+    so we can calculate the score res += 1 << l*/
+    public int scoreOfParentheses(String S) {
+        if(S == null || S.length() == 0) {
+            return 0;
+        }
+        
+        int res = 0, layer = 0;
+        for (int i = 0; i < S.length(); i++) {
+            if (S.charAt(i) == '(') {
+                layer++;
+            } else {
+                layer--;
+            }
+            if (S.charAt(i) == ')' && S.charAt(i - 1) == '(') {
+                res += 1 << layer;
+            }
+        }
+        return res;
+    }
 }
