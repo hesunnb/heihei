@@ -48,7 +48,7 @@ class Solution {
     Expected:
     "gwbeveqpirosqlcfrsmn"
     
-    i必须加sources[table.get(i)].length()的原因:
+    i必须加sources[map.get(i)].length()的原因:
     Input:
     "abcd"
     [0, 2]
@@ -63,20 +63,25 @@ class Solution {
     
     //这个就是批量替换的写法, 模板
     public String findReplaceString(String S, int[] indexes, String[] sources, String[] targets) {
-        Map<Integer, Integer> table = new HashMap<>();
+        if(S == null || S.length() == 0 || indexes == null || indexes.length == 0 || sources == null || sources.length == 0 || 
+           targets == null || targets.length == 0 || sources.length != targets.length) {
+            return S;
+        }
+        
+        Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < indexes.length; i++) {
             // if a match is found in the original string, record it
             if (S.startsWith(sources[i], indexes[i])) { //此处不能用indexOf
-                table.put(indexes[i], i); //是indexes中的值和indexes的下标做成了哈希表
+                map.put(indexes[i], i); //是indexes中的值和indexes的下标做成了哈希表
             }
         }
         StringBuilder sb = new StringBuilder();
         int i = 0;
         while(i < S.length()) {
-            if (table.containsKey(i)) {
+            if (map.containsKey(i)) {
                 // if a replacement was recorded before
-                sb.append(targets[table.get(i)]);
-                i += sources[table.get(i)].length(); //此处i必须加sources[table.get(i)].length()
+                sb.append(targets[map.get(i)]);
+                i += sources[map.get(i)].length(); //此处i必须加sources[map.get(i)].length()
             } else {
                 // if no replacement happened at this index
                 sb.append(S.charAt(i));
