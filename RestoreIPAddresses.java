@@ -89,7 +89,7 @@ public class Solution {
         
         for(int i = start; i < start + 3 && i < s.length(); i++) {
             String tmp = s.substring(start, i + 1);
-            if(isvalid(tmp)){
+            if(isvalid(tmp)) {
                 list.add(tmp);
                 helper(result, list, s, i + 1);
                 list.remove(list.size() - 1);
