@@ -1,6 +1,9 @@
-一: ASCII顺序: ' ' < '0' < '9' < 'A' < 'Z' < 'a' < 'z' 
-  
-二: Follow up questions: (Find Duplicate File in System的follow up, 题目自己已经一遍过, 重点看看这个follow up)
+一: 
+ASCII顺序: ' ' < '0' < '9' < 'A' < 'Z' < 'a' < 'z' 
+
+
+二: 
+Follow up questions: (Find Duplicate File in System的follow up, 题目自己已经一遍过, 重点看看这个follow up)
 1. Imagine you are given a real file system, how will you search files? DFS or BFS ?
 In general, BFS will use more memory then DFS. However BFS can take advantage of the locality of files in inside directories, 
 and therefore will probably be faster
@@ -27,6 +30,7 @@ Time complexity is O(n^2 * k) since in worse case we might need to compare every
 How to make sure the duplicated files you find are not false positive?
 We will use several filters to compare: File size, Hash and byte by byte comparisons.
 
+
 三: 取模运算规律:
 模运算与基本四则运算有些相似，但是除法例外。其规则如下：
 (a + b) % p = (a % p + b % p) % p （1）
@@ -42,3 +46,7 @@ a ^ b % p = ((a % p)^b) % p （4）
 分配律：
 (a+b) % p = ( a % p + b % p ) % p （9）
 ((a +b)% p * c) % p = ((a * c) % p + (b * c) % p) % p （10）
+
+
+四:
+Arrays.fill(nums, -1); //快捷填充数组
