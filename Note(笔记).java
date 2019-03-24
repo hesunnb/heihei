@@ -50,3 +50,7 @@ a ^ b % p = ((a % p)^b) % p （4）
 
 四:
 Arrays.fill(nums, -1); //快捷填充数组
+
+五:
+Collections.sort(d, (a,b) -> a.length() != b.length() ? -Integer.compare(a.length(), b.length()) :  a.compareTo(b));
+//长度按从大到小排, 相同长度按照字典序排, 注意Integer.compare前面有个负号
