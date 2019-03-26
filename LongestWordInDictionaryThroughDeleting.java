@@ -21,6 +21,32 @@ The length of all the strings in the input won't exceed 1,000.*/
 
 class Solution {
     
+    //O(n)
+    public String findLongestWord(String s, List<String> d) {
+        if(s == null || d == null || d.size() == 0) {
+            return "";
+        }
+        
+        String result = "";
+        for(String word : d) {
+            int j = 0;
+            for(int i = 0; i < s.length(); i++) {
+                if(j < word.length() && word.charAt(j) == s.charAt(i)) {
+                    j++;
+                }
+                if(j == word.length()) {
+                    if(word.length() >= result.length()) { 
+                        if(word.length() > result.length() || word.compareTo(result) < 0) { //就是这里的写法不错
+                            result = word;
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+    
+    
     //方法没什么特殊的, 就是排序这个写法值得学习
     public String findLongestWord(String s, List<String> d) {
         if(s == null || d == null || d.size() == 0) {
