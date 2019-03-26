@@ -34,6 +34,33 @@ Note:
  */
 class Solution {
 
+    //O(m + n)
+    public Interval[] intervalIntersection(Interval[] A, Interval[] B) {
+        if(A == null || A.length == 0 || B == null || B.length == 0) {
+            return new Interval[] {};
+        }
+        
+        List<Interval> result = new ArrayList<>();
+        int i = 0;
+        int j = 0;
+        while(i < A.length && j < B.length) {
+            int startMax = Math.max(A[i].start, B[j].start);
+            int endMin = Math.min(A[i].end, B[j].end);
+            if(endMin >= startMax) { //如果有交集
+                result.add(new Interval(startMax, endMin));
+            }
+            
+            if(A[i].end == endMin) { //妙手, 谁的区间到了尾, 谁就向后窜一个区间; 这样就不用O(n^2)扫描了
+                i++;
+            }
+            if(B[j].end == endMin) {
+                j++;
+            }
+        }
+        return result.toArray(new Interval[0]); //用0比用result.size()要好, 记住就可以了
+    }
+ 
+ 
     //(own)(On^2的解法)
     public Interval[] intervalIntersection(Interval[] A, Interval[] B) {
         if(A == null || A.length == 0 || B == null || B.length == 0) {
