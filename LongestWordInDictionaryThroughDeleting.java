@@ -20,6 +20,8 @@ The size of the dictionary won't exceed 1,000.
 The length of all the strings in the input won't exceed 1,000.*/
 
 class Solution {
+    
+    //方法没什么特殊的, 就是排序这个写法值得学习
     public String findLongestWord(String s, List<String> d) {
         if(s == null || d == null || d.size() == 0) {
             return "";
