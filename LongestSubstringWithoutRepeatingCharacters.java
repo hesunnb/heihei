@@ -34,4 +34,27 @@ class Solution {
         }
         return max;
     }
+    
+    
+    //(own)用哈希表基于slidingwindow模板想的, 和用set的思路一样, set是直接删掉, map就是看个数是不是大于1
+    public int lengthOfLongestSubstring(String s) {
+        if(s == null || s.length() == 0) {
+            return 0;
+        }
+        
+        Map<Character, Integer> map = new HashMap<>();
+        int start = 0;
+        int end = 0;
+        int result = Integer.MIN_VALUE;
+        while(end < s.length()) {
+            map.put(s.charAt(end), map.getOrDefault(s.charAt(end), 0) + 1);
+            while(map.get(s.charAt(end)) > 1) {
+                map.put(s.charAt(start), map.get(s.charAt(start)) - 1);
+                start++;
+            }
+            result = Math.max(result, end - start + 1);
+            end++;
+        }
+        return result;
+    }
 }
