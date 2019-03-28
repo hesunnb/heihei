@@ -54,3 +54,7 @@ Arrays.fill(nums, -1); //快捷填充数组
 五:
 Collections.sort(d, (a,b) -> a.length() != b.length() ? -Integer.compare(a.length(), b.length()) :  a.compareTo(b));
 //长度按从大到小排, 相同长度按照字典序排, 注意Integer.compare前面有个负号
+
+六:
+PriorityQueue的时间复杂度：remove()方法和add()方法时间复杂度为O(logn), 
+remove(Object obj)和contains()方法需要O(n)时间复杂度, 取队头则需要O(1)时间
