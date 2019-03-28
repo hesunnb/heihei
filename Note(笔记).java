@@ -1,7 +1,6 @@
 一: 
 ASCII顺序: ' ' < '0' < '9' < 'A' < 'Z' < 'a' < 'z' 
 
-
 二: 
 Follow up questions: (Find Duplicate File in System的follow up, 题目自己已经一遍过, 重点看看这个follow up)
 1. Imagine you are given a real file system, how will you search files? DFS or BFS ?
@@ -21,7 +20,7 @@ we will compare the files byte by byte
 
 3. If you can only read the file by 1kb each time, how will you modify your solution?
 This won't change the solution. We can create the hash from the 1kb chunks(就是在1kb的地方存哈希表), 
-  and then read the entire file if a full byte by byte comparison is required.
+and then read the entire file if a full byte by byte comparison is required.
 
 What is the time complexity of your modified solution? What is the most time consuming part and memory consuming part of it? 
 How to optimize?
@@ -29,7 +28,6 @@ Time complexity is O(n^2 * k) since in worse case we might need to compare every
 
 How to make sure the duplicated files you find are not false positive?
 We will use several filters to compare: File size, Hash and byte by byte comparisons.
-
 
 三: 取模运算规律:
 模运算与基本四则运算有些相似，但是除法例外。其规则如下：
@@ -46,7 +44,6 @@ a ^ b % p = ((a % p)^b) % p （4）
 分配律：
 (a+b) % p = ( a % p + b % p ) % p （9）
 ((a +b)% p * c) % p = ((a * c) % p + (b * c) % p) % p （10）
-
 
 四:
 Arrays.fill(nums, -1); //快捷填充数组
