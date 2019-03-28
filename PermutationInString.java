@@ -26,9 +26,11 @@ class Solution {
     public boolean checkInclusion(String s1, String s2) {
 		
 	if(s1 == null || s2 == null || s2.length() < s1.length()) {
-		return false;
+	    return false;
 	}
-		
+	if(s1.equals(s2)) {
+	    return true;
+	}
 	Map<Character, Integer> map = new HashMap<>();
         for(char c : s1.toCharArray()) {
             map.put(c, map.getOrDefault(c, 0) + 1); //getOrDefault是jdk8的新函数, 如果map中没有c字符, 那么会返回一个默认值0
