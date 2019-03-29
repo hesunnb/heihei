@@ -22,6 +22,35 @@ Follow up:
 Could you solve it in linear time?*/
 
 class Solution {
+ 
+    //PriorityQueue, 接近O(nlogk)
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        if(nums == null || nums.length == 0 || k < 0 || k > nums.length) {
+            return new int[] {};
+        }
+        
+        PriorityQueue<Integer> pq = new PriorityQueue<>((x, y) -> (y - x));
+        List<Integer> result = new ArrayList<>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            pq.offer(nums[i]); //插入是logN
+            
+            if (pq.size() > k) {
+                pq.remove(nums[i - k]); //PriorityQueue的remove是O(n)的
+            }
+            
+            if (pq.size() == k) {
+                result.add(pq.peek()); 
+            }
+        }
+        
+        int[] array = new int[result.size()];
+        for(int i = 0; i < result.size(); i++) {
+            array[i] = result.get(i);
+        }
+        return array;
+    }
+ 
     class Node {
         int pos;
         int val;
@@ -31,7 +60,7 @@ class Solution {
         }
     }
     
-    //用TreeSet作为媒介进行插入删除
+    //用TreeSet作为媒介进行插入删除, O(nlogk), 因为TreeSet插入删除都是O(logn)
     public int[] maxSlidingWindow(int[] nums, int k) {
         if(nums == null || nums.length == 0 || k < 0 || k > nums.length) {
             return new int[] {};
