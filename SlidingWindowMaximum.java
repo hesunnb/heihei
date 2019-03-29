@@ -92,4 +92,45 @@ class Solution {
         }
         return array;
     }
+ 
+ 
+    //deque的使用方法就是可以两头操作, 方法的作用就是名称的意思, O(n)
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        
+        if(nums == null || nums.length == 0 || k < 0 || k > nums.length) {
+            return new int[] {};
+        }
+        
+        List<Integer> list = new ArrayList<Integer>();
+        Deque<Integer> deque = new ArrayDeque<Integer>(); //双端队列
+
+        for (int i = 0; i < k - 1; i++) { //把k - 1个先加到队列里
+            inQueue(deque, nums[i]);
+        }
+        
+        for(int i = k - 1; i < nums.length; i++) {
+            inQueue(deque, nums[i]); //加入第k个
+            list.add(deque.peekFirst()); //队列里面的头一个就是k个的最大值
+            outQueue(deque, nums[i - k + 1]); 
+        }
+        
+        int[] result = new int[list.size()];
+        for(int i = 0; i < result.length; i++) {
+            result[i] = list.get(i);
+        }
+        return result;
+    }
+    
+    public void inQueue(Deque<Integer> deque, int num) {
+        while (!deque.isEmpty() && deque.peekLast() < num) { //保持队头最大
+            deque.pollLast();
+        }
+        deque.offer(num);
+    }
+    
+    public void outQueue(Deque<Integer> deque, int num) {
+        if (deque.peekFirst() == num) {
+            deque.pollFirst();
+        }
+    }
 }
