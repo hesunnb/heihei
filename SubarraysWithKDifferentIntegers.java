@@ -26,6 +26,12 @@ Note:
 1 <= K <= A.length*/
 
 class Solution {
+ 
+    /*Write a helper using sliding window, to get the number of subarrays with at most K distinct elements.
+    Then f(exactly K) = f(atMost K) - f(atMost K-1).*/
+    //the total number of subarrays ending at end-1 that contain at most K distinct.
+    /*For e.g. array = [1,2,3,4,5], start = 0, end = 5, we can get [[1,2,3,4,5],[2,3,4,5],[3,4,5],[4,5],[5]] totally 5-0 = 5 subarray which
+    contains at most K integers.*/
     public int subarraysWithKDistinct(int[] A, int K) {
         if(A == null || A.length == 0 || K < 0) {
             return 0;
@@ -45,7 +51,7 @@ class Solution {
             if(map.get(A[end]) == 1) {
                 count++;
             }
-            end++;
+            end++; //end在此处++, 就是以end-1处结尾的subarray
             while(count > k) {
                 map.put(A[start], map.get(A[start]) - 1);
                 if(map.get(A[start]) == 0) {
@@ -54,6 +60,7 @@ class Solution {
                 start++;
             }
             total+=end - start;
+            //end在这++, 就是total+=end - start + 1
         }
         return total;
     }
