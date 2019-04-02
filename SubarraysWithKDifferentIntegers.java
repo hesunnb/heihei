@@ -39,7 +39,7 @@ class Solution {
         return kMost(A, K) - kMost(A, K - 1);
     }
     
-    public int kMost(int[] A, int k) {
+    public int kMost(int[] A, int k) { 
         
         Map<Integer, Integer> map = new HashMap<>();
         int start = 0;
@@ -63,5 +63,35 @@ class Solution {
             //end在这++, 就是total+=end - start + 1
         }
         return total;
+    }
+ 
+    //Longest Substring with At Most K Distinct Characters
+    public int lengthOfLongestSubstringKDistinct(String s, int k) { //根据这道题演变而来
+        // write your code here
+        if(s == null || s.length() == 0 || k < 0) {
+            return 0;
+        }
+        
+        Map<Character, Integer> map = new HashMap<>();
+        int start = 0;
+        int end = 0;
+        int length = 0;
+        int count = 0;
+        while(end < s.length()) {
+            map.put(s.charAt(end), map.getOrDefault(s.charAt(end), 0) + 1);
+            if(map.get(s.charAt(end)) == 1) {
+                count++;
+            }
+            end++;
+            while(count > k) {
+                map.put(s.charAt(start), map.get(s.charAt(start)) - 1);
+                if(map.get(s.charAt(start)) == 0) {
+                    count--;
+                }
+                start++;
+            }
+            length = Math.max(length, end - start);
+        }
+        return length;
     }
 }
