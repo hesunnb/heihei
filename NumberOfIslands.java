@@ -62,6 +62,8 @@ public class Solution {
 
 //leetcode char[][]grid接口
 public class Solution {
+  
+    //dfs
     public int numIslands(char[][] grid) {
         if(grid == null || grid.length == 0 || grid[0].length == 0) {
             return 0;
@@ -92,6 +94,57 @@ public class Solution {
             } if(j < grid[0].length - 1 && grid[i][j + 1] == '1') {
                 FindIsland(grid, i, j + 1);
             } 
+        }
+    }
+  
+    //bfs
+    public int numIslands(char[][] grid) {
+        if(grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+        
+        int result = 0;
+        Queue<Pair> queue = new LinkedList<>();
+        for(int i = 0; i < grid.length; i++) {
+            for(int j = 0; j < grid[0].length; j++) {
+                if(grid[i][j] == '1') {
+                    grid[i][j] = '0';
+                    queue.offer(new Pair(i, j));
+                    numIslandsHelper(grid, queue);
+                    result++;
+                }
+            }
+        }
+        return result;
+    }
+    
+    public void numIslandsHelper(char[][] grid, Queue<Pair> queue) {
+        while(!queue.isEmpty()) {
+            Pair p = queue.poll();
+            int i = p.x;
+            int j = p.y;
+            if(i > 0 && grid[i - 1][j] == '1') { //向4个方向进行递归, 注意不能有else
+                queue.offer(new Pair(i-1, j));
+                grid[i-1][j] = '0';
+            } if(i < grid.length - 1 && grid[i + 1][j] == '1') {
+                queue.offer(new Pair(i + 1, j));
+                grid[i+1][j] = '0';
+            } if(j > 0 && grid[i][j - 1] == '1') {
+                queue.offer(new Pair(i, j - 1));
+                grid[i][j-1] = '0';
+            } if(j < grid[0].length - 1 && grid[i][j + 1] == '1') {
+                queue.offer(new Pair(i, j + 1));
+                grid[i][j+1] = '0';
+            } 
+        }
+    }
+    
+    class Pair {
+        int x;
+        int y;
+        Pair(int x, int y) {
+            this.x = x;
+            this.y = y;
         }
     }
 }
