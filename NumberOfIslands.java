@@ -125,7 +125,8 @@ public class Solution {
             int j = p.y;
             if(i > 0 && grid[i - 1][j] == '1') { //向4个方向进行递归, 注意不能有else
                 queue.offer(new Pair(i-1, j));
-                grid[i-1][j] = '0';
+                grid[i-1][j] = '0'; //此处置0很关键, 主要是速度问题, 马上改为0, 这样其他点从queue中poll出来的时候再扫描就能马上遇到改过的0
+                //加快速度
             } if(i < grid.length - 1 && grid[i + 1][j] == '1') {
                 queue.offer(new Pair(i + 1, j));
                 grid[i+1][j] = '0';
