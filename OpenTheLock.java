@@ -74,7 +74,7 @@ class Solution {
                         visited.add(strUp);
                     }
                 }	
-        	}
+            }
             level++;
         }
         return -1;
