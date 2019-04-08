@@ -70,9 +70,9 @@ class Solution {
             	        visited.add(strDown);
             	    }
             	    if(!deads.contains(strUp) && !visited.contains(strUp)) {
-            		    queue.offer(strUp);
-            		    visited.add(strUp);
-            	    }
+                	    queue.offer(strUp);
+                	    visited.add(strUp);
+             	    }
                 }	
         	}
             level++;
