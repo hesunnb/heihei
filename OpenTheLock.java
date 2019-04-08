@@ -51,31 +51,31 @@ class Solution {
         visited.add("0000");
         int level = 0;
         while(!queue.isEmpty()) { //从"0000"出发, 然后向两边走
-        	int size = queue.size();
-        	for(int i = 0; i < size; i++) {
-        		String str = queue.poll();
-            	if(deads.contains(str)) {
+            int size = queue.size();
+            for(int i = 0; i < size; i++) {
+        	    String str = queue.poll();
+                if(deads.contains(str)) {
             	    continue;
-            	}
-            	if(target.equals(str)) {
-            	    return level;
-            	}
-            	for(int j = 0; j < 4; j++) { //循环会让每位都产生变化, 这些位的变化同属一层
-            		String strDown = str.substring(0, j) + (str.charAt(j) == '9' ? 0 : str.charAt(j) - '0' + 1) + str.substring(j + 1);
+                }
+                if(target.equals(str)) {
+                    return level;
+                }
+                for(int j = 0; j < 4; j++) { //循环会让每位都产生变化, 这些位的变化同属一层
+            	    String strDown = str.substring(0, j) + (str.charAt(j) == '9' ? 0 : str.charAt(j) - '0' + 1) + str.substring(j + 1);
                     //正序产生的结果
-            		String strUp = str.substring(0, j) + (str.charAt(j) == '0' ? 9 : str.charAt(j) - '0' - 1) + str.substring(j + 1);
+            	    String strUp = str.substring(0, j) + (str.charAt(j) == '0' ? 9 : str.charAt(j) - '0' - 1) + str.substring(j + 1);
                     //倒序产生的结果
-            		if(!deads.contains(strDown) && !visited.contains(strDown)) {
+            	    if(!deads.contains(strDown) && !visited.contains(strDown)) {
             		    queue.offer(strDown);
             		    visited.add(strDown);
             		}
-            		if(!deads.contains(strUp) && !visited.contains(strUp)) {
+            	    if(!deads.contains(strUp) && !visited.contains(strUp)) {
             		    queue.offer(strUp);
             		    visited.add(strUp);
             		}
             	}	
         	}
-        	level++;
+            level++;
         }
         return -1;
     }
