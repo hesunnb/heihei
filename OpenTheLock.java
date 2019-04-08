@@ -53,7 +53,7 @@ class Solution {
         while(!queue.isEmpty()) { //从"0000"出发, 然后向两边走
             int size = queue.size();
             for(int i = 0; i < size; i++) {
-        	    String str = queue.poll();
+                String str = queue.poll();
                 if(deads.contains(str)) {
             	    continue;
                 }
@@ -66,14 +66,14 @@ class Solution {
             	    String strUp = str.substring(0, j) + (str.charAt(j) == '0' ? 9 : str.charAt(j) - '0' - 1) + str.substring(j + 1);
                     //倒序产生的结果
             	    if(!deads.contains(strDown) && !visited.contains(strDown)) {
-            		    queue.offer(strDown);
-            		    visited.add(strDown);
-            		}
+            	        queue.offer(strDown);
+            	        visited.add(strDown);
+            	    }
             	    if(!deads.contains(strUp) && !visited.contains(strUp)) {
             		    queue.offer(strUp);
             		    visited.add(strUp);
-            		}
-            	}	
+            	    }
+                }	
         	}
             level++;
         }
