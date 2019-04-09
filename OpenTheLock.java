@@ -119,4 +119,52 @@ class Solution {
         }
         return -1;
     }
+    
+    //优化的双端bfs
+    //By always picking a smaller set, this process could reduce a little(since in this problem the scale on both sides are similar) 
+    //time complexity and memory complexity. 
+    public int openLock(String[] deadends, String target) {
+        if(deadends == null || deadends.length == 0 || target == null || target.length() == 0) {
+            return -1;
+        }
+        
+        Set<String> begin = new HashSet<>();
+        Set<String> end = new HashSet<>();
+        Set<String> deads = new HashSet<>(Arrays.asList(deadends));
+        begin.add("0000"); //begin加入起点
+        end.add(target); //end加入终点
+        int level = 0;
+        Set<String> tmp;
+        while(!begin.isEmpty() && !end.isEmpty()) { //由两边向中间走
+            if(begin.size() > end.size()) { //因为两边向中间走, 所以每次都挑长度最短的集合走, 因为最终都是走到相遇, 所以无论谁走
+                //最终走到相遇的步数都一样
+                tmp = begin;
+                begin = end;
+                end = tmp;
+            }
+            tmp = new HashSet<>();
+            for(String str : begin) {
+                if(end.contains(str)) { //end包含begin中的值就说明从两头走到中间相遇了
+                    return level;
+                }
+                if(deads.contains(str)) {
+                    continue;
+                }
+                deads.add(str);
+                for(int i = 0; i < 4; i++) {
+                    String strDown = str.substring(0, i) + (str.charAt(i) == '9' ? 0 : str.charAt(i) - '0' + 1) + str.substring(i + 1);
+            	    String strUp = str.substring(0, i) + (str.charAt(i) == '0' ? 9 : str.charAt(i) - '0' - 1) + str.substring(i + 1);
+            	    if(!deads.contains(strDown)) {
+            	        tmp.add(strDown);
+            	    }
+            	    if(!deads.contains(strUp)) {
+                        tmp.add(strUp);
+                    }
+                }
+            }
+            level++;
+            begin = tmp; //把tmp给begin, 在上面决定最终要循环哪个集合
+        }
+        return -1;
+    }
 }
