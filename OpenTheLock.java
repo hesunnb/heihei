@@ -79,4 +79,47 @@ class Solution {
         }
         return -1;
     }
+    
+    //双端bfs
+    public int openLock(String[] deadends, String target) {
+        if(deadends == null || deadends.length == 0 || target == null || target.length() == 0) {
+            return -1;
+        }
+        
+        Set<String> begin = new HashSet<>();
+        Set<String> end = new HashSet<>();
+        Set<String> deads = new HashSet<>(Arrays.asList(deadends));
+        begin.add("0000"); //begin加入起点
+        end.add(target); //end加入终点
+        int level = 0;
+        while(!begin.isEmpty() && !end.isEmpty()) { //由两边向中间走
+            Set<String> tmp = new HashSet<>();
+            for(String str : begin) {
+                if(end.contains(str)) { //end包含begin中的值就说明从两头走到中间相遇了
+                    return level;
+                }
+                if(deads.contains(str)) {
+                    continue;
+                }
+                deads.add(str);
+                //比如0000产生了0001, 那么0001再计算产生的时候, 0001还会尝试产生0000, 这时候就不能加入0000, 这也就是向deads中加入访问过值的原因
+                for(int i = 0; i < 4; i++) {
+                    String strDown = str.substring(0, i) + (str.charAt(i) == '9' ? 0 : str.charAt(i) - '0' + 1) + str.substring(i + 1);
+                    //产生正序的结果
+            	    String strUp = str.substring(0, i) + (str.charAt(i) == '0' ? 9 : str.charAt(i) - '0' - 1) + str.substring(i + 1);
+                    //产生倒序的结果
+            	    if(!deads.contains(strDown)) {
+            	        tmp.add(strDown); //tmp加入本层产生的所有结果
+            	    }
+            	    if(!deads.contains(strUp)) {
+                        tmp.add(strUp);
+                    }
+                }
+            }
+            level++;
+            begin = end; //begin负责走整个循环, 相当于begin先走, begin走完一层, begin换为end的值, 然后从end开始往回走一层, 以此类推
+            end = tmp; //end保存每层产生的新值
+        }
+        return -1;
+    }
 }
