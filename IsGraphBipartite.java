@@ -84,4 +84,32 @@ class Solution {
 
     If it hasn't been colored, use a color to color it. Then use the other color to color all its adjacent nodes (DFS).
     If it has been colored, check if the current color is the same as the color that is going to be used to color it.*/
+ 
+    //bfs解
+    public boolean isBipartite(int[][] graph) {
+        if(graph == null || graph.length == 0) {
+            return false;
+        }
+        
+        int[] color = new int[graph.length];
+        Queue<Integer> queue = new LinkedList<>();
+        for(int i = 0; i < graph.length; i++) {
+            if (graph[i].length != 0 && color[i] == 0) { //[]不访问, 值为0的访问(值为0说明之前扫过的点没有连接过这个点)
+                color[i] = 1; //第一个点初始化, 之后弹出的点就不可能是0了
+                queue.offer(i);
+                while(!queue.isEmpty()) {
+                    int cur = queue.poll();
+                    for(int index : graph[cur]) {
+                        if(color[index] == 0) { //没给过颜色的给相反颜色
+                            color[index] = -color[cur];
+                            queue.offer(index);
+                        } else if(color[index] == color[cur]) { //给过颜色的判断颜色是否相反
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }
