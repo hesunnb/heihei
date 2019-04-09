@@ -44,11 +44,9 @@ class Solution {
         }
         
         Queue<String> queue= new LinkedList<>();
-        Set<String> deads = new HashSet<>(new ArrayList(Arrays.asList(deadends)));
-        Set<String> visited = new HashSet<>();
+        Set<String> deads = new HashSet<>(Arrays.asList(deadends));
         
         queue.offer("0000");
-        visited.add("0000");
         int level = 0;
         while(!queue.isEmpty()) { //从"0000"出发, 然后向两边走
             int size = queue.size();
@@ -57,6 +55,7 @@ class Solution {
                 if(deads.contains(str)) {
             	    continue;
                 }
+                deads.add(str); //把访问过的点都加入到deads里面
                 if(target.equals(str)) {
                     return level;
                 }
@@ -65,13 +64,11 @@ class Solution {
                     //正序产生的结果
             	    String strUp = str.substring(0, j) + (str.charAt(j) == '0' ? 9 : str.charAt(j) - '0' - 1) + str.substring(j + 1);
                     //倒序产生的结果
-            	    if(!deads.contains(strDown) && !visited.contains(strDown)) {
+            	    if(!deads.contains(strDown)) {
             	        queue.offer(strDown);
-            	        visited.add(strDown);
             	    }
-            	    if(!deads.contains(strUp) && !visited.contains(strUp)) {
+            	    if(!deads.contains(strUp)) {
                         queue.offer(strUp);
-                        visited.add(strUp);
                     }
                 }	
             }
