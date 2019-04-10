@@ -1,7 +1,7 @@
 /*There are n cities connected by m flights. Each fight starts from city u and arrives at v with a price w.
 
-Now given all the cities and flights, together with starting city src and the destination dst, your task is to find the cheapest price from 
-src to dst with up to k stops. If there is no such route, output -1.
+Now given all the cities and flights, together with starting city src and the destination dst, your task is to find the cheapest price 
+from src to dst with up to k stops. If there is no such route, output -1.
 
 Example 1:
 Input: 
@@ -61,7 +61,7 @@ class Solution {
             //O(E+V)的解释就是0={1=1, 6=300, 7=350}, key就是O(V), value就是O(E), 总共就是O(E+V)
         }
         
-        Queue<int[]> pq = new PriorityQueue<>(new PriceComparator());
+        Queue<int[]> pq = new PriorityQueue<>((x, y) -> x[0] - y[0]); //小到大排序
         pq.add(new int[] {0, src, k + 1}); //这里是k + 1
         while (!pq.isEmpty()) {
             int[] top = pq.poll();
@@ -71,20 +71,14 @@ class Solution {
             if (city == dst) { //先判断到没到目标地点, 然后再去往后走
                 return price;
             }
-            if (stops > 0) {
-                Map<Integer, Integer> adj = prices.getOrDefault(city, new HashMap<>()); //拿出city的所有邻接点
+            if (stops > 0 && prices.containsKey(city)) { //这个地方要判断prices存不存在, 因为有向图中有的点是终点, 没有任何出度, 
+                //所以统计prices的时候是不会加入这些终端点的, 但是这些终端点会被加入到队列, 所以弹出之后要判断prices存不存在
+                Map<Integer, Integer> adj = prices.get(city); //拿出city的所有邻接点
                 for (int a : adj.keySet()) {
                     pq.add(new int[] {price + adj.get(a), a, stops - 1}); //每一个邻接点的可能性和price结果, 放入队列
                 }
             }
         }
         return -1;
-    }
-    
-    class PriceComparator implements Comparator<int[]> {
-        @Override
-        public int compare(int[] a, int[] b) {
-            return a[0] - b[0]; //小到大排序
-        }
     }
 }
