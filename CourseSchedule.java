@@ -56,7 +56,8 @@ class Solution {
         while(queue.size() != 0) {
             int course = queue.poll();
             count++; //弹出课, 加数量
-            if(map.containsKey(course)) {
+            if(map.containsKey(course)) { //要看包不包含, 因为最开始有的课不作为先决条件, 那么他们没有出度, 所以map中没有这些课, 见lintcode
+                //拓扑排序图
                 for(int i : map.get(course)) { //减去邻接点的入度数
                     inDegree[i]--;
                     if(inDegree[i] == 0) { //入度为0加入队列
