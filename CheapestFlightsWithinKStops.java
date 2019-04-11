@@ -47,8 +47,7 @@ class Solution {
     }*/
     //复杂度大体上是O(Elog(E)), E是边数, 因为有一部分路径会重复走; 空间是O(E+V)
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
-        
-        if(flights == null || n <= 0 || k >= n || src < 0 || dst > n) {
+        if(flights == null || n <= 0 || src < 0 || dst > n) {
             return -1;
         }
         
@@ -63,6 +62,7 @@ class Solution {
         
         Queue<int[]> pq = new PriorityQueue<>((x, y) -> x[0] - y[0]); //小到大排序
         pq.add(new int[] {0, src, k + 1}); //这里是k + 1
+        //boolean[] visited = new boolean[n]; 
         while (!pq.isEmpty()) {
             int[] top = pq.poll();
             int price = top[0];
@@ -71,6 +71,8 @@ class Solution {
             if (city == dst) { //先判断到没到目标地点, 然后再去往后走
                 return price;
             }
+            //if(visited[city]) continue;
+            //visited[city] = true;
             if (stops > 0 && prices.containsKey(city)) { //这个地方要判断prices存不存在, 因为有向图中有的点是终点, 没有任何出度, 
                 //所以统计prices的时候是不会加入这些终端点的, 但是这些终端点会被加入到队列, 所以弹出之后要判断prices存不存在
                 Map<Integer, Integer> adj = prices.get(city); //拿出city的所有邻接点
@@ -81,4 +83,12 @@ class Solution {
         }
         return -1;
     }
+    /*不能加visit的原因: testCase: 
+    4
+    [[0,1,1],[0,2,5],[1,2,1],[2,3,1]]
+    0
+    3
+    1
+    因为这道题限制了k stops, 所以按照这个testCase, 会走到2(这个2的剩余步数为0), 这个时候因为把2标记为visited了, 那么这个2就不会把3加入到队列,
+    后面的2剩余步数1的就无法访问, 就无法走到3, 所以这个visited适合不限制中途能走多少步, 只要能够走到终点的那种最短路径题目*/
 }
