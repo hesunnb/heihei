@@ -30,7 +30,9 @@ class Solution {
         
         PriorityQueue<int[]> pq = new PriorityQueue<>((x, y) -> x[0] - y[0]);
         pq.offer(new int[] {0, K});
-        boolean[] visited = new boolean[N + 1];
+        boolean[] visited = new boolean[N + 1]; //这个就是有一个visited数组, 每个点只要走一次, 因为这道题并没有中间步数的限制
+        //所以一旦走到一个点就必然是最小距离(因为优先级队列筛选), 并且也会向队列加入这个点的邻接点(有步数限制的因为没有步数从而不会加入这个点
+        //的邻接点)
         int result = -1;
         int count = 0;
         while(!pq.isEmpty()) {
@@ -41,7 +43,7 @@ class Solution {
                 continue;
             }
             visited[curNode] = true;
-            result = curDist;
+            result = curDist; //每弹出一个点就更新一下result, 因为pq按照dist排序, 所以最后一个弹出的有效点就是整个网络最后能够到达的点
             count++;
             if(map.containsKey(curNode)) {
                 Map<Integer, Integer> adj = map.get(curNode);
@@ -50,6 +52,6 @@ class Solution {
                 }
             }
         }
-        return count == N ? result : -1;
+        return count == N ? result : -1; //因为每个点只访问一次, 所以队列弹出的点就是N
     }
 }
