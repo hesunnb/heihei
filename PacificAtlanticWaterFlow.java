@@ -25,6 +25,7 @@ Return:
 [[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]] (positions with parentheses in above matrix).*/
 
 class Solution {
+    int[][] dir = new int[][] {{-1,0},{1,0},{0,-1},{0,1}};
     public List<int[]> pacificAtlantic(int[][] matrix) {
         
         List<int[]> result = new ArrayList<>();
@@ -45,7 +46,7 @@ class Solution {
     }
     
     public boolean helper(boolean[] left, boolean[] right, int x, int y, int[][] matrix, boolean[][] canReach) {
-		if(canReach[x][y]) {
+	if(canReach[x][y]) {
             return true;
         }
         if(x == 0 || y == 0) {
@@ -58,39 +59,19 @@ class Solution {
             return true;
         }
         int tmp = matrix[x][y];
-        if(x - 1 >= 0 && matrix[x - 1][y] <= matrix[x][y]) {
-        	matrix[x][y] = Integer.MAX_VALUE;
-        	if(helper(left, right, x - 1, y, matrix, canReach)) {
-        		matrix[x][y] = tmp;
-        		return true;
-        	}
-        	matrix[x][y] = tmp;
-        }
-        if(y - 1 >= 0 && matrix[x][y - 1] <= matrix[x][y]) {
-        	matrix[x][y] = Integer.MAX_VALUE;
-        	if(helper(left, right, x, y - 1, matrix, canReach)) {
-        		matrix[x][y] = tmp;
-        		return true;
-        	}
-        	matrix[x][y] = tmp;
-        }
-        if(x + 1 < matrix.length && matrix[x + 1][y] <= matrix[x][y]) {
-        	matrix[x][y] = Integer.MAX_VALUE;
-        	if(helper(left, right, x + 1, y, matrix, canReach)) {
-        		matrix[x][y] = tmp;
-        		return true;
-        	}
-        	matrix[x][y] = tmp;
-        }
-        if(y + 1 < matrix[0].length && matrix[x][y + 1] <= matrix[x][y]) {
-        	matrix[x][y] = Integer.MAX_VALUE;
-        	if(helper(left, right, x, y + 1, matrix, canReach)) {
-        		matrix[x][y] = tmp;
-        		return true;
-        	}
-        	matrix[x][y] = tmp;
+        for(int[] d : dir) {
+            int nextX = x + d[0];
+            int nextY = y + d[1];
+            if(nextX >= 0 && nextX < matrix.length && nextY >= 0 && nextY < matrix[0].length && matrix[nextX][nextY] <= matrix[x][y]) {
+                matrix[x][y] = Integer.MAX_VALUE;
+                if(helper(left, right, nextX, nextY, matrix, canReach)) {
+                    matrix[x][y] = tmp;
+                    return true;
+                }
+            }
+            matrix[x][y] = tmp;
         }
         matrix[x][y] = tmp;
         return false;
-	}
+    }
 }
