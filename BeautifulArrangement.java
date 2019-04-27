@@ -32,7 +32,34 @@ N is a positive integer and will not exceed 15.*/
 
 class Solution {
     
+    //不用产生所有序列, pos是当前的位置(题中的ith), i + 1是每次放到pos位置的值, used来标记有没有用过, 扫描就变成O(1)了, 比list快
+    //testCase: 用1,2,3想就行
+    int count = 0;
+    public int countArrangement(int N) {
+        if(N <= 0) {
+            return 0;
+        }
+        
+        helper(1, N, new int[N]);
+        return count;
+    }
     
+    public void helper(int pos, int N, int[] used) {
+        if(pos > N) {
+            count++;
+            return;
+        }
+        
+        for(int i = 0; i < N; i++) {
+            if(used[i] == 0 && ((i + 1) % pos == 0 || pos % (i + 1) == 0)) {
+                used[i] = 1;
+                helper(pos + 1, N, used);
+                used[i] = 0;
+            }
+        }
+    }
+    
+ 
     //(own), 产生了数组判断, permutation的方法
     int count = 0;
     public int countArrangement(int N) {
