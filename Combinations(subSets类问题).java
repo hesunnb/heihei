@@ -14,6 +14,31 @@ If n = 4 and k = 2, a solution is:
 
 public class Solution {
 
+    public List<List<Integer>> combine(int n, int k) {
+        
+        List<List<Integer>> result = new ArrayList<>();
+        if(n <= 0 || k <= 0 || k > n) {
+            return result;
+        }
+        
+        helper(result, new ArrayList<>(), n, k, 0);
+        return result;
+    }
+    
+    public void helper(List<List<Integer>> result, List<Integer> list, int n, int k, int pos) {
+        if(list.size() == k) {
+            result.add(new ArrayList<>(list));
+            return;
+        }
+        
+        for(int i = pos; i < n; i++) {
+            list.add(i + 1);
+            helper(result, list, n, k, i + 1);
+            list.remove(list.size() - 1);
+        }
+    }
+  
+  
     //这个就是找规定长度的子集, 方法是subSets那道题的
     public List<List<Integer>> combine(int n, int k) {
         
