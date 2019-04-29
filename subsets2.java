@@ -20,6 +20,32 @@ If S = [1,2,2], a solution is:
 */
 
 class Solution {
+    
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if(nums == null || nums.length == 0) {
+            return result;
+        }
+        
+        Arrays.sort(nums);
+        helper(result, new ArrayList<>(), nums, 0);
+        return result;
+    }
+    
+    public void helper(List<List<Integer>> result, List<Integer> list, int[] nums, int pos) {
+        
+        result.add(new ArrayList<>(list));
+        for(int i = pos; i < nums.length; i++) {
+            if(i != pos && nums[i] == nums[i - 1]) { //去个重即可, 注意是continue
+                continue;
+            }
+	        list.add(nums[i]);
+            helper(result, list, nums, i + 1);
+	        list.remove(list.size() - 1);
+        }
+    }
+    
+    
     /**
      * @param S: A set of numbers.
      * @return: A list of lists. All valid subsets.
