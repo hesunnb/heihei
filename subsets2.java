@@ -39,9 +39,9 @@ class Solution {
             if(i != pos && nums[i] == nums[i - 1]) { //去个重即可, 注意是continue
                 continue;
             }
-	        list.add(nums[i]);
+	    list.add(nums[i]);
             helper(result, list, nums, i + 1);
-	        list.remove(list.size() - 1);
+	    list.remove(list.size() - 1);
         }
     }
     
