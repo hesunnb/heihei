@@ -52,4 +52,39 @@ public class Solution {
             path.remove(path.size() - 1); //把最后一个元素卸掉, 准备添加下一个元素
         }
     }
+  
+  
+    //(own)
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        if(candidates == null || candidates.length == 0) {
+            return result;
+        }
+        
+        Arrays.sort(candidates);
+        helper(result, new ArrayList<>(), candidates, target, 0, 0);
+        return result;
+    }
+    
+    public void helper(List<List<Integer>> result, List<Integer> list, int[] candidates, int target, int sum, int pos) {
+        
+        for(int i = pos; i < candidates.length; i++) {
+            if (i != pos && candidates[i] == candidates[i - 1]) {
+                continue;
+            }
+            sum += candidates[i];
+            list.add(candidates[i]);
+            if(sum == target) {
+                result.add(new ArrayList<>(list));
+                list.remove(list.size() - 1);
+                return;
+            } else if(sum > target) {
+                list.remove(list.size() - 1);
+                return;
+            } else {
+                helper(result, list, candidates, target, sum, i + 1);
+                sum -= list.remove(list.size() - 1);
+            }
+        }
+    }
 }
