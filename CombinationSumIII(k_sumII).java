@@ -19,6 +19,41 @@ Output:
 [[1,2,6], [1,3,5], [2,3,4]]*/
 
 public class Solution {
+    
+    //(own)非常酷
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> result = new ArrayList<>();
+        if(k <= 0 || n <= 0) {
+            return result;
+        }
+        
+        helper(result, new ArrayList<>(), k, n, 0, 0);
+        return result;
+    }
+    
+    public void helper(List<List<Integer>> result, List<Integer> list, int k, int n, int sum, int pos) {
+        
+        for(int i = pos; i < 9; i++) {
+            if(list.size() >= k) {
+                break;
+            }
+            list.add(i + 1);
+            sum += i + 1;
+            if(sum == n && list.size() == k) {
+                result.add(new ArrayList<>(list));
+                list.remove(list.size() - 1);
+                return;
+            } else if(sum > n) {
+                list.remove(list.size() - 1);
+                return;
+            } else {
+                helper(result, list, k, n, sum, i + 1);
+                sum -= list.remove(list.size() - 1);
+            }
+        }
+    }
+    
+    
     public List<List<Integer>> combinationSum3(int k, int n) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         
