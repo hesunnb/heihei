@@ -63,7 +63,8 @@ class Solution {
             int index = k / factor; //index说明从头开始有几个数进行了全排列
             k = k % factor; //剩下的余数, 除了已经挑出来的数, 在剩下的组合中按数序要找第余数+1个数
             for(int j = 0; j < n; j++) {
-                if(visit[j] == false) { //visit[i]已经为真的是已经挑出去的数了, 所以每次都要在visit[i]为假的地方判断index, visit[i]为假的是有效位
+                if(visit[j] == false) { //visit[i]已经为真的是已经挑出去的数了, 所以每次都要在visit[i]为假的地方判断index, 
+                    //visit[i]为假的是有效位
                     if(index == 0) {
                         visit[j] = true;
                         sb.append((char)('0' + j + 1)); //j是目前有效位的坐标, +1就变成了值
