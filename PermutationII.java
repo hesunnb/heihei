@@ -11,6 +11,8 @@ For numbers [1,2,2] the unique permutations are:
 */
 
 class Solution {
+ 
+    //1,1,2就可以看出递归过程
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         if(nums == null || nums.length == 0) {
