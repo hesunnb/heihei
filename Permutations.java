@@ -15,6 +15,37 @@ For example,
 
 public class Solution {
     
+    //(own)visited大法, 比用contains快多了
+    public List<List<Integer>> permute(int[] nums) {
+        
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if(nums == null || nums.length == 0) {
+            return result;
+        }
+        
+        Arrays.sort(nums);
+        helper(result, new ArrayList<>(), new boolean[nums.length], nums);
+        return result;
+    }
+    
+    public void helper(List<List<Integer>> result, List<Integer> list, boolean[] visited, int[] nums) {
+        if(list.size() == nums.length) {
+            result.add(new ArrayList<>(list));
+        }
+        
+        for(int i = 0; i < nums.length; i++) {
+            if(visited[i]) {
+                continue;
+            }
+            list.add(nums[i]);
+            visited[i] = true;
+            helper(result, list, visited, nums);
+            list.remove(list.size() - 1);
+            visited[i] = false;
+        }
+    }
+  
+  
     //此题没有强调字典序, 所以直接按给的数组得到结果就可以了, 复杂度: O(n!) //应该大于O(n!), O(n * n!), 实际上还要更大
     //如要要按字典序给数组排下序就可以了, O(nlogn)对于O(n!)也不多
     public List<List<Integer>> permute(int[] nums) {
