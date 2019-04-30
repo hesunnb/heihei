@@ -7,6 +7,32 @@ Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].*/
 
 public class Solution {
     
+    public List<String> letterCombinations(String digits) {
+        
+        List<String> result = new ArrayList<>();
+        if(digits == null || digits.length() == 0) {
+            return result;
+        }
+        
+        String[] numbers = new String[] {"","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        helper(result, new StringBuilder(), numbers, digits, 0);
+        return result;
+    }
+    
+    public void helper(List<String> result, StringBuilder sb, String[] numbers, String digits, int pos) {
+        if(sb.length() == digits.length()) {
+            result.add(sb.toString());
+            return;
+        }
+        
+        int index = digits.charAt(pos) - '0' - 1;
+        for(int i = 0; i < numbers[index].length(); i++) {
+            sb.append(numbers[index].charAt(i));
+            helper(result, sb, numbers, digits, pos + 1);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+    }
+    
     //递归查找, 复杂度就是每个数字对应的字母盘的字母个数相乘, 比如"abc","def",就是O(3*3)
     public List<String> letterCombinations(String digits) {
         
