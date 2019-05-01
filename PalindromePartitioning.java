@@ -44,7 +44,7 @@ public class Solution {
     
     private boolean isPalindrome(String s, int start, int end) { //简化版的判断, 这道题默认就是没有空格, 没有","这些字符串, 
         //比validPalindrome要简化
-        while(start < end) {
+        while(start <= end) {
             if(s.charAt(start) != s.charAt(end)) {
                 return false;
             }
