@@ -29,7 +29,7 @@ class Solution {
       */
       
     // Use Linked List to record usage
-    //思路和下面九章的一样, 就是把递归和要找的数存好了, 然后直接去取, 时间就是O(n), 费点儿空间
+    //思路和下面九章的一样, 就是把递归和要找的数存好了, 然后直接去取, 时间不是O(n), 是O(n^2), 费点儿空间
     public String getPermutation(int n, int k) {
         
         List<Integer> num = new LinkedList<Integer>();
@@ -49,6 +49,7 @@ class Solution {
     }  
     
     
+    //还是这个方法更适合中式思维
     public String getPermutation(int n, int k) {
         
         StringBuilder sb = new StringBuilder();
