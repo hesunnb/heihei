@@ -16,6 +16,51 @@ word = "SEE", -> returns true,
 word = "ABCB", -> returns false.*/
 
 public class Solution {
+  
+    //循环写递归法
+    int[][] dirs = new int[][] {{-1,0},{1,0},{0,-1},{0,1}};
+    public boolean exist(char[][] board, String word) {
+        if(board == null || board.length == 0 || board[0].length == 0 || word == null || word.length() == 0) {
+            return false;
+        }
+        
+        for(int i = 0; i < board.length; i++) {
+            for(int j = 0; j < board[0].length; j++) {
+                if(board[i][j] == word.charAt(0)) {
+                    if(helper(board, word, i, j, 0)) {
+                        return true;
+                    } 
+                }
+            }
+        }
+        
+        return false;
+    }
+    
+    public boolean helper(char[][] board, String word, int x, int y, int pos) {
+        if(pos == word.length()) {
+            return true;
+        }
+        
+        if(x < 0 || x >= board.length || y < 0 || y >= board[0].length || board[x][y] == ' ' || board[x][y] != word.charAt(pos)) {
+            return false;
+        }
+        
+        char tmp = board[x][y];
+        board[x][y] = ' ';
+        for(int i = 0; i < dirs.length; i++) {
+            int nextX = x + dirs[i][0];
+            int nextY = y + dirs[i][1];
+            if(helper(board, word, nextX, nextY, pos + 1)) {
+                board[x][y] = tmp;
+                return true;
+            }
+        }
+        board[x][y] = tmp;
+        return false;
+    }
+  
+  
     public boolean exist(char[][] board, String word) {
         // write your code here
         
