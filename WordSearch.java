@@ -17,7 +17,7 @@ word = "ABCB", -> returns false.*/
 
 public class Solution {
   
-    //循环写递归法
+    //(onw)循环写递归法, 就是用dirs
     int[][] dirs = new int[][] {{-1,0},{1,0},{0,-1},{0,1}};
     public boolean exist(char[][] board, String word) {
         if(board == null || board.length == 0 || board[0].length == 0 || word == null || word.length() == 0) {
