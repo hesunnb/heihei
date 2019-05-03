@@ -27,6 +27,42 @@ import java.math.BigInteger;
 
 class Solution {
     
+    //SplitArrayIntoFibonacciSequence的模板解法
+    public boolean isAdditiveNumber(String S) {
+        if(S == null || S.length() == 0) {
+            return false;
+        }
+        
+        return helper(S, new ArrayList<>(), 0);
+    }
+    
+    public boolean helper(String S, List<Long> result, int index) {
+        if(index == S.length() && result.size() >= 3) { //因为Fibonacci数列有效添加进入的数字可以多于3个, 所以要>=3
+            return true;
+        }
+        for(int i = index; i < S.length(); i++) {
+            if(S.charAt(index) == '0' && i > index) { //如果是以0开头, 那么就只能切出'0', 0以后的就不能切了
+                break;
+            }
+            if(i + 1 - index > S.length() / 2) { //防止截取的字符串比Long的最大值还大
+                return false;
+            }
+            long num = Long.parseLong(S.substring(index, i + 1));
+            if(result.size() >= 2 && num > result.get(result.size() - 1) + result.get(result.size() - 2)) { //此处一定要用 num > 不能
+                break; //用num !=, 比如"123456579", [123,456,579], 当走到123, 456, 子串切到5的时候, 5不大于123+456, 所以还会继续循环
+            } //切出57, 最后到579满足条件; 如果要是用!=, 那么5!=123+456, 那么直接break了, 579这个有效数字就没有切到, 就错了
+            if(result.size() < 2 || num == result.get(result.size() - 1) + result.get(result.size() - 2)) {
+                result.add(num);
+                if(helper(S, result, i + 1)) {
+                    return true;
+                }
+                result.remove(result.size() - 1);
+            }
+        }
+        return false;
+    }
+	
+	
     /*The idea is quite straight forward. Generate the first and second of the sequence, check if the rest of the string match the sum
     recursively. i and j are length of the first and second number. i should in the range of [0, n/2]. The length of their sum should 
     >=max(i,j)*/
