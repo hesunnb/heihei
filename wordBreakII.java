@@ -38,6 +38,8 @@ Output:
 */
 
 class Solution {
+  
+    //使用记忆化搜索, 正常搜索会造成TLE, 用map存住之前生成的结果, 然后拿回来直接使用
     public List<String> wordBreak(String s, List<String> wordDict) {
         
         List<String> result = new ArrayList<>();
