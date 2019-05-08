@@ -7,6 +7,6 @@
 {apple=[apple]}
 {apple=[apple], penapple=[pen apple]}
 {apple=[apple], penapple=[pen apple], applepenapple=[apple pen apple, applepen apple]}
-{apple=[apple], pineapplepenapple=[pine apple pen apple, pine applepen apple, pineapple pen apple], penapple=[pen apple], 
-applepenapple=[apple pen apple, applepen apple]}
+{apple=[apple], pineapplepenapple=[pine apple pen apple, pine applepen apple, pineapple pen apple], 
+penapple=[pen apple], applepenapple=[apple pen apple, applepen apple]}
 */
