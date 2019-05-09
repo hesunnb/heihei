@@ -65,7 +65,7 @@ class Solution {
             }
             if(board[3 * (x / 3) + i / 3][3 * (y / 3) + i % 3] != '.' && 
                board[3 * (x / 3) + i / 3][3 * (y / 3) + i % 3] == c) {
-                return false;
+               return false;
             }
         }
         return true;
