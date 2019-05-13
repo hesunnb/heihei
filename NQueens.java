@@ -57,7 +57,7 @@ class Solution {
             return;
         }
         
-        for(int i = 0; i < n; i++) { //每次扫一行, 一行一行的扫
+        for(int i = 0; i < n; i++) { //每次扫一列, 一列一列的扫
             if(isValid(row, index, i)) { //横坐标是index, 纵坐标是i这个点如果有效
                 row[index] = i; //在横坐标的地方记录纵坐标, 用一个数组完成二维数组记录有效位置的功能
                 solveNQueensCore(row, index + 1, n, result); //当前行如果该位置有效, 就去找下一行的有效位置(下一行就是index + 1)
