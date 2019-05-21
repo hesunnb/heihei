@@ -12,6 +12,8 @@ Given [3, 8, 4], return 8.
 */
 
 public class Solution {
+    
+    //状态方程: dp[i] = max(dp[i-1], dp[i-2] + A[i-1])
     public int rob(int[] nums) {
 
         if(nums == null || nums.length == 0) {
