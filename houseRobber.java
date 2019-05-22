@@ -31,6 +31,22 @@ public class Solution {
         return result[nums.length];
     }
     
+    //考虑到dp[i]的计算只涉及到dp[i-1]和dp[i-2], 因此可以O(1)空间解决. 运用滚动数组减少空间
+    public int rob(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        int[] result = new int[2];
+        result[0] = 0;
+        result[1] = nums[0];
+        
+        for(int i = 2; i <= nums.length; i++) {
+            result[i % 2] = Math.max(result[(i-1) % 2], result[(i-2) % 2] + nums[i - 1]);
+        }
+        
+        return Math.max(result[0], result[1]);
+    }
     
     public int rob(int[] nums) {
 
