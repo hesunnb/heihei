@@ -55,3 +55,6 @@ Collections.sort(d, (a,b) -> a.length() != b.length() ? -Integer.compare(a.lengt
 六:
 PriorityQueue的时间复杂度：remove()方法和add()方法时间复杂度为O(logn), 
 remove(Object obj)和contains()方法需要O(n)时间复杂度, 取队头则需要O(1)时间
+
+七:
+二维数组排序: Arrays.sort(pairs, (a,b) -> (a[0] - b[0]));
