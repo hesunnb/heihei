@@ -69,9 +69,9 @@ class Solution {
             return;
         }
         
-        if(Math.abs(S - curSum) <= sums[pos]) { //这里的意思就是, 如果S和curSum的差值要是大于sums[pos], 即从pos开始的后n项和, 就没有必要递归下去
-            //了, 比如[1,2,3,4,5] target=3举例, sums是[15,14,12,9,5], 1+2+3+4=10了, abs(3-10)=7, 7大于5, 说明后面的n项和无论是+5, 还是-5, 
-            //都无法弥补这个差值7, 也就是10+5, 10-5都无法囊括这个target值3, 那么向下递归就不可能curSum == S, 所以就提前结束递归
+        if(Math.abs(S - curSum) <= sums[pos]) { //这里的意思就是, 如果S和curSum的差值要是大于sums[pos], 即从pos开始的后n项和, 就没有必要递归
+            //下去了, 比如[1,2,3,4,5] target=3举例, sums是[15,14,12,9,5], 1+2+3+4=10了, abs(3-10)=7, 7大于5, 说明后面的n项和无论是+5, 
+            //还是-5, 都无法弥补这个差值7, 也就是10+5, 10-5都无法囊括这个target值3, 那么向下递归就不可能curSum == S, 所以就提前结束递归
             helper(nums, sums, S, pos + 1, curSum + nums[pos]);
             helper(nums, sums, S, pos + 1, curSum - nums[pos]);
         }
