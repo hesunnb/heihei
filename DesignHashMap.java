@@ -39,13 +39,14 @@ class MyHashMap {
     /** value will always be non-negative. */
     public void put(int key, int value) {
         int idx = hash(key);
-        for (Node x = nodes[idx]; x != null; x = x.next) {
+        for (Node x = nodes[idx]; x != null; x = x.next) { //从链表头往下找
             if (x.key == key) {
                 x.value = value;
                 return;
             }
         }
-        nodes[idx] = new Node(key, value, nodes[idx]);
+        nodes[idx] = new Node(key, value, nodes[idx]); //每一次在链表头插入新元素, 把其他元素往下挤, 
+        //这句翻译过来就是: new Node的下一个节点是现在的链表头nodes[idx], 然后把new Node的地址作为新的链表头
         size++;
         
         double loadFactor = (double) size / nodes.length;
@@ -68,7 +69,7 @@ class MyHashMap {
     /** Removes the mapping of the specified value key if this map contains a mapping for the key */
     public void remove(int key) {
         int idx = hash(key);
-        Node pre = new Node(-1, -1, nodes[idx]); // sentinal node before list head
+        Node pre = new Node(-1, -1, nodes[idx]); // sentinal node before list head, 虚拟节点
         for (Node prev = pre; prev.next != null; prev = prev.next) {
             if (prev.next.key == key) {
                 prev.next = prev.next.next;
@@ -87,8 +88,8 @@ class MyHashMap {
         Node[] tmp = nodes;
         nodes = new Node[tmp.length * 2];
         size = 0;
-        for (Node head: tmp) {
-            for (Node x = head; x != null; x = x.next) {
+        for (Node head : tmp) { //遍历表头
+            for (Node x = head; x != null; x = x.next) { //遍历每个链表
                 put(x.key, x.value);
             }
         }
