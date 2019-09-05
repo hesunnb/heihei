@@ -68,24 +68,24 @@ class Solution {
     }
 
     List<List<Integer>> subsetsHelper(int[] nums, int index) {
-		List<List<Integer>> allsubsets;
-		if (nums.length == index) {// Base case - add empty set
-			allsubsets = new ArrayList<List<Integer>>();
-			allsubsets.add(new ArrayList<Integer>()); // Empty set
-		} else {
-			allsubsets = subsetsHelper(nums, index + 1);
-			int item = nums[index]; //每次要新加入的元素
-			List<List<Integer>> moresubsets = new ArrayList<List<Integer>>();
-			for (List<Integer> subset : allsubsets) { //遍历allsubsets
-				List<Integer> newsubset = new ArrayList<Integer>();
-				newsubset.addAll(subset); //先加入subset的元素
-				newsubset.add(item); //再加入新的元素
-				moresubsets.add(newsubset); //把本轮产生的新结果保留
-			}
-			allsubsets.addAll(moresubsets); //加入本轮产生的所有新结果
-		}
-		return allsubsets;
+	List<List<Integer>> allsubsets;
+	if (nums.length == index) {// Base case - add empty set
+	    allsubsets = new ArrayList<List<Integer>>();
+	    allsubsets.add(new ArrayList<Integer>()); // Empty set
+	} else {
+	    allsubsets = subsetsHelper(nums, index + 1);
+	    int item = nums[index]; //每次要新加入的元素
+	    List<List<Integer>> moresubsets = new ArrayList<List<Integer>>();
+	    for (List<Integer> subset : allsubsets) { //遍历allsubsets
+		List<Integer> newsubset = new ArrayList<Integer>();
+		newsubset.addAll(subset); //先加入subset的元素
+		newsubset.add(item); //再加入新的元素
+		moresubsets.add(newsubset); //把本轮产生的新结果保留
+	    }
+	    allsubsets.addAll(moresubsets); //加入本轮产生的所有新结果
 	}
+	return allsubsets;
+    }
     
     //非递归的方法,共0~7个数
     //0 ->000 -> []
