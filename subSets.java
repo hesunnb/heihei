@@ -29,8 +29,6 @@ class Solution {
      */
      
     //时间复杂度: O(n * 2^(n - 1)), 每个数会出现2^(n - 1)次, 总共有n个数
-    //比如1和2的子集是[],[1],[2],[1,2]; 此时加入一个3, 只需要在前面这些子集中分别加入3, 然后再与[],[1],[2],[1,2]这4个子集合并, 
-    //便会得到新的子集, 从而得到上述的复杂度
     public List<List<Integer>> subsets(int[] nums) {
         // write your code here
         //递归方法：递归树
@@ -57,6 +55,37 @@ class Solution {
         }
     }
     
+    //源自于Crackbook的方法, 比如1和2的子集是[],[1],[2],[1,2]; 此时加入一个3, 只需要在前面这些子集中分别加入3, 然后再与[],[1],[2],[1,2]
+    //这4个子集合并, 便会得到新的子集, 从而得到上述的复杂度; 就是这个算法的实现
+    public List<List<Integer>> subsets(int[] nums) {
+        // write your code here
+
+        if(nums == null || nums.length == 0) {
+            return new ArrayList<List<Integer>>();
+        }
+        
+        return subsetsHelper(nums, 0);
+    }
+
+    List<List<Integer>> subsetsHelper(int[] nums, int index) {
+		List<List<Integer>> allsubsets;
+		if (nums.length == index) {// Base case - add empty set
+			allsubsets = new ArrayList<List<Integer>>();
+			allsubsets.add(new ArrayList<Integer>()); // Empty set
+		} else {
+			allsubsets = subsetsHelper(nums, index + 1);
+			int item = nums[index]; //每次要新加入的元素
+			List<List<Integer>> moresubsets = new ArrayList<List<Integer>>();
+			for (List<Integer> subset : allsubsets) { //遍历allsubsets
+				List<Integer> newsubset = new ArrayList<Integer>();
+				newsubset.addAll(subset); //先加入subset的元素
+				newsubset.add(item); //再加入新的元素
+				moresubsets.add(newsubset); //把本轮产生的新结果保留
+			}
+			allsubsets.addAll(moresubsets); //加入本轮产生的所有新结果
+		}
+		return allsubsets;
+	}
     
     //非递归的方法,共0~7个数
     //0 ->000 -> []
