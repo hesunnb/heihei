@@ -41,8 +41,7 @@ class Solution {
                 continue;
             }
             
-            if(!visit[i]) { //如果i位置的元素没有被访问过, 就向list里面填入值, 比如1,1,2,2,3,2这种情况, 最后一个2是从头开始遍历1,1,2,2都访问
-            //过, 到第三个2没有访问过, 所以加入到list里面
+            if(!visit[i]) {
                 visit[i] = true;
                 list.add(nums[i]);
                 permuteUniqueHelper(result, list, nums, visit);
