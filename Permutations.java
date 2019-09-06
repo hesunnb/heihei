@@ -47,52 +47,52 @@ public class Solution {
   
     //CrackBook的基于字符串的permutation, 还是感觉上面的好, 具体见书
     List<String> getPerms(String remainder) {
-		int len = remainder.length();
-		List<String> result = new ArrayList<String>();
+	int len = remainder.length();
+	List<String> result = new ArrayList<String>();
 
-		/* Base case. */
-		if (len == 0) {
-			result.add(""); // Be sure to return empty string!
-			return result;
-		}
-
-		for (int i = 0; i < len; i++) {
-			/* Remove char i and find permutations of remaining chars. */
-			String before = remainder.substring(0, i);
-			String after = remainder.substring(i + 1, len);
-			List<String> partials = getPerms(before + after);
-			System.out.println(len + " " + partials);
-			/* Prepend char i to each permutation. */
-			for (String s : partials) {
-				result.add(remainder.charAt(i) + s);
-				System.out.println(result);
-			}
-		}
-
-		return result;
+	/* Base case. */
+	if (len == 0) {
+	    result.add(""); // Be sure to return empty string!
+	    return result;
 	}
 
-    //另一种方法
-	List<String> getPerms2(String str) {
-		List<String> result = new ArrayList<String>();
-		getPerms2("", str, result);
-		return result;
+	for (int i = 0; i < len; i++) {
+	/* Remove char i and find permutations of remaining chars. */
+	    String before = remainder.substring(0, i);
+	    String after = remainder.substring(i + 1, len);
+	    List<String> partials = getPerms(before + after);
+	    //System.out.println(len + " " + partials);
+	    /* Prepend char i to each permutation. */
+	    for (String s : partials) {
+		result.add(remainder.charAt(i) + s);
+		//System.out.println(result);
+	    }
 	}
 
-	void getPerms2(String prefix, String remainder, List<String> result) {
-		if (remainder.length() == 0) {
-			result.add(prefix);
-		}
+	return result;
+    }
 
-		int len = remainder.length();
-		for (int i = 0; i < len; i++) {
-			String before = remainder.substring(0, i);
-			String after = remainder.substring(i + 1, len);
-			char c = remainder.charAt(i);
-			System.out.println(prefix + c + "   " + before + after);
-			getPerms2(prefix + c, before + after, result);
-		}
-	}  
+    //另一种方法, 送入prefix, prefix代表了最终结果, 见书
+    List<String> getPerms2(String str) {
+	List<String> result = new ArrayList<String>();
+	getPerms2("", str, result);
+	return result;
+    }
+
+    void getPerms2(String prefix, String remainder, List<String> result) {
+	if (remainder.length() == 0) {
+	    result.add(prefix);
+	}
+
+	int len = remainder.length();
+	for (int i = 0; i < len; i++) {
+	    String before = remainder.substring(0, i);
+	    String after = remainder.substring(i + 1, len);
+	    char c = remainder.charAt(i);
+	    //System.out.println(prefix + c + "   " + before + after);
+	    getPerms2(prefix + c, before + after, result);
+	}
+    }  
   
   
     //此题没有强调字典序, 所以直接按给的数组得到结果就可以了, 复杂度: O(n!) //应该大于O(n!), O(n * n!), 实际上还要更大
