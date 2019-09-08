@@ -32,7 +32,7 @@ class Solution {
         if(list.size() == nums.length) {
             result.add(new ArrayList(list));
             return;
-        }
+        } 
         
         for(int i = 0; i < nums.length; i++) {
             if(i != 0 && nums[i] == nums[i - 1] && !visit[i - 1]) { //这里的条件意思是i不等于0, 并且i处的值和它前面一位的值相等, 
