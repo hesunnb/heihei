@@ -61,7 +61,7 @@ public class Solution {
             sb.deleteCharAt(sb.length() - 1);
         }
         
-        if(right > 0 && right > left) {
+        if(right > 0 && right > left) { //right > 0不是必须的
             sb.append(")");
             helper(result, sb, left, right - 1);
             sb.deleteCharAt(sb.length() - 1);
