@@ -51,42 +51,42 @@ class Solution {
         }
     }
     
-    //CrackBook中的方法
-	List<String> printPerms(String s) { 
-		List<String> result = new ArrayList<String>();
-		HashMap<Character, Integer> map = buildFreqTable(s);
-		printPerms(map, "", s.length(), result);
-		return result;
-	}
+    // CrackBook中的方法
+    List<String> printPerms(String s) {
+        List<String> result = new ArrayList<String>();
+        HashMap<Character, Integer> map = buildFreqTable(s);
+        printPerms(map, "", s.length(), result);
+        return result;
+    }
 
-	HashMap<Character, Integer> buildFreqTable(String s) {
-		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-		for (char c : s.toCharArray()) {
-			if (!map.containsKey(c)) {
-				map.put(c, 0);
-			}
-			map.put(c, map.get(c) + 1);
-		}
-		return map;
-	}
+    HashMap<Character, Integer> buildFreqTable(String s) {
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        for (char c : s.toCharArray()) {
+            if (!map.containsKey(c)) {
+                map.put(c, 0);
+            }
+            map.put(c, map.get(c) + 1);
+        }
+        return map;
+    }
 
-	void printPerms(HashMap<Character, Integer> map, String prefix, int remaining, List<String> result) {
-		/* Base case. Permutation has been completed. */
-		if (remaining == 0) {
-			result.add(prefix);
-			return;
-		}
+    void printPerms(HashMap<Character, Integer> map, String prefix, int remaining, List<String> result) {
+        /* Base case. Permutation has been completed. */
+        if (remaining == 0) {
+            result.add(prefix);
+            return;
+        }
 
-		/* Try remaining letters for next char, and generate remaining permutations. */
-		for (Character c : map.keySet()) { //就跟用下标循环一样, 比如aabbc这个例子, c放回哈希表后, 是要找c的后一个
-			//字母, 然而没有, 已经到结尾了, 就像要去找i++一样, 所以退出循环, 不会死循环
-			int count = map.get(c);
-			if (count > 0) {
-				map.put(c, count - 1);
-				printPerms(map, prefix + c, remaining - 1, result);
-				map.put(c, count);
-				System.out.println(map);
-			}
-		}
-	}
+        /* Try remaining letters for next char, and generate remaining permutations. */
+        for (Character c : map.keySet()) { // 就跟用下标循环一样, 比如aabbc这个例子, c放回哈希表后, 是要找c的后一个
+            // 字母, 然而没有, 已经到结尾了, 就像要去找i++一样, 所以退出循环, 不会死循环
+            int count = map.get(c);
+            if (count > 0) {
+                map.put(c, count - 1);
+                printPerms(map, prefix + c, remaining - 1, result);
+                map.put(c, count);
+                System.out.println(map);
+            }
+        }
+    }
 }
