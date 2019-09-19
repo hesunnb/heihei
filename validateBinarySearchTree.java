@@ -62,6 +62,29 @@ public class Solution {
         return true;
     }
 
+    //按照Crack书的方法, 用int的包装类Integer就能完成第一个节点Integer.MIN_VALUE的判断功能
+    Integer lastvalue = null;
+    public boolean isValidBST(TreeNode root) {
+        // write your code here
+        if(root == null) {
+            return true;
+        }
+        //分为三步: 左是不是bst, 根的比较, 右是不是bst(左根右)
+        if(!isValidBST(root.left)) {
+            return false;    
+        }
+        if(lastvalue != null && lastvalue >= root.val) { //lastvalue至少要有值才能判断, 如果根是Integer.MIN_VALUE而lastvalue是
+            //null的时候, 是不会判断大小的
+            return false;
+        }
+        
+        lastvalue = root.val; //替换值，进行比较，看看是不是升序
+        if(!isValidBST(root.right)) {
+            return false;
+        }
+        return true;
+    }
+  
     //version1的小改版不用firstNode, 直接把lastvalue改为long就可以了
     long lastvalue = Long.MIN_VALUE;
     public boolean isValidBST(TreeNode root) {
