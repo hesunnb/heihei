@@ -34,6 +34,9 @@ Return false.
 public class Solution {
 
     //九章answer, 就是在求二叉树maxdepth的基础上判断一下左右子树的长度差, 没有用全局flag, 首选
+    //跟CrackBookInterview那本书的解法一样, 有一个地方就是What do we use for an error code? The height of a null tree is generally 
+    //defined to be -1, so that's not a great idea for an error code. Instead, we' ll use Integer.MIN_VALUE, 意思就是返回码不用-1, 用
+    //Integer.MIN_VALUE
     public boolean isBalanced(TreeNode root) {
         return maxDepth(root) != -1;
     }
