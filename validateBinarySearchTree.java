@@ -85,6 +85,34 @@ public class Solution {
         return true;
     }
   
+    /*Crack书的另一个方法, left.data < current.data < right.data for each node, 书上的例子:
+    We start with a range of (min = NULL, max = NULL), which the root obviously meets. (NULL indicates
+    that there is no min or max.) We then branch left, checking that these nodes are within the range ( min =
+    NULL, max = 20). Then, we branch right, checking that the nodes are within the range ( min = 20,
+    max = NULL).*/
+    public boolean isValidBST(TreeNode root) {
+        if(root == null) {
+            return true;
+        }
+        
+        return isValidBSTHelper(root, null, null);
+    }
+    
+    public boolean isValidBSTHelper(TreeNode root, Integer min, Integer max) {
+        if(root == null) {
+            return true;
+        }
+        
+        if(min != null && root.val <= min || max != null && root.val >= max) {
+            return false;
+        }
+        
+        if(!isValidBSTHelper(root.left, min, root.val) || !isValidBSTHelper(root.right, root.val, max)) {
+            return false;
+        }
+        return true;
+    }
+  
     //version1的小改版不用firstNode, 直接把lastvalue改为long就可以了
     long lastvalue = Long.MIN_VALUE;
     public boolean isValidBST(TreeNode root) {
