@@ -25,7 +25,7 @@ Topological sort could also be done via BFS.*/
 
 public class Solution {
     
-    //bfs解法:
+    //bfs解法: 复杂度: O(V + E)
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         if(prerequisites == null) { //numCourses < prerequisites.length并不能说明问题, prerequisites只是描述课程间的关系, 与
             //numCourses的大小无关
