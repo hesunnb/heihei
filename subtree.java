@@ -31,10 +31,8 @@ T1 = 2   3       T2 =    4
  * }
  */
 public class Solution {
-    /**
-     * @param T1, T2: The roots of binary tree.
-     * @return: True if T2 is a subtree of T1, or false.
-     */
+       
+    //空间: O(log(n) + log(m)), 原因是: n和m分别是T1和T2树的节点数, log(n)和log(m)其实就是T1和T2树的高度, 即递归开栈最多只能开到树的深度的栈
     public boolean isSubtree(TreeNode T1, TreeNode T2) {
         // write your code here
         if (T2 == null) { //null是任何树的子树
