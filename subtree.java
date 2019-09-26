@@ -31,7 +31,8 @@ T1 = 2   3       T2 =    4
  * }
  */
 public class Solution {
-       
+     
+    //时间: O (n + km), where k is the number of occurrences of T2's root in T1.
     //空间: O(log(n) + log(m)), 原因是: n和m分别是T1和T2树的节点数, log(n)和log(m)其实就是T1和T2树的高度, 即递归开栈最多只能开到树的深度的栈
     public boolean isSubtree(TreeNode T1, TreeNode T2) {
         // write your code here
