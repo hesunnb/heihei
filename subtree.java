@@ -65,4 +65,31 @@ public class Solution {
         }
         return isIdentical(a.left, b.left) && isIdentical(a.right, b.right);
     }
+       
+    
+    //solution2:
+    //t2是t1子树, 那么分别前序遍历两个树得到字符串, t2的字符串应该是t1的一个子串, 源于CrackBook
+    //O(n + m) time and O(n + m) space, where n and mare the number of nodes in T1 and T2, respectively.
+    public boolean isSubtree(TreeNode tl, TreeNode t2) {
+        StringBuilder string1 = new StringBuilder();
+        StringBuilder string2 = new StringBuilder();
+
+        getOrderString(tl, string1);
+        getOrderString(t2, string2);
+
+        return string1.indexOf(string2.toString()) != -1;
+    }
+
+    public void getOrderString(TreeNode node, StringBuilder sb) {
+        if (node == null) {
+            sb.append("X"); // Add null indicator, 一定要在字符串中加入null来确定树的形状
+            return;
+        }
+
+        sb.append("'" + node.val + "'" + " "); // Add root
+        /*这里要加个标识符, 一个testCase是比如第一个树是12一个节点, 第二个树是2一个节点, 
+        得出的string是: 12 XX, 2 XX, 返回true, 实际上应该是false*/
+        getOrderString(node.left, sb); // Add left
+        getOrderString(node.right, sb); // Add right
+    }
 }
