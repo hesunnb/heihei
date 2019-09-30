@@ -2,7 +2,8 @@
 
 Find the number of paths that sum to a given value.
 
-The path does not need to start or end at the root or a leaf, but it must go downwards (traveling only from parent nodes to child nodes).
+The path does not need to start or end at the root or a leaf, but it must go downwards (traveling only from parent nodes to child 
+nodes).
 
 The tree has no more than 1,000 nodes and the values are in the range -1,000,000 to 1,000,000.
 
@@ -28,6 +29,9 @@ Return 3. The paths that sum to 8 are:
 class Solution {
 
     //受subtree的启发, 从每一个节点出发向下走判断有没有和等于sum的某一段路径(注意不用到叶子节点)
+    /*Consider that node at depth d will be "touched" (via pathSumHelper) by d nodes above it.
+    In a balanced binary tree, d will be no more than approximately log N. Therefore, we know that with N
+    nodes in the tree, pathSumHelper will be called O(N log N) times. The runtime is O(N log N).*/
     public int pathSum(TreeNode root, int sum) {
         
         if(root == null) {
