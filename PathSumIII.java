@@ -61,6 +61,55 @@ class Solution {
     }
     
     
+    //CrackBook使用一个哈希表空间的更优解法:
+    /*The runtime for this algorithm is O(N), where N is the number of nodes in the tree. We know it is O(N)
+    because we travel to each node just once, doing 0(1) work each time. In a balanced tree, the space
+    complexity is O ( log N) due to the hash table. The space complexity can grow to 0( n) in an unbalanced
+    tree.*/
+    public int pathSum(TreeNode root, int sum) {
+        if(root == null) {
+            return 0;
+        }
+        
+        return pathSumHelper(root, sum, 0, new HashMap<Integer, Integer>());
+    }
+    
+    public int pathSumHelper(TreeNode root, int targetSum, int curSum, Map<Integer, Integer> map) {
+        
+        if(root == null) {
+            return 0; // Base case
+        }
+          
+        /* Count paths with sum ending at the current node. */
+        curSum += root.val;
+        int tmpSum = curSum - targetSum; //思路就是把每一步的sum都存到哈希表里, 然后看当前sum与以前历史的sum做差有没有targetSum
+        //有的话就说明找到了一个路径
+        int totalPath = map.getOrDefault(tmpSum, 0);
+        
+        /* If curSum equals targetSum, then one additional path starts at root.
+        Add in this path.*/
+        if(curSum == targetSum) {
+            totalPath++;
+        }
+        
+        /* Increment pathCount, recurse, then decrement pathCount. */
+        incrementHashTable(map, curSum, 1);
+        totalPath += pathSumHelper(root.left, targetSum, curSum, map);
+        totalPath += pathSumHelper(root.right, targetSum, curSum, map);
+        incrementHashTable(map, curSum, -1);
+        
+        return totalPath;
+    }
+    
+    public void incrementHashTable(Map<Integer, Integer> map, int key, int delta) {
+        int count = map.getOrDefault(key, 0) + delta;
+        if(count == 0) {
+            map.remove(key); //这个remove是一定要有的, 因为树的路径要求是从上到下, 回溯之后不存在的路径和就要删除
+        } else {
+            map.put(key, count);
+        }
+    }
+      
     //也是subtree的方法, discuss, 连加估计现场想不起来
     public int pathSum(TreeNode root, int sum) {
         if(root == null) {
