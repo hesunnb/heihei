@@ -97,7 +97,7 @@ class DinnerPlates {
     	unFullStack.add(index);
     	while(stacks.size() > 0 && stacks.get(stacks.size() - 1).isEmpty()) {
     		stacks.remove(stacks.size() - 1);
-    		unFullStack.pollLast(); 
+    	    unFullStack.pollLast(); 
     	}
     	return result;
     }
