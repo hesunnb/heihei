@@ -64,42 +64,43 @@ class DinnerPlates {
     List<Stack<Integer>> stacks = new ArrayList<>();
     TreeSet<Integer> unFullStack = new TreeSet<>();
     int capacity;
+
     public DinnerPlates(int capacity) {
         this.capacity = capacity;
     }
-    
+
     public void push(int val) {
-        if(unFullStack.isEmpty()) {
-        	stacks.add(new Stack());
-        	unFullStack.add(stacks.size() - 1);
+        if (unFullStack.isEmpty()) {
+            stacks.add(new Stack());
+            unFullStack.add(stacks.size() - 1);
         }
         Stack<Integer> stack = stacks.get(unFullStack.first());
         stack.push(val);
-        if(stack.size() == capacity) {
-        	unFullStack.pollFirst();
+        if (stack.size() == capacity) {
+            unFullStack.pollFirst();
         }
     }
-    
+
     public int pop() {
-    	return myPop(stacks.size() - 1);
+        return myPop(stacks.size() - 1);
     }
-    
+
     public int popAtStack(int index) {
-    	return myPop(index);
+        return myPop(index);
     }
-    
+
     public int myPop(int index) {
-    	if(index < 0 || index > stacks.size() - 1 || stacks.get(index).isEmpty()) {
+        if (index < 0 || index > stacks.size() - 1 || stacks.get(index).isEmpty()) {
             return -1;
         }
-    	Stack<Integer> stack = stacks.get(index);
-    	int result = stack.pop();
-    	unFullStack.add(index);
-    	while(stacks.size() > 0 && stacks.get(stacks.size() - 1).isEmpty()) {
-    		stacks.remove(stacks.size() - 1);
-    	    unFullStack.pollLast(); 
-    	}
-    	return result;
+        Stack<Integer> stack = stacks.get(index);
+        int result = stack.pop();
+        unFullStack.add(index);
+        while (stacks.size() > 0 && stacks.get(stacks.size() - 1).isEmpty()) {
+            stacks.remove(stacks.size() - 1);
+            unFullStack.pollLast();
+        }
+        return result;
     }
 }
 
