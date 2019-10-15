@@ -15,7 +15,7 @@ For example,
 
 public class Solution {
     
-    //(own)visited大法, 比用contains快多了
+    //(own)visited大法, 比用contains快多了, 复杂度: O(n * n!), 没有了list.contains这个O(n)
     public List<List<Integer>> permute(int[] nums) {
         
         List<List<Integer>> result = new ArrayList<List<Integer>>();
@@ -95,7 +95,8 @@ public class Solution {
     }  
   
   
-    //此题没有强调字典序, 所以直接按给的数组得到结果就可以了, 复杂度: O(n!) //应该大于O(n!), O(n * n!), 实际上还要更大
+    //此题没有强调字典序, 所以直接按给的数组得到结果就可以了, 复杂度: O(n^2 * n!)
+    //O(n^2 * n!): 总共有n!个结果数组, 每个数组的长度是n, 然后每个数组在add新元素的时候都要用list.contains(O(n))检查, 所以相乘就是这个结果
     //如要要按字典序给数组排下序就可以了, O(nlogn)对于O(n!)也不多
     public List<List<Integer>> permute(int[] nums) {
          
