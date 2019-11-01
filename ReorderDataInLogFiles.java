@@ -62,17 +62,17 @@ class Solution {
     //从大到小排序, 因为result要add(0, ...)
     class LetterLogComparator implements Comparator<LetterLog> {
         public int compare(LetterLog l1, LetterLog l2) {
-            for(int i = 1; i < Math.min(l1.strs.length, l2.strs.length); i++) {
-            	if(l2.strs[i].compareTo(l1.strs[i]) == 0) { //比较内容
-            		continue;
-            	} else {
-            		return l2.strs[i].compareTo(l1.strs[i]);
-            	}
+            for (int i = 1; i < Math.min(l1.strs.length, l2.strs.length); i++) {
+                if (l2.strs[i].compareTo(l1.strs[i]) == 0) { // 比较内容
+                    continue;
+                } else {
+                    return l2.strs[i].compareTo(l1.strs[i]);
+                }
             }
-            if(l2.strs.length - l1.strs.length == 0) { //比较identifier
+            if (l2.strs.length - l1.strs.length == 0) { // 比较identifier
                 return l2.strs[0].compareTo(l1.strs[0]);
             }
-            return l2.strs.length - l1.strs.length; //比较长度
+            return l2.strs.length - l1.strs.length; // 比较长度
         }
     }
     /*Input:
