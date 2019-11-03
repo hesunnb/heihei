@@ -82,4 +82,42 @@ class Solution {
     ["g1 act car","a2 act car","a8 act zoo","ab1 off key dog","a1 9 2 3 1","zo4 4 7"]
     Expected:
     ["a2 act car","g1 act car","a8 act zoo","ab1 off key dog","a1 9 2 3 1","zo4 4 7"]*/
+ 
+    //solution2: 写一个大的Comparator, 直接sort
+    public String[] reorderLogFiles(String[] logs) {
+        if(logs == null || logs.length == 0) {
+            return logs;
+        }
+        
+        Arrays.sort(logs, new LetterLogComparator());
+        return logs;
+    }
+    
+    class LetterLogComparator implements Comparator<String> {
+        
+        public int compare(String s1, String s2) {
+            int index1 = s1.indexOf(' ');
+            int index2 = s2.indexOf(' ');
+            char c1 = s1.charAt(index1 + 1);
+            char c2 = s2.charAt(index2 + 1);
+            
+            if(c1 <= '9') { //ASCII值是空格< 数字 < 大写字母 < 小写字母
+                if(c2 <= '9') { //都是数字的话保持原始顺序, 原始顺序就是不排序, 那么0就是都相等
+                    return 0;
+                }
+                return 1; //c2是字母, 那么数字在后
+            }
+            if(c2 <= '9') { //此时c1是字母, c2是数字
+                return -1; //c1在前
+            }
+            
+            //如果上面都没满足, 此时c1和c2都是字母了
+            int result = s1.substring(index1 + 1).compareTo(s2.substring(index2 + 1));
+            //都不用split空格, 直接比较字符串就行, 如果字符都一样, 直接也就继续比较长度了
+            if(result == 0) {
+                return s1.substring(0, index1).compareTo(s2.substring(0, index2));
+            }
+            return result;
+        }
+    }
 }
