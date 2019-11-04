@@ -14,6 +14,7 @@ S will have length in range [1, 500].
 S will consist of lowercase letters ('a' to 'z') only.*/
 
 class Solution {
+    //O(n)时间就搞定了, 打印map看一下更明白
     public List<Integer> partitionLabels(String S) {
         
         List<Integer> result = new ArrayList<>();
