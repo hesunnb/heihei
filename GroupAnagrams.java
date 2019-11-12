@@ -105,7 +105,7 @@ class Solution {
             }
             
             for(int i = 0; i < count.length; i++) { //如果不用getHash()这种方式, 可以用像木桶排序这种方式, 重新拼接字符串, 也是排了序
-                while(count[i] > 0) {
+                while(count[i] > 0) { //O(52 + 每个字符串长度), 理论上是O(n), 但是涉及到字符串操作, 会变慢
                     sb.append((char)('a' + i));
                     count[i]--;
                 }
