@@ -87,3 +87,40 @@ public class Solution {
         return result;
     }
 }
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> result = new ArrayList<List<String>>();
+        if(strs == null || strs.length == 0) {
+           return result;
+        }
+        
+        Map<String, List<String>> map = new HashMap<>();
+        for(String str : strs) {
+            int[] count = new int[26]; //只有小写字母
+            Arrays.fill(count, 0);
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i < str.length(); i++) {
+                count[str.charAt(i) - 'a']++;
+            }
+            
+            for(int i = 0; i < count.length; i++) { //如果不用getHash()这种方式, 可以用像木桶排序这种方式, 重新拼接字符串, 也是排了序
+                while(count[i] > 0) {
+                    sb.append((char)('a' + i));
+                    count[i]--;
+                }
+            }
+            String keyString = sb.toString();
+            if(!map.containsKey(keyString)) {
+                map.put(keyString, new ArrayList<String>()); //没有就新创建一个ArrayList
+            }
+            
+            map.get(keyString).add(str); //在相应的hash位置加入
+        }
+        
+        for(List<String> temp : map.values()) {
+            result.add(temp); //这道题里一个元素自己也算数, 如那个"bat"
+        }
+        return result;
+    }
+}
