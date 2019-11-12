@@ -1,9 +1,21 @@
+/*Given two strings s and t , write a function to determine if t is an anagram of s.
+
+Example 1:
+
+Input: s = "anagram", t = "nagaram"
+Output: true
+Example 2:
+
+Input: s = "rat", t = "car"
+Output: false
+Note:
+You may assume the string contains only lowercase alphabets.
+
+Follow up:
+What if the inputs contain unicode characters? How would you adapt your solution to such case?*/
+
 public class Solution {
-    /**
-     * @param s: The first string
-     * @param b: The second string
-     * @return true or false
-     */
+
     public boolean anagram(String s, String t) {
         // write your code here
         
@@ -25,4 +37,6 @@ public class Solution {
         
         return true;
     }
+    
+    //followup就把数组变成哈希表存unicode就行, 空间从O(1)变为O(n)
 };
