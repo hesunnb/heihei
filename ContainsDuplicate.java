@@ -4,8 +4,11 @@ appears at least twice in the array, and it should return false if every element
 class Solution {
 	
     //brute force, Time complexity: O(N^2), memory: O(1)
-	public boolean containsDuplicate(int[] nums) {
-
+    public boolean containsDuplicate(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return false;
+        }
+	    
         for(int i = 0; i < nums.length; i++) {
             for(int j = i + 1; j < nums.length; j++) {
                 if(nums[i] == nums[j]) {
@@ -18,7 +21,10 @@ class Solution {
     
     //sort and check, Time complexity: O(N lg N), memory: O(1) - not counting the memory used by sort
     public boolean containsDuplicate(int[] nums) {
-
+        if(nums == null || nums.length == 0) {
+            return false;
+        }
+	    
         Arrays.sort(nums);
         for(int ind = 1; ind < nums.length; ind++) {
             if(nums[ind] == nums[ind - 1]) {
@@ -41,6 +47,6 @@ class Solution {
             }
         }
 			
-	    return false;
+	return false;
     }
 }
