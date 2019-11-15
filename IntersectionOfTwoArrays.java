@@ -92,7 +92,7 @@ public class Solution {
         while(i < nums1.length && j < nums2.length) {
             if(nums1[i] == nums2[j]) {
                 if(index == 0 || temp[index - 1] != nums1[i]) { //因为已经排好序了, 要保证前一个和要进入的值不等, 否则重复了
-                    temp[index++] = nums1[i];
+                    temp[index++] = nums1[i]; //不用temp数组, 用set就可以不用判断重复了
                 }
                 i++;
                 j++;
