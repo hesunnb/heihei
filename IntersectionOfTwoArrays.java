@@ -58,7 +58,7 @@ public class Solution {
         
         HashSet<Integer> resultHash = new HashSet<Integer>();
         for (int i = 0; i < nums2.length; i++) {
-            if (hash.contains(nums2[i]) && !resultHash.contains(nums2[i])) { //也可以写成if (hash.contains(nums2[i]))
+            if (hash.contains(nums2[i])) { 
                 resultHash.add(nums2[i]);
             }
         }
