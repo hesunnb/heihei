@@ -13,7 +13,7 @@ Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2].
 public class Solution {
 
 
-    //用HashSet的库函数retainAll, 两个Set, 时间O(n), retainAll的开销比较大, 所以还是用下面的那个Set方法
+    //用HashSet的库函数retainAll(ArrayList也有retainAll), 两个Set, 时间O(n), retainAll的开销比较大, 所以还是用下面的那个Set方法
     public int[] intersection(int[] nums1, int[] nums2) {
         if(nums1 == null || nums2 == null) {
             return null;
