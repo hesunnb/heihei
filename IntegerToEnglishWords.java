@@ -37,7 +37,7 @@ class Solution {
 
         while (num > 0) {
             if (num % 1000 != 0) {
-                words = helper(num % 1000) + THOUSANDS[i] + " " + words;
+                words = helper(num % 1000) + " " + THOUSANDS[i] + " " + words;
             }
             num /= 1000;
             i++;
@@ -51,7 +51,7 @@ class Solution {
             return "";
         }
         else if (num < 20) {
-            return LESS_THAN_20[num] + " ";
+            return LESS_THAN_20[num];
         }
         else if (num < 100) {
             return TENS[num / 10] + " " + helper(num % 10);
