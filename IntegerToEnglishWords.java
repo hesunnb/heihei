@@ -19,6 +19,7 @@ Output: "One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Th
 
 class Solution {
     
+    //递归
     private String[] LESS_THAN_20 = { "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
             "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen",
             "Nineteen" };
@@ -58,5 +59,56 @@ class Solution {
         else {
             return LESS_THAN_20[num / 100] + " Hundred " + helper(num % 100);
         }
+    }
+}
+
+class Solution {
+    
+    //循环
+    private String[] LESS_THAN_20 = { "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+            "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen",
+            "Nineteen" };
+    private String[] TENS = { "", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty",
+            "Ninety" };
+    private String[] THOUSANDS = { "", "Thousand", "Million", "Billion" };
+
+    public String numberToWords(int num) {
+        if (num == 0) {
+            return "Zero";
+        }
+        
+        int i = 0;
+        String words = "";
+                
+        while (num > 0) {
+            if(num % 1000 != 0) {
+                words = getEng(num % 1000) + " " + THOUSANDS[i] + " " + words;
+            }
+            num /= 1000;
+            i++;           
+        }
+        return words.trim();
+    }
+
+    public String getEng (int num) {
+        if (num == 0) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        if(num >= 100) {
+            sb.append(LESS_THAN_20[num / 100] + " Hundred ");
+            num %= 100;
+        }
+        
+        if(num >= 20) {
+            sb.append(TENS[num / 10] + " ");
+            num %= 10;
+        }
+                
+        if(num > 0) {
+            sb.append(LESS_THAN_20[num]);
+        }
+        
+        return sb.toString().trim();
     }
 }
