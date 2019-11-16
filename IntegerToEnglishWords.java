@@ -23,7 +23,7 @@ class Solution {
             "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen",
             "Nineteen" };
     private String[] TENS = { "", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty",
-            "Ninety" };
+            "Ninety" }; //注意这里开头有两个""
     private String[] THOUSANDS = { "", "Thousand", "Million", "Billion" };
 
     public String numberToWords(int num) {
