@@ -61,6 +61,9 @@ class Solution {
                     char old = currArray[i]; //保留该位置原有字符
                     for(char c = 'a'; c <= 'z'; c++) { //用26种字符替换看有没有匹配的
                         currArray[i] = c;
+			if(old == c) {
+                            continue;
+                        }
                         String next = new String(currArray);
                         if(!visited.contains(next) && dict.contains(next)) { //!visited.contains(next)访问过的就不要重复加到队列中了,
                             //在Minimum Genetic Mutation中解释了这句话的必要性
