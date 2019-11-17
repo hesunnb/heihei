@@ -48,6 +48,7 @@ class Solution {
         Queue<String> queue = new LinkedList<>();
         queue.offer(beginWord);
         visited.add(beginWord); //wordList中已经访问过的元素都放到visited中
+	//dict.add(beginWord); //相对于WordLadder2, 这里的意思就是说, WordLadder1加了这句话也没事儿, 但实际上用不到这句话在WordLadder1里
         
         while(!queue.isEmpty()) {
             int size = queue.size(); //size记录每层的大小, 变化一个字母wordList中有几种符合的; 变化两个字母wordList中有几种符合的...
