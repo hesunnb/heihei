@@ -120,8 +120,8 @@ class Solution {
 	    res.add(new ArrayList<String>(solution));
 	} else {
 	    for(String next : nodeNeighbors.get(cur)) {
-		if (distance.get(next) == distance.get(cur) + 1) { //正常的dfs, 在neighbors中只找下一级的节点(因为neighbors中有同级的, 也有
-                //上一级的)
+		if (distance.get(next) == distance.get(cur) + 1) { //正常的dfs, 在neighbors中只找下一级的节点(因为neighbors中有上级的, 也有
+                    //下级的)
 		    dfs(next, endWord, dict, nodeNeighbors, distance, solution, res);
 		}
 	    }
