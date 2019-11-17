@@ -37,7 +37,7 @@ class Solution {
     //相似题目: Minimum Genetic Mutation, word ladder2
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
 		
-        if(beginWord.equals(endWord)) {
+        if(beginWord == null || endWord == null || beginWord.equals(endWord) || !wordList.contains(endWord)) {
             return 0; //题目要求start与end不能相等 
         }
         
