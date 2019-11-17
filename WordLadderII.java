@@ -87,7 +87,7 @@ class Solution {
 			String next = new String(curArray);
 			if(dict.contains(next)) {
 			    nodeNeighbors.get(cur).add(next); //这样操作的话, nodeNeighbors包含了只要与cur差一个字母变化的都会加入到cur的
-			    //neighbors中, 包含上一级, 下一级(级数就是按照distance算的, 即distance差1步); 如果要是写成
+			    //neighbors中, 包含上一级, 同级, 下一级(级数就是按照distance算的, 即distance差1步); 如果要是写成
 			    //if(!distance.containsKey(next) && dict.contains(next)) 会有问题, 因为这回要的是路径, 比如cog的上一级有
 			    //dog和log, 那么queue弹出dog的时候会把cog加入到distance中, 那么queue弹出log的时候, 因为cog已然在distance中,
 			    //所以nodeNeighbors.get(cur).add(next)这句话就得不到执行, 那么log的neighbors就会加入不到哈希表中, 从而走log
@@ -121,7 +121,7 @@ class Solution {
 	} else {
 	    for(String next : nodeNeighbors.get(cur)) {
 		if (distance.get(next) == distance.get(cur) + 1) { //正常的dfs, 在neighbors中只找下一级的节点(因为neighbors中有上级的, 也有
-                    //下级的)
+                    //同级和下级的)
 		    dfs(next, endWord, dict, nodeNeighbors, distance, solution, res);
 		}
 	    }
