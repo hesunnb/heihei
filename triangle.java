@@ -16,7 +16,7 @@ public class Solution {
         int n = triangle.length;
         for(int i = n - 1; i > 0; i--) {
             for(int j = 0; j < i; j++) {
-                triangle[i - 1][j] = Math.min(triangle[i][j] + triangle[i - 1][j], triangle[i][j + 1] + triangle[i - 1][j]); //从底向上
+                triangle[i - 1][j] = Math.min(triangle[i][j], triangle[i][j + 1]) + triangle[i - 1][j]; //从底向上
                 //两两与上面的做和然后替换掉上面的数
             }
         }
