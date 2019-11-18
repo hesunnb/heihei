@@ -89,7 +89,7 @@ public class Solution {
         return result;
     }
     
-    /*//Version 1: Bottom-Up 自底向上的方法
+    //Version 1: Bottom-Up 自底向上的方法
    
     public int minimumTotal(int[][] triangle) {
         if (triangle == null || triangle.length == 0) {
