@@ -121,7 +121,7 @@ public class Solution {
 }
 
 
-    //Version 2 : Memorize Search //记忆化搜索方法
+    /*//Version 2 : Memorize Search //记忆化搜索方法
     public class Solution {
         private int n;
         private int[][] minSum;
