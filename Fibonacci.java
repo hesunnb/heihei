@@ -25,7 +25,25 @@ class Solution {
      * @return an integer f(n)
      */
     
-    //非递归
+    //leetcode: leetcode和lintcode这道题定义有区别在于开头, leetcode是F(0) = 0, lintcode是F(1) = 0
+    public int fib(int N) {
+        
+        int a = 0, b = 1, sum = 0;
+        if(N == 0) {
+            return a;
+        }
+        if(N == 1) {
+            return b;
+        }
+        for(int i = 0; i < N - 1; i++) {
+            sum = a + b;
+            a = b;
+            b = sum;
+        }
+        return sum;
+    }
+ 
+    //非递归, lintcode
     public int fibonacci(int n) {
         // write your code here
        int a = 0, b = 1, sum = 0;
