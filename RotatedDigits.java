@@ -20,6 +20,7 @@ class Solution {
 
     //自己写的把N转成String再判断包含至少一个2, 5, 6, 9, 不包含3, 4 or 7也能过, 就是慢了, 所以直接用求余
     //12旋转变成15也和原来的12不一样, 所以12有效; 像13这种就不行了, 3旋转之后什么也不是
+    //traverse方法:
     public int rotatedDigits(int N) {
         if(N <= 0) {
             return 0;
@@ -45,6 +46,41 @@ class Solution {
                 return false;
             }
             N = N / 10;
+        }
+        return validFound;
+    }
+    
+    
+    //递归法:
+    public int rotatedDigits(int N) {
+        if(N <= 0) {
+            return 0;
+        }
+        
+        int count = 0;
+        for (int i = 1; i <= N; i ++) {
+            if (isValid(i, false)) count++;
+        }
+        return count;
+    }
+    
+    public boolean isValid(int N, boolean validFound) {
+
+        if (N % 10 == 3 || N % 10 == 4 || N % 10 == 7) {
+            return false;
+        }
+        if (N % 10 == 2 || N % 10 == 5 || N % 10 == 6 || N % 10 == 9) {
+            validFound = true;
+        }
+        
+        N = N / 10;
+        if(N > 0) {
+            if(!isValid(N, validFound)) {
+                return false; //如果有任何一位是假, 就一直返回false
+            } else {
+                validFound = true; //如果没有false, 这里需要改为真, 否则像20这样的数字, 第一位0并没有改变validFound, 所以如果
+                //这里不改, 就会返回false了
+            }
         }
         return validFound;
     }
