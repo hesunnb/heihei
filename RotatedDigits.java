@@ -57,6 +57,29 @@ class Solution {
             return 0;
         }
         
+        int stepN = N;
+        boolean hasInvalidNumber = false; //注意一下全是含有018的数
+        boolean hasValidNumber = false;
+        while (stepN > 0) {
+            if (stepN % 10 == 2 || stepN % 10 == 5 || stepN % 10 == 6 || stepN % 10 == 9) {
+                hasValidNumber = true;
+            }
+            if (stepN % 10 == 3 || stepN % 10 == 4 || stepN % 10 == 7) {
+                hasInvalidNumber = true;
+                break;
+            }
+            stepN = stepN / 10;
+        }
+        return ((!hasInvalidNumber && hasValidNumber) ? 1 : 0) + rotatedDigits(N - 1); //注意这里的三元运算符要有括号包围
+    }
+    
+    
+    //把isValid改成递归:
+    public int rotatedDigits(int N) {
+        if(N <= 0) {
+            return 0;
+        }
+        
         int count = 0;
         for (int i = 1; i <= N; i ++) {
             if (isValid(i, false)) count++;
