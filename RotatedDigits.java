@@ -19,6 +19,7 @@ N  will be in range [1, 10000].*/
 class Solution {
 
     //自己写的把N转成String再判断包含至少一个2, 5, 6, 9, 不包含3, 4 or 7也能过, 就是慢了, 所以直接用求余
+    //12旋转变成15也和原来的12不一样, 所以12有效; 像13这种就不行了, 3旋转之后什么也不是
     public int rotatedDigits(int N) {
         if(N <= 0) {
             return 0;
