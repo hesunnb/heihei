@@ -34,9 +34,7 @@ class Solution {
         if (arr == null || arr.size() == 0) {
             return 0;
         }
-
         dfs(arr, "", 0);
-
         return result;
     }
 
@@ -64,6 +62,47 @@ class Solution {
                 return false;
             }
             set.add(c);
+        }
+        return true;
+    }
+ 
+ 
+    //循环版
+    public int maxLength(List<String> arr) {
+        List<String> res = new ArrayList<>();
+        res.add("");
+        for (String str : arr) {
+            if (!isUnique(str)) {
+                continue;
+            }
+            List<String> resList = new ArrayList<>();
+            for (String candidate : res) { //在res中加入""就是让这个循环能够启动
+                String temp = candidate + str;
+                if (isUnique(temp)) {
+                    resList.add(temp);
+                }
+            }
+            res.addAll(resList);
+        }
+        int ans = 0;
+        for (String str : res) {
+            ans = Math.max(ans, str.length());
+        }
+        return ans;
+    }
+    
+    private boolean isUnique(String str) { //这段用hashset写也ok
+        if (str.length() > 26) {
+            return false;
+        }
+        boolean[] used = new boolean [26];
+        char[] arr = str.toCharArray();
+        for (char ch : arr) {
+            if (used[ch - 'a']) {
+                return false; 
+            } else {
+                used[ch - 'a'] = true;
+            }
         }
         return true;
     }
