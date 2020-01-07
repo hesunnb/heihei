@@ -66,7 +66,23 @@ class Solution {
         return true;
     }
  
- 
+    
+    /*思路:
+    0. Initial the result res to include the case of empty string "".
+    res include all possible combinations we find during we iterate the input.
+
+    1. Itearte the the input strings,
+    but skip the word that have duplicate characters.
+    The examples is kind of misleading,
+    but the input string can have duplicate characters,
+    no need to considerate these strings.
+
+    2. For each string,
+    we check if it's conflit with the combination that we found.
+    If they have intersection of characters, we skip it.
+    If not, we append this new combination to result.
+
+    3. return the maximum length from all combinations.*/
     //循环版
     public int maxLength(List<String> arr) {
         List<String> res = new ArrayList<>();
