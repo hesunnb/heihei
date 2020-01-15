@@ -35,7 +35,7 @@ Constraints:
 
 class Solution {
 
-    //dfs, 思路就是从start出发, 对每个点尝试左右走, 遍历所有点就ok
+    //dfs, 思路就是从start出发, 对每个点尝试左右走, 遍历所有点就ok, O(n)空间
     public boolean canReach(int[] arr, int start) {
         if(arr == null || arr.length == 0 || start < 0 || start > arr.length - 1) {
             return false;
@@ -61,6 +61,36 @@ class Solution {
             return true;
         }
         if(helper(arr, start + arr[start], result)) {
+            return true;
+        }
+        return false;
+    }
+ 
+ 
+    //dfs, 如果不用O(n)空间的话, 就用一个小手段
+    public boolean canReach(int[] arr, int start) {
+        if(arr == null || arr.length == 0 || start < 0 || start > arr.length - 1) {
+            return false;
+        }
+        
+        return helper(arr, start);
+    }
+    
+    private boolean helper(int[] arr, int start) {
+        if(start < 0 || start > arr.length - 1 || arr[start] >= arr.length) { //如果start非法, 或者访问过该点
+            return false;
+        }
+
+        if(arr[start] == 0) {
+            return true;
+        }
+
+        int jump = arr[start]; //保留要跳的步数
+        arr[start] += arr.length; //把arr[start]改为非法值, 标记为访问过该点的意思
+        if(helper(arr, start - jump)) {
+            return true;
+        }
+        if(helper(arr, start + jump)) {
             return true;
         }
         return false;
