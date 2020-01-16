@@ -29,31 +29,31 @@ Two times will not conflict
  */
 
 public class Solution {
-	/**
-	 * @param intervals: an array of meeting time intervals
-	 * @return: if a person could attend all meetings
-	 */
-	public boolean canAttendMeetings(List<Interval> intervals) {
-		// Write your code here
-		if (intervals == null) {
-			return false;
-		}
+    /**
+     * @param intervals: an array of meeting time intervals
+     * @return: if a person could attend all meetings
+     */
+    public boolean canAttendMeetings(List<Interval> intervals) {
+        // Write your code here
+        if (intervals == null) {
+            return false;
+        }
 
-		Collections.sort(intervals, new meetingComparator());
-		for (int i = 1; i < intervals.size(); i++) {
-			if (intervals.get(i).start < intervals.get(i - 1).end) {
-				return false;
-			}
-		}
-		return true;
-	}
+        Collections.sort(intervals, new meetingComparator());
+        for (int i = 1; i < intervals.size(); i++) {
+            if (intervals.get(i).start < intervals.get(i - 1).end) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-	class meetingComparator implements Comparator<Interval> {
+    class meetingComparator implements Comparator<Interval> {
 
-		@Override
-		public int compare(Interval o1, Interval o2) {
-			// TODO Auto-generated method stub
-			return o1.start - o2.start;
-		}
-	}
+        @Override
+        public int compare(Interval o1, Interval o2) {
+            // TODO Auto-generated method stub
+            return o1.start - o2.start;
+        }
+    }
 }
