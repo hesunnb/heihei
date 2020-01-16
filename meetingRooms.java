@@ -29,19 +29,19 @@ Two times will not conflict
  */
 
 public class Solution {
-    /**
-     * @param intervals: an array of meeting time intervals
-     * @return: if a person could attend all meetings
-     */
-    public boolean canAttendMeetings(List<Interval> intervals) {
+	/**
+	 * @param intervals: an array of meeting time intervals
+	 * @return: if a person could attend all meetings
+	 */
+	public boolean canAttendMeetings(List<Interval> intervals) {
 		// Write your code here
-		if(intervals == null) {
+		if (intervals == null) {
 			return false;
 		}
-		
+
 		Collections.sort(intervals, new meetingComparator());
-		for(int i = 1; i < intervals.size(); i++) {
-			if(intervals.get(i).start < intervals.get(i - 1).end) {
+		for (int i = 1; i < intervals.size(); i++) {
+			if (intervals.get(i).start < intervals.get(i - 1).end) {
 				return false;
 			}
 		}
