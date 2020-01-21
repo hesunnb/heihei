@@ -23,6 +23,8 @@ public class Solution {
      * @param N: an integer
      * @return: returns the maximum possible value obtained by inserting one '5' digit
      */
+    
+    //testcase: 565 -> 5655; -524 -> -5245
     public int MaximumPossibleValue(int N) {
         // write your code here
         
@@ -30,7 +32,7 @@ public class Solution {
         if(N >= 0) {
             int i = 0;
             for(i = 0; i < sb.length(); i++) {
-                if(sb.charAt(i) < '5') {
+                if(sb.charAt(i) < '5') { //对于上面的testcase只要注意这里不能带等号就行, <=不行
                     sb.insert(i, '5');
                     break;
                 }
@@ -41,7 +43,7 @@ public class Solution {
         } else {
             int i = 1;
             for(i = 1; i < sb.length(); i++) {
-                if(sb.charAt(i) > '5') {
+                if(sb.charAt(i) > '5') { //不能带等号, >=不行
                     sb.insert(i, '5');
                     break;
                 }
