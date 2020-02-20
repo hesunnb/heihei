@@ -27,6 +27,8 @@ Constraints:
 logs[i] is guaranteed to have an identifier, and a word after the identifier.*/
 
 class Solution {
+ 
+    //时间: O(nlogn), 空间: O(n)
     public String[] reorderLogFiles(String[] logs) {
         if(logs == null || logs.length == 0) {
             return new String[] {};
