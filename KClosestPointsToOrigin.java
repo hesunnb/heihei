@@ -55,6 +55,47 @@ class Solution {
     }
 }
 
+//lintcode要求的leetcode版本
+class Solution {
+    public int[][] kClosest(int[][] points, int K) {
+        
+        if(points == null || points.length == 0 || points[0].length == 0 || K > points.length) {
+            return new int[][]{};
+        }
+
+        int[][] result = new int[K][2];
+        PriorityQueue<int[]> pq = new PriorityQueue<>(new kClosestComparator(new int[] {0,0}));
+        for(int[] i : points) {
+            pq.offer(i);
+        }
+
+        for(int i = 0; i < K; i++) {
+            result[i] = pq.poll();
+        }
+        return result;
+    }
+    
+    class kClosestComparator implements Comparator<int[]> {
+
+        private int[] origin;
+        kClosestComparator(int[] origin) { //用构造函数来接收Comparator传进来的参数
+            this.origin = origin;
+        }
+        @Override
+        public int compare(int[] o1, int[] o2) {
+            int result = (o1[0] - origin[0]) * (o1[0] - origin[0]) + (o1[1] - origin[1]) * (o1[1] - origin[1]) - 
+                         (o2[0] - origin[0]) * (o2[0] - origin[0]) - (o2[1] - origin[1]) * (o2[1] - origin[1]);
+            if(result == 0) {
+                if(o1[0] == o2[0]) {
+                    result = o1[1] - o2[1];
+                } else {
+                    result = o1[0] - o2[0];
+                }
+            }
+            return result;
+        }
+    }
+}
 
 /*lintCode版本, 要求更多
 612. K Closest Points
