@@ -29,6 +29,8 @@ Note:
 -10000 < points[i][1] < 10000*/
 
 class Solution {
+ 
+    //时间: O(nlogn), 空间: O(n)
     public int[][] kClosest(int[][] points, int K) {
 
         if(points == null || points.length == 0 || points[0].length == 0 || K > points.length) {
