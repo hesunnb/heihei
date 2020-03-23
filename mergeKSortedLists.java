@@ -168,10 +168,8 @@ public class Solution {
         }
     }
     
-    private Comparator<ListNode> ListNodeComparator = new Comparator<ListNode>() //匿名类的写法
-    {
-        public int compare(ListNode left, ListNode right) //重写compare函数
-        {
+    private Comparator<ListNode> ListNodeComparator = new Comparator<ListNode>() { //匿名类的写法
+        public int compare(ListNode left, ListNode right) { //重写compare函数
             return left.val - right.val; //comparator中左边减右边是从小到大排，右边减左边是从大到小排
         }
     }; //有个分号
