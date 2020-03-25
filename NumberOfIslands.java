@@ -18,6 +18,40 @@ Given graph:
 return 3.
 */
 
+class Solution {
+    public int numIslands(char[][] grid) {
+        if(grid ==null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+        
+        int result = 0;
+        for(int i = 0; i < grid.length; i++) {
+            for(int j = 0; j < grid[0].length; j++) {
+                if(grid[i][j] == '1') {
+                    findIsland(grid, i, j);
+                    result++;
+                }
+            }
+        }
+        return result;
+    }
+    
+    int[][] directions = new int[][]{{-1,0}, {1,0}, {0,-1}, {0,1}};
+    private void findIsland(char[][] grid, int i, int j) {
+        if(grid[i][j] == '1') {
+            grid[i][j] = '0';
+            for(int k = 0; k < 4; k++) {
+                int x = i + directions[k][0];
+                int y = j + directions[k][1];
+                if(x < 0 || x > grid.length - 1 || y < 0 || y > grid[0].length - 1 || grid[x][y] == '0') {
+                    continue;
+                }
+                findIsland(grid, x, y);
+            }
+        }
+    }
+}
+
 public class Solution {
     /**
      * @param grid a boolean 2D matrix
