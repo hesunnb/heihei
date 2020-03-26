@@ -31,6 +31,7 @@ public class Solution {
     public void helper(List<List<Integer>> result, List<Integer> list, boolean[] visited, int[] nums) {
         if(list.size() == nums.length) {
             result.add(new ArrayList<>(list));
+	    return;
         }
         
         for(int i = 0; i < nums.length; i++) {
