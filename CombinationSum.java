@@ -36,10 +36,6 @@ public class Solution {
         }
          
         for(int i = index; i < candidates.length; i++) {
-            if (i != index && candidates[i] == candidates[i - 1]) {
-                continue;
-            }
-          
             if(candidates[i] > target) { //在递归深入的时候, 能够起到停止一个元素重复添加的情况, 在回溯的时候, 比如2,2,6如果不符合情况
             //那么就break, 后面的情况就都不用再试了
                 break;
