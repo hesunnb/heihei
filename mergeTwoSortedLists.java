@@ -39,38 +39,31 @@ public class Solution {
     //九章方法, 非递归
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         // write your code here
-        if(l1 == null)
-        {
+        if(l1 == null) {
             return l2;
         }
-        if(l2 == null)
-        {
+        if(l2 == null) {
             return l1;
         }
         
         ListNode dummy = new ListNode(0);
         ListNode lastNode = dummy;
-        while(l1 != null && l2 != null)
-        {
-            if(l1.val < l2.val)
-            {
+        while(l1 != null && l2 != null) {
+            if(l1.val < l2.val) {
                 lastNode.next = l1;
                 l1 = l1.next;
             }
-            else
-            {
+            else {
                 lastNode.next = l2;
                 l2 = l2.next;
             }
             lastNode = lastNode.next; //lastNode是每次一定要窜的
         }
         
-        if(l1 == null) //说明l1为空, lastNode在l1上
-        {
+        if(l1 == null) { //说明l1为空, lastNode在l1上
             lastNode.next = l2; //把lastNode连到l2上
         }
-        else //说明l2为空, lastNode在l2上
-        {
+        else { //说明l2为空, lastNode在l2上
             lastNode.next = l1; //把lastNode连到l1上
         }
         return dummy.next;
