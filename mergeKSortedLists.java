@@ -144,7 +144,7 @@ public class Solution {
         
         Queue<ListNode> queue = new PriorityQueue<ListNode>(lists.length, new listComparator());
         for(int i = 0; i < lists.length; i++) { //加入所有链表的头结点
-            if(lists[i] != null) {
+            if(lists[i] != null) { //有链表头为null的链表...
                 queue.add(lists[i]);
             }
         }
