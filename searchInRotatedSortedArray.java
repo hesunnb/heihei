@@ -36,14 +36,14 @@ public class Solution {
                 if(A[start] <= target && target <= A[mid]) { //target在s到m之间的区域内
                     end = mid;
                 }
-                else { //target在m之外但是还在红线上
+                else { 
                     start = mid;
                 }
             } else {
                 if(A[mid] <= target && target <= A[end]) { //target在m到e之间的区域内
                     start = mid;
                 }
-                else { //target在m之外但是还在绿线上
+                else { 
                     end = mid;
                 }
             }
