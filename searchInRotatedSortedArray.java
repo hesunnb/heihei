@@ -39,8 +39,7 @@ public class Solution {
                 else { //target在m之外但是还在红线上
                     start = mid;
                 }
-            }
-            else {
+            } else {
                 if(A[mid] <= target && target <= A[end]) { //target在m到e之间的区域内
                     start = mid;
                 }
