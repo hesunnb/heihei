@@ -22,38 +22,37 @@ public class Solution {
     //next, random没有初始化, 默认就是null
     //第一种方法: 是用哈希表来解决random指针这个问题, 存在表中就可以找到啦, 普通链表只能next, 随意指针不能通过next实现, 
     //所以就用哈希表
-    public RandomListNode copyRandomList(RandomListNode head) {
-        // write your code here
+    public Node copyRandomList(Node head) {
         if(head == null) {
             return null;
         }
         
-        HashMap<RandomListNode, RandomListNode> map = new HashMap<RandomListNode, RandomListNode>();
-        RandomListNode dummy = new RandomListNode(0);
-        RandomListNode pre = dummy;
-        RandomListNode newNode = null;
+        Map<Node, Node> map = new HashMap<>();
+        Node dummy = new Node(0);
+        Node newHead = dummy;
+        Node node = null;
         while(head != null) { //每个head节点要判断两次, 一个自己在不在, 一个自己的random指针指向的结点在不在
             if(map.containsKey(head)) { //判断自己在不在(head作为key)
-                newNode = map.get(head); //在的话就把head对应的value取出来
-            }
-            else {
-                newNode = new RandomListNode(head.label); //不在就建立一个新结点
-                map.put(head, newNode);
+                node = map.get(head); //在的话就把head对应的value取出来
+            } else {
+                node = new Node(head.val); //不在就建立一个新结点
+                map.put(head, node);
             }
             
-            pre.next = newNode; //链接结点
+            newHead.next = node; //链接结点
+            
             if(head.random != null) {
                 if(map.containsKey(head.random)) {
-                    newNode.random = map.get(head.random); //存在就把新结点的随意指针指向head随意指针指向的对象
-                }
-                else {
+                    node.random = map.get(head.random); //存在就把新结点的随意指针指向head随意指针指向的对象
+                } else {
                     //不存在就建立一个结点, 并存入和head随意指针指向结点的值, 并建立对应关系;
                     //因为这个点建立对应关系后就存在与哈希表中, 以后找出来就是已经存在点, 直接使用
-                    newNode.random = new RandomListNode(head.random.label); 
-                    map.put(head.random, newNode.random);
+                    node.random = new Node(head.random.val);
+                    map.put(head.random, node.random);
                 }
             }
-            pre = newNode;
+            
+            newHead = node;
             head = head.next;
         }
         return dummy.next;
