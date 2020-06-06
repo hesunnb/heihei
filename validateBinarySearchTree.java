@@ -36,6 +36,31 @@ public class Solution {
      
     //version 1: inordertraversal, if ascending, is bst
     //思路:中序遍历一遍二叉树，如果是升序那就是二叉搜索树(Traverse)
+    long prev = Long.MIN_VALUE;
+    public boolean isValidBST(TreeNode root) {
+        if(root == null) {
+            return true;
+        }
+        
+        return isValidBSTHelper(root);
+    }
+    
+    public boolean isValidBSTHelper(TreeNode root) {
+        if(root == null) {
+            return true;
+        }
+        boolean left = isValidBSTHelper(root.left);
+        
+        if(prev >= root.val) {
+            return false;
+        }
+        prev = root.val;
+        
+        boolean right = isValidBSTHelper(root.right);
+        return left && right;
+    }
+  
+    //version2
     int lastvalue = Integer.MIN_VALUE;
     boolean firstNode = true;
     public boolean isValidBST(TreeNode root) {
@@ -178,49 +203,4 @@ public class Solution {
         //左边的min会一直保留, 右边的max会一直保留, helper就是判断BST的, 如果左边与右边同时都是BST, return真
         return helper(p.left, min, p.val) && helper(p.right, p.val, max);
     }
-    
-
-    //Divide and conquer
-    /*private class returnType
-    {
-        private boolean is_bst;
-        private int maxvalue;
-        private int minvalue;
-        returnType(boolean is_bst, int maxvalue, int minvalue)
-        {
-            this.is_bst = is_bst;
-            this.maxvalue = maxvalue;
-            this.minvalue = minvalue;
-        }
-    }
-    public boolean isValidBST(TreeNode root)
-    {
-        return BSThelper(root).is_bst;
-    }
-    
-    private returnType BSThelper(TreeNode root)
-    {
-        if(root == null)
-        {
-            return new returnType(true, Integer.MIN_VALUE, Integer.MAX_VALUE); //每次空都返回这个值，大对小，小对大，然后还是真
-        }
-        
-        returnType left = BSThelper(root.left);
-        returnType right = BSThelper(root.right);
-        
-        if(left.is_bst == false || right.is_bst == false) //一旦有一边不是就一直返回false，就结束了
-        {
-            return new returnType(false, 0, 0);
-        }
-        
-        //左边最大值比根大，右边最小值比根小就不对了
-        if((root.left != null && left.maxvalue >= root.val) || (root.right != null && right.minvalue <= root.val))
-        {
-            return new returnType(false, 0, 0);
-        }
-        
-        //一切正常的话就返回正常值
-        return new returnType(true, Math.max(root.val, right.maxvalue), Math.min(root.val, left.minvalue)); //取左边最小值，取右边最大值；
-        每个节点都有作为左节点和右节点的时候，所以做左节点用最小值，做右节点用最大值
-    }*/
 }
