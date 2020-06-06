@@ -40,26 +40,30 @@ After calling your function, the tree should look like:
  */
 public class Solution {
     
-    //这道题用bfs行的原因是因为有next指针的原因, dummyhead.next每次指向树每一行的行首, 然后每一行用next指针进行遍历, 普通的bfs还是得用队列
-    public void connect(TreeLinkNode root) {
-        TreeLinkNode dummyhead = new TreeLinkNode(0);
-        TreeLinkNode current = dummyhead;
-        while (root != null) {
-            current = dummyhead; //每遍历完一行, current就从dummyhead从新出发
-            while (root != null) {
-                if (root.left != null) { 
-                    current.next = root.left; 
-                    current = current.next; 
-                }
-                if (root.right != null) { 
-                    current.next = root.right; 
-                    current = current.next; 
-                }
-                root = root.next;
-            }
-            root = dummyhead.next; //root下窜到下一行行首
-            dummyhead.next = null; //一定要赋值为null, {1,2}这个例子是个证明
+    //这道题用bfs行的原因是因为有next指针的原因, dummy.next每次指向树每一行的行首, 然后每一行用next指针进行遍历, 普通的bfs还是得用队列
+    public Node connect(Node root) {
+        if(root == null) {
+            return null;
         }
+        
+        Node newRoot = root;
+        while (newRoot != null) {
+            Node dummy = new Node(0);
+            Node current = dummy;
+            while (newRoot != null) {
+                if (newRoot.left != null) { 
+                    current.next = newRoot.left; 
+                    current = current.next; 
+                }
+                if (newRoot.right != null) { 
+                    current.next = newRoot.right; 
+                    current = current.next; 
+                }
+                newRoot = newRoot.next;
+            }
+            newRoot = dummy.next; //newRoot下窜到下一行行首
+        }
+        return root;
     }
     /*一个testcase, 注意9那个地方左右都没有子节点, 所以dfs要注意
                               2
