@@ -24,36 +24,37 @@ Explanation: 342 + 465 = 807.*/
 public class Solution {
      
     //正因为数是倒着的才可以从头开始逐位计算, 如果数是正着的倒没法这么算了
-    public ListNode addLists(ListNode l1, ListNode l2) {
-        // write your code here
-        
-	if(l1 == null || l2 == null) {
-            return null;
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        if(l1 == null) {
+            return l2;
         }
-	    
-        ListNode head = new ListNode(0);
-        ListNode cur1 = l1; //用cur1和cur2往后走的好处是没有改变l1与l2的值, 这样这个函数中如果有其它程序想用这两个链表可以直接使用l1与l2
-        ListNode cur2 = l2;
-        ListNode p = head;
+        if(l2 == null) {
+            return l1;
+        }
+        ListNode dummy = new ListNode();
+        ListNode head = dummy;
         int carry = 0;
-        while(cur1 != null || cur2 != null) {
-            if(cur1 != null) {
-                carry += cur1.val;
-                cur1 = cur1.next;
+        while(l1 != null || l2 != null) {
+            if(l1 != null) {
+                carry += l1.val;
+                l1 = l1.next;
             }
             
-            if(cur2 != null) {
-                carry += cur2.val;
-                cur2 = cur2.next;
+            if(l2 != null) {
+                carry += l2.val;
+                l2 = l2.next;
             }
-            p.next = new ListNode(carry % 10);
-            p = p.next;
+            
+            ListNode node = new ListNode(carry % 10);
+            head.next = node;
+            head = node;
             carry /= 10;
         }
         if(carry != 0) {
-            p.next = new ListNode(carry);
+            head.next = new ListNode(carry);
         }
-        return head.next;
+        
+        return dummy.next;
     }
 }
 
