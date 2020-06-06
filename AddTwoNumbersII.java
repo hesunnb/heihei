@@ -24,8 +24,12 @@ class Solution {
     //solution1: follow up里面不让reverse linked list, 所以用discuss的方法, 用栈
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         
-        if(l1 == null || l2 == null) {
-            return null;
+        if(l1 == null) {
+            return l2;
+        }
+        
+        if(l2 == null) {
+            return l1;
         }
         
         Stack<Integer> stack1 = new Stack<Integer>();
@@ -40,7 +44,7 @@ class Solution {
             l2 = l2.next;
         }
         
-        ListNode list = new ListNode(0);
+        ListNode node = new ListNode(0);
         int carry = 0;
         while (!stack1.empty() || !stack2.empty()) {
             if (!stack1.empty()) {
@@ -50,15 +54,16 @@ class Solution {
                 carry += stack2.pop();
             }
             //从尾到头组装一个正序链表的方法, 之前的Add Two Numbers是从头到尾组装一个倒序链表
-            list.val = carry % 10; //list是个位节点; 每次新的个位值都会把之前的十位值给替换掉, 不过没事, 因为之前十位的值保留在carry里, 在上面的求和
+            node.val = carry % 10; //list是个位节点; 每次新的个位值都会把之前的十位值给替换掉, 不过没事, 因为之前十位的值保留在carry里, 
+            //在上面的求和
             //过程中已经加进去了
             ListNode head = new ListNode(carry / 10); //head是十位节点
-            head.next = list; //将十位与个位相连
-            list = head; //个位指针窜到十位
+            head.next = node; //将十位与个位相连
+            node = head; //个位指针窜到十位
             carry /= 10; //取出并保留进位
         }
         
-        return list.val == 0 ? list.next : list; //最后一次list窜到了head的位置, 那么因为每次new head的时候都用的十位, 所以这里的意思就是
+        return node.val == 0 ? node.next : node; //最后一次list窜到了head的位置, 那么因为每次new head的时候都用的十位, 所以这里的意思就是
         //如果最后的十位为0, 那么从list.next开始, 否则就从最后一个十位开始
     }
     
