@@ -40,19 +40,32 @@ After calling your function, the tree should look like:
  * }
  */
 public class Solution {
-    public void connect(TreeLinkNode root) {
+   
+    public Node connect(Node root) {
         if(root == null) {
-            return;
+            return null;
         }
-
-        if(root.left != null){
+        
+        return connectHelper(root);
+    }
+    
+    public Node connectHelper(Node root) {
+        if(root == null) {
+            return null;
+        }
+        
+        if(root.left != null) {
             root.left.next = root.right; //连接一个根的左右子树节点
+        }
+        
+        if(root.right != null) {
             if(root.next != null) { //重点就是这个地方, 因为是完全二叉树, 然后马上就把刚连接完的next指针用上了, 值得学习
                 root.right.next = root.next.left;
-            }  
+            }
         }
-    
-        connect(root.left);
-        connect(root.right);
+        
+        connectHelper(root.left);
+        connectHelper(root.right);
+        return root;
     }
 }
