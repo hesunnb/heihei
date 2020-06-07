@@ -39,7 +39,23 @@ class Solution {
         }
         return slow;
     }
-	
+
+    //快排就是nlogn
+    public int findDuplicate(int[] nums) {
+        if(nums == null || nums.length < 2) {
+            return -1;
+        }
+        
+        Arrays.sort(nums);
+        int result = 0;
+        for(int i = 1; i < nums.length; i++) {
+            if(nums[i] == nums[i - 1]) {
+                result = nums[i];
+                break;
+            }
+        }
+        return result;
+    }
 	
     //solution2: nlog(n)二分解法, 二分搜索基于index和range, 见Kth Smallest Element in a Sorted Matrix, 对于index的已有模板,
     //那对于这种数组中有重复, unsorted array这种就用这个当模板吧
