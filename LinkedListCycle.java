@@ -83,16 +83,14 @@ public class Solution {
             return false;
         }
         
-        Map<ListNode, ListNode> map = new HashMap<ListNode, ListNode>();
+        Map<ListNode, ListNode> map = new HashMap<>();
         while(head != null) {
-            if(!map.containsKey(head)) {
-                map.put(head, head);
-            } else {
+            if(map.containsKey(head)) {
                 return true;
             }
+            map.put(head, head);
             head = head.next;
         }
-        
         return false;
     }
 }
