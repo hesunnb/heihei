@@ -34,4 +34,27 @@ class Solution {
     }
     //n=6, 1 2 3 -3 -2 -1
     //n=7, 1 2 3 0 -3 -2 -1
+ 
+    //多开了一个list
+    public int[] sumZero(int n) {
+        if(n <= 0) {
+            return new int[]{};
+        }
+        
+        List<Integer> list = new ArrayList<>();
+        int temp = n / 2;
+        while(temp > 0) {
+            list.add(temp);
+            list.add(-temp);
+            temp--;
+        }
+        if(n % 2 != 0) {
+            list.add(0);
+        }
+        int[] result = new int[list.size()];
+        for(int i = 0; i < list.size(); i++) {
+            result[i] = list.get(i);   
+        }
+        return result;
+    }
 }
