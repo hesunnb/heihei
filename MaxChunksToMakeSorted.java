@@ -23,6 +23,8 @@ arr will have length in range [1, 10].
 arr[i] will be a permutation of [0, 1, ..., arr.length - 1].*/
 
 class Solution {
+    
+    //O(nlogn)解法
     public int maxChunksToSorted(int[] arr) {
         if(arr == null || arr.length == 0) {
             return 0;
@@ -38,6 +40,28 @@ class Solution {
             maxA = Math.max(maxA, arr[i]);
             maxB = Math.max(maxB, arrCopy[i]);
             if(maxA == maxB) { //当前最大值相同的时候
+                result++;
+            }
+        }
+        return result;
+    }
+    
+    //也是O(nlogn)解法
+    public int maxChunksToSorted(int[] arr) {
+        if(arr == null || arr.length == 0) {
+            return 0;
+        }
+        
+        int[] arrCopy = Arrays.copyOf(arr, arr.length);
+        Arrays.sort(arrCopy);
+        
+        int sumA = 0;
+        int sumB = 0;
+        int result = 0;
+        for(int i = 0; i < arr.length; i++) {
+            sumA += arr[i];
+            sumB += arrCopy[i];
+            if(sumA == sumB) { //用做和的方式也ok
                 result++;
             }
         }
