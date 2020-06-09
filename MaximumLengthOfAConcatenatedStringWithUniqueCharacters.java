@@ -38,7 +38,7 @@ class Solution {
         return result;
     }
 
-    private void dfs(List<String> arr, String path, int idx) {
+    private void dfs(List<String> arr, String path, int idx) { //相当于在找所有subset, 不过就是有了限制条件的subset
         boolean isUniqueChar = isUniqueChars(path);
         
         if (isUniqueChar) {
