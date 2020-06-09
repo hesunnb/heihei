@@ -67,4 +67,26 @@ class Solution {
         }
         return result;
     }
+    
+    /*original: 0, 2, 1, 4, 3, 5, 7, 6
+      max:      0, 2, 2, 4, 4, 5, 7, 7
+    这个方法是O(n), 但是前提是这道题数组范围是[0, 1, ..., arr.length - 1], 如果不是这个范围, 变成了随意数字, 这个方法就不行了*/
+    public int maxChunksToSorted(int[] arr) {
+        if (arr == null || arr.length == 0) return 0;
+        
+        int[] max = new int[arr.length];
+        max[0] = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            max[i] = Math.max(max[i - 1], arr[i]);
+        }
+        
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (max[i] == i) { //仅限于数组范围是[0, 1, ..., arr.length - 1]可以判断值和下标相等
+                count++;
+            }
+        }
+        
+        return count;
+    }
 }
