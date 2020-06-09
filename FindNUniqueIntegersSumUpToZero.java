@@ -35,6 +35,24 @@ class Solution {
     //n=6, 1 2 3 -3 -2 -1
     //n=7, 1 2 3 0 -3 -2 -1
  
+    //不开list也行
+    public int[] sumZero(int n) {
+        if(n <= 0) {
+            return new int[]{};
+        }
+        
+        int[] result = new int[n];
+        int temp = n / 2;
+        for(int i = 0; i < result.length; i++) {
+            if(temp > 0) {
+                result[i++] = temp;
+                result[i] = -temp;
+                temp--;
+            }
+        }
+        return result;
+    }
+ 
     //多开了一个list
     public int[] sumZero(int n) {
         if(n <= 0) {
